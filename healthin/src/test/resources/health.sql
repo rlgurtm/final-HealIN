@@ -1,7 +1,7 @@
 -- 여기는 health sql문을 쓸 수 있습니다
 
 
--- 아래쪽부터 드랍하세요!
+-- 전체 drop
 drop table exercise;
 drop table consumption_member;
 drop table physical_info;
