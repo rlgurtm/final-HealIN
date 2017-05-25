@@ -1,5 +1,4 @@
 -- 여기는 health sql문을 쓸 수 있습니다
-
 -- 회원 테이블
 drop table health_member;
 create table health_member(
