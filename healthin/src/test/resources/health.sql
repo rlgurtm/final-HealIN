@@ -33,7 +33,7 @@ create table health_member(
 	password varchar2(100) not null,
 	nickname varchar2(100) not null,
 	name varchar2(100) not null,
-	birthdate number default 0, 
+	birthdate varchar2(100) not null, 
 	gender varchar2(100) not null,
 	address varchar2(100) not null,
 	tel varchar2(100) not null,
@@ -277,25 +277,3 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
-
-
-
