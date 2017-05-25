@@ -191,22 +191,6 @@ create table trainer_rate(
 	constraint fk_rate_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_rate_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
