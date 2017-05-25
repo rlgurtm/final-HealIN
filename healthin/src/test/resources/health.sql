@@ -1,4 +1,30 @@
 -- 여기는 health sql문을 쓸 수 있습니다
+
+-- 아래쪽부터 드랍하세요!
+drop table health_member;
+drop table health_user;
+drop table trainer;
+drop table tipandqna;
+drop table health_comment;
+drop table matching;
+drop table mentoring;
+drop table exercise;
+drop table consumption_member;
+drop table physical_info;
+drop table food;
+drop table intake_member;
+drop table following;
+drop table pay;
+drop table trainer_rate;
+
+drop sequence board_no_seq;
+drop sequence comment_no_seq;
+drop sequence mentoring_no_seq;
+drop sequence consumpton_no_seq;
+drop sequence physical_no_seq;
+drop sequence intake_no_seq;
+drop sequence pay_no_seq;
+
 -- 회원 테이블
 drop table health_member;
 create table health_member(
@@ -79,7 +105,7 @@ create table matching(
 -- 1:1 멘토링 테이블
 drop sequence mentoring_no_seq;
 create sequence mentoring_no_seq;
-drop table mentoring
+drop table mentoring;
 create table mentoring(
 	mentoring_no number not null,
 	user_id varchar2(100) not null,
