@@ -25,6 +25,7 @@ drop sequence consumpton_no_seq;
 drop sequence physical_no_seq;
 drop sequence intake_no_seq;
 drop sequence pay_no_seq;
+drop sequence video_no_seq;
 
 -- 회원 테이블
 drop table health_member;
@@ -223,6 +224,7 @@ create table trainer_rate(
 
 -- 강사 동영상
 drop table trainer_video
+create sequence video_no_seq;
 create table trainer_video(
    video_no number primary key, 
    title varchar2(100) not null, 
@@ -277,25 +279,4 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
-
-
 
