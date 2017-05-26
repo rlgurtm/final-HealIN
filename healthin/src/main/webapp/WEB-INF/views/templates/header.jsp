@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="right">
-	<a href="${pageContext.request.contextPath}/member/register_form.do">회원가입</a>&nbsp;&nbsp;
-	
 	<c:choose>
 	<c:when test="${sessionScope.mvo == null}">
+	<a href="${pageContext.request.contextPath}/member/register_form.do">회원가입</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/member/login_form.do">로그인</a>
 	</c:when>
 	<c:otherwise>
