@@ -9,6 +9,7 @@ public class ListVO {
 	public ListVO() {
 		super();
 	}
+
 	
 	public ListVO(List<VO> lVO, PagingBean pb) {
 		super();
@@ -16,17 +17,18 @@ public class ListVO {
 		this.pb = pb;
 	}
 
-	public ListVO(List<VO> LVO, PagingBean pb, CalendarBean cb) {
+
+	public ListVO(List<VO> lVO, PagingBean pb, CalendarBean cb) {
 		super();
-		this.LVO = LVO;
+		LVO = lVO;
 		this.pb = pb;
 		this.cb = cb;
 	}
-	public List<VO> getListVO() {
+	public List<VO> getLVO() {
 		return LVO;
 	}
-	public void setListVO(List<VO> LVO) {
-		this.LVO = LVO;
+	public void setLVO(List<VO> lVO) {
+		LVO = lVO;
 	}
 	public PagingBean getPb() {
 		return pb;

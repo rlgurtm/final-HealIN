@@ -282,7 +282,20 @@ id  VARCHAR2(50) NOT NULL,
 field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
+ CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 )
+
+
+-- 삽입: 멤버 java 임시로 박은거
+insert into health_member 
+values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','n','N')
+insert into health_user  values('java')
+
+insert into health_member 
+values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','y','N')
+insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트레이너 2년',0,'서초구','healthboy1.png')
+
+insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
+values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
 

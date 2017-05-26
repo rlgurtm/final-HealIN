@@ -18,9 +18,7 @@ public class BoardController {
 	
 	@RequestMapping("tip/tip.do")
 	public String getTipBoardList(Model model){
-		//PagingBean pangebean= new PagingBean(3,1);
 		List<VO> list=tipService.getTipBoardList();
-		//ListVO listVO=new ListVO(list, pangebean);
 		model.addAttribute("list",list );
 		return "tip/tip.tiles";
 	}
