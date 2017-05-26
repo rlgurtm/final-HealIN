@@ -1,23 +1,25 @@
 package org.kosta.healthin.model.vo;
 
+import java.util.List;
+
 public class ListVO {
-	private VO vo;
+	private List<VO> LVO;
 	private PagingBean pb;
 	private CalendarBean cb;
 	public ListVO() {
 		super();
 	}
-	public ListVO(VO vo, PagingBean pb, CalendarBean cb) {
+	public ListVO(List<VO> LVO, PagingBean pb, CalendarBean cb) {
 		super();
-		this.vo = vo;
+		this.LVO = LVO;
 		this.pb = pb;
 		this.cb = cb;
 	}
-	public VO getVo() {
-		return vo;
+	public List<VO> getListVO() {
+		return LVO;
 	}
-	public void setVo(VO vo) {
-		this.vo = vo;
+	public void setListVO(List<VO> LVO) {
+		this.LVO = LVO;
 	}
 	public PagingBean getPb() {
 		return pb;
@@ -33,7 +35,8 @@ public class ListVO {
 	}
 	@Override
 	public String toString() {
-		return "ListVO [vo=" + vo + ", pb=" + pb + ", cb=" + cb + "]";
+		return "ListVO [LVO=" + LVO + ", pb=" + pb + ", cb=" + cb + "]";
 	}
+	
 	
 }
