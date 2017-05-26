@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<!-- Header Carousel -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Header Carousel -->
+    <div id="myCarousel" class="carousel slide " data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
