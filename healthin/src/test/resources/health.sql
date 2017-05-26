@@ -300,8 +300,7 @@ values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울�
 insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트레이너 2년',0,'서초구','healthboy1.png')
 
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'연습1','연습1','Wildlife.wmv',sysdate,'분류1','healthboy',0)
-
+values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
 
 
