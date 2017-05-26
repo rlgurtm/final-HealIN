@@ -4,6 +4,4 @@ import org.kosta.healthin.model.vo.MemberVO;
 
 public interface MemberService {
 	MemberVO login(String id, String password);
-
-
 }

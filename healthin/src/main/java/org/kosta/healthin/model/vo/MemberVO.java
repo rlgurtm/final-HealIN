@@ -9,15 +9,15 @@ public class MemberVO implements VO{
 	private String gender;
 	private String address;
 	private String tel;
-	private String e_mail;
-	private String is_trainer;
+	private String email;
+	private String istrainer;
 	private String withdrawal;
 	
 	public MemberVO() {
 		super();
 	}
 	public MemberVO(String id, String password, String nickname, String name, String birthdate, String gender,
-			String address, String tel, String e_mail, String is_trainer, String withdrawal) {
+			String address, String tel, String email, String istrainer, String withdrawal) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -27,8 +27,8 @@ public class MemberVO implements VO{
 		this.gender = gender;
 		this.address = address;
 		this.tel = tel;
-		this.e_mail = e_mail;
-		this.is_trainer = is_trainer;
+		this.email = email;
+		this.istrainer = istrainer;
 		this.withdrawal = withdrawal;
 	}
 	public String getId() {
@@ -79,17 +79,17 @@ public class MemberVO implements VO{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getE_mail() {
-		return e_mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setE_mail(String e_mail) {
-		this.e_mail = e_mail;
+	public void setE_mail(String email) {
+		this.email = email;
 	}
-	public String getIs_trainer() {
-		return is_trainer;
+	public String getIstrainer() {
+		return istrainer;
 	}
-	public void setIs_trainer(String is_trainer) {
-		this.is_trainer = is_trainer;
+	public void setIs_trainer(String istrainer) {
+		this.istrainer = istrainer;
 	}
 	public String getWithdrawal() {
 		return withdrawal;
@@ -101,7 +101,7 @@ public class MemberVO implements VO{
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", nickname=" + nickname + ", name=" + name
 				+ ", birthdate=" + birthdate + ", gender=" + gender + ", address=" + address + ", tel=" + tel
-				+ ", e_mail=" + e_mail + ", is_trainer=" + is_trainer + ", withdrawal=" + withdrawal + "]";
+				+ ", email=" + email + ", istrainer=" + istrainer + ", withdrawal=" + withdrawal + "]";
 	}
 	
 	

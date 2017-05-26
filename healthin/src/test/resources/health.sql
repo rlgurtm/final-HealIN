@@ -299,4 +299,3 @@ insert into trainer_video(video_no,title,content,video_file,posted_date,category
 values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
 
-
