@@ -35,8 +35,7 @@
         </a>
     </div>
 <!-- Page Content -->
-    
-
+    <div class="container">
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-12">
@@ -210,32 +209,32 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
                 </a>
             </div>
         </div>
@@ -278,6 +277,7 @@
                 </div>
             </div>
         </div>
+	</div>
     <!-- /.container -->
 
 
