@@ -46,3 +46,13 @@
 		</tbody>
 	</table>
 </div>
+
+ <!-- <script>
+  	$(document).ready(function(){
+    	$(".menu").click(function(){
+        	$(".active").removeClass("active");
+        	$(this).addClass("active");
+        });
+    
+    });
+  </script> -->
