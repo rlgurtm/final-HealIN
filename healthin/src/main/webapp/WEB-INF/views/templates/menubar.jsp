@@ -49,7 +49,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PT 강사 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="portfolio-1-col.html">PT 강사 동영상</a>
+                                <a href="${pageContext.request.contextPath}/trainerVideoList.do">PT 강사 동영상</a>
                             </li>
                             <li>
                                 <a href="trainer/trainerList.do">PT 강사진</a>
