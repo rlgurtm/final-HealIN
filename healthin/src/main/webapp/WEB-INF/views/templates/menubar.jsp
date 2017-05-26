@@ -82,8 +82,8 @@
                     <!-- 	세션이 없는 경우 My Page는 나타나지 않음
                     		일반 회원인 경우와 PT 강사의 경우 My Page가 다르게 나타남
                      -->
-                    <%-- <c:choose>
-                    	<c:when test="${sessionScope. }">		<!-- 회원인 경우 -->
+                    <c:choose>
+                    	<c:when test="${sessionScope.mvo != null}">		<!-- 회원인 경우 -->
                     		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -96,7 +96,7 @@
 		                        </ul>
 		                    </li>
                     	</c:when>	
-                    	<c:when test="">		<!-- 강사인 경우 -->
+                    	<%-- <c:when test="${sessionScope.mvo.istrainer == 강사}">		<!-- 강사인 경우 -->
                     		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -108,12 +108,11 @@
 		                            </li>
 		                        </ul>
 		                    </li>
-                    	</c:when>	
+                    	</c:when>	 --%>
                     	<c:otherwise></c:otherwise>	<!-- 비로그인 상태인 경우 -->
-                    </c:choose> --%>
+                    </c:choose>
                     
-                    
-                    <!-- 여기부분은 나중에 지울거임 -->
+                    <%-- <!-- 여기부분은 나중에 지울거임 -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -124,7 +123,7 @@
                                 <a href="${pageContext.request.contextPath}/mypage/sidebar.do">Sidebar Page</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --%>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

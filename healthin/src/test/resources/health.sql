@@ -47,6 +47,9 @@ create table health_member(
 	is_trainer varchar2(100) not null,
 	withdrawal char(1) default('N')
 )
+-- 테스트용 
+insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
+values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
 
 -- 사용자 테이블
 drop table health_user;
