@@ -252,7 +252,7 @@ CREATE TABLE video_like (
  video_no number ,
  like_state VARCHAR2(25) NOT NULL,
  CONSTRAINT trainer_like_pk primary key(id, video_no),
- CONSTRAINT fk_trainer_like_id   FOREIGN KEY (id)  REFERENCES healthmember(id),
+ CONSTRAINT fk_trainer_like_id   FOREIGN KEY (id)  REFERENCES health_member(id),
  CONSTRAINT fk_trainer_like_video_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no)
 );
 select * from video_like
@@ -282,6 +282,15 @@ id  VARCHAR2(50) NOT NULL,
 field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
-<<<<<<< HEAD
+ CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
+)
+
+
+
+
+
+
+-- insert 예
+insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
+values (video_no_seq.nextval,'연습1','연습1','Wildlife.wmv',sysdate,'분류1','','all')
 )
