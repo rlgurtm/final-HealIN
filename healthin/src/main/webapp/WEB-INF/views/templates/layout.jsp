@@ -52,11 +52,9 @@
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
 		<tiles:insertAttribute name="menubar" />
 	<!-- </nav> -->
+	
 	<div class="container">
 		<tiles:insertAttribute name="main" />
-	</div>
-	<div class="footer">
-		
 	</div>
 	<tiles:insertAttribute name="footer" />
 	<%-- <div id="header"><tiles:insertAttribute name="header" /></div>
