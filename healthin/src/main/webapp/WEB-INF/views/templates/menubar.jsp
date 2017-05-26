@@ -52,7 +52,7 @@
                                 <a href="portfolio-1-col.html">PT 강사 동영상</a>
                             </li>
                             <li>
-                                <a href="portfolio-2-col.html">PT 강사진</a>
+                                <a href="trainer/trainerList.do">PT 강사진</a>
                             </li>
                             <li>
                                 <a href="portfolio-3-col.html">PT 강사 추천 받기</a>
