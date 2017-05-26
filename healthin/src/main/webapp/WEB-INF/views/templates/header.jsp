@@ -9,6 +9,7 @@
 	</c:when>
 	<c:otherwise>
 	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/modify.do?id="+${sessionScope.mvo.id}>회원정보수정</a>&nbsp;&nbsp;
 	<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 	</c:choose>
