@@ -52,7 +52,7 @@
                                 <a href="${pageContext.request.contextPath}/trainerVideoList.do">PT 강사 동영상</a>
                             </li>
                             <li>
-                                <a href="trainer/trainerList.do">PT 강사진</a>
+                                <a href="portfolio-2-col.html">PT 강사진</a>
                             </li>
                             <li>
                                 <a href="portfolio-3-col.html">PT 강사 추천 받기</a>
@@ -83,7 +83,7 @@
                     		일반 회원인 경우와 PT 강사의 경우 My Page가 다르게 나타남
                      -->
                     <%-- <c:choose>
-                    	<c:when test="${sessionScope. }">		<!-- 회원인 경우 -->
+                    	<c:when test="${sessionScope.mvo != null}">		<!-- 회원인 경우 -->
                     		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -96,7 +96,7 @@
 		                        </ul>
 		                    </li>
                     	</c:when>	
-                    	<c:when test="">		<!-- 강사인 경우 -->
+                    	<c:when test="${sessionScope.mvo.istrainer == 강사}">		<!-- 강사인 경우 -->
                     		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -111,7 +111,6 @@
                     	</c:when>	
                     	<c:otherwise></c:otherwise>	<!-- 비로그인 상태인 경우 -->
                     </c:choose> --%>
-                    
                     
                     <!-- 여기부분은 나중에 지울거임 -->
                     <li class="dropdown">
