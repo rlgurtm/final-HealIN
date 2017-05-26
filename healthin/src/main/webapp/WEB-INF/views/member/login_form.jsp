@@ -5,11 +5,11 @@
 $(document).ready(function () {
 	$("#loginBtn").click(function () {
 		alert('로그인');
-		//$("#loginFrm").submit();
+		$("#loginFrm").submit();
 	});
 });	
 </script>
-<form action="login.do" name="loginFrm">
+<form action="${pageContext.request.contextPath}/login.do" name="loginFrm">
 	id<input type="text" name="id"><br /> 
 	password<input type="password" name="password"><br />
 	<input type="submit" value="login"><br />

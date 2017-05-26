@@ -19,14 +19,14 @@ public  class MemberController {
 	}
 	
 	@RequestMapping("login.do")
-	public String login(HttpServletRequest request,String id,String password,HttpSession session) {
+	public String login(HttpServletRequest request,String id,String password) {
 		System.out.println("로그인 들어왔다" + id +"/"+ password);
-		
 		if(memberService.login(id,password) == null){
 			return "member/login_fail.do";
 		}else{
+			HttpSession session=request.getSession();
 			session.setAttribute("mvo", memberService.login(id,password));
-			return "home.do";
+			return "redirect:home.do";
 		}
 	}
 	
