@@ -4,4 +4,4 @@
 	ID <input type="text">
 	PW <input type="password">
 </form>	
-<div align="center"><img src="${pageContext.request.contextPath}/resources/img/로고.png" width="170" height="130"></div>
+<div align="center"><a href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/resources/img/로고.png" width="170" height="130"></a></div>

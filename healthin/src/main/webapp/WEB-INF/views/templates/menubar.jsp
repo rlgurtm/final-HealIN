@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home3.do">Home</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath }/home.do">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -69,7 +69,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="login.do">이용안내_로그인(임시)</a>
+                                <a href="member/login_form.do">이용안내_로그인(임시)</a>
                             </li>
                             <li>
                                 <a href="blog-home-2.html">QnA</a>

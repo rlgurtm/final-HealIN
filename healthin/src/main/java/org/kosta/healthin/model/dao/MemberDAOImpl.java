@@ -16,12 +16,13 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO login(String id, String password) {
-		// TODO Auto-generated method stub
 		Map<String, String>map = new HashMap<String,String>();
 		map.put("id", id);
 		map.put("password", password);
+		System.out.println(map);
 		MemberVO vo  = sqlSessionTemplate.selectOne("member.login", map);
 		return vo;
 	}
+
 
 }
