@@ -15,7 +15,7 @@ public  class MemberController {
 	
 	@RequestMapping("login_form.do")
 	public String login_form() { 
-		return "member/login_form.do";
+		return "member/login_form";
 	}
 	
 	@RequestMapping("login.do")
