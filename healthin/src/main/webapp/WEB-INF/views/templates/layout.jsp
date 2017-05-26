@@ -45,7 +45,7 @@
 <![endif]-->
 </head>
 <body>
-	<div>
+	<div class="header2">
 		<tiles:insertAttribute name="header" />
 	</div>
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
