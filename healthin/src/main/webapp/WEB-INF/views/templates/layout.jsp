@@ -53,9 +53,9 @@
 		<tiles:insertAttribute name="menubar" />
 	<!-- </nav> -->
 	
-	<!-- <div class="container"> -->
+	<div class="container">
 		<tiles:insertAttribute name="main" />
-<!-- 	</div> -->
+	</div>
 	<tiles:insertAttribute name="footer" />
 	<%-- <div id="header"><tiles:insertAttribute name="header" /></div>
 	<div class="container-fluid text-center">    
