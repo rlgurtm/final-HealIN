@@ -21,9 +21,10 @@
 	PW <input type="password">
 </form>	 
 <hr> -->
-<div align="center" >
-	<a href="home.do"><img src="${pageContext.request.contextPath}/resources/img/로고.png" width="170" height="130"></a>
-	<c:forEach begin="1" end="30">&nbsp;</c:forEach>
+<div align="left" >
+	<c:forEach begin="1" end="20">&nbsp;</c:forEach>
+	<a href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/resources/img/로고.png" width="150" height="110"></a>
+	<c:forEach begin="1" end="130">&nbsp;</c:forEach>
 	<img src="${pageContext.request.contextPath}/resources/img/검색.png" width="20" height="20">&nbsp;
 	<select>
 		<option>----</option>
