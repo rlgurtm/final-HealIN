@@ -18,6 +18,11 @@ public  class MemberController {
 		return "member/login_form";
 	}
 	
+	@RequestMapping("modify_form.do")
+	public String modify_form() { 
+		return "member/modify_form";
+	}
+	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,String id,String password) {
 		System.out.println("로그인 들어왔다" + id +"/"+ password);

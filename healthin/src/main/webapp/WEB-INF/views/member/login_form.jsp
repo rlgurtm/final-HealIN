@@ -34,17 +34,17 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<h1>Login Form</h1>
+	<h1>Flat New Login Form</h1>
 	<div class="login">
 		<h2>Login</h2>
-		<form action="login.do" id="loginFrm">
+		<form action="${pageContext.request.contextPath}/login.do"
+			id="loginFrm">
 			<input type="text" class="user active" name="id" value="UserID"
 				onfocus="this.value = '';"
 				onblur="if (this.value == '') {this.value = 'User name';}" /> <input
 				type="password" class="lock active" name="password" value="Password"
 				onfocus="this.value = '';"
 				onblur="if (this.value == '') {this.value = 'Password';}" />
-
 			<div class="forgot">
 				<div class="login-check"></div>
 				<div class="login-para">
