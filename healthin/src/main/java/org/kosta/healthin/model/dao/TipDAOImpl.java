@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TipDAOImpl implements TipDAO {
+
 	@Resource
 	private SqlSessionTemplate template;
 	
@@ -17,6 +18,5 @@ public class TipDAOImpl implements TipDAO {
 	public List<TipBoardVO> getTipboardList(){
 		return template.selectList("tip.getTipboardList");
 	}
-	
 
 }

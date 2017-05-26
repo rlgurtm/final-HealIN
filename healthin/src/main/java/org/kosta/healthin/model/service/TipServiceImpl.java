@@ -9,12 +9,12 @@ import org.kosta.healthin.model.vo.TipBoardVO;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TipServiceImpl implements HealthService {
+
+public class TipServiceImpl implements TipService  {
 	@Resource
 	private DAO dao;
 	
 	public List<TipBoardVO> getTipboardList(){
 		return null;
 	}
-
 }
