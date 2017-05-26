@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
+ <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
         	$(".active").removeClass("active");
@@ -16,11 +10,7 @@
     });
   </script>
 
-
-
-<div class="container">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>   
+  <h2>다이어트 꿀 팁</h2><br><br>
   <ul class="nav nav-tabs">
     <li class="menu active" ><a href="#">Home</a></li>
     <li class="menu"><a href="#">운동</a></li>
@@ -62,4 +52,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+

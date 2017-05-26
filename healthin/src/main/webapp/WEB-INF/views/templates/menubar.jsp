@@ -132,8 +132,8 @@
         <!-- /.container -->
     </nav>
 
-    <%-- <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
+  <%--   <!-- Header Carousel -->
+    <div id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -170,4 +170,4 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-    </header> --%>
+    </div> --%>
