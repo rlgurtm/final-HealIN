@@ -1,5 +1,5 @@
 package org.kosta.healthin.model.service;
 
-public interface HealthService {
+public interface SearchService {
 
 }
