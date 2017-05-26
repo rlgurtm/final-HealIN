@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Welcome to Modern Business ddddddddd
+                    <!-- Welcome to Modern Business ddddddddd -->
                 </h1>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i> Tip 게시판</h4>
+                        <h4><i class="fa fa-fw fa-check"></i> 나만의 Tip </h4>
                     </div>
                     <div class="panel-body">
                     	<table class="table table-condensed">
@@ -56,7 +56,7 @@
                     		</tbody>
                     	</table>
                     	<div align="center">
-                    		<a href="#" class="btn btn-default">Learn More</a>
+                    		<a href="#" class="btn btn-default">게시판으로</a>
                     	</div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i> 코치에게 묻는다</h4>
+                        <h4><i class="fa fa-fw fa-gift"></i> PT 강사에게 묻는다</h4>
                     </div>
                     <div class="panel-body">
                        <table class="table table-condensed">
@@ -107,7 +107,7 @@
                     		</tbody>
                     	</table>
                         <div align="center">
-                    		<a href="#" class="btn btn-default">Learn More</a>
+                    		<a href="#" class="btn btn-default">게시판으로</a>
                     	</div>
                     </div>
                 </div>
@@ -129,7 +129,10 @@
         <!-- Portfolio Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Portfolio Heading</h2>
+                <h2 class="page-header">
+                	PT 강사진&nbsp;&nbsp;&nbsp;
+                	<a href="#" class="btn btn-default">더보기</a>
+                </h2>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
