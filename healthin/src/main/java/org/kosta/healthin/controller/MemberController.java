@@ -34,7 +34,7 @@ public  class MemberController {
 	public String logout(HttpServletRequest request,String id,String password,HttpSession session) {
 		System.out.println("로그아웃" + id + password);
 		session.invalidate();
-		return "home.do";
+		return "redirect:home.do";
 	}
 
 }
