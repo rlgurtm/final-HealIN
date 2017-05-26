@@ -47,7 +47,6 @@
 	</table>
 	${list }
 </div>
-
  <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
