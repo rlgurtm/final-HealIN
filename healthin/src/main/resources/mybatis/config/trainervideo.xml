@@ -4,7 +4,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="trainervideo">
- 	
+ 	<select id="trainerVideoList" resultType="trainerVideoVO">
+ 		select video_no as videoNo,title,content,video_file as videoFile
+ 		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
+ 		from trainer_video
+ 	</select>
+ 	<select id="trainerVideoShow" resultType="trainerVideoVO">
+ 		select video_no as videoNo,title,content,video_file as videoFile
+ 		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
+ 		from trainer_video
+ 		where video_no=#{value}
+ 	</select>
 </mapper>
  
  

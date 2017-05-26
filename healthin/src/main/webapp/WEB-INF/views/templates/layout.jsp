@@ -63,18 +63,8 @@
 	<div class="header2">
 		<tiles:insertAttribute name="header" />
 	</div>
-<<<<<<< HEAD
-	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
-	<tiles:insertAttribute name="menubar" />
-	<!-- </nav> -->
-	<div class="container">
-		<tiles:insertAttribute name="main" />
-	</div>
-	<div class="footer"></div>
-=======
 	<tiles:insertAttribute name="menubar" />
 	<tiles:insertAttribute name="main" />
->>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
 	<tiles:insertAttribute name="footer" />
 </body>
 </html>
