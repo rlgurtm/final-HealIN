@@ -45,6 +45,7 @@
 			</tr>
 		</tbody>
 	</table>
+	${list }
 </div>
 
  <script>

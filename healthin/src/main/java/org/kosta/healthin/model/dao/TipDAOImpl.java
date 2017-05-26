@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.kosta.healthin.model.vo.TipBoardVO;
+import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ public class TipDAOImpl implements TipDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<TipBoardVO> getTipBoardList(){
+	public List<VO> getTipBoardList(){
 		return template.selectList("tip.getTipBoardList");
 	}
 	

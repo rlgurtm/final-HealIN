@@ -2,11 +2,11 @@ package org.kosta.healthin.model.dao;
 
 import java.util.List;
 
-import org.kosta.healthin.model.vo.TipBoardVO;
+import org.kosta.healthin.model.vo.VO;
 
 public interface TipDAO {
 
-	List<TipBoardVO> getTipBoardList();
+	List<VO> getTipBoardList();
 
 
 }
