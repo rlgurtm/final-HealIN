@@ -8,7 +8,8 @@
 	<a href="${pageContext.request.contextPath}/member/login_form.do">로그인</a>
 	</c:when>
 	<c:otherwise>
-	${sessionScope.mvo.nickname}님 로그인 하셨습니다.
+	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
+	<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 	</c:choose>
 	<c:forEach begin="1" end="10">&nbsp;</c:forEach>
