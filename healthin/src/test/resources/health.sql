@@ -1,6 +1,5 @@
 -- 여기는 health sql문을 쓸 수 있습니다
 
-
 -- 전체 drop
 drop table exercise;
 drop table consumption_member;
@@ -284,5 +283,5 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
+<<<<<<< HEAD
 )
-
