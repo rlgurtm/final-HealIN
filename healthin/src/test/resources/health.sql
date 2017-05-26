@@ -305,3 +305,19 @@ values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연�
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
 values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
 
+-- tipandqna 삽입
+
+insert into tipandqna
+values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!','file',0,sysdate,'헬스','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!','file',0,sysdate,'운동','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','file',0,sysdate,'헬스','spring','qna');
+
+
