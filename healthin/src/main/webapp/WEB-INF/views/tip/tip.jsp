@@ -45,9 +45,10 @@
 			</tr>
 		</tbody>
 	</table>
+	${list }
 </div>
 
- <!-- <script>
+ <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
         	$(".active").removeClass("active");
@@ -55,4 +56,4 @@
         });
     
     });
-  </script> -->
+  </script>
