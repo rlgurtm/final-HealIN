@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="about.html">나만의 Tip</a>
+                        <a href="tip/tip.do">나만의 Tip</a>
                     </li>
                     <li>
                         <a href="services.html">PT 강사에게 묻는다!</a>
@@ -69,7 +69,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="login.do">이용안내_로그인(임시)</a>
+                                <a href="member/login_form.do">이용안내_로그인(임시)</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/board/faq.do">FAQ</a>

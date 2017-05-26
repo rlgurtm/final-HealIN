@@ -16,4 +16,5 @@ public class MemberServiceImpl implements MemberService {
 		MemberVO vo = memberDAO.login(id, password);
 		return vo;
 	}
+
 }

@@ -2,8 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="right">
-	<a href="#">회원가입</a>&nbsp;&nbsp;
-	<a href="#">로그인</a>
+	<c:choose>
+	<c:when test="${sessionScope.mvo == null}">
+	<a href="${pageContext.request.contextPath}/member/register_form.do">회원가입</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/login_form.do">로그인</a>
+	</c:when>
+	<c:otherwise>
+	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/modify.do?id="+${sessionScope.mvo.id}>회원정보수정</a>&nbsp;&nbsp;
+	<a href="logout.do">로그아웃</a>
+	</c:otherwise>
+	</c:choose>
 	<c:forEach begin="1" end="10">&nbsp;</c:forEach>
 </div>
 <hr>
