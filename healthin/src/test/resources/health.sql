@@ -252,7 +252,7 @@ CREATE TABLE video_like (
  video_no number ,
  like_state VARCHAR2(25) NOT NULL,
  CONSTRAINT trainer_like_pk primary key(id, video_no),
- CONSTRAINT fk_trainer_like_id   FOREIGN KEY (id)  REFERENCES healthmember(id),
+ CONSTRAINT fk_trainer_like_id   FOREIGN KEY (id)  REFERENCES health_member(id),
  CONSTRAINT fk_trainer_like_video_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no)
 );
 select * from video_like
@@ -284,6 +284,5 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
 )
-
 
 
