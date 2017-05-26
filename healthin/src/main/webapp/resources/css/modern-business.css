@@ -103,3 +103,11 @@ footer {
 /* ul.nav li.dropdown:hover > ul.dropdown-menu{
     display: block;    
 } */
+
+.header2 {
+	background-color: #ffffff;
+}
+
+#loginForm {
+	background-color: #ffffff;
+}
