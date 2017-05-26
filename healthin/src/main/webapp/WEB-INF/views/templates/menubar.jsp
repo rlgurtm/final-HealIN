@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="tip/tip.do">나만의 Tip</a>
+                        <a href="${pageContext.request.contextPath}/tip/tip.do">나만의 Tip</a>
                     </li>
                     <li>
                         <a href="services.html">PT 강사에게 묻는다!</a>
