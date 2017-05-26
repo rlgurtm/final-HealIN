@@ -69,7 +69,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="blog-home-1.html">이용안내</a>
+                                <a href="login.do">이용안내_로그인(임시)</a>
                             </li>
                             <li>
                                 <a href="blog-home-2.html">QnA</a>

@@ -1,22 +1,26 @@
 -- 여기는 health sql문을 쓸 수 있습니다
 
-
--- 아래쪽부터 드랍하세요!
-drop table health_member;
-drop table health_user;
-drop table trainer;
-drop table tipandqna;
-drop table health_comment;
-drop table matching;
-drop table mentoring;
+-- 전체 drop
 drop table exercise;
 drop table consumption_member;
 drop table physical_info;
 drop table food;
 drop table intake_member;
+drop table matching;
 drop table following;
+drop table mentoring;
 drop table pay;
 drop table trainer_rate;
+drop table field_category;
+drop table field;
+drop table video_comment;
+drop table video_like;
+drop table trainer_video;
+drop table health_user;
+drop table trainer;
+drop table health_comment;
+drop table tipandqna;
+drop table health_member;
 
 drop sequence board_no_seq;
 drop sequence comment_no_seq;
@@ -27,6 +31,7 @@ drop sequence intake_no_seq;
 drop sequence pay_no_seq;
 drop sequence video_no_seq;
 
+
 -- 회원 테이블
 drop table health_member;
 create table health_member(
@@ -34,7 +39,7 @@ create table health_member(
 	password varchar2(100) not null,
 	nickname varchar2(100) not null,
 	name varchar2(100) not null,
-	birthdate number default 0, 
+	birthdate varchar2(100) not null, 
 	gender varchar2(100) not null,
 	address varchar2(100) not null,
 	tel varchar2(100) not null,
@@ -139,7 +144,7 @@ create table consumption_member(
 	constraint fk_health_name foreign key(name) references exercise(name)
 );
 -- 회원별 소비량 시퀀스
-drop sequence consumpton_no_seq;
+drop sequence consumption_no_seq;
 create sequence consumption_no_seq;
 
 --회원 체중관리 테이블
@@ -278,5 +283,5 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES healthmember(id)
+<<<<<<< HEAD
 )
-
