@@ -282,12 +282,8 @@ id  VARCHAR2(50) NOT NULL,
 field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
-<<<<<<< HEAD
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 )
-
-
-
 
 
 -- 삽입: 멤버 java 임시로 박은거

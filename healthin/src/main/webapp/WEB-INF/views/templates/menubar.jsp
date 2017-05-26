@@ -40,11 +40,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home3.do">Home</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-right">
                 	<li class="dropdown" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PT 강사 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="about.html">나만의 Tip</a>
+                        <a href="${pageContext.request.contextPath}/tip/tip.do">나만의 Tip</a>
                     </li>
                     <li>
                         <a href="services.html">PT 강사에게 묻는다!</a>
@@ -69,10 +69,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="login.do">이용안내_로그인(임시)</a>
+                                <a href="member/login_form.do">이용안내_로그인(임시)</a>
                             </li>
                             <li>
-                                <a href="blog-home-2.html">QnA</a>
+                                <a href="${pageContext.request.contextPath}/board/faq.do">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#">QnA</a>
                             </li>
                         </ul>
                     </li>
@@ -115,17 +118,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Full Width Page</a>
+                                <a href="#">Full Width Page</a>
                             </li>
                             <li>
-                                <a href="sidebar.html">Sidebar Page</a>
+                                <a href="${pageContext.request.contextPath}/mypage/sidebar.do">Sidebar Page</a>
                             </li>
                         </ul>
                     </li>
-                    
-                    
-                    
-                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -133,7 +132,7 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Header Carousel -->
+    <%-- <!-- Header Carousel -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -156,12 +155,12 @@
                     <h2>Caption 2</h2>
                 </div>
             </div>
-            <%-- <div class="item">
+            <div class="item">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/자전거.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Caption 3</h2>
                 </div>
-            </div> --%>
+            </div>
         </div>
 
         <!-- Controls -->
@@ -171,4 +170,4 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-    </header>
+    </header> --%>
