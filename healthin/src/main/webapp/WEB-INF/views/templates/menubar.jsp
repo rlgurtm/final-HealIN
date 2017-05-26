@@ -11,9 +11,26 @@
 	    $(this).parent('.dropdown').removeAttr('style');
 	    $(this).parent('.dropdown').children('a').removeAttr('style');
 	  });
+	
+	/* 스크롤을 내리면서 navbar가 상단에 고정 */
+	$(function() {
+		var lastScroll = 0;
+		$(window).scroll(function(event) {
+			var st = $(this).scrollTop();
+
+			if (st > lastScroll) {
+				if (st > 200)
+					$("#mainnav").addClass("navbar-fixed-top");
+			} else {
+				if (st < 200)
+					$("#mainnav").removeClass("navbar-fixed-top");
+			}
+			lastScroll = st;
+		});
+	});
 </script>
 <!-- Navigation -->
-    <nav class="navbar navbar-inverse " role="navigation">
+    <nav class="navbar navbar-inverse" id="mainnav" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -27,8 +44,8 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                	<li class="dropdown">
+                <ul class="nav navbar-nav navbar-left">
+                	<li class="dropdown" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PT 강사 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
@@ -52,7 +69,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="blog-home-1.html">이용안내</a>
+                                <a href="login.do">이용안내_로그인(임시)</a>
                             </li>
                             <li>
                                 <a href="blog-home-2.html">QnA</a>
