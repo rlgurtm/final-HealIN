@@ -1,11 +1,10 @@
 package org.kosta.healthin.model.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.TipDAO;
-import org.kosta.healthin.model.vo.VO;
+import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +14,12 @@ public class TipServiceImpl implements TipService  {
 	private TipDAO dao;
 	
 	@Override
-	public List<VO> getTipBoardList(){
-		return dao.getTipBoardList();
+	public ListVO getTipBoardList(String nowpage){
+		int totalContents=dao.getTotalTipCount();
+		int nowPage=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+		ListVO listVO=new ListVO(dao.getTipBoardList(),pb);
+		return listVO;
 	}
+
 }

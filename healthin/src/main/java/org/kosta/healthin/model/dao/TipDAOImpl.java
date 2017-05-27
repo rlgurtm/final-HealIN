@@ -17,6 +17,10 @@ public class TipDAOImpl implements TipDAO {
 	public List<VO> getTipBoardList(){
 		return template.selectList("tip.getTipBoardList");
 	}
+	@Override
+	public int getTotalTipCount(){
+		return template.selectOne("tip.getTotalTipCount");
+	}
 	
 
 

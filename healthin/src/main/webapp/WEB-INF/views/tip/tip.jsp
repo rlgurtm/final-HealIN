@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
 	<h2>Basic Table</h2>
 	<p>The .table class adds basic styling (light padding and only
@@ -22,6 +23,7 @@
 			</tr>
 		</thead>
 		<tbody>
+
 			<tr>
 				<td>1</td>
 				<td>다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄</td>

@@ -7,6 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="getTipBoardList" resultType="tipBoardVO" >
  		select* from tipandqna where tipqna='tip'
  	</select>
+ 	<select id="getTotalTipCount" resultType="int" >
+ 		select count(*) from tipandqna where tipqna='tip'
+ 	</select>
 </mapper>
  
  
