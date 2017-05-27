@@ -47,9 +47,6 @@ create table health_member(
 	is_trainer varchar2(100) not null,
 	withdrawal char(1) default('N')
 )
--- 테스트용 
-insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
-values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
 
 -- 사용자 테이블
 drop table health_user;
@@ -286,9 +283,6 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
- CONSTRAINT field_pk primary key(filed_name, id),
- CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 )
 
 
@@ -304,6 +298,7 @@ insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트�
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
+<<<<<<< HEAD
 -- 수정: 멤버 수정....
 update health_member set 
 	password='1234',
@@ -340,4 +335,11 @@ create table trainer(
 	trainer_photo varchar2(100) not null
 )
 
+=======
+-- 테스트용 (LJS)
+insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
+values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
+insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
+values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '01011111234', 'abcd12345@gmail.com', '강사', 'N');
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
 

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="container">
 	<h4>지역별 코치 찾기</h4>
-	<div class="col-sm-4" style="background-color: lightgray;">
+	<div class="col-md-4 col-sm-6" style="background-color: lightgray;">
 		<div class="coachloc">
 		서울 > &nbsp;&nbsp;&nbsp;<input type="radio" value="은평구">은평구 
 		<input type="radio" value="은평구">은평구
