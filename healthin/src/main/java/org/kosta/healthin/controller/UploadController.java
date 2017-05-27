@@ -22,4 +22,9 @@ public class UploadController {
 		model.addAttribute("videoVO",videoService.trainerVideoShow(videoNo));
 		return "video/trainer_video_show.tiles";
 	}
+	
+	@RequestMapping("portfolio-2-col.do")
+	public String portfolio2col(){
+		return "video/portfolio_item.tiles";
+	}
 }
