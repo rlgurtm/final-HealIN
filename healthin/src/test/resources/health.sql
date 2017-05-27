@@ -283,9 +283,6 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
- CONSTRAINT field_pk primary key(filed_name, id),
- CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 )
 
 
@@ -304,4 +301,6 @@ values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연�
 -- 테스트용 (LJS)
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
 values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
+insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
+values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '01011111234', 'abcd12345@gmail.com', '강사', 'N');
 

@@ -1,5 +1,8 @@
 package org.kosta.healthin.model.service;
 
-public interface HomeService {
+import org.kosta.healthin.model.vo.ListVO;
 
+public interface HomeService {
+	ListVO videoListOnMainpage();
+	ListVO trainerInfoListOnMainpage();
 }

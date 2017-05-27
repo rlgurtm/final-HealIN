@@ -19,10 +19,10 @@
 			var st = $(this).scrollTop();
 
 			if (st > lastScroll) {
-				if (st > 200)
+				if (st > 140)
 					$("#mainnav").addClass("navbar-fixed-top");
 			} else {
-				if (st < 200)
+				if (st < 140)
 					$("#mainnav").removeClass("navbar-fixed-top");
 			}
 			lastScroll = st;
@@ -82,48 +82,54 @@
                     <!-- 	세션이 없는 경우 My Page는 나타나지 않음
                     		일반 회원인 경우와 PT 강사의 경우 My Page가 다르게 나타남
                      -->
-                    <%-- <c:choose>
-                    	<c:when test="${sessionScope.mvo != null}">		<!-- 회원인 경우 -->
-                    		<li class="dropdown">
-		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-		                            <li>
-		                                <a href="full-width.html">Full Width Page</a>
-		                            </li>
-		                            <li>
-		                                <a href="sidebar.html">Sidebar Page</a>
-		                            </li>
-		                        </ul>
-		                    </li>
-                    	</c:when>	
-                    	<c:when test="${sessionScope.mvo.istrainer == 강사}">		<!-- 강사인 경우 -->
-                    		<li class="dropdown">
-		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-		                            <li>
-		                                <a href="full-width.html">Full Width Page</a>
-		                            </li>
-		                            <li>
-		                                <a href="sidebar.html">Sidebar Page</a>
-		                            </li>
-		                        </ul>
-		                    </li>
-                    	</c:when>	
-                    	<c:otherwise></c:otherwise>	<!-- 비로그인 상태인 경우 -->
-                    </c:choose> --%>
-                    
-                    <!-- 여기부분은 나중에 지울거임 -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">Full Width Page</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/mypage/sidebar.do">Sidebar Page</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <c:if test="${sessionScope.mvo != null }">
+                    	<c:choose>
+                    		<c:when test="${sessionScope.mvo.istrainer == '강사' }">
+                    			<li class="dropdown">
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
+			                        <ul class="dropdown-menu">
+			                            <li>
+			                                <a href="#">팔로워 관리(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">PT 결제 현황</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">나의 PT 회원</a>
+			                            </li>
+			                        </ul>
+			                    </li>
+                    		</c:when>
+                    		<c:when test="${sessionScope.mvo.istrainer == '회원' }">
+                    			<li class="dropdown">
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
+			                        <ul class="dropdown-menu">
+			                            <li>
+			                                <a href="${pageContext.request.contextPath}/mypage/mypage.do">캘린더(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">기간별 건강 변화 체크(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">비만도 측정(기능 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">팔로우 한 강사(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">팔로우 한 강사 동영상(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">PT 결제 현황(이름 임시)</a>
+			                            </li>
+			                            <li>
+			                                <a href="#">나의 PT 강사(이름 임시)</a>
+			                            </li>
+			                        </ul>
+			                    </li>
+                    		</c:when>
+                    	</c:choose>
+                    </c:if>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
