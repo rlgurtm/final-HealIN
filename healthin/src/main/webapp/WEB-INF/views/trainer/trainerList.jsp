@@ -26,7 +26,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"> Health人 코치진 소개
-                    <small>Subheading</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
@@ -35,15 +34,14 @@
                 </ol>
             </div>
         </div>
-        <!-- /.row -->
 
-        <!-- Project One -->
+        <!-- 강사 리스트  -->
         <div class="row">
-            <div class="col-md-3">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
+            <div class="col-sm-3 text-center">
+                    <a href="#">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
+                    </a>
+                </div>
             <div class="col-md-9">
                 <h3>Project One</h3>
                 <h4>Subheading</h4>
@@ -51,7 +49,50 @@
                 <a class="btn btn-primary" href="portfolio-item.html">View Project</a>
             </div>
         </div>
-        <!-- /.row -->
-
+        <hr>
+ <!-- 강사 리스트  -->
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                    <a href="#">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
+                    </a>
+                </div>
+            <div class="col-md-9">
+                <h3>Project One</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <a class="btn btn-primary" href="portfolio-item.html">View Project</a>
+            </div>
+        </div>
+        <hr>
+         <!-- 강사 리스트  -->
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                    <a href="#">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
+                    </a>
+                </div>
+            <div class="col-md-9">
+                <h3>Project One</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <a class="btn btn-primary" href="portfolio-item.html">View Project</a>
+            </div>
+        </div>
+        <hr>
+        <!-- 강사 리스트  -->
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                    <a href="#">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
+                    </a>
+                </div>
+            <div class="col-md-9">
+                <h3>Project One</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <a class="btn btn-primary" href="portfolio-item.html">View Project</a>
+            </div>
+        </div>
         <hr>
         </div>
