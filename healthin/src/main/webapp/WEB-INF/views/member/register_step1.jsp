@@ -60,7 +60,11 @@
 						동의</legend>
 					<div class="box_comm box_terms">
 						<h5 class="tit_agreement">
-						HEALTHIN 서비스 약관 동의  &nbsp; &nbsp; &nbsp;
+						HEALTHIN 서비스 약관 동의  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+					
 						<img onclick="agreeCheck()" src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
 						</h5>
 						<div id="termsAgreeContainer" class="cont_agreement">
@@ -494,6 +498,8 @@
 					<div class="box_comm box_terms">
 						<h5 class="tit_agreement">
 						HEALTHIN 개인정보 수집 및 이용 동의 
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
 						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
 						<img  onclose="checkAgree()"  src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
 						</h5>

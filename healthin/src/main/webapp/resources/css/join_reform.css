@@ -156,7 +156,7 @@ address, caption, cite, code, dfn, em, var {
 }
 
 #kakaoHead {
-	height: 129px;
+	height: 89px;
 	border-bottom: 1px solid #e6e6e6
 }
 
@@ -178,9 +178,8 @@ address, caption, cite, code, dfn, em, var {
 
 .ico_join {
 	display: inline-block;
-	top:1px
 	background-image:
-		url(http://localhost:8888/healthin/resources/img/로고.png);
+		url(http://localhost:8888/healthin/resource/img/ico_join_160909.gif);
 	background-repeat: no-repeat
 }
 
@@ -446,7 +445,7 @@ address, caption, cite, code, dfn, em, var {
 	width: 8px;
 	height: 14px;
 	background:
-		url(http://localhost:8888/healthin/resources/img/로고.png) -20px
+		url(https://t1.daumcdn.net/id/member/2016/ico_join_160909.gif) -20px
 		-50px no-repeat;
 	content: ''
 }
