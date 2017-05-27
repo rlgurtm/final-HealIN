@@ -319,5 +319,7 @@ insert into tipandqna
 values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
 insert into tipandqna
 values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','file',0,sysdate,'헬스','spring','qna');
+insert into tipandqna
+values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁','file',0,sysdate,'헬스','java','tip');
 
 
