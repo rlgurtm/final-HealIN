@@ -1,14 +1,12 @@
 package org.kosta.healthin;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.service.TipService;
-import org.kosta.healthin.model.vo.VO;
+import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -45,8 +43,8 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		List<VO> list=dao.getTipBoardList();
-		System.out.println("안녕하세요"+list);	
+		ListVO list=serivce.getTipBoardList("1");
+		System.out.println("안녕하세요"+list+":::::::"+list.getPb().getNowPage());	
 	}
 }
 

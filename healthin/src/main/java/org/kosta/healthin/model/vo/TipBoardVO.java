@@ -10,14 +10,25 @@ public class TipBoardVO implements VO {
 	private	int hits;
 	private	String posted_date;
 	private	String category;
-	private	String id;
 	private	String tipqna;
+	private MemberVO memberVO;
 	public TipBoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public TipBoardVO(int no, String title, int hits, String posted_date, String category, MemberVO memberVO) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.hits = hits;
+		this.posted_date = posted_date;
+		this.category = category;
+		this.memberVO = memberVO;
+	}
+
 	public TipBoardVO(int no, String title, String content, MultipartFile attached_file, int hits, String posted_date,
-			String category, String id, String tipqna) {
+			String category, String tipqna, MemberVO memberVO) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -26,8 +37,8 @@ public class TipBoardVO implements VO {
 		this.hits = hits;
 		this.posted_date = posted_date;
 		this.category = category;
-		this.id = id;
 		this.tipqna = tipqna;
+		this.memberVO = memberVO;
 	}
 	public int getNo() {
 		return no;
@@ -71,23 +82,23 @@ public class TipBoardVO implements VO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getTipqna() {
 		return tipqna;
 	}
 	public void setTipqna(String tipqna) {
 		this.tipqna = tipqna;
 	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
 	@Override
 	public String toString() {
 		return "TipBoardVO [no=" + no + ", title=" + title + ", content=" + content + ", attached_file=" + attached_file
-				+ ", hits=" + hits + ", posted_date=" + posted_date + ", category=" + category + ", id=" + id
-				+ ", tipqna=" + tipqna + "]";
+				+ ", hits=" + hits + ", posted_date=" + posted_date + ", category=" + category + ", tipqna=" + tipqna
+				+ ", memberVO=" + memberVO + "]";
 	}
 	
 	

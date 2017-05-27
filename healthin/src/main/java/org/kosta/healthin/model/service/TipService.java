@@ -1,11 +1,9 @@
 package org.kosta.healthin.model.service;
 
-import java.util.List;
-
-import org.kosta.healthin.model.vo.VO;
+import org.kosta.healthin.model.vo.ListVO;
 
 public interface TipService {
 
-	List<VO> getTipBoardList();
+	ListVO getTipBoardList(String nowpage);
 
 }

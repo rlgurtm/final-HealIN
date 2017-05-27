@@ -8,5 +8,7 @@ public interface TipDAO {
 
 	List<VO> getTipBoardList();
 
+	int getTotalTipCount();
+
 
 }

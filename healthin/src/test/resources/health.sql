@@ -296,25 +296,15 @@ values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울�
 insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트레이너 2년',0,'서초구','healthboy1.png')
 
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
+values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'분류1','healthboy',0);
+insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
+values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'분류1','healthboy',0);
 
--- 수정: 멤버 수정....
-update health_member set 
-	password='1234',
-	nickname='javaqueen',
-	name='자바걸',
-	birthdate='19990808',
-	gender='female',
-	address='서울시 종로구 통인동 65 202호',
-	tel='01099991234',
-	e_mail='queen@yahoo.co.kr',
-	is_trainer='n',
-	withdrawal='N'
-where id='java'
-
+select * from trainer_video
 select * from health_member
 select * from health_user
 select * from trainer
+
 
 
 -- 테스트용 (LJS)
@@ -322,4 +312,25 @@ insert into health_member(id, password, nickname, name, birthdate, gender, addre
 values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', 'user', 'N');
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
 values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '01011111234', 'abcd12345@gmail.com', 'trainer', 'N');
+
+-- tipandqna 삽입
+
+insert into tipandqna
+values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!','file',0,sysdate,'헬스','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!','file',0,sysdate,'운동','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','file',0,sysdate,'헬스','spring','qna');
+insert into tipandqna
+values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁','file',0,sysdate,'헬스','java','tip');
+
+
+
+
 
