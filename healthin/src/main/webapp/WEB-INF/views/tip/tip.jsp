@@ -35,15 +35,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list.LVO }" var="list">
-				<tr>
-					<td>${list.no}</td>
-					<td>${list.title }</td>
-					<td>${list.memberVO.name }</td>
-					<td>${list.posted_date }</td>
-					<td>${list.hits}</td>
-				</tr>
-			</c:forEach>
+			<c:if test="${!empty list.LVO }">
+				<c:forEach items="${list.LVO }" var="list">
+					<tr>
+						<td>${list.no}</td>
+						<td>${list.title }</td>
+						<td>${list.memberVO.name }</td>
+						<td>${list.posted_date }</td>
+						<td>${list.hits}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
 </div>
