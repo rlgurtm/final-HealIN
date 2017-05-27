@@ -1,5 +1,9 @@
 package org.kosta.healthin.model.dao;
 
-public interface HomeDAO {
+import org.kosta.healthin.model.vo.ListVO;
 
+public interface HomeDAO {
+	ListVO videoListOnMainpage();
+	ListVO trainerInfoListOnMainpage();
+	ListVO tipAndQnaBoardOnMainpage();
 }

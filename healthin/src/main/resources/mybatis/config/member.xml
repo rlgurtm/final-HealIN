@@ -4,13 +4,42 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
- 	<select id="login" resultType="memberVO" parameterType="map"  >
- 		select 
- 		id,password,nickname,name,birthdate,gender,address,tel,
- 		e_mail as email,is_trainer as istrainer,withdrawal
-        from health_member where id=#{id} and password=#{password}
- 	</select>
+	<select id="login" resultType="memberVO" parameterType="map">
+		select
+		id,password,nickname,name,birthdate,gender,address,tel,
+		e_mail as
+		email,is_trainer as istrainer,withdrawal
+		from health_member where
+		id=#{id} and password=#{password}
+	</select>
+	<update id="modify" parameterType="memberVO">
+		update health_member set
+		password= #{password},
+		nickname= #{nickname},
+		name= #{name},
+		birthdate=#{birthdate},
+		gender=#{gender},
+		address=#{address},
+		tel=#{tel},
+		e_mail=#{email},
+		is_trainer=#{istrainer},
+		withdrawal=#{withdrawal}
+		where
+		id=#{id}
+	</update>
+	<insert id="registerStep1">
+		insert into health_member
+		values(#{id},#{password},#{nickname},#{name},#{birthdate},#{gender},
+		#{address},#{tel},#{email},#{istrainer},'N')
+	</insert>
+	<insert id="registerStudent">
+		insert into health_user values(#{id})
+	</insert>
+	<insert id="registerTrainer">
+		insert into trainer values(#{id},#{career},0,#{location},#{trainer_photo})
+	</insert>
 </mapper>
+
  
  
  
