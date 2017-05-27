@@ -34,7 +34,6 @@
 			<div class="inner_head">
 				<h1>
 					<a href="${pageContext.request.contextPath}/home.do" id="daumServiceLogo" class="ico_join">
-					<img src="${pageContext.request.contextPath}/resources/img/로고.png" height="80" width="200">
 					<span class="ir_wa">HEALTHIN</span></a>
 				</h1>
 			</div>
@@ -60,15 +59,9 @@
 						동의</legend>
 					<div class="box_comm box_terms">
 						<h5 class="tit_agreement">
-						HEALTHIN 서비스 약관 동의  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-					
-						<img onclick="agreeCheck()" src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
+						HEALTHIN 서비스 약관 동의
 						</h5>
 						<div id="termsAgreeContainer" class="cont_agreement">
-						
 							<!-- 포커스 시 tabindex=“0” 추가 -->
 							<strong class="tit_article">제 1 장 총 칙</strong> <span class="tit">제
 								1 조 목적</span>
@@ -494,14 +487,11 @@
 							<!-- focus 시 .focus 추가 -->
 						</div>
 					</div>
+					
 
 					<div class="box_comm box_terms">
 						<h5 class="tit_agreement">
 						HEALTHIN 개인정보 수집 및 이용 동의 
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-						<img  onclose="checkAgree()"  src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
 						</h5>
 						<div id="policyAgreeContainer" class="cont_agreement">
 							<!-- 포커스 시 tabindex=“0” 추가 -->
@@ -554,7 +544,7 @@
 			<a href="http://cs.daum.net/faq/59/8034.html" target="_blank"
 				class="link_info">회원가입 도움말</a>
 			<div class="txt_copyright">
-				© <a href="http://www.kakaocorp.com/main" class="link_daum"
+				© <a href="${pageContext.request.contextPath}/home.do" class="link_daum"
 					target="_blank">OGGIGEMAPZO Corp.</a>
 			</div>
 		</div>

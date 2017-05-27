@@ -179,7 +179,7 @@ address, caption, cite, code, dfn, em, var {
 .ico_join {
 	display: inline-block;
 	background-image:
-		url(http://localhost:8888/healthin/resource/img/ico_join_160909.gif);
+		url(http://localhost:8888/healthin/resources/img/ico_join_160909.gif);
 	background-repeat: no-repeat
 }
 
@@ -445,7 +445,7 @@ address, caption, cite, code, dfn, em, var {
 	width: 8px;
 	height: 14px;
 	background:
-		url(https://t1.daumcdn.net/id/member/2016/ico_join_160909.gif) -20px
+		url(http://localhost:8888/healthin/resources/img/ico_join_160909.gif) -20px
 		-50px no-repeat;
 	content: ''
 }
