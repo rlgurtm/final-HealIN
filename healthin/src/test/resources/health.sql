@@ -321,6 +321,25 @@ select * from health_user
 select * from trainer
 
 
+-- 수정: 멤버 수정....
+update health_member set 
+	password='1234',
+	nickname='javaqueen',
+	name='자바걸',
+	birthdate='19990808',
+	gender='female',
+	address='서울시 종로구 통인동 65 202호',
+	tel='01099991234',
+	e_mail='queen@yahoo.co.kr',
+	is_trainer='n',
+	withdrawal='N'
+where id='java'
+
+select * from health_member
+select * from health_user
+select * from trainer
+
+
 -- 테스트용 (LJS)
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
 values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', 'user', 'N');

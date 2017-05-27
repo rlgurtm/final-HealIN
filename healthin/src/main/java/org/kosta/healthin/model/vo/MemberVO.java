@@ -82,13 +82,13 @@ public class MemberVO implements VO{
 	public String getEmail() {
 		return email;
 	}
-	public void setE_mail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getIstrainer() {
 		return istrainer;
 	}
-	public void setIs_trainer(String istrainer) {
+	public void setIstrainer(String istrainer) {
 		this.istrainer = istrainer;
 	}
 	public String getWithdrawal() {

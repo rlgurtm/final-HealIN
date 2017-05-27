@@ -34,16 +34,23 @@
             <span class="icon-next"></span>
         </a>
     </div>
-<!-- Page Content -->
+    
+    <br><br><br>
+    
+	<!-- Page Content -->
     <div class="container">
-        <!-- Marketing Icons Section -->
+    	<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    <!-- Welcome to Modern Business ddddddddd -->
-                </h1>
+                <h2 class="page-header">Three Column Portfolio
+                    <small>Subheading</small>
+                </h2>
             </div>
-            <div class="col-md-4">
+        </div>
+        <!-- /.row -->
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i> 나만의 Tip </h4>
@@ -94,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-gift"></i> PT 강사에게 묻는다</h4>
@@ -145,67 +152,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i> 공지사항</h4>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-condensed">
-                    		<thead>
-	                    		<tr>
-	                    			<th>ㅇ</th><th>ㄴ</th><th>ㅁ</th>
-	                    		</tr>
-                    		</thead>
-                    		<tbody>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    		</tbody>
-                    	</table>
-                    	<div align="center">
-                    		<a href="#" class="btn btn-default">게시판으로</a>
-                    	</div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- /.row -->
+        
+        <br><br><br>
 
-        <!-- Portfolio Section -->
+        <!-- 강사진 보기 Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">
-                	PT 강사진&nbsp;&nbsp;&nbsp;
-                	<a href="#" class="btn btn-default">더보기</a>
-                </h2>
+            	<div class="col-lg-12">
+	                <h2 class="page-header">PT Trainer
+	                    <small>popular trainer</small>
+	                </h2>
+	            </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
@@ -239,7 +198,102 @@
             </div>
         </div>
         <!-- /.row -->
-
+        
+        <br><br><br>
+        
+        <!-- 인기 동영상 section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
+	                <h2 class="page-header">Video
+	                    <small>popular video</small>
+	                </h2>
+	            </div>
+            </div>
+            
+          
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            
+            <div class="col-lg-12">
+                <h2 class="page-header"></h2>
+            </div>
+           
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
+                </a>
+                <h3>
+                    <a href="portfolio-item.html">Project Name</a>
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        <br><br><br>
+		
         <!-- Features Section -->
         <div class="row">
             <div class="col-lg-12">

@@ -7,11 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>회원정보 수정</title>
+<title>회원가입</title>
 <script type="text/javascript">
 $(document).ready(function () {
-	$("modifyBtn").click(function () {
-		$("#modifyFrm").submit(); 
+	$("registerBtn").click(function () {
+		$("#registerFrm").submit(); 
 	});//회원정보 수정
 });//ready
 </script>
@@ -31,75 +31,59 @@ $(document).ready(function () {
 	<article class="container">
 		<div class="page-header">
 			<h1>
-				회원정보수정 <small> form</small>
+				회원가입 <small> form</small>
 			</h1>
 		</div>
 		<div class="col-md-6 col-md-offset-3">
-			<form role="form" id="modifyFrm" action="${pageContext.request.contextPath}/modify.do">
+			<form role="form" id="registerFrm" action="${pageContext.request.contextPath}/register.do">
 				<div class="form-group">
 					<label for="InputId">id</label> <input type="text"
-						class="form-control" value="${sessionScope.mvo.id }"   name="id" placeholder="${sessionScope.mvo.id }" readonly="readonly">
+						class="form-control" name="id" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="InputPassword">password</label> <input type="password"
-						class="form-control" value="${sessionScope.mvo.password }"   name="password" placeholder="${sessionScope.mvo.password }" >
+						class="form-control" name="password" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputnickname">nickname</label> <input type="text"
-						class="form-control"  value="${sessionScope.mvo.nickname }"  name="nickname" placeholder="${sessionScope.mvo.nickname }" >
+						class="form-control"  name="nickname" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputnickname">name</label> <input type="text"
-						class="form-control" value="${sessionScope.mvo.name }" name="name" placeholder="${sessionScope.mvo.name }" >
+						class="form-control" name="name" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputnickbirthdate">birthdate</label> <input type="text"
-						class="form-control"  value="${sessionScope.mvo.birthdate }"  name="birthdate" placeholder="${sessionScope.mvo.birthdate }" >
+						class="form-control"   name="birthdate" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputgender">gender</label><br> 
-					<c:choose>
-					<c:when test="${sessionScope.mvo.gender ==  'female'}">
 					<input type="radio" name="gender" value="female" checked="checked">여자
 					<input type="radio" name="gender" value="male" >남자
-					</c:when>
-					<c:when test="${sessionScope.mvo.gender ==  'male'}">
-					<input type="radio" name="gender" value="female" >여자
-					<input type="radio" name="gender" value="male" checked="checked" >남자
-					</c:when>
-					</c:choose>
 				</div>
 				<div class="form-group">
 					<label for="Inputnickaddress">address</label> <input type="text"
-						class="form-control" value="${sessionScope.mvo.address }" name="address" placeholder="${sessionScope.mvo.address }" >
+						class="form-control" name="address" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputtel">tel</label> <input type="text"
-						class="form-control" value="${sessionScope.mvo.tel }" name="tel" placeholder="${sessionScope.mvo.tel }" >
+						class="form-control" name="tel" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputemail">email</label> <input type="text"
-						class="form-control" value="${sessionScope.mvo.email }" name="email" placeholder="${sessionScope.mvo.email }" >
+						class="form-control" name="email" placeholder="ID를 입력해주세요" >
 				</div>
 				<div class="form-group">
 					<label for="Inputistrainer">istrainer</label> <br>
-					<c:choose>
-					<c:when test="${sessionScope.mvo.istrainer ==  'y'}">
-					<input type="radio" name="istrainer" value="y" checked="checked" readonly="readonly">코치
-					<input type="radio" name="istrainer" value="n" readonly="readonly">학생
-					</c:when>
-					<c:when test="${sessionScope.mvo.istrainer ==  'n'}">
-					<input type="radio" name="istrainer" value="y" readonly="readonly">코치
-					<input type="radio" name="istrainer" value="n" checked="checked" readonly="readonly" >학생
-					</c:when>
-					</c:choose>
+					<input type="radio" name="istrainer" value="y" checked="checked">코치
+					<input type="radio" name="istrainer" value="n">학생
 					<input type="hidden" value="N" name="withdrawal"  >
 				</div>
 				
 				
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-info" id="modifyBtn">
-						회원정보수정<i class="fa fa-check spaceLeft"></i>
+					<button type="submit" class="btn btn-info" id="registerBtn">
+						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
 					<button type="reset" class="btn btn-warning">
 						초기화<i class="fa fa-times spaceLeft"></i>

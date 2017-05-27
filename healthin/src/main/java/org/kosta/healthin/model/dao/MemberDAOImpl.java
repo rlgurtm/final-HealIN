@@ -24,5 +24,38 @@ public class MemberDAOImpl implements MemberDAO {
 		return vo;
 	}
 
+	@Override
+	public void modify(MemberVO vo) {
+		sqlSessionTemplate.update("member.modify", vo);
+	}
+	
+
+	@Override
+	public void registerStep1(MemberVO vo) {
+		// TODO Auto-generated method stub
+		int result= sqlSessionTemplate.insert("member.registerStep1", vo);
+		
+		if(vo.getIstrainer() == "n"){
+			registerStudent(vo);
+		}else{
+			registerTrainer(vo);
+		}
+	}
+
+	@Override
+	public MemberVO registerStudent(MemberVO vo) {
+		// TODO Auto-generated method stub
+		int result= sqlSessionTemplate.insert("member.registerStudent", vo);
+		return vo;
+	}
+
+	@Override
+	public MemberVO registerTrainer(MemberVO vo) {
+		// TODO Auto-generated method stub
+		int result= sqlSessionTemplate.insert("member.registerTrainer", vo);
+		return vo;
+	}
+
+
 
 }
