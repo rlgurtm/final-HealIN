@@ -298,24 +298,6 @@ insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트�
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
--- 수정: 멤버 수정....
-update health_member set 
-	password='1234',
-	nickname='javaqueen',
-	name='자바걸',
-	birthdate='19990808',
-	gender='female',
-	address='서울시 종로구 통인동 65 202호',
-	tel='01099991234',
-	e_mail='queen@yahoo.co.kr',
-	is_trainer='n',
-	withdrawal='N'
-where id='java'
-
-select * from health_member
-select * from health_user
-select * from trainer
-
 
 -- 테스트용 (LJS)
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
