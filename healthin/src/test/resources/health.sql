@@ -288,17 +288,16 @@ field_state  VARCHAR2(50) NOT NULL,
 
 -- 삽입: 멤버 java 임시로 박은거
 insert into health_member 
-values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','n','N')
+values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N')
 insert into health_user  values('java')
 
 insert into health_member 
-values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','y','N')
+values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트레이너 2년',0,'서초구','healthboy1.png')
 
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 values (video_no_seq.nextval,'연습','연습연습연습연습연습연습연습연습연습연습연습연습','111.mp4',sysdate,'분류1','healthboy',0)
 
-<<<<<<< HEAD
 -- 수정: 멤버 수정....
 update health_member set 
 	password='1234',
@@ -317,29 +316,10 @@ select * from health_member
 select * from health_user
 select * from trainer
 
--- 사용자 테이블
-drop table health_user;
-create table health_user(
-	user_id varchar2(100) primary key 
-	constraint member_fk references health_member(id)
-)
 
--- 강사 테이블
-drop table trainer;
-create table trainer(
-	trainer_id varchar2(100) primary key 
-	constraint member_fk_trainer references health_member(id),
-	career clob not null,
-	rank number default 0,
-	location varchar2(100) not null,
-	trainer_photo varchar2(100) not null
-)
-
-=======
 -- 테스트용 (LJS)
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
-values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', '회원', 'N');
+values('java', '1234', '자바', '자바', '19911111', '남', '판교', '01011111234', 'abcd12345@gmail.com', 'user', 'N');
 insert into health_member(id, password, nickname, name, birthdate, gender, address, tel, e_mail, is_trainer, withdrawal)
-values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '01011111234', 'abcd12345@gmail.com', '강사', 'N');
->>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
+values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '01011111234', 'abcd12345@gmail.com', 'trainer', 'N');
 

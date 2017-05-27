@@ -59,8 +59,12 @@
 					<legend class="screen_out">HEALTHIN 서비스 약관 및 개인정보 수집, 이용에 대한
 						동의</legend>
 					<div class="box_comm box_terms">
-						<h5 class="tit_agreement">HEALTHIN 서비스 약관 동의</h5>
+						<h5 class="tit_agreement">
+						HEALTHIN 서비스 약관 동의  &nbsp; &nbsp; &nbsp;
+						<img onclick="agreeCheck()" src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
+						</h5>
 						<div id="termsAgreeContainer" class="cont_agreement">
+						
 							<!-- 포커스 시 tabindex=“0” 추가 -->
 							<strong class="tit_article">제 1 장 총 칙</strong> <span class="tit">제
 								1 조 목적</span>
@@ -488,10 +492,14 @@
 					</div>
 
 					<div class="box_comm box_terms">
-						<h5 class="tit_agreement">HEALTHIN 개인정보 수집 및 이용 동의</h5>
+						<h5 class="tit_agreement">
+						HEALTHIN 개인정보 수집 및 이용 동의 
+						&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+						<img  onclose="checkAgree()"  src="${pageContext.request.contextPath}/resources/img/checkbox.png" id="agreeBtn">
+						</h5>
 						<div id="policyAgreeContainer" class="cont_agreement">
 							<!-- 포커스 시 tabindex=“0” 추가 -->
-							<strong class="tit_article tit_article2">(주)카카오는 아래의
+							<strong class="tit_article tit_article2">(주)오지게맵조는 아래의
 								목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 취급하는데 최선을 다합니다.</strong> <span
 								class="tit">1. 수집목적</span> • 이용자 식별, 원활한 의사소통, 부정이용 시 제재 및 기록 <br>
 							• 회원제 서비스 제공, 문의사항 또는 불만 처리, 공지사항 전달 <br> • 유료 서비스 이용 시 요금
@@ -635,7 +643,7 @@
 				});
 
 		$(".link_back").click(function() {
-			var prev = "http://www.daum.net"
+			var prev = "${pageContext.request.contextPath}/home.do"
 			if ("" != "") {
 				prev = "";
 			}
