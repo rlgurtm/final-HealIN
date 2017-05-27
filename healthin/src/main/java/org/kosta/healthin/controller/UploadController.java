@@ -25,6 +25,6 @@ public class UploadController {
 	
 	@RequestMapping("portfolio-2-col.do")
 	public String portfolio2col(){
-		return "video/portfolio_item.tiles";
+		return "video/portfolio_1_col.tiles";
 	}
 }
