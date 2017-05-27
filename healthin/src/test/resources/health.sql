@@ -301,21 +301,6 @@ insert into trainer_video(video_no,title,content,video_file,posted_date,category
 values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'분류1','healthboy',0);
 
 select * from trainer_video
-
--- 수정: 멤버 수정....
-update health_member set 
-	password='1234',
-	nickname='javaqueen',
-	name='자바걸',
-	birthdate='19990808',
-	gender='female',
-	address='서울시 종로구 통인동 65 202호',
-	tel='01099991234',
-	e_mail='queen@yahoo.co.kr',
-	is_trainer='n',
-	withdrawal='N'
-where id='java'
-
 select * from health_member
 select * from health_user
 select * from trainer
