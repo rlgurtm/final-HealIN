@@ -152,7 +152,7 @@ drop table physical_info;
 create table physical_info(
 	physical_no number primary key,
 	height number not null,
-	weught number not null,
+	weight number not null,
 	today date not null,
 	user_id varchar2(100) not null,
 	constraint fk_physical_user_id foreign key(user_id) references health_user(user_id)
