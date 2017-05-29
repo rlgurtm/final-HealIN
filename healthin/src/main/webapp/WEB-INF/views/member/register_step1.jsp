@@ -15,7 +15,7 @@
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <meta http-equiv="Pragma" content="no-cache" />
-<meta name="description" content="Daum 회원가입">
+<meta name="description" content="HEALTHIN 회원가입">
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/join_reform.css">
@@ -33,8 +33,8 @@
 		<div id="kakaoHead">
 			<div class="inner_head">
 				<h1>
-					<a href="${pageContext.request.contextPath}/home.do" id="daumServiceLogo" class="ico_join">
-					<span class="ir_wa">HEALTHIN</span></a>
+					<a href="${pageContext.request.contextPath}/home.do"
+						id="daumServiceLogo" class="ico_join"> <span class="ir_wa"></span></a>
 				</h1>
 			</div>
 		</div>
@@ -42,9 +42,9 @@
 		<h2 class="screen_out">회원가입 안내 본문</h2>
 		<div id="kakaoBody" class="cont_personal">
 			<div class="paging_step">
-				<span class="ico_join ico_paging on"></span> 
-				<span class="ico_join ico_paging"></span> 
-				<span class="ico_join ico_paging"></span>
+				<span class="ico_join ico_paging on"></span> <span
+					class="ico_join ico_paging"></span> <span
+					class="ico_join ico_paging"></span>
 			</div>
 			<div class="wrap_tit">
 				<h3 class="tit_join">개인 가입 약관 동의</h3>
@@ -52,15 +52,11 @@
 					서비스 약관 및 개인정보 수집, 이용에 <strong class="txt_emph">동의</strong>해 주세요.
 				</div>
 			</div>
-			<form id="joinTerms" name="joinTerms" action="/join/terms"
-				method="post">
 				<fieldset class="fld_comm">
-					<legend class="screen_out">HEALTHIN 서비스 약관 및 개인정보 수집, 이용에 대한
-						동의</legend>
+					<legend class="screen_out">HEALTHIN 서비스 약관 및 개인정보 수집, 이용에
+						대한 동의</legend>
 					<div class="box_comm box_terms">
-						<h5 class="tit_agreement">
-						HEALTHIN 서비스 약관 동의
-						</h5>
+						<h5 class="tit_agreement">HEALTHIN 서비스 약관 동의</h5>
 						<div id="termsAgreeContainer" class="cont_agreement">
 							<!-- 포커스 시 tabindex=“0” 추가 -->
 							<strong class="tit_article">제 1 장 총 칙</strong> <span class="tit">제
@@ -487,12 +483,10 @@
 							<!-- focus 시 .focus 추가 -->
 						</div>
 					</div>
-					
+
 
 					<div class="box_comm box_terms">
-						<h5 class="tit_agreement">
-						HEALTHIN 개인정보 수집 및 이용 동의 
-						</h5>
+						<h5 class="tit_agreement">HEALTHIN 개인정보 수집 및 이용 동의</h5>
 						<div id="policyAgreeContainer" class="cont_agreement">
 							<!-- 포커스 시 tabindex=“0” 추가 -->
 							<strong class="tit_article tit_article2">(주)오지게맵조는 아래의
@@ -504,34 +498,33 @@
 							측면의 서비스 환경 구축 <br> <span class="tit">2. 수집항목</span> (필수)
 							아이디, 비밀번호, 이름, 연락처(휴대폰번호 또는 이메일 주소 중 1개 선택) <br> <span
 								class="tit">3. 보유기간</span> 수집된 정보는 회원탈퇴 후 지체없이 파기됩니다.<br> <br>서비스
-							제공을 위해 필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스 이용이 가능합니다. <br>더 자세한
-							내용에 대해서는 <a
-								href="http://policy.daum.net/info_protection/info_protection"
-								target="_blank" class="link_privacy">개인정보처리방침</a>을 참고하시기 바랍니다.
+							제공을 위해 필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스 이용이 가능합니다. <br>
 						</div>
 						<div class="wrap_check">
 							<input id="policyAgree" name="policyAgree" type="checkbox"
 								class="input_check"> <label for="policyAgree"
-								class="ico_join ico_check">HEALTHIN 개인정보 수집 및 이용 약관에 동의합니다.</label>
+								class="ico_join ico_check">HEALTHIN 개인정보 수집 및 이용 약관에
+								동의합니다.</label>
 							<!-- focus 시 .focus 추가 -->
 						</div>
 					</div>
 
 					<div class="wrap_btn">
 						<button type="button" class="link_back">
-							<span class="ico_join_pre"><img src="${pageContext.request.contextPath}/resources/img/pre.png"></span>이전으로
+							<span class="ico_join_pre"><img
+								src="${pageContext.request.contextPath}/resources/img/pre.png"></span>이전으로
 						</button>
 						<button type="submit" id="nextBtn"
 							class="btn_comm btn_type1 disabled">동의하기</button>
 						<!-- 전체 동의 체크 후 .disabled 제거 -->
 						<a
-							href="${pageContext.request.contextPath}/register_form.do?type=n"
+							href="${pageContext.request.contextPath}/member/register_step2.do?type=n"
 							class="btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
-						<a href="${pageContext.request.contextPath}/register_form.do?type=y"
-							class="btn_type2">Trainer 계정으로  가입하기<span class="ico_join"></span></a>
+						<a
+							href="${pageContext.request.contextPath}/register_form.do?type=y"
+							class="btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
 					</div>
 				</fieldset>
-			</form>
 		</div>
 
 		<hr class="hide">
@@ -544,107 +537,14 @@
 			<a href="http://cs.daum.net/faq/59/8034.html" target="_blank"
 				class="link_info">회원가입 도움말</a>
 			<div class="txt_copyright">
-				© <a href="${pageContext.request.contextPath}/home.do" class="link_daum"
-					target="_blank">OGGIGEMAPZO Corp.</a>
+				© <a href="${pageContext.request.contextPath}/home.do"
+					class="link_daum" target="_blank">OGGIGEMAPZO Corp.</a>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript"
-		src="https://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript">
-		var _tiq = 'undefined' !== typeof _tiq ? _tiq : [];
-		_tiq.push([ '__trackPageview' ]);
-		(function(d) {
-			var se = d.createElement('script');
-			se.type = 'text/javascript';
-			se.async = true;
-			se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
-			var s = d.getElementsByTagName('head')[0];
-			s.appendChild(se);
-		})(document);
-	</script>
-
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('input:checkbox').prop('checked', false);
-
-			$("#termsAgree, #policyAgree").focus(function() {
-				$(this).siblings().addClass("focus");
-
-			}).blur(function() {
-				$(this).siblings().removeClass("focus");
-			}).click(function() {
-				$(this).siblings().toggleClass("on");
-				checkAgreeState();
-			});
-
-			addTabFocusEvent();
-		});
-
-		function addTabFocusEvent() {
-			$(
-					"#daumServiceLogo, #termsAgree, #termsAgreeContainer, #policyAgree, #policyAgreeContainer")
-					.on(
-							"keydown",
-							function(event) {
-								if (event.shiftKey && event.which == 9)
-									return;
-								if (event.which == 9) {
-									var targetId = $(this).attr("id");
-
-									if (targetId === "daumServiceLogo") {
-										$("#termsAgree").focus();
-									} else if (targetId === "termsAgree") {
-										$("#termsAgreeContainer").attr(
-												"tabindex", 0).focus();
-									} else if (targetId === "termsAgreeContainer") {
-										$(this).removeAttr("tabindex");
-										$("#policyAgree").focus();
-									} else if (targetId === "policyAgree") {
-										$("#policyAgreeContainer").attr(
-												"tabindex", 0).focus();
-									} else if (targetId === "policyAgreeContainer") {
-										$(this).removeAttr("tabindex");
-										$("#prevBtn").focus();
-									} else {
-										return;
-									}
-								} else {
-									return true;
-								}
-								return false;
-							});
-		}
-
-		function checkAgreeState() {
-			if ($("#termsAgree").is(":checked")
-					&& $("#policyAgree").is(":checked")) {
-				$("#nextBtn").removeClass("disabled").focus();
-			} else {
-				$("#nextBtn").addClass("disabled");
-			}
-		}
-
-		$("#nextBtn").click(
-				function() {
-					if ($("#termsAgree").prop("checked")
-							&& $("#policyAgree").prop("checked")) {
-						return true;
-					} else {
-						alert("서비스 약관과 개인정보 수집 및 이용에 대해 모두 동의해 주세요.");
-						return false;
-					}
-				});
-
-		$(".link_back").click(function() {
-			var prev = "${pageContext.request.contextPath}/home.do"
-			if ("" != "") {
-				prev = "";
-			}
-			location.href = decodeURIComponent(prev);
-		});
-	</script>
+		src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/agreement.js"></script>
 </body>
-

@@ -72,6 +72,13 @@ public  class MemberController {
 		return "redirect:home.do";
 	}
 	
+	
+	@RequestMapping("register_step2.do")
+	public String register_step2( ) {
+		System.out.println("회원 가입2>>>" );
+		return "member/register_step2.do";
+	}
+	
 	@RequestMapping("registerStudent.do")
 	public String registerStudent(MemberVO vo, HttpServletRequest req ) {
 		System.out.println("회원 가입>>>" +vo);
