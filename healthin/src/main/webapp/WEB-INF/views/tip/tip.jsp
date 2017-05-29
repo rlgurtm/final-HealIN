@@ -54,29 +54,28 @@
 	</ul>
 	<br>
 	<table class="table">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>글쓴이</th>
-					<th>날짜</th>
-					<th>조회수</th>
-				</tr>
-			</thead>
-	
-		<c:if test="${!empty list.LVO }">
-				<tbody id="tipBoardInfo">
-					<c:forEach items="${list.LVO }" var="list">
-						<tr>
-							<td>${list.no}</td>
-							<td>${list.title }</td>
-							<td>${list.memberVO.name }</td>
-							<td>${list.posted_date }</td>
-							<td>${list.hits}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-		</c:if>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${!empty list.LVO }">
+				<c:forEach items="${list.LVO }" var="list">
+					<tr>
+						<td>${list.no}</td>
+						<td>${list.title }</td>
+						<td>${list.memberVO.name }</td>
+						<td>${list.postedDate }</td>
+						<td>${list.hits}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
 	</table>
  
 	<div align="center">

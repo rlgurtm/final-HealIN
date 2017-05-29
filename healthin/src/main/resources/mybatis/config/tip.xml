@@ -9,10 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="memberVO.name" column="name" />
 	</resultMap>
  	<select id="getTipBoardList" resultMap="tipBoardRM" parameterType="pagingBean">
- 		select t.board_no as no,t.title,t.hits,t.posted_date,t.category,m.id,m.name
+ 		select t.board_no as no,t.title,t.hits,t.postedDate,t.category,m.id,m.name
  		from (
 		select row_number() over(order by board_no desc) as rnum,board_no,title,hits,
-		to_char(posted_date,'YYYY.MM.DD') as posted_date,category,id,tipqna
+		to_char(posted_date,'YYYY.MM.DD') as postedDate,category,id,tipqna
 		from tipandqna
 		) t,health_member m 
  		where t.id=m.id and t.tipqna='tip' and rnum between #{startRowNumber} and #{endRowNumber}
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="tipBoardCategoryList" resultMap="tipBoardRM" parameterType="map"  >
 		select a.* from
 		(select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,
-		to_char(t.posted_date,'YYYY.MM.DD') as posted_date,t.category,t.id,t.tipqna,m.name
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name
 		from tipandqna t,health_member m
 		where t.id=m.id and t.tipqna='tip' and t.category=#{category}) a 
         where rnum between #{startRowNumber} and #{endRowNumber}

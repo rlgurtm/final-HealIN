@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 <!-- Bootstrap Core CSS -->
@@ -11,6 +10,7 @@
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
 
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
@@ -20,12 +20,14 @@
 				Trainer Video <small></small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#">FILTER</a></li>
+				<li><a class="btn"
+					href="${pageContext.request.contextPath}/filter.do"><strong>FILTER</strong></a></li>
 				<li class="active"></li>
 			</ol>
 		</div>
 	</div>
 	<!-- /.row -->
+
 
 	<!-- Projects Row -->
 	<div class="row">
@@ -48,6 +50,12 @@
 	</div>
 
 	<hr>
+	<div class="col-lg-12" align="right">
+		<form class="pure-form">
+			<input type="text" class="pure-input-rounded">
+			<button type="submit" class="pure-button">Search</button>
+		</form>
+	</div>
 
 	<!-- Pagination -->
 	<div class="row text-center">
@@ -64,6 +72,22 @@
 		</div>
 	</div>
 	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12" align="center">
+			<ol class="breadcrumb">
+				<li class="active"></li>
+				<li><a
+					href="${pageContext.request.contextPath}/trainerVideoList.do"
+					class="btn"><strong>List</strong></a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/trainerVideoWriteForm.do"
+					class="btn"><strong>Write</strong></a></li>
+				<li><a href="#" class="btn"><strong>Edit</strong></a></li>
+				<li><a href="#" class="btn"><strong>Delete</strong></a></li>
+				<li class="active"></li>
+			</ol>
+		</div>
+	</div>
 </div>
 
 <br>
