@@ -56,8 +56,8 @@
     	<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Three Column Portfolio
-                    <small>Subheading</small>
+                <h2 class="page-header">Tip and QnA Board
+                    <small>Ask Anything</small>
                 </h2>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     		</thead>
                     		<tbody>
                     			<c:if test="${!empty tipList }">
-                    				<c:forEach items="${tipList}" var="tip">
+                    				<c:forEach items="${tipList}" var="tip" begin="0" end="9">
                     					<tr>
                     						<td>${tip.title}</td>
                     						<td>${tip.memberVO.name}</td>
@@ -98,7 +98,7 @@
                     		</tbody>
                     	</table>
                     	<div align="center">
-                    		<a href="#" class="btn btn-default">게시판으로</a>
+                    		<a href="#" class="btn btn-default">Go to board</a>
                     	</div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     		</thead>
                     		<tbody>
                     			<c:if test="${!empty tipList }">
-                    				<c:forEach items="${tipList}" var="tip">
+                    				<c:forEach items="${tipList}" var="tip" begin="0" end="9">
                     					<tr>
                     						<td>${tip.title}</td>
                     						<td>${tip.memberVO.name}</td>
@@ -137,7 +137,7 @@
                     		</tbody>
                     	</table>
                         <div align="center">
-                    		<a href="#" class="btn btn-default">게시판으로</a>
+                    		<a href="#" class="btn btn-default">Go to board</a>
                     	</div>
                     </div>
                 </div>
@@ -201,84 +201,21 @@
 	            </div>
             </div>
             
-          
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            
-            <div class="col-lg-12">
-                <h2 class="page-header"></h2>
-            </div>
-           
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
+          	 <c:forEach items="${videoList.LVO}" var="video" begin="0" end="7">
+	          	 <div class="col-md-3 col-sm-6">
+	          		<a
+					href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${video.videoNo}#loca">
+					<video width="250" height="185">		<!-- 280,210 -->
+						<source
+							src="${pageContext.request.contextPath}/resources/video/${video.videoFile}"
+							type="video/mp4">
+					</video>
+					</a>
+					<h3>${video.title}</h3>
+					<p>작성자 : ${video.hits}</p>
+					<p>${video.content}</p>
+	          	 </div>
+          	 </c:forEach>
         </div>
         <!-- /.row -->
         
