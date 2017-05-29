@@ -12,24 +12,18 @@ public class HomeDAOImpl implements HomeDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public ListVO videoListOnMainpage() {
+	public ListVO getVideoListOnMainpage() {
 		ListVO listVO = new ListVO();
-		listVO.setLVO(template.selectList("home.getVideoListByPopularity"));
+		listVO.setLVO(template.selectList("home.getVideoListOnMainpage"));
 		//System.out.println(listVO);
 		return listVO;
 	}
 	
 	@Override
-	public  ListVO trainerInfoListOnMainpage() {
+	public  ListVO getTrainerInfoListOnMainpage() {
 		ListVO listVO = new ListVO();
 		listVO.setLVO(template.selectList("home.getTrainerInfoListByPopularity"));
 		//System.out.println(listVO);
 		return listVO;
-	}
-
-	@Override
-	public ListVO tipAndQnaBoardOnMainpage() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

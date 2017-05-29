@@ -1,7 +1,5 @@
 package org.kosta.healthin.model.service;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.MemberDAO;
@@ -25,8 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void registerStep1(MemberVO vo) {
-		memberDAO.registerStep1(vo) ;
+	public void registerStep3(MemberVO vo) {
+		memberDAO.registerStep3(vo) ;
 	}
 	@Override
 	public MemberVO registerTrainer(MemberVO vo) {
