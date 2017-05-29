@@ -21,9 +21,12 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public HashMap<String, Object> getAllContentsList() {
 		HashMap<String, Object> allContentsList = new HashMap<String, Object>();
+		/*int totalContents = tipDAO.getTotalTipCount();
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);*/
 		allContentsList.put("videoList", homeDAO.getVideoListOnMainpage());
 //		allContentsList.put("trainerList", homeDAO.trainerInfoListOnMainpage());
-//		allContentsList.put("tip", tipDAO.getTipBoardList());
+//		allContentsList.put("tip", tipDAO.getTipBoardList(pb));
 //		allContentsList.put("qna", qnaDAO).
 		return allContentsList;
 	}
