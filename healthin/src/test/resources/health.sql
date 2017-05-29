@@ -331,6 +331,15 @@ insert into tipandqna
 values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁','file',0,sysdate,'헬스','java','tip');
 
 
+-- trainer 테스트 db 
+insert into health_member 
+values('healthma','1234','헬쓰마','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
+insert into trainer  values('healthma','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+insert into health_member 
+values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
+insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
+
+select * from TRAINER
 
 
 
