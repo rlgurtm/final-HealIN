@@ -57,7 +57,7 @@
         </dl>
     </div>
     <div class="txt_desc">
-        닉네임 등 프로필 정보는 <a href="https://member.daum.net/my/basic.daum" class="f_link">내정보 관리</a>에서 수정할 수 있어요.
+        닉네임 등 프로필 정보는 <a href="{pageContext.request.contextPath}/modify_form.do?id=${sessionScope.mvo.id}" class="f_link">내정보 관리</a>에서 수정할 수 있어요.
     </div>
     <div class="wrap_btn">
         <button id="rtnService" type="button" class="btn_comm btn_type1">서비스로 돌아가기</button>
@@ -65,14 +65,6 @@
     </div>
 
 </div>
-
-<!-- 2016-10-26 배너 추가 -->
-<div class="area_banner">
-    <a href="http://magazine.channel.daum.net/terius/screensaver" class="link_banner">
-        <img src="https://t1.daumcdn.net/id/member/2016/img_banner_161026.jpg" class="img_banner" alt="카카오프렌즈 'cheer up' PC 스크린세이버로 만나보세요!">
-    </a>
-</div>
-<!-- 2016-10-26 배너 추가 끝 -->
 
     <hr class="hide">
 	<div id="kakaoFoot" class="footer_comm" role="contentinfo">
@@ -105,7 +97,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#rtnService").click(function () {
-            location.href = decodeURIComponent('http://www.daum.net');
+            location.href = decodeURIComponent('${pageContext.request.contextPath}/home.do');
         });
     });
 </script>
