@@ -7,6 +7,33 @@
     	$(".menu").click(function(){
         	$(".active").removeClass("active");
         	$(this).addClass("active");
+        	 $.ajax({
+ 				type:"get",
+ 				url:"${pageContext.request.contextPath}/tipcategory.do",
+ 				data:"category="+$(this).text(),
+ 				dataType:"json",
+ 				success:function(data){
+ 			 	  	var info="";
+					for(var i=0;i<data.lvo.length;i++){
+ 						info+="<tr><td>"+data.lvo[i].no+"</td>";
+ 						info+="<td>"+data.lvo[i].title+"</td>";
+ 						info+="<td>"+data.lvo[i].memberVO.name+"</td>";
+ 						info+="<td>"+data.lvo[i].posted_date+"</td>";
+ 						info+="<td>"+data.lvo[i].hits+"</td></tr>";
+ 					} 
+ 					
+ 					 $("#tipBoardInfo").html(info); 
+ 					   
+ 						 
+ 			/* 		 var paging="";
+ 					 for(var k=data.pagingBean.startPageOfPageGroup;k<=data.pagingBean.endPageOfPageGroup;k++){
+ 						 paging+="<li><a href='#'>"+k+"</a></li>";
+ 					 }
+ 					 $(".genregage .pagination").html(paging);
+ 					 $(".pagination").html("");
+ 					 $("#showBookList").html(info);	 */				
+ 				}//success
+ 			});
         });
     
     });
@@ -17,13 +44,15 @@
 	<br>
 	
 	<ul class="nav nav-tabs">
-		<li class="menu active"><a href="#">Home</a></li>
+		<li class="menu active">
+			<a href="${pageContext.request.contextPath}/tip/tip.do">Home</a>
+		</li>
 		<li class="menu"><a href="#">운동</a></li>
 		<li class="menu"><a href="#">다이어트</a></li>
 		<li class="menu"><a href="#">식단</a></li>
+		<li class="menu"><a href="#">헬스</a></li>
 	</ul>
 	<br>
-
 	<table class="table">
 			<thead>
 				<tr>
@@ -34,23 +63,22 @@
 					<th>조회수</th>
 				</tr>
 			</thead>
-		
-		<c:if test="${!empty list.LVO }">
-			<tbody>
-				<c:forEach items="${list.LVO }" var="list">
-					<tr>
-						<td>${list.no}</td>
-						<td>${list.title }</td>
-						<td>${list.memberVO.name }</td>
-						<td>${list.posted_date }</td>
-						<td>${list.hits}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</c:if>
-		
-	</table>
 	
+		<c:if test="${!empty list.LVO }">
+				<tbody id="tipBoardInfo">
+					<c:forEach items="${list.LVO }" var="list">
+						<tr>
+							<td>${list.no}</td>
+							<td>${list.title }</td>
+							<td>${list.memberVO.name }</td>
+							<td>${list.posted_date }</td>
+							<td>${list.hits}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+		</c:if>
+	</table>
+ 
 	<div align="center">
 		<ul class="pagination">
 			<c:set var="pb" value="${list.pb}"></c:set>
@@ -76,4 +104,6 @@
 				</c:if>
 		</ul>
 	</div>
-</div>
+ </div>
+	
+

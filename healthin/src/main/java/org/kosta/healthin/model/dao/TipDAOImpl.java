@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -21,6 +22,15 @@ public class TipDAOImpl implements TipDAO {
 	@Override
 	public int getTotalTipCount(){
 		return template.selectOne("tip.getTotalTipCount");
+	}
+	@Override
+	public List<VO> tipBoardCategoryList(Map<String, Object> map){
+		System.out.println(map.get("category"));
+		return template.selectList("tip.tipBoardCategoryList",map);
+	}
+	@Override
+	public int getTotalTipCategoryCount(String category){
+		return template.selectOne("tip.getTotalTipCategoryCount",category);
 	}
 	
 
