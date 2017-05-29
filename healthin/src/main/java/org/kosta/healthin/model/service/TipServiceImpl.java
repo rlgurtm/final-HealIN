@@ -18,7 +18,7 @@ public class TipServiceImpl implements TipService  {
 		int totalContents=dao.getTotalTipCount();
 		int nowPage=Integer.parseInt(nowpage);
 		PagingBean pb=new PagingBean(totalContents, nowPage);
-		ListVO listVO=new ListVO(dao.getTipBoardList(),pb);
+		ListVO listVO=new ListVO(dao.getTipBoardList(pb),pb);
 		return listVO;
 	}
 

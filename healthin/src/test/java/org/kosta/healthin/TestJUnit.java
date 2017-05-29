@@ -44,7 +44,7 @@ public class TestJUnit {
 	@Test
 	public void test(){
 		ListVO list=serivce.getTipBoardList("1");
-		System.out.println("안녕하세요"+list+":::::::"+list.getPb().getNowPage());	
+		System.out.println("안녕하세요"+list+":::::::");	
 	}
 }
 
