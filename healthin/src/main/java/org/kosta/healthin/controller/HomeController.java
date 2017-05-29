@@ -1,11 +1,20 @@
 package org.kosta.healthin.controller;
 
+import java.util.HashMap;
+
+import javax.annotation.Resource;
+
+import org.kosta.healthin.model.service.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
+	@Resource
+	private HomeService homeService;
+	
 	@RequestMapping("{viewName}.do")
 	public String showView( @PathVariable String viewName ) {
 		System.out.println("@PathVariable: "+viewName);
@@ -25,4 +34,17 @@ public class HomeController {
 		return dirName+"/"+viewName+".tiles"; 
 	}
 	
+	/**
+	 * Home(main) 페이지에 모든 컨텐츠들을 출력
+	 * @return
+	 */
+	@RequestMapping("home.do")
+	public ModelAndView showAllContents() {
+		ModelAndView mv = new ModelAndView();
+		HashMap<String, Object> allContentList = homeService.getAllContentsList();
+		mv.addObject("allContentList", allContentList);
+		mv.setViewName("home.tiles");
+		System.out.println(allContentList);
+		return mv;
+	}
 }

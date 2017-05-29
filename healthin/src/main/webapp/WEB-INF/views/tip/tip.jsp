@@ -41,7 +41,7 @@
 						<td>${list.no}</td>
 						<td>${list.title }</td>
 						<td>${list.memberVO.name }</td>
-						<td>${list.posted_date }</td>
+						<td>${list.postedDate }</td>
 						<td>${list.hits}</td>
 					</tr>
 				</c:forEach>
