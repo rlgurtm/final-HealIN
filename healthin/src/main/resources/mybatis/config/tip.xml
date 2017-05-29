@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
  	<select id="getTipBoardList" resultMap="tipBoardRM" >
  		select t.board_no as no,
- 		t.title,t.hits,to_char(t.posted_date,'YYYY.MM.DD') as posted_date,
+ 		t.title,t.hits,to_char(t.posted_date,'YYYY.MM.DD') as postedDate,
  		t.category,m.id,m.name
- 		from tipandqna t,member m 
+ 		from tipandqna t,health_member m 
  		where t.id=m.id and t.tipqna='tip' order by t.board_no desc
  	</select>
  	<select id="getTotalTipCount" resultType="int" >

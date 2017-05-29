@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+  	$(document).ready(function(){
+    	$(".menu").click(function(){
+        	$(".active").removeClass("active");
+        	$(this).addClass("active");
+        });
+    });
+</script>
 
     <!-- Header Carousel -->
     <div id="myCarousel" class="carousel slide " data-ride="carousel">
@@ -39,6 +48,11 @@
     
 	<!-- Page Content -->
     <div class="container">
+		<!-- 메인화면에 출력될 부분 별칭 지정 -->
+		<c:set value="${requestScope.allContentList.tip}" var="tipList"/>
+		<c:set value="${requestScope.allContentList.qna}" var="qnaList"/>
+		<c:set value="${requestScope.allContentList.videoList}" var="videoList"/>
+		<c:set value="${requestScope.allContentList.trainerList}" var="trainerList"/>
     	<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
@@ -56,43 +70,31 @@
                         <h4><i class="fa fa-fw fa-check"></i> 나만의 Tip </h4>
                     </div>
                     <div class="panel-body">
+                    	<!-- 
+                    			나중에 ajax로 처리 예정 
+                    	-->
+                    	<ul class="nav nav-tabs">
+							<li class="menu active"><a href="#">전체</a></li>
+							<li class="menu"><a href="#">운동</a></li>
+							<li class="menu"><a href="#">다이어트</a></li>
+							<li class="menu"><a href="#">식단</a></li>
+						</ul>
                     	<table class="table table-condensed">
                     		<thead>
 	                    		<tr>
-	                    			<th>ㅇ</th><th>ㄴ</th><th>ㅁ</th>
+	                    			<th>제목</th><th>작성자</th><th>작성일</th>
 	                    		</tr>
                     		</thead>
                     		<tbody>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
+                    			<c:if test="${!empty tipList }">
+                    				<c:forEach items="${tipList}" var="tip">
+                    					<tr>
+                    						<td>${tip.title}</td>
+                    						<td>${tip.memberVO.name}</td>
+                    						<td>${tip.postedDate}</td>
+                    					</tr>
+                    				</c:forEach>
+                    			</c:if>
                     		</tbody>
                     	</table>
                     	<div align="center">
@@ -107,43 +109,31 @@
                         <h4><i class="fa fa-fw fa-gift"></i> PT 강사에게 묻는다</h4>
                     </div>
                     <div class="panel-body">
+                   		<!-- 
+                    			나중에 ajax로 처리 예정 
+                    	-->
+                    	<ul class="nav nav-tabs">
+							<li class="menu active"><a href="#">전체</a></li>
+							<li class="menu"><a href="#">운동</a></li>
+							<li class="menu"><a href="#">다이어트</a></li>
+							<li class="menu"><a href="#">식단</a></li>
+						</ul>
                        <table class="table table-condensed">
                     		<thead>
 	                    		<tr>
-	                    			<th>ㅇ</th><th>ㄴ</th><th>ㅁ</th>
+	                    			<th>제목</th><th>작성자</th><th>작성일</th>
 	                    		</tr>
                     		</thead>
                     		<tbody>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
-                    			<tr>
-                    				<td>ddd</td><td>ddd</td><td>ddd</td>
-                    			</tr>
+                    			<c:if test="${!empty tipList }">
+                    				<c:forEach items="${tipList}" var="tip">
+                    					<tr>
+                    						<td>${tip.title}</td>
+                    						<td>${tip.memberVO.name}</td>
+                    						<td>${tip.postedDate}</td>
+                    					</tr>
+                    				</c:forEach>
+                    			</c:if>
                     		</tbody>
                     	</table>
                         <div align="center">

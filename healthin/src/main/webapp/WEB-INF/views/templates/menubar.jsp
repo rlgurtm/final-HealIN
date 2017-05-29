@@ -84,7 +84,7 @@
                      -->
                     <c:if test="${sessionScope.mvo != null }">
                     	<c:choose>
-                    		<c:when test="${sessionScope.mvo.istrainer == '강사' }">
+                    		<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
                     			<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
@@ -100,7 +100,7 @@
 			                        </ul>
 			                    </li>
                     		</c:when>
-                    		<c:when test="${sessionScope.mvo.istrainer == '회원' }">
+                    		<c:when test="${sessionScope.mvo.istrainer == 'user' }">
                     			<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">

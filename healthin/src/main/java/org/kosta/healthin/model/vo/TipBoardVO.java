@@ -6,9 +6,9 @@ public class TipBoardVO implements VO {
 	private int no;
 	private String title;
 	private	String content;
-	private	MultipartFile attached_file;
+	private	MultipartFile attachedFile;
 	private	int hits;
-	private	String posted_date;
+	private	String postedDate;
 	private	String category;
 	private	String tipqna;
 	private MemberVO memberVO;
@@ -17,25 +17,25 @@ public class TipBoardVO implements VO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public TipBoardVO(int no, String title, int hits, String posted_date, String category, MemberVO memberVO) {
+	public TipBoardVO(int no, String title, int hits, String postedDate, String category, MemberVO memberVO) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.hits = hits;
-		this.posted_date = posted_date;
+		this.postedDate = postedDate;
 		this.category = category;
 		this.memberVO = memberVO;
 	}
 
-	public TipBoardVO(int no, String title, String content, MultipartFile attached_file, int hits, String posted_date,
+	public TipBoardVO(int no, String title, String content, MultipartFile attachedFile, int hits, String postedDate,
 			String category, String tipqna, MemberVO memberVO) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.content = content;
-		this.attached_file = attached_file;
+		this.attachedFile = attachedFile;
 		this.hits = hits;
-		this.posted_date = posted_date;
+		this.postedDate = postedDate;
 		this.category = category;
 		this.tipqna = tipqna;
 		this.memberVO = memberVO;
@@ -58,11 +58,11 @@ public class TipBoardVO implements VO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public MultipartFile getAttached_file() {
-		return attached_file;
+	public MultipartFile getattachedFile() {
+		return attachedFile;
 	}
-	public void setAttached_file(MultipartFile attached_file) {
-		this.attached_file = attached_file;
+	public void setattachedFile(MultipartFile attachedFile) {
+		this.attachedFile = attachedFile;
 	}
 	public int getHits() {
 		return hits;
@@ -70,11 +70,11 @@ public class TipBoardVO implements VO {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	public String getPosted_date() {
-		return posted_date;
+	public String getpostedDate() {
+		return postedDate;
 	}
-	public void setPosted_date(String posted_date) {
-		this.posted_date = posted_date;
+	public void setpostedDate(String postedDate) {
+		this.postedDate = postedDate;
 	}
 	public String getCategory() {
 		return category;
@@ -96,12 +96,8 @@ public class TipBoardVO implements VO {
 	}
 	@Override
 	public String toString() {
-		return "TipBoardVO [no=" + no + ", title=" + title + ", content=" + content + ", attached_file=" + attached_file
-				+ ", hits=" + hits + ", posted_date=" + posted_date + ", category=" + category + ", tipqna=" + tipqna
+		return "TipBoardVO [no=" + no + ", title=" + title + ", content=" + content + ", attachedFile=" + attachedFile
+				+ ", hits=" + hits + ", postedDate=" + postedDate + ", category=" + category + ", tipqna=" + tipqna
 				+ ", memberVO=" + memberVO + "]";
 	}
-	
-	
-	
-
 }

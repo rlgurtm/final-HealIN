@@ -1,13 +1,12 @@
 package org.kosta.healthin.model.service;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.HomeDAO;
 import org.kosta.healthin.model.dao.QnaDAO;
 import org.kosta.healthin.model.dao.TipDAO;
-import org.kosta.healthin.model.dao.TrainerDAO;
-import org.kosta.healthin.model.dao.TrainerVideoDAO;
-import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,14 +17,14 @@ public class HomeServiceImpl implements HomeService {
 	private TipDAO tipDAO;
 	@Resource
 	private QnaDAO qnaDAO;
-
+	
 	@Override
-	public ListVO videoListOnMainpage() {
-		return homeDAO.videoListOnMainpage();
-	}
-
-	@Override
-	public ListVO trainerInfoListOnMainpage() {
-		return homeDAO.trainerInfoListOnMainpage();
+	public HashMap<String, Object> getAllContentsList() {
+		HashMap<String, Object> allContentsList = new HashMap<String, Object>();
+		allContentsList.put("videoList", homeDAO.getVideoListOnMainpage());
+//		allContentsList.put("trainerList", homeDAO.trainerInfoListOnMainpage());
+		allContentsList.put("tip", tipDAO.getTipBoardList());
+//		allContentsList.put("qna", qnaDAO).
+		return allContentsList;
 	}
 }

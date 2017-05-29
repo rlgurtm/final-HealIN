@@ -4,19 +4,32 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home">
- 	<!-- <select id="trainerVideoList" resultType="trainerVideoVO">
- 		select video_no as videoNo,title,content,video_file as videoFile
- 		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
+ 	<select id="getVideoListOnMainpage" resultType="trainerVideoVO">
+ 		select video_no as videoNo, title, content, video_file as videoFile
+ 		, posted_date as postedDate, hits, category, trainer_id as trainerId, openrank
  		from trainer_video
  	</select>
- 	<select id="trainerVideoShow" resultType="trainerVideoVO">
+ 	<!-- <select id="trainerVideoShow" resultType="trainerVideoVO">
  		select video_no as videoNo,title,content,video_file as videoFile
  		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
  		from trainer_video
  		where video_no=#{value}
  	</select> -->
 </mapper>
- 
+ <!-- 
+ 		getVideoListByPopularity
+ 		getTrainerInfoListByPopularity
+ 		
+ 		
+ 		// 랭크
+ 		<select id="searchedRank" resultType="map">
+		<![CDATA[
+		    select r.rank, r.keyword, r.count from(
+		    	select rank() over(order by count desc) as rank, keyword, count
+		    	from report) r where rank < 6
+	    ]]>
+	</select>
+  -->
  
  
  

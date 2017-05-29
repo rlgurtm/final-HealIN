@@ -1,8 +1,10 @@
 package org.kosta.healthin.model.service;
 
-import org.kosta.healthin.model.vo.ListVO;
+import java.util.HashMap;
 
 public interface HomeService {
-	ListVO videoListOnMainpage();
+	/*ListVO videoListOnMainpage();
 	ListVO trainerInfoListOnMainpage();
+	ListVO tipAndQnaBoardOnMainpage();*/
+	HashMap<String, Object> getAllContentsList();
 }
