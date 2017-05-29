@@ -1,4 +1,4 @@
-e-- 여기는 health sql문을 쓸 수 있습니다
+-- 여기는 health sql문을 쓸 수 있습니다
 
 -- 전체 drop
 drop table exercise;
