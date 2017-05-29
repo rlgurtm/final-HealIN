@@ -521,7 +521,7 @@
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=n"
 							class="btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
 						<a
-							href="${pageContext.request.contextPath}/register_form.do?type=y"
+							href="${pageContext.request.contextPath}/member/register_step2.do?type=y"
 							class="btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
 					</div>
 				</fieldset>
