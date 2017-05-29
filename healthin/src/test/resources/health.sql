@@ -66,6 +66,10 @@ create table trainer(
 	trainer_photo varchar2(100) not null
 )
 
+select * from health_member;
+select * from health_user;
+select * from trainer;
+
 -- 게시판 테이블
 drop sequence board_no_seq;
 create sequence board_no_seq;
@@ -152,7 +156,7 @@ drop table physical_info;
 create table physical_info(
 	physical_no number primary key,
 	height number not null,
-	weught number not null,
+	weight number not null,
 	today date not null,
 	user_id varchar2(100) not null,
 	constraint fk_physical_user_id foreign key(user_id) references health_user(user_id)

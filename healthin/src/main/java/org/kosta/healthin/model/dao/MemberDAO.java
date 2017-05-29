@@ -7,7 +7,7 @@ public interface MemberDAO {
 
 	void modify(MemberVO vo);
 
-	void registerStep1(MemberVO vo);
+	void registerStep3(MemberVO vo);
 	MemberVO registerStudent(MemberVO vo);
 	MemberVO registerTrainer(MemberVO vo);
 
