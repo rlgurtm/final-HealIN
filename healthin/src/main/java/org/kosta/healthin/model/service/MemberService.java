@@ -7,7 +7,7 @@ public interface MemberService {
 
 	void modify(MemberVO vo);
 
-	void registerStep1(MemberVO vo);
+	void registerStep3(MemberVO vo);
 	MemberVO registerTrainer(MemberVO vo);
 	MemberVO registerStudent(MemberVO vo);
 }
