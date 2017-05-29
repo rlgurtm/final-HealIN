@@ -4,7 +4,7 @@
 					a.fn,
 					{
 						messages : {
-							daumId : {
+							   Id : {
 								required : "HealthIN 아이디를 입력해 주세요.",
 								rangelength : "조금 더! 아이디는 4자 이상이에요.",
 								onlydigits : "숫자로 된 아이디는 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
@@ -19,21 +19,6 @@
 							},
 							inpPhone : {
 								required : "휴대폰 번호를 입력해 주세요."
-							},
-							inpCertCode : {
-								required : "인증번호 입력 후 확인 버튼을 눌러주세요.",
-								onlyNumber : "잘못된 인증번호 입니다. 인증번호(6자리) 확인 후 다시 입력해 주세요.",
-								rangelength : "잘못된 인증번호 입니다. 인증번호(6자리) 확인 후 다시 입력해 주세요."
-							},
-							regNum : {
-								required : "사업자등록번호(또는 고유번호)를 입력해 주세요.",
-								regnum : "유효하지 않은 사업자등록번호입니다. 정확하게 다시 입력해 주세요."
-							},
-							corpName : {
-								required : "사업자등록증의 회사명을 입력해 주세요.",
-								daumnamekoreannamelength : "한글 15자, 영어 30자까지 입력할 수 있어요.",
-								daumnameenglishnamelength : "한글 15자, 영문 30자까지 입력할 수 있어요.",
-								daumnamemaxlength : "한글 15자, 영문 30자까지 입력할 수 있어요."
 							},
 							repName : {
 								required : "사업자등록증의 대표자명을 입력해 주세요.",
@@ -77,12 +62,7 @@
 							checked : "동의해주세요.",
 							minKoreanNameLength : "성과 이름(2자 또는 3자 이상)을 함께 입력해 주세요.",
 							maxKoreanNameLength : "한글 이름은 15자까지 입력할 수 있어요.",
-							sendAndInputCertCode : "인증 버튼을 선택 후 인증번호(6자리)를 입력해 주세요.",
-							inputAndConfirmCertCode : "인증번호 입력 후 확인 버튼을 눌러주세요.",
-							invalidCertcode : "잘못된 인증번호 입니다. 인증번호(6자리) 확인 후 다시 입력해 주세요.",
 							invalidAccess : "유효시간이 초과되거나, 잘못된 접근입니다. 처음부터 다시 시작해 주세요.",
-							failSendCertCode : "인증번호 발송 중 오류가 발생했습니다. 잠시 후 다시 이용해 주세요.",
-							failConfirmCertCode : "인증번호 확인에 실패했습니다. 다시 한번 확인 버튼을 눌러 주세요."
 						}
 					})
 }(jQuery));
