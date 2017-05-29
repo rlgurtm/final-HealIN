@@ -4,7 +4,6 @@ _tiq.push([ '__trackPageview' ]);
 	var se = d.createElement('script');
 	se.type = 'text/javascript';
 	se.async = true;
-//	se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
 	se.src = '${pageContext.request.contextPath}/resources/js/td.min.js';
 	var s = d.getElementsByTagName('head')[0];
 	s.appendChild(se);

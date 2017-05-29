@@ -1,5 +1,8 @@
 package org.kosta.healthin.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.TipDAO;
@@ -18,8 +21,22 @@ public class TipServiceImpl implements TipService  {
 		int totalContents=dao.getTotalTipCount();
 		int nowPage=Integer.parseInt(nowpage);
 		PagingBean pb=new PagingBean(totalContents, nowPage);
-		ListVO listVO=new ListVO(dao.getTipBoardList(),pb);
+		ListVO listVO=new ListVO(dao.getTipBoardList(pb),pb);
 		return listVO;
+	}
+	@Override
+	public ListVO tipBoardCategoryList(String category,String nowpage){
+		int totalContents=dao.getTotalTipCategoryCount(category);
+		int nowPage=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+			Map<String, Object> map=new HashMap<String,Object>();
+			map.put("category",category);
+			map.put("startRowNumber", pb.getStartRowNumber());
+			map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO=new ListVO(dao.tipBoardCategoryList(map),pb);
+		
+		return listVO;
+		
 	}
 
 }

@@ -10,14 +10,17 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<%-- <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<!-- for Calendar -->
+<script src="${pageContext.request.contextPath}/resources/js/fullcalendar/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/fullcalendar/moment.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-3.4.0/fullcalendar.js'></script>
+<link href='http://fullcalendar.io/js/fullcalendar-3.4.0/fullcalendar.css' rel='stylesheet' />
 
-<!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script> --%>
+
+<!-- for date range picker -->
+<script src="${pageContext.request.contextPath}/resources/js/daterangepicker/daterangepicker.js"></script>
 
 <!-- Script to Activate the Carousel -->
 <script>
@@ -35,29 +38,18 @@
 
 <!-- title이 null인 경우는 무시된다. -->
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- Bootstrap Core CSS -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/modern-business.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 
 <!-- Custom Fonts -->
-<link
-	href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+<!-- For date range picker -->
+<link href="${pageContext.request.contextPath}/resources/css/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
 
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body margin="">
 	<div class="header2">

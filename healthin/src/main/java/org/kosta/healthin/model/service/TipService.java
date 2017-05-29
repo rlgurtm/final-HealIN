@@ -6,4 +6,6 @@ public interface TipService {
 
 	ListVO getTipBoardList(String nowpage);
 
+	ListVO tipBoardCategoryList(String category, String nowpage);
+
 }

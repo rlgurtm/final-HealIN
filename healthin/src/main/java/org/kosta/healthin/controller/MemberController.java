@@ -2,6 +2,8 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -37,14 +39,16 @@ public  class MemberController {
 	@RequestMapping("register_step3.do")
 	public String register_step3(MemberVO vo, HttpServletRequest req ) {
 		String type = req.getParameter("type");
-		System.out.println("강사인가 학생인가??"+type);
+		String id = req.getParameter("id");
+		
 		memberService.registerStep3(vo);
+		
+		HttpSession session=req.getSession();
+		session.setAttribute("mvo", vo);
 		System.out.println("step2 기본정보 공통 저장??"+vo);
 		
 		if(type.equals("n")){
-			System.out.println("학생 회원 가입>>>" +vo);
 			memberService.registerStudent(vo);
-			System.out.println("학생 회원 가입 完了>>>" );
 		}else{
 			System.out.println("trainer 회원 가입>>>" +vo);
 			
@@ -73,8 +77,6 @@ public  class MemberController {
 			
 			
 		}
-		HttpSession session=req.getSession();
-		session.setAttribute("mvo", vo);
 		return "redirect:member/register_sucess.do";
 	}
 	

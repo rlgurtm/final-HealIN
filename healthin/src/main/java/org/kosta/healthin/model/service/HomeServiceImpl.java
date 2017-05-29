@@ -23,7 +23,7 @@ public class HomeServiceImpl implements HomeService {
 		HashMap<String, Object> allContentsList = new HashMap<String, Object>();
 		allContentsList.put("videoList", homeDAO.getVideoListOnMainpage());
 //		allContentsList.put("trainerList", homeDAO.trainerInfoListOnMainpage());
-		allContentsList.put("tip", tipDAO.getTipBoardList());
+//		allContentsList.put("tip", tipDAO.getTipBoardList());
 //		allContentsList.put("qna", qnaDAO).
 		return allContentsList;
 	}
