@@ -32,14 +32,28 @@ public class UploadController {
 	public String trainerVideoWriteForm(){
 		return "video/trainer_video_write_form.tiles";
 	}
-	@RequestMapping(value="trainerVideoWrite.do",method=RequestMethod.POST)
-	public String trainerVideoWrite(TrainerVideoVO vo,MultipartFile uploadFile,HttpServletRequest request){
-		System.out.println(vo);
-		/*uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	@RequestMapping("trainerVideoWrite.do")
+	public String trainerVideoWrite(HttpServletRequest request,MultipartFile uploadFile){
+		uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 		MultipartFile file = uploadFile;
-		vo.setVideoFile(file.getOriginalFilename());
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String videoFile = uploadFile.getOriginalFilename();
+		String category = request.getParameter("category");
+		String trainerId = request.getParameter("trainerId");
+		int	openrank = Integer.parseInt(request.getParameter("openrank"));
+		
+		TrainerVideoVO vo = new TrainerVideoVO();
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setVideoFile(videoFile);
+		vo.setCategory(category);
+		vo.setTrainerId(trainerId);
+		vo.setOpenrank(openrank);
+		
 		System.out.println(vo);
-		*/
+		
 		
 		return "video/trainer_video_write_form.tiles";
 	}
