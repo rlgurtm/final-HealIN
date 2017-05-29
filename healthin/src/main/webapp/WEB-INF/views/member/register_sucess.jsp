@@ -48,16 +48,16 @@
     </div>
     <div class="wrap_complete">
         <dl class="info_user">
-            <dt>HEALTHIN 아이디</dt>
-            <dd>........</dd>
+            <dt>헬쓰인ID</dt>
+            <dd>${sessionScope.mvo.id}</dd>
         </dl>
         <dl class="info_user">
             <dt>이름/닉네임</dt>
-            <dd>.......</dd>
+            <dd>${sessionScope.mvo.name}/${sessionScope.mvo.nickname}</dd>
         </dl>
     </div>
     <div class="txt_desc">
-        닉네임 등 프로필 정보는 <a href="{pageContext.request.contextPath}/modify_form.do?id=${sessionScope.mvo.id}" class="f_link">내정보 관리</a>에서 수정할 수 있어요.
+        닉네임 등 프로필 정보는 <a href="modify_form.do?id=${sessionScope.mvo.id}" class="f_link">내정보 관리</a>에서 수정할 수 있어요.
     </div>
     <div class="wrap_btn">
         <button id="rtnService" type="button" class="btn_comm btn_type1">서비스로 돌아가기</button>
