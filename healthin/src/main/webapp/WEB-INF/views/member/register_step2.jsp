@@ -304,10 +304,10 @@
 
 
 					<div class="wrap_btn">
-						<button type="submit" class="btn_comm btn_type1" id="nextstepBtn">다음
+						<button type="submit" class="btn_comm btn_type2" id="nextstepBtn">다음
 							단계</button>
 						&nbsp;&nbsp;&nbsp;
-						<button type="reset" class="btn_comm btn_type1">초기화</button>
+						<button type="reset" class="btn_comm btn_type2">초기화</button>
 					</div>
 				</fieldset>
 			</form>

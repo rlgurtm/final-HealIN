@@ -277,10 +277,20 @@ a.fn,
 								}
 								return true
 							},
+							startNumber : function(c, b) {
+								return this.optional(b)
+										|| /[0]{1}[1]{1}[0]{1}[0-9]{4}[0-9]{4}/.test(c)
+							},
+							birthdate : function(c, b) {
+								return this.optional(b)
+								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[1-9]{1}[0-3]{1}[0-1]{1}/.test(new Date(c).toString())
+								||  !/Invalid|NaN/.test(new Date(c).toString())
+								|| /^\d{4}\d{1,2}\d{1,2}$/	.test(new Date(c).toString())
+							},
 							telephone : function(c, b) {
 								return this.optional(b)
-										|| /^(02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/
-												.test(c)
+								|| /^(02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/
+								.test(c)
 							},
 							emailnotsameByValue : function(d, b, e) {
 								if (!a.validator.methods.emailinvalid.call(
@@ -546,56 +556,6 @@ a.fn,
 								return {
 									result : c,
 									message : f,
-									extra : b
-								}
-							},
-							activeEmail : function(h, f, i) {
-								var e = h;
-								if (e == null || e == "") {
-									return
-								}
-								var d = a
-										.ajax({
-											type : "POST",
-											url : "https://member.daum.net/api/valid/otherdaumemail",
-											dataType : "json",
-											async : false,
-											data : {
-												PAGEID : i.pageId,
-												email : e
-											}
-										}).responseJSON;
-								var c = "success";
-								var g;
-								var b = {};
-								if (d.code == "200") {
-									if (d.message == "USABLE") {
-										c = "success"
-									} else {
-										if (d.message == "NOT_USABLE") {
-											c = "fail"
-										}
-									}
-									g = d.result
-								} else {
-									if (d.code == "403") {
-										c = "fail";
-										if (d.message == "ABUSE") {
-											g = "보안 정책에 의해 접근이 제한되었습니다."
-										} else {
-											if (d.message == "FORBIDDEN") {
-												g = "유효시간이 초과되거나, 잘못된 접근입니다. 처음부터 다시 시도해 주세요."
-											}
-										}
-										b.responseCode = d.code
-									} else {
-										c = "fail";
-										g = d.result
-									}
-								}
-								return {
-									result : c,
-									message : g,
 									extra : b
 								}
 							},
