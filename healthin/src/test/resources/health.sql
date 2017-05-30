@@ -171,7 +171,7 @@ drop table food;
 create table food(
 	food_name varchar2(100) primary key,
 	calorie number not null,
-	food_catefory varchar2(100) not null
+	food_category varchar2(100) not null
 );
 
 --회원별 섭취량 테이블
@@ -293,7 +293,11 @@ field_state  VARCHAR2(50) NOT NULL,
 -- 삽입: 멤버 java 임시로 박은거
 insert into health_member 
 values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N')
+insert into health_member
+values('spring','1234','스프링','스프링','19190505','male','서울시 종로구 계동 100 101호','01000010002','physical@daum.net','user','N')
 insert into health_user  values('java')
+insert into health_user  values('maven')
+insert into health_user  values('spring')
 
 insert into health_member 
 values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','trainer','N');
@@ -350,6 +354,14 @@ insert into health_member
 values('sanggirl','1234','상걸','상짱','19910902','female','서울시 노원구 상계동 1259 ','01090000000','sanggirl@naver.com','trainer','N')
 insert into trainer  values('sanggirl','노원구 Sangfitness 필라테스 6년',0,'노원구','sanggirl1.png')
 
+-- food 테스트 db
+insert into food
+values('공기밥', 120, '공기밥');
+insert into food
+values('탕수육', 350, '탕수육');
+insert into food
+values('치킨', 400, '치킨');
+
 insert into health_member 
 values('swimmingguy','1234','수영남1','수영남','19890902','male','양평군 양평읍 군청앞길','01000000010','swimmingguy@naver.com','trainer','N')
 insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','swimmingguy1.png')
@@ -367,3 +379,19 @@ values('healthman6','1234','헬스맨','포스짱','19790902','male','서울시 
 insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
 
 select * from TRAINER
+-- intake_member 테스트 db
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '치킨', 'user1');
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '공기밥', 'user1');
+
+
+--physical_info 테스트 db
+select * from physical_info;
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'180','80',sysdate,'java');
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'190','90',sysdate,'maven');
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'185','100',sysdate,'spring')
+

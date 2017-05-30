@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TipBoardVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +38,22 @@ public class TipServiceImpl implements TipService  {
 		
 		return listVO;
 		
+	}
+	@Override
+	public TipBoardVO getTipBoardDetailContent(String no){
+		int NO=Integer.parseInt(no);
+		return dao.getTipBoardDetailContent(NO);
+	}
+	@Override
+	public void tipBoardDelete(String no,String id){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("no", Integer.parseInt(no));
+		map.put("id", id);
+		dao.tipBoardDelete(map);
+	}
+	@Override
+	public void tipWrite(TipBoardVO tvo){
+		dao.tipWrite(tvo);
 	}
 
 }

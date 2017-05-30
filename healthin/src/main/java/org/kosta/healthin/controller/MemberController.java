@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +37,7 @@ public  class MemberController {
 	}
 	
 	@RequestMapping("register_step3.do")
-	public String register_step3(MemberVO vo, HttpServletRequest req ) {
+	public String register_step3(MemberVO vo, TrainerVO tvo,HttpServletRequest req ) {
 		String type = req.getParameter("type");
 		String id = req.getParameter("id");
 		memberService.registerStep3(vo);
@@ -47,25 +48,25 @@ public  class MemberController {
 		if(type.equals("n")){
 			memberService.registerStudent(vo);
 		}else{
-			MultipartFile uploadfile = vo.getUploadfile();
-	        if (uploadfile != null) {
-	            String fileName = uploadfile.getOriginalFilename();
-	            vo.setFileName(fileName);
-	            try {
-	                // 1. FileOutputStream 사용
-	                // byte[] fileData = file.getBytes();
-	                // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
-	                // output.write(fileData);
-	            	
-	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
-	                // 2. File 사용
-	                File file = new File(uploadPath + fileName);
-	                uploadfile.transferTo(file);
-	                memberService.registerTrainer(vo);
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            } // try - catch
-	        } // if
+		//	MultipartFile uploadfile = tvo.getUploadfile();
+//	        if (uploadfile != null) {
+//	            String fileName = uploadfile.getOriginalFilename();
+//	            vo.setFileName(fileName);
+//	            try {
+//	                // 1. FileOutputStream 사용
+//	                // byte[] fileData = file.getBytes();
+//	                // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
+//	                // output.write(fileData);
+//	            	
+//	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+//	                // 2. File 사용
+//	                File file = new File(uploadPath + fileName);
+//	                uploadfile.transferTo(file);
+//	                memberService.registerTrainer(vo);
+//	            } catch (IOException e) {
+//	                e.printStackTrace();
+//	            } // try - catch
+//	        } // if
 			
 			
 		}

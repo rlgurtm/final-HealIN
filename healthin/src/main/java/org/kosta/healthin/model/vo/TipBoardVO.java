@@ -1,12 +1,10 @@
 package org.kosta.healthin.model.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class TipBoardVO implements VO {
 	private int no;
 	private String title;
 	private	String content;
-	private	MultipartFile attachedFile;
+	private	String attachedFile;
 	private	int hits;
 	private	String postedDate;
 	private	String category;
@@ -27,7 +25,7 @@ public class TipBoardVO implements VO {
 		this.memberVO = memberVO;
 	}
 
-	public TipBoardVO(int no, String title, String content, MultipartFile attachedFile, int hits, String postedDate,
+	public TipBoardVO(int no, String title, String content, String attachedFile, int hits, String postedDate,
 			String category, String tipqna, MemberVO memberVO) {
 		super();
 		this.no = no;
@@ -58,10 +56,10 @@ public class TipBoardVO implements VO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public MultipartFile getattachedFile() {
+	public String getattachedFile() {
 		return attachedFile;
 	}
-	public void setattachedFile(MultipartFile attachedFile) {
+	public void setattachedFile(String attachedFile) {
 		this.attachedFile = attachedFile;
 	}
 	public int getHits() {
@@ -88,6 +86,7 @@ public class TipBoardVO implements VO {
 	public void setTipqna(String tipqna) {
 		this.tipqna = tipqna;
 	}
+	
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}

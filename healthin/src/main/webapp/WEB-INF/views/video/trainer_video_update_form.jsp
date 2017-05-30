@@ -23,7 +23,7 @@ textarea {
 </style>
 
 <div class="container" align="center">
-	<form class="pure-g pure-form" method="post" action="${pageContext.request.contextPath}/trainerVideoWrite.do" enctype="multipart/form-data">
+	<form class="pure-g pure-form" method="post" action="${pageContext.request.contextPath}/trainerVideoUpdate.do" enctype="multipart/form-data">
 		<div class="pure-u-1">
 			<div class="pure-u-1-8">
 				<select name="openrank" class="pure-u-1" id="videoFormSelect">
@@ -31,7 +31,7 @@ textarea {
 					<option value="1">회원공개</option>
 					<option value="2">팔로워회원공개</option>
 					<option value="3">PT회원공개</option>
-					<option value="9">전체비공개</option>
+					<option value="5">전체비공개</option>
 				</select>
 			</div>
 			<div class="pure-u-1-8">
@@ -46,7 +46,7 @@ textarea {
 				</select>
 			</div>
 			<div class="pure-u-3-8">
-				<input name="uploadFile" type="file" class="pure-u-1" id="videoForm" required="required">
+				${videoVO.videoFile}<input name="uploadFile" type="file" class="pure-u-1" id="videoForm">
 			</div>
 			<div class="pure-u-1-8">
 				<input name="trainerId" type="text" class="pure-u-1" value="${mvo.id}" readonly="readonly" id="videoForm">
@@ -55,22 +55,24 @@ textarea {
 		<br> <br>
 		<div class="pure-u-1">
 			<div class="pure-u-4-5">
-				<input name="title" type="text" class="pure-u-1" placeholder="Title" id="videoForm" required="required">
+				<input name="title" type="text" class="pure-u-1" value="${videoVO.title}" id="videoForm" required="required">
 			</div>
 		</div>
 		<br><br>
 		<div class="pure-u-1">
 			<div class="pure-u-4-5">
-				<textarea name="content" class="pure-u-1" placeholder="Content" required="required"></textarea>
+				<textarea name="content" class="pure-u-1" required="required">${videoVO.content}</textarea>
 			</div>
 		</div>
 		<br><br><br>
 		<div class="pure-u-1">
-			<input type="submit" value="등록하기" class="pure-u-1-8" id="videoForm">
+			<input type="submit" value="수정하기" class="pure-u-1-8" id="videoForm">
 		</div>
+		<input type="hidden" name="videoFile" value="${videoVO.videoFile}">
+		<input type="hidden" name="videoNo" value="${videoVO.videoNo }">
 	</form>
 </div>
 <br>
 <br>
 
-
+${fileReload}
