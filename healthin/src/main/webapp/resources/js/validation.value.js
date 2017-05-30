@@ -18,7 +18,6 @@ $(document)
 											},
 											inputListener : function(input) {
 												formInput(input);
-												hideRecommendIds();
 											},
 											errorListener : function(input,
 													result) {
@@ -53,15 +52,35 @@ $(document)
 												englishnamelength : true
 											}
 										},
+										address : {
+											rules : {
+												required : true
+											}
+										},
+										birthdate : {
+											rules : {
+												required : true,
+												strTrim : true,
+												birthdate : true,
+												dateISO : true,
+												onlyNumber : true
+											}
+										},
+										mobile : {
+											rules : {
+												required : true,
+												strTrim : true,
+//												birthdate : true,
+//												dateISO : true,
+												onlyNumber : true
+											}
+										},
 										email : {
 											nullable : true,
 											rules : {
 												strTrim : true,
 												notUpperCase : true,
-												email : true,
-												activeEmail : {
-													pageId : "9bcb"
-												}
+												email : true
 											},
 											errorListener : function(input,
 													result) {
@@ -73,7 +92,6 @@ $(document)
 														return;
 													}
 												}
-
 												if ($.trim(input.val()) == "") {
 													$(input).val("");
 													formReset(input);
