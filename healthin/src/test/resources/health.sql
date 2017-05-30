@@ -171,7 +171,7 @@ drop table food;
 create table food(
 	food_name varchar2(100) primary key,
 	calorie number not null,
-	food_catefory varchar2(100) not null
+	food_category varchar2(100) not null
 );
 
 --회원별 섭취량 테이블
@@ -344,4 +344,18 @@ insert into trainer  values('healthma','은평구 생활체육센터 헬쓰트�
 insert into health_member 
 values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
+
+-- food 테스트 db
+insert into food
+values('공기밥', 120, '공기밥');
+insert into food
+values('탕수육', 350, '탕수육');
+insert into food
+values('치킨', 400, '치킨');
+
+-- intake_member 테스트 db
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '치킨', 'user1');
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '공기밥', 'user1');
 

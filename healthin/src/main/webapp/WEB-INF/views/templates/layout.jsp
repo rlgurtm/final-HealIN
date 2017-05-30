@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- for Calendar -->
-<script src="${pageContext.request.contextPath}/resources/js/fullcalendar/jquery-ui.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/js/fullcalendar/jquery-ui.min.js"></script> --%>
 <script src="${pageContext.request.contextPath}/resources/js/fullcalendar/moment.min.js"></script>
 <script src='http://fullcalendar.io/js/fullcalendar-3.4.0/fullcalendar.js'></script>
 <link href='http://fullcalendar.io/js/fullcalendar-3.4.0/fullcalendar.css' rel='stylesheet' />
