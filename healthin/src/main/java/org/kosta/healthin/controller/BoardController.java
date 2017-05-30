@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,20 @@ public class BoardController {
 	public String gettipBoardContent(String no,Model model){
 		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
 		return "tip/tip_content.tiles";
+	}
+	@RequestMapping("tipBoardDelete.do")
+	public String tipboardDelete(String no,String id){
+		tipService.tipBoardDelete(no, id);
+		return "redirect:/tip/tip.do";
+	}
+	@RequestMapping("tip/tipWriteForm.do")
+	public String tipWriteForm(){
+		return "tip/tipWriteForm.tiles";
+	}
+	@RequestMapping("tip/tipWrite.do")
+	public String tipWrite(TipBoardVO tvo){
+		System.out.println("tipboard::::"+tvo);
+		return "redirect:/tip/tip_content.do?no=1";
 	}
 
 	

@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ <style>
+ 	#tipWrite{
+ 	position:absolute;
+ 	right: 8%;
+ 	}
+ </style>
  <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
@@ -80,7 +85,9 @@
    			}//success
    		  })//ajax
    		});//on
-    
+    	$("#tipWrite").click(function(){
+    		location.href="${pageContext.request.contextPath}/tip/tipWriteForm.do";
+    	});
     });//ready
   </script>
 
@@ -123,7 +130,10 @@
 			</c:if>
 		</tbody>
 	</table>
- 	<div><a>글쓰기</a></div>
+	<c:if test="${mvo!=null }">
+		<button type="button" class="btn btn-default" id="tipWrite">글쓰기</button>
+	</c:if>
+ 	
 	<div align="center">
 		<ul class="pagination">
 			<c:set var="pb" value="${list.pb}"></c:set>

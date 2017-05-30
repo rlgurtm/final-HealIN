@@ -19,5 +19,9 @@ public interface TipDAO {
 
 	TipBoardVO getTipBoardDetailContent(int no);
 
+	void tipBoardDelete(Map<String, Object> map);
+
+	void tipWrite(TipBoardVO tvo);
+
 
 }

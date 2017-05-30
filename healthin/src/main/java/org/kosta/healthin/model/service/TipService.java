@@ -11,4 +11,6 @@ public interface TipService {
 
 	TipBoardVO getTipBoardDetailContent(String no);
 
+	void tipBoardDelete(String no, String id);
+
 }

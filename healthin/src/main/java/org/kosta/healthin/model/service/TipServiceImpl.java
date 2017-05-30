@@ -44,5 +44,12 @@ public class TipServiceImpl implements TipService  {
 		int NO=Integer.parseInt(no);
 		return dao.getTipBoardDetailContent(NO);
 	}
+	@Override
+	public void tipBoardDelete(String no,String id){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("no", Integer.parseInt(no));
+		map.put("id", id);
+		dao.tipBoardDelete(map);
+	}
 
 }

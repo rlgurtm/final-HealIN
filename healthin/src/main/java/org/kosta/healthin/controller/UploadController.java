@@ -53,7 +53,7 @@ public class UploadController {
 	}
 	@RequestMapping("trainerVideoWrite.do")
 	public String trainerVideoWrite(HttpServletRequest request,MultipartFile uploadFile){
-		uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
 		

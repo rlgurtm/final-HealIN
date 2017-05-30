@@ -88,6 +88,7 @@ public class TipBoardVO implements VO {
 	public void setTipqna(String tipqna) {
 		this.tipqna = tipqna;
 	}
+	
 	public MemberVO getMemberVO() {
 		return memberVO;
 	}

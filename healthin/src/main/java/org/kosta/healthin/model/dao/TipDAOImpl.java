@@ -37,6 +37,14 @@ public class TipDAOImpl implements TipDAO {
 	public TipBoardVO getTipBoardDetailContent(int no){
 		return template.selectOne("tip.getTipBoardDetailContent",no);
 	}
+	@Override
+	public void tipBoardDelete(Map<String, Object> map){
+		template.delete("tip.tipBoardDelete",map);
+	}
+	@Override
+	public void tipWrite(TipBoardVO tvo){
+		template.insert("tip.tipWrite",tvo);
+	}
 	
 
 
