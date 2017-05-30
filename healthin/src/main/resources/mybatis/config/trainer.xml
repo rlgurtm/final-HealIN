@@ -4,22 +4,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="trainer">
-	<resultMap type="trainerVO" id="trainerRM">
-		<result property="memberVO.id" column="id" />
-		<result property="memberVO.name" column="name" />
-	</resultMap>
+
 	
  	<select id="getTrainerTotalCount" resultType="int" >
  		select count(*) from trainer
  	</select>
 
-<select id="getTrainerList" resultMap="trainerRM" parameterType="map">
+<select id="getTrainerList" resultType="memberVO" parameterType="pagingBean">
        select a.* from 
-       (select row_number() over(order by rank desc) rnum,id
-       name,location,career,rank
+       (select row_number() over(order by rank desc) rnum,
+       id,name,location,career,rank,trainer_photo
        from trainer t,health_member m
        where t.trainer_id=m.id) a 
-       where rnum between #{STATRNUM} and #{ENDNUM}
+       where rnum between #{startRowNumber} and #{endRowNumber}
     </select>
     
 </mapper>

@@ -1,10 +1,10 @@
 package org.kosta.healthin.model.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,8 +20,8 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public List<VO> getTrainerList(Map<String, Integer> map) {
-		return template.selectList("trainer.getTrainerList",map);
+	public List<VO> getTrainerList(PagingBean pb) {
+		return template.selectList("trainer.getTrainerList",pb);
 	}
 
 }

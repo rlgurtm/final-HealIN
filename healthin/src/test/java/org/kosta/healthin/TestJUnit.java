@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.service.TipService;
+import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -39,14 +41,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 public class TestJUnit {
 	@Resource
-	private TipDAO dao;
+	private TipDAO tipdao;
 	
 	@Resource
-	private TipService serivce;
+	private TipService tipserivce;
+	
+	@Resource
+	private TrainerService treinerservice;
 
 	@Test
 	public void test(){
-		String category="식단";
+		/*String category="식단";
 		int totalContents=dao.getTotalTipCategoryCount(category);
 		int nowPage=1;
 		String nowpage="1";
@@ -56,9 +61,10 @@ public class TestJUnit {
 		map.put("startRowNumber", pb.getStartRowNumber());
 		map.put("endRowNumber", pb.getEndRowNumber());
 		
-		System.out.println("안녕하세요"+serivce.tipBoardCategoryList(category, nowpage));	
+		System.out.println("안녕하세요"+tipserivce.tipBoardCategoryList(category, nowpage));	*/
 	
-		
+		ListVO list=treinerservice.getTrainerList("1");
+		System.out.println(list.toString());
 		
 	}
 }

@@ -1,18 +1,18 @@
 -- 여기는 health sql문을 쓸 수 있습니다
 
 -- 전체 drop
-drop table exercise;
 drop table consumption_member;
+drop table exercise;
 drop table physical_info;
-drop table food;
 drop table intake_member;
+drop table food;
 drop table matching;
 drop table following;
 drop table mentoring;
 drop table pay;
 drop table trainer_rate;
-drop table field_category;
 drop table field;
+drop table field_category;
 drop table video_comment;
 drop table video_like;
 drop table trainer_video;
@@ -341,8 +341,29 @@ values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨
 insert into health_member 
 values('healthma','1234','헬쓰마','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
 insert into trainer  values('healthma','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+
 insert into health_member 
 values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
 
+insert into health_member 
+values('sanggirl','1234','상걸','상짱','19910902','female','서울시 노원구 상계동 1259 ','01090000000','sanggirl@naver.com','trainer','N')
+insert into trainer  values('sanggirl','노원구 Sangfitness 필라테스 6년',0,'노원구','sanggirl1.png')
 
+insert into health_member 
+values('swimmingguy','1234','수영남1','수영남','19890902','male','양평군 양평읍 군청앞길','01000000010','swimmingguy@naver.com','trainer','N')
+insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','swimmingguy1.png')
+
+insert into health_member 
+values('swimmingguy2','1234','수영남2','수영남이','19870902','male','서울특별시 용산구 용산동1가 8','01000000100','swimmingguy2@naver.com','trainer','N')
+insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','swimmingguy2.png')
+
+insert into health_member 
+values('swimminggirl','1234','수영녀','수영녀','19900101','male','경기도 용인시 수지구 동천동 240','01000001000','swimminggirl@naver.com','trainer','N')
+insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','swimminggirl.png')
+
+insert into health_member 
+values('healthman6','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
+insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+
+select * from TRAINER
