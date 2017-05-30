@@ -49,7 +49,7 @@ textarea {
 				<input name="uploadFile" type="file" class="pure-u-1" id="videoForm" required="required">
 			</div>
 			<div class="pure-u-1-8">
-				<input name="trainerId" type="text" class="pure-u-1" value="java" readonly="readonly" id="videoForm">
+				<input name="trainerId" type="text" class="pure-u-1" value="healthboy" readonly="readonly" id="videoForm">
 			</div>
 		</div>
 		<br> <br>
