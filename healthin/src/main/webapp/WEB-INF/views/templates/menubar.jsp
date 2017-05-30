@@ -111,7 +111,7 @@
 			                                <a href="${pageContext.request.contextPath}/mypage/user_health_check.do">기간별 건강 변화 체크(이름 임시)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">비만도 측정(기능 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/mypage/bmi.do">비만도 측정(기능 임시)</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">팔로우 한 강사(이름 임시)</a>

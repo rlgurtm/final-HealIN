@@ -3,6 +3,7 @@ package org.kosta.healthin.model.dao;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,13 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public ListVO trainerVideoList(){
+	public int totalCountVideo(){
+		return template.selectOne("trainervideo.totalCountVideo");
+	}
+	@Override
+	public ListVO trainerVideoList(PagingBean pb){
 		ListVO listVO = new ListVO();
-		listVO.setLVO(template.selectList("trainervideo.trainerVideoList"));
+		listVO.setLVO(template.selectList("trainervideo.trainerVideoList",pb));
 		//System.out.println(listVO);
 		return listVO;
 	}
@@ -23,6 +28,11 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	@Override
 	public TrainerVideoVO trainerVideoShow(int videoNo){
 		return template.selectOne("trainervideo.trainerVideoShow",videoNo);
+	}
+	
+	@Override
+	public void trainerVideoWrite(TrainerVideoVO trainerVideoVO){
+		template.insert("trainervideo.trainerVideoWrite",trainerVideoVO);
 	}
 
 }

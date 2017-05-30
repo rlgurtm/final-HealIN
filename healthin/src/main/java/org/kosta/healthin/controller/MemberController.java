@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,48 +33,40 @@ public  class MemberController {
 	
 	@RequestMapping("register_step2.do")
 	public String register_step2( ) {
-		System.out.println("회원 가입2>>>" );
 		return "member/register_step2.do";
 	}
 	
 	@RequestMapping("register_step3.do")
-	public String register_step3(MemberVO vo, HttpServletRequest req ) {
+	public String register_step3(MemberVO vo, TrainerVO tvo,HttpServletRequest req ) {
 		String type = req.getParameter("type");
 		String id = req.getParameter("id");
-		
 		memberService.registerStep3(vo);
 		
 		HttpSession session=req.getSession();
 		session.setAttribute("mvo", vo);
-		System.out.println("step2 기본정보 공통 저장??"+vo);
 		
 		if(type.equals("n")){
 			memberService.registerStudent(vo);
 		}else{
-			System.out.println("trainer 회원 가입>>>" +vo);
-			
-			MultipartFile uploadfile = vo.getUploadfile();
-	        if (uploadfile != null) {
-	            String fileName = uploadfile.getOriginalFilename();
-	            vo.setFileName(fileName);
-	            System.out.println("fileName>>>"+fileName);
-	            try {
-	                // 1. FileOutputStream 사용
-	                // byte[] fileData = file.getBytes();
-	                // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
-	                // output.write(fileData);
-	            	
-	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
-	        		System.out.println("업로드 경로:" + uploadPath);
-	                // 2. File 사용
-	                File file = new File(uploadPath + fileName);
-	                uploadfile.transferTo(file);
-	                memberService.registerTrainer(vo);
-	                System.out.println("트레이너 회원 가입 完了>>>" );
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            } // try - catch
-	        } // if
+		//	MultipartFile uploadfile = tvo.getUploadfile();
+//	        if (uploadfile != null) {
+//	            String fileName = uploadfile.getOriginalFilename();
+//	            vo.setFileName(fileName);
+//	            try {
+//	                // 1. FileOutputStream 사용
+//	                // byte[] fileData = file.getBytes();
+//	                // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
+//	                // output.write(fileData);
+//	            	
+//	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
+//	                // 2. File 사용
+//	                File file = new File(uploadPath + fileName);
+//	                uploadfile.transferTo(file);
+//	                memberService.registerTrainer(vo);
+//	            } catch (IOException e) {
+//	                e.printStackTrace();
+//	            } // try - catch
+//	        } // if
 			
 			
 		}
@@ -104,7 +97,6 @@ public  class MemberController {
 	
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request,String id,String password,HttpSession session) {
-		System.out.println("로그아웃" + id + password+password);
 		session.invalidate();
 		return "redirect:home.do";
 	}
@@ -116,7 +108,6 @@ public  class MemberController {
 	
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, HttpServletRequest req ) {
-		System.out.println("회원정보 수정 들어왔다" +vo);
 		memberService.modify(vo);
 		HttpSession session=req.getSession();
 		session.setAttribute("mvo", vo);

@@ -1,15 +1,13 @@
 package org.kosta.healthin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.service.TipService;
-import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TipBoardVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -46,19 +44,21 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		String category="식단";
-		int totalContents=dao.getTotalTipCategoryCount(category);
-		int nowPage=1;
-		String nowpage="1";
-		PagingBean pb=new PagingBean(totalContents, nowPage);
-		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("category",category);
-		map.put("startRowNumber", pb.getStartRowNumber());
-		map.put("endRowNumber", pb.getEndRowNumber());
-		
-		System.out.println("안녕하세요"+serivce.tipBoardCategoryList(category, nowpage));	
-	
-		
+		TipBoardVO tvo=new TipBoardVO();
+		tvo.setCategory("다이어트");
+		tvo.setTitle("주제입니다");
+		tvo.setContent("걸어걸어 다 걸어");
+		tvo.setTipqna("tip");
+		tvo.setMemberVO(new MemberVO("java", null, null, null, null, null, null, null, null, null, null));
+		dao.tipWrite(tvo);
+		System.out.println("안녕하세요"+dao.getTipBoardDetailContent(tvo.getNo()));	
+	/*
+		insert into tipandqna
+		values(#{no},#{title},#{content},#{attachedFile},0,
+				sysdate,#{category},#{memberVO.id},#{tipqna})
+					private String id;
+*/
+
 		
 	}
 }
