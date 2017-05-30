@@ -95,7 +95,7 @@
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" style="display: none;">이미 사용된
+									<p class="txt_message" id="nickname_msg" style="display: none;">이미 사용된
 										 ID 입니다. 다른 아이디를 입력하세요.</p>
 								</dd>
 							</dl>
@@ -295,7 +295,7 @@
 
 
 					<div class="wrap_btn">
-						<button type="submit" class="btn_comm btn_type1">다음 단계</button>
+						<button type="submit" class="btn_comm btn_type1"  id="nextstepBtn">다음 단계</button>
 					</div>
 				</fieldset>
 			</form>

@@ -11,7 +11,7 @@ $(document)
 										id : {
 											rules : {
 												required : true,
-												rangelength : [ 3, 15 ],
+												rangelength : [ 4, 15 ],
 												onlydigits : true,
 												notUpperCase : true,
 												idinvalid : true
@@ -19,6 +19,23 @@ $(document)
 											inputListener : function(input) {
 												formInput(input);
 												hideRecommendIds();
+											},
+											errorListener : function(input,
+													result) {
+												var extra = result.extra;
+												formError(input, result);
+											}
+										},
+										nickname : {
+											rules : {
+												required : true,
+												rangelength : [ 4, 15 ],
+												onlydigits : true,
+												notUpperCase : true,
+												nicknameinvalid : true
+											},
+											inputListener : function(input) {
+												formInput(input);
 											},
 											errorListener : function(input,
 													result) {
@@ -245,11 +262,7 @@ $(document)
 										}
 										if (isAuthenticated != true
 												&& $("#tel").isValid() == true) {
-											if (!isSendCode) {
-												sendCertCodeFail($.fn.messages.sendAndInputCertCode);
-											} else {
 												confirmCertCodeFail($.fn.messages.inputAndConfirmCertCode);
-											}
 											errorCnt++;
 										}
 										if (errorCnt == 0) {
@@ -336,16 +349,16 @@ $(document)
 											isAuthenticated = false;
 											showTypingBoxForAuth(input);
 
-											$("#inpCertCode").val("");
-											resetBox($("#inpCertCode"));
-											hideErrorMessage($("#inpCertCode"));
+											$("#tel").val("");
+											resetBox($("#tel"));
+											hideErrorMessage($("#tel"));
 											setCertCodeBtnDisable("confirmBtn",
 													true);
-											onPlaceHolder($("#inpCertCode"));
+											onPlaceHolder($("#tel"));
 											$("#matchedCertCodeText").hide();
 
 											if (isSendCode) {
-												$("#inpCertCode").attr(
+												$("#tel").attr(
 														"disabled", false);
 											}
 										},
@@ -361,7 +374,7 @@ $(document)
 										}
 									});
 
-					$("#inpCertCode")
+					$("#tel")
 							.initValidation(
 									{
 										inputEvent : "focus",
@@ -392,7 +405,7 @@ $(document)
 										successListener : function(input,
 												result) {
 											if (GlobalValidationInfo.currEventType == "blur") {
-												hideTypingBox($("#inpCertCode"));
+												hideTypingBox($("#tel"));
 											}
 											if ($("#tel").isValid()) {
 												setCertCodeBtnDisable(
@@ -410,35 +423,9 @@ $(document)
 										}
 										hideTypingBox($("#inpCertCode"));
 
-										// 인증번호 발송 정책체크
-										var NumberInfo = function() {
-											return {
-												pageId : "9bcb",
-												eventType : GlobalValidationInfo.currEventType,
-												isAuthenticated : isAuthenticated,
-												serviceType : "join",
-												mobileNationalCode : $(
-														"#mobileNationalCode")
-														.val(),
-												mobileNational : $(
-														"#mobileNational")
-														.val()
-											}
-										};
 										var val = $.fn.methods.certcodePolicy(
 												$("#inpPhone").val(), "",
 												NumberInfo);
-
-										if (val.result != 'success') {
-											$("#inpPhone").showElementError(
-													"inpPhone", val.message);
-											if (val.extra !== undefined) {
-												if (val.extra.responseCode == "403") {
-													redirectFirstPageForError(val.message);
-												}
-											}
-											return false;
-										}
 
 										if (confirm($(
 												"#mobileInternationalFormat")
@@ -487,153 +474,6 @@ $(document)
 										}
 									});
 
-					$("#confirmBtn")
-							.click(
-									function() {
-
-										if ($("#confirmBtn").hasClass(
-												"disabled")) {
-											return false;
-										}
-
-										if ($("#inpCertCode").isValid() == false) {
-											$("#inpCertCode").valid();
-											return false;
-										}
-
-										if ($("#inpPhone").isValid() == false) {
-											return false;
-										}
-
-										var extra = {};
-										$
-												.post(
-														"https://member.daum.net/api/auth/collate.do?v=2",
-														{
-															PAGEID : "9bcb",
-															serviceType : "join",
-															authType : "phone",
-															inputValue : $(
-																	"#inpCertCode")
-																	.val(),
-															mobile : $(
-																	"#inpPhone")
-																	.val(),
-															countryCode : $(
-																	"#mobileNationalCode")
-																	.val(),
-															countryNo : $(
-																	"#mobileNational")
-																	.val()
-
-														},
-														function(data) {
-															if (data.code == "200") {
-																if (data.message == "MATCH") {
-																	confirmCertCodeOK();
-																} else if (data.message == "NOT_MATCH") {
-																	confirmCertCodeFail(
-																			data.result.message,
-																			extra);
-																} else if (data.message == "NOT_VALID") {
-																	sendCertCodeFail(data.result.message);
-																	$(
-																			"#inpCertCode")
-																			.val(
-																					"");
-																} else {
-																	confirmCertCodeFail(
-																			data.result.message,
-																			extra);
-																}
-															} else if (data.code == '403') {
-																result = 'fail';
-																message = $.fn.messages.invalidAccess
-																extra.responseCode = data.code;
-																confirmCertCodeFail(
-																		message,
-																		extra);
-															} else if (data.code == "500") {
-																confirmCertCodeFail(
-																		$.fn.messages.failConfirmCertCode,
-																		extra);
-															} else {
-																confirmCertCodeFail(
-																		data.message,
-																		extra);
-															}
-														});
-									});
-
-					function sendCertCodeOK() {
-						showSuccessBox($("#inpPhone"));
-						$("#certBtn").html("재발송");
-						$("#matchedCertCodeText").hide();
-
-						setInputSuccess($("#inpPhone"));
-						setInputReset($("#inpCertCode"));
-						$("#inpCertCode").val("").attr("disabled", false)
-								.focus();
-
-						setCertCodeBtnDisable("confirmBtn", true);
-						isAuthenticated = false;
-						isSendCode = true;
-					}
-
-					function sendCertCodeFail(message) {
-						setInputError($("#inpPhone"), message);
-						setCertCodeBtnDisable("confirmBtn", true);
-						showErrorBox($("#inpCertCode"));
-					}
-
-					function confirmCertCodeOK() {
-						setInputSuccess($("#inpCertCode"));
-
-						$("#inpPhone").attr("disabled", true);
-						setCertCodeBtnDisable("certBtn", true);
-
-						$("#inpCertCode").attr("disabled", true);
-
-						setCertCodeBtnDisable("confirmBtn", true);
-						$("#matchedCertCodeText").show();
-						$(".num_nation").css({
-							"pointer-events" : "none"
-						});
-						isAuthenticated = true;
-					}
-
-					function confirmCertCodeFail(message, extra) {
-						if (extra !== undefined && extra.responseCode == "403") {
-							redirectFirstPageForError(message);
-							return;
-						}
-
-						setInputError($("#inpCertCode"), message);
-						setCertCodeBtnDisable("confirmBtn", false);
-						$("#matchedCertCodeText").hide();
-
-						isAuthenticated = false;
-					}
-
-					function setCertCodeBtnDisable(objId, disabled) {
-						if (disabled) {
-							$("#" + objId).addClass("disabled");
-						} else {
-							$("#" + objId).removeClass("disabled");
-						}
-					}
-
-					function setAuthenticatedStatus(authValue, code) {
-						offPlaceHolder($("#inpPhone"));
-						offPlaceHolder($("#inpCertCode"));
-
-						$("#inpPhone").val(authValue);
-						sendCertCodeOK();
-						setCertCodeBtnDisable("certBtn", false);
-
-						$("#inpCertCode").val(code);
-						confirmCertCodeOK();
-					}
 
 					function showErrorBox(input) {
 						$(input).parent().addClass("info_error").removeClass(
