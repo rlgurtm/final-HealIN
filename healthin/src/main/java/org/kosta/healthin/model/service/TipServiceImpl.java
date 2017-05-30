@@ -51,5 +51,9 @@ public class TipServiceImpl implements TipService  {
 		map.put("id", id);
 		dao.tipBoardDelete(map);
 	}
+	@Override
+	public void tipWrite(TipBoardVO tvo){
+		dao.tipWrite(tvo);
+	}
 
 }

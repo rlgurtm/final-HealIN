@@ -1,6 +1,9 @@
 package org.kosta.healthin.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -13,9 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BoardController {
+	private String uploadPath;
 	
 	@Resource
 	private TipService tipService;
@@ -53,12 +58,22 @@ public class BoardController {
 		return "tip/tipWriteForm.tiles";
 	}
 	@RequestMapping("tip/tipWrite.do")
-	public String tipWrite(TipBoardVO tvo){
+	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
 		System.out.println("tipboard::::"+tvo);
-		return "redirect:/tip/tip_content.do?no=1";
-	}
-
+		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+		MultipartFile file = uploadFile;
+		UUID uuid = UUID.randomUUID();
+		String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+		try {
+				file.transferTo(new File(uploadPath+File));
+				tvo.setattachedFile(File);
+				tipService.tipWrite(tvo);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}	
 	
+		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
+	}
 	@RequestMapping("trainer/trainerList.do")
 	public String gettrainerList(Model model,String pageNo){
 		if(pageNo==null)

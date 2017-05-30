@@ -13,4 +13,6 @@ public interface TipService {
 
 	void tipBoardDelete(String no, String id);
 
+	void tipWrite(TipBoardVO tvo);
+
 }

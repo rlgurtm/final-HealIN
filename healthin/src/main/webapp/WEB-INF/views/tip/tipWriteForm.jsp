@@ -18,7 +18,7 @@
 				<option value="다이어트">다이어트</option>
 			</select>
 			</div>
-			 <input type="file" name="attachedFile">
+			 <input type="file" name="uploadFile">
 			<br>
 			
 		<label for="comment">제목:</label>
