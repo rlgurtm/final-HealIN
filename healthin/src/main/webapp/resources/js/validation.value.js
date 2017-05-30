@@ -70,8 +70,8 @@ $(document)
 											rules : {
 												required : true,
 												strTrim : true,
-//												birthdate : true,
-//												dateISO : true,
+												rangelength : [ 11, 11 ],
+												startNumber : true,
 												onlyNumber : true
 											}
 										},
