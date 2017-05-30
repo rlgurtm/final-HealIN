@@ -8,7 +8,7 @@ var GlobalValidationInfo = {
 					{
 						initValidation : function(c) {
 							if (a.nodeName(this[0], "input")) {
-								var b = a(this);
+								var b = a(this);   
 								b.data("nullable", c.nullable);
 								b.data("rules", c.rules);
 								b.data("messages", c.messages);
@@ -331,13 +331,13 @@ var GlobalValidationInfo = {
 							a("[id=" + b + "]").__showError(c)
 						},
 						showElementError : function(b, c) {
+							a("[nickname=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
 							a("[name=" + b + "]").__showError(c)
 						},
 						showElementError : function(b, c) {
 							a("[tel=" + b + "]").__showError(c)
-						},
-						showElementError : function(b, c) {
-							a("[nickname=" + b + "]").__showError(c)
 						},
 						showElementSuccess : function(b) {
 							var c = a("[name=" + b + "]").data(

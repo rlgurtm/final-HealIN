@@ -14,13 +14,6 @@ public class MemberVO implements VO {
 	private String email;
 	private String istrainer;
 	private String withdrawal;
-	
-	private String career;
-	private int rank;
-	private String location;
-	private String trainer_photo;
-	private String fileName;
-	private MultipartFile uploadfile;
 
 	public MemberVO() {
 		super();
@@ -42,28 +35,6 @@ public class MemberVO implements VO {
 		this.withdrawal = withdrawal;
 	}
 	
-	public MemberVO(String id, String password, String nickname, String name, String birthdate, String gender,
-			String address, String tel, String email, String istrainer, String withdrawal, String fileName,
-			String career, int rank, String location, String trainer_photo) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.nickname = nickname;
-		this.name = name;
-		this.birthdate = birthdate;
-		this.gender = gender;
-		this.address = address;
-		this.tel = tel;
-		this.email = email;
-		this.istrainer = istrainer;
-		this.withdrawal = withdrawal;
-		this.fileName = fileName;
-		this.career = career;
-		this.rank = rank;
-		this.location = location;
-		this.trainer_photo = trainer_photo;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -153,61 +124,12 @@ public class MemberVO implements VO {
 	}
 	
 
-	public String getCareer() {
-		return career;
-	}
-
-	public void setCareer(String career) {
-		this.career = career;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getTrainer_photo() {
-		return trainer_photo;
-	}
-
-	public void setTrainer_photo(String trainer_photo) {
-		this.trainer_photo = trainer_photo;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public MultipartFile getUploadfile() {
-		return uploadfile;
-	}
-
-	public void setUploadfile(MultipartFile uploadfile) {
-		this.uploadfile = uploadfile;
-	}
 
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", nickname=" + nickname + ", name=" + name
 				+ ", birthdate=" + birthdate + ", gender=" + gender + ", address=" + address + ", tel=" + tel
-				+ ", email=" + email + ", istrainer=" + istrainer + ", withdrawal=" + withdrawal + ", career=" + career
-				+ ", rank=" + rank + ", location=" + location + ", trainer_photo=" + trainer_photo + ", fileName="
-				+ fileName + ", uploadfile=" + uploadfile + "]";
+				+ ", email=" + email + ", istrainer=" + istrainer + ", withdrawal=" + withdrawal  + "]";
 	}
 
 
