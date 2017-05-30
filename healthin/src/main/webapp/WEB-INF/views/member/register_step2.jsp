@@ -111,8 +111,7 @@
 										<label for="password1" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="password" id="password1" name="password"
-											class="inp_info pw" value="" maxlength="32"
-											placeholder="비밀번호 
+											class="inp_info pw" value="" maxlength="32" placeholder="비밀번호 
 											(8자 이상)" required="required">
 										<span class="mark_valid" style="display: none;">불가</span>
 									</div>
