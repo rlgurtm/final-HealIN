@@ -2,7 +2,6 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -12,7 +11,6 @@ import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
-import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

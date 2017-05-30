@@ -1,7 +1,5 @@
 package org.kosta.healthin.model.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class MemberVO implements VO {
 	private String id;
 	private String password;
