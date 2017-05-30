@@ -98,10 +98,8 @@ $(document).ready(function () {
 									<div class="wrap_inp">
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="nickname" name="nickname"
-											class="inp_info_nick" value="${sessionScope.mvo.nickname }" autocomplete="off"
-											maxlength="15"> <span class="txt_fix txt_domain"></span>
-										<span class="mark_valid" style="display: none;"><span
-											class="ico_join ico_valid"></span></span>
+											class="inp_info pw" value="${sessionScope.mvo.nickname }" maxlength="32"> <span
+											class="mark_valid" style="display: none;">불가</span>
 									</div>
 									<p class="txt_message" style="display: none;">이미 사용된
 										NickName 입니다. 다른 Nickname를 입력하세요.</p>

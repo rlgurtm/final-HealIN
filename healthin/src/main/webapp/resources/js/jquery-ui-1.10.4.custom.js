@@ -12,7 +12,7 @@ var uuid = 0,
 $.ui = $.ui || {};
 
 $.extend( $.ui, {
-	version: "1.1.1",
+	version: "1.10.4",
 
 	keyCode: {
 		BACKSPACE: 8,

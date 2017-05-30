@@ -328,7 +328,16 @@ var GlobalValidationInfo = {
 							}
 						},
 						showElementError : function(b, c) {
+							a("[id=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
 							a("[name=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
+							a("[tel=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
+							a("[nickname=" + b + "]").__showError(c)
 						},
 						showElementSuccess : function(b) {
 							var c = a("[name=" + b + "]").data(
