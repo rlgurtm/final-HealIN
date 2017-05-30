@@ -21,17 +21,17 @@ textarea {
 	padding: 10px;
 }
 </style>
-<div class="container" align="center">
 
+<div class="container" align="center">
 	<form class="pure-g pure-form" method="post" action="${pageContext.request.contextPath}/trainerVideoWrite.do" enctype="multipart/form-data">
 		<div class="pure-u-1">
 			<div class="pure-u-1-8">
 				<select name="openrank" class="pure-u-1" id="videoFormSelect">
-					<option value="all">전체공개</option>
-					<option value="member">회원공개</option>
-					<option value="follow">팔로워회원공개</option>
-					<option value="pt">PT회원공개</option>
-					<option value="secret">전체비공개</option>
+					<option value="0">전체공개</option>
+					<option value="1">회원공개</option>
+					<option value="2">팔로워회원공개</option>
+					<option value="3">PT회원공개</option>
+					<option value="9">전체비공개</option>
 				</select>
 			</div>
 			<div class="pure-u-1-8">
@@ -49,7 +49,7 @@ textarea {
 				<input name="uploadFile" type="file" class="pure-u-1" id="videoForm" required="required">
 			</div>
 			<div class="pure-u-1-8">
-				<input name="trainerId" type="text" class="pure-u-1" value="java" readonly="readonly" id="videoForm">
+				<input name="trainerId" type="text" class="pure-u-1" value="healthboy" readonly="readonly" id="videoForm">
 			</div>
 		</div>
 		<br> <br>

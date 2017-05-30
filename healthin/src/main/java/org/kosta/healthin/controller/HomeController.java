@@ -44,7 +44,6 @@ public class HomeController {
 		HashMap<String, Object> allContentList = homeService.getAllContentsList();
 		mv.addObject("allContentList", allContentList);
 		mv.setViewName("home.tiles");
-		System.out.println(allContentList);
 		return mv;
 	}
 }

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>회원가입</title>

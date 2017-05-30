@@ -2,6 +2,8 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,29 +32,25 @@ public  class MemberController {
 	
 	@RequestMapping("register_step2.do")
 	public String register_step2( ) {
-		System.out.println("회원 가입2>>>" );
 		return "member/register_step2.do";
 	}
 	
 	@RequestMapping("register_step3.do")
 	public String register_step3(MemberVO vo, HttpServletRequest req ) {
 		String type = req.getParameter("type");
-		System.out.println("강사인가 학생인가??"+type);
+		String id = req.getParameter("id");
 		memberService.registerStep3(vo);
-		System.out.println("step2 기본정보 공통 저장??"+vo);
+		
+		HttpSession session=req.getSession();
+		session.setAttribute("mvo", vo);
 		
 		if(type.equals("n")){
-			System.out.println("학생 회원 가입>>>" +vo);
 			memberService.registerStudent(vo);
-			System.out.println("학생 회원 가입 完了>>>" );
 		}else{
-			System.out.println("trainer 회원 가입>>>" +vo);
-			
 			MultipartFile uploadfile = vo.getUploadfile();
 	        if (uploadfile != null) {
 	            String fileName = uploadfile.getOriginalFilename();
 	            vo.setFileName(fileName);
-	            System.out.println("fileName>>>"+fileName);
 	            try {
 	                // 1. FileOutputStream 사용
 	                // byte[] fileData = file.getBytes();
@@ -60,12 +58,10 @@ public  class MemberController {
 	                // output.write(fileData);
 	            	
 	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
-	        		System.out.println("업로드 경로:" + uploadPath);
 	                // 2. File 사용
 	                File file = new File(uploadPath + fileName);
 	                uploadfile.transferTo(file);
 	                memberService.registerTrainer(vo);
-	                System.out.println("트레이너 회원 가입 完了>>>" );
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            } // try - catch
@@ -73,8 +69,6 @@ public  class MemberController {
 			
 			
 		}
-		HttpSession session=req.getSession();
-		session.setAttribute("mvo", vo);
 		return "redirect:member/register_sucess.do";
 	}
 	
@@ -102,7 +96,6 @@ public  class MemberController {
 	
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request,String id,String password,HttpSession session) {
-		System.out.println("로그아웃" + id + password+password);
 		session.invalidate();
 		return "redirect:home.do";
 	}
@@ -114,7 +107,6 @@ public  class MemberController {
 	
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, HttpServletRequest req ) {
-		System.out.println("회원정보 수정 들어왔다" +vo);
 		memberService.modify(vo);
 		HttpSession session=req.getSession();
 		session.setAttribute("mvo", vo);
