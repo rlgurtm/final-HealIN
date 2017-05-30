@@ -10,7 +10,9 @@
 <meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
 <title>가입 정보 입력 | HEALTHIN 회원가입</title>
 <!-- Bootstrap Core CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="css/modern-business.css" rel="stylesheet">
@@ -72,13 +74,13 @@
 										<label for="id" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="id" name="id" class="inp_info" value=""
-											autocomplete="off" maxlength="15" placeholder="아이디"> <span
-											class="txt_fix txt_domain"></span> <span class="mark_valid"
-											style="display: none;"><span
+											autocomplete="off" maxlength="15" placeholder="아이디"
+											required="required"> <span class="txt_fix txt_domain"></span>
+										<span class="mark_valid" style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" style="display: none;">이미 사용된
-										 ID 입니다. 다른 아이디를 입력하세요.</p>
+									<p class="txt_message" style="display: none;">이미 사용된 ID
+										입니다. 다른 아이디를 입력하세요.</p>
 								</dd>
 							</dl>
 							<dl class="item_info">
@@ -89,14 +91,15 @@
 									<div class="wrap_inp">
 										<label for="id" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="nickname" name="nickname" class="inp_info" value=""
-											autocomplete="off" maxlength="15" placeholder="닉네임"> <span
+										<input type="text" id="nickname" name="nickname"
+											class="inp_info" value="" autocomplete="off" maxlength="15"
+											placeholder="닉네임" required="required"> <span
 											class="txt_fix txt_domain"></span> <span class="mark_valid"
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" style="display: none;">이미 사용된
-										 ID 입니다. 다른 아이디를 입력하세요.</p>
+									<p class="txt_message" id="nickname_msg" style="display: none;">이미
+										사용된 ID 입니다. 다른 아이디를 입력하세요.</p>
 								</dd>
 							</dl>
 							<dl class="item_info info_password">
@@ -108,10 +111,9 @@
 										<label for="password1" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="password" id="password1" name="password"
-											class="inp_info pw" value="" maxlength="32"
-											placeholder="비밀번호
-											(8자 이상)"> <span
-											class="mark_valid" style="display: none;">불가</span>
+											class="inp_info pw" value="" maxlength="32" placeholder="비밀번호 
+											(8자 이상)" required="required">
+										<span class="mark_valid" style="display: none;">불가</span>
 									</div>
 								</dd>
 							</dl>
@@ -126,8 +128,8 @@
 										<input type="password" id="password2" name="password2"
 											class="inp_info pw" value="" maxlength="32"
 											placeholder="비밀번호
-											재확인"> <span
-											class="mark_valid" style="display: none;">불일치</span>
+											재확인" required="required">
+										<span class="mark_valid" style="display: none;">불일치</span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -145,9 +147,9 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="name" name="name" class="inp_info"
-											value="" maxlength="30" placeholder="이름"> <span
-											class="mark_valid"><span class="ico_join ico_valid"></span><span
-											class="screen_out">유효</span></span>
+											value="" maxlength="30" placeholder="이름" required="required">
+										<span class="mark_valid"><span
+											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -162,9 +164,10 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="birthdate" name="birthdate"
-											class="inp_info" value="" maxlength="30" placeholder="">
-										<span class="mark_valid"><span
-											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
+											class="inp_info" value="" maxlength="8"
+											placeholder="20051230" required="required"> <span
+											class="mark_valid"><span class="ico_join ico_valid"></span><span
+											class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -191,10 +194,12 @@
 									<div class="wrap_inp">
 										<span class="txt_placeholder "></span>
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="tel" name="tel" class="inp_info"
-											value="" autocomplete="off" placeholder="0101234568">
-										<span class="mark_valid"><span
-											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
+										<input type="text" id="mobile" name="mobile" class="inp_info"
+											value="" autocomplete="off" maxlength="11"
+											placeholder="0101234568" required="required"> <span
+											class="mark_valid">
+											<span class="ico_join ico_valid"></span><span
+											class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -208,9 +213,9 @@
 										<span class="txt_placeholder "></span>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="email" name="email" class="inp_info"
-											value="" autocomplete="off" placeholder="이메일"> <span
-											class="mark_valid"><span class="ico_join ico_valid"></span><span
-											class="screen_out">유효</span></span>
+											value="" autocomplete="off" placeholder="이메일"
+											required="required"> <span class="mark_valid"><span
+											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -226,8 +231,8 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="address" name="address"
-											class="inp_info" value="" maxlength="30" placeholder="집주소">
-										<span class="mark_valid"><span
+											class="inp_info" value="" maxlength="30" placeholder="집주소"
+											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
@@ -236,8 +241,9 @@
 							<!--  
 							istrainer : trainer/ user
 					 	-->
-							<input type="hidden" value="trainer" name="istrainer" id="istrainer"> <input
-								type="hidden" value="N" name="withdrawal">
+							<input type="hidden" value="trainer" name="istrainer"
+								id="istrainer"> <input type="hidden" value="N"
+								name="withdrawal">
 						</div>
 					</div>
 
@@ -254,7 +260,8 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="career" name="career" class="inp_info"
-											value="" maxlength="30" placeholder="상세경력"> <span class="mark_valid"><span
+											value="" maxlength="30" placeholder="상세경력"
+											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
@@ -270,7 +277,8 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="location" name="location"
-											class="inp_info" value="" maxlength="30" placeholder="서초구/강남구/,,,"> <span
+											class="inp_info" value="" maxlength="30"
+											placeholder="서초구/강남구/,,," required="required"> <span
 											class="mark_valid"><span class="ico_join ico_valid"></span><span
 											class="screen_out">유효</span></span>
 									</div>
@@ -283,8 +291,8 @@
 								</dt>
 								<dd>
 									<!-- 텍스트 입력 시 .screen_out  -->
-									<input type="file" name="uploadfile" id="uploadfile" required="required">
-									<span class="mark_valid"><span
+									<input type="file" name="uploadfile" id="uploadfile"
+										required="required"> <span class="mark_valid"><span
 										class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -295,7 +303,10 @@
 
 
 					<div class="wrap_btn">
-						<button type="submit" class="btn_comm btn_type1">다음 단계</button>
+						<button type="submit" class="btn_comm btn_type2" id="nextstepBtn">다음
+							단계</button>
+						&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn_comm btn_type2">초기화</button>
 					</div>
 				</fieldset>
 			</form>

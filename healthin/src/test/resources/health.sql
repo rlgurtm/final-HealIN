@@ -171,7 +171,7 @@ drop table food;
 create table food(
 	food_name varchar2(100) primary key,
 	calorie number not null,
-	food_catefory varchar2(100) not null
+	food_category varchar2(100) not null
 );
 
 --회원별 섭취량 테이블
@@ -293,7 +293,11 @@ field_state  VARCHAR2(50) NOT NULL,
 -- 삽입: 멤버 java 임시로 박은거
 insert into health_member 
 values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N')
+insert into health_member
+values('spring','1234','스프링','스프링','19190505','male','서울시 종로구 계동 100 101호','01000010002','physical@daum.net','user','N')
 insert into health_user  values('java')
+insert into health_user  values('maven')
+insert into health_user  values('spring')
 
 insert into health_member 
 values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','trainer','N');
@@ -345,4 +349,28 @@ insert into health_member
 values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
 
+
+-- food 테스트 db
+insert into food
+values('공기밥', 120, '공기밥');
+insert into food
+values('탕수육', 350, '탕수육');
+insert into food
+values('치킨', 400, '치킨');
+
+-- intake_member 테스트 db
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '치킨', 'user1');
+insert into intake_member
+values(intake_no_seq.nextval, '20170529', '공기밥', 'user1');
+
+
+--physical_info 테스트 db
+select * from physical_info;
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'180','80',sysdate,'java');
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'190','90',sysdate,'maven');
+insert into physical_info(physical_no,height,weight,today,user_id)
+values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
