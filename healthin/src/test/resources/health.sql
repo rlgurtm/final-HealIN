@@ -345,3 +345,4 @@ insert into health_member
 values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
 
+

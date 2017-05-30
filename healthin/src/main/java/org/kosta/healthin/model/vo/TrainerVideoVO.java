@@ -82,7 +82,7 @@ public class TrainerVideoVO implements VO {
 	}
 	@Override
 	public String toString() {
-		return "TrainerVidieoVO [videoNo=" + videoNo + ", title=" + title + ", content=" + content + ", videoFile="
+		return "TrainerVideoVO [videoNo=" + videoNo + ", title=" + title + ", content=" + content + ", videoFile="
 				+ videoFile + ", postedDate=" + postedDate + ", hits=" + hits + ", category=" + category + ", trainerId="
 				+ trainerId + ", openrank=" + openrank + "]";
 	}
