@@ -15,10 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="getTrainerList" resultMap="trainerRM" parameterType="map">
        select a.* from 
-       (select row_number() over(order by no desc) rnum,
-       no,title,content,hits,timeposted,a.id,name,password
-       from board_spring a,member_spring b
-       where a.id=b.id) a 
+       (select row_number() over(order by rank desc) rnum,id
+       name,location,career,rank
+       from trainer t,health_member m
+       where t.trainer_id=m.id) a 
        where rnum between #{STATRNUM} and #{ENDNUM}
     </select>
     

@@ -7401,3 +7401,7 @@ button.close {
 	}
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
+
+select.sbox {
+    float: right;
+}
