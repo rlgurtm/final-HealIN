@@ -37,6 +37,11 @@ public class BoardController {
 		System.out.println(tipService.tipBoardCategoryList(category, nowpage));
 		return tipService.tipBoardCategoryList(category, nowpage);
 	}
+	@RequestMapping("tip/tip_content.do")
+	public String gettipBoardContent(String no,Model model){
+		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
+		return "tip/tip_content.tiles";
+	}
 
 	
 	@RequestMapping("trainer/trainerList.do")

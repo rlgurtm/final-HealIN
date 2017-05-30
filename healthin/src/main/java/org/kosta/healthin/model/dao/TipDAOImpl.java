@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,10 @@ public class TipDAOImpl implements TipDAO {
 	@Override
 	public int getTotalTipCategoryCount(String category){
 		return template.selectOne("tip.getTotalTipCategoryCount",category);
+	}
+	@Override
+	public TipBoardVO getTipBoardDetailContent(int no){
+		return template.selectOne("tip.getTipBoardDetailContent",no);
 	}
 	
 
