@@ -130,6 +130,5 @@ public class MemberVO implements VO {
 				+ ", email=" + email + ", istrainer=" + istrainer + ", withdrawal=" + withdrawal  + "]";
 	}
 
-
 	
 }

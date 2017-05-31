@@ -8,88 +8,67 @@
  	}
  </style>
  <script>
-  	$(document).ready(function(){
-    	$(".menu").click(function(){
-        	$(".active").removeClass("active");
-        	$(this).addClass("active");
-        	 $.ajax({
- 				type:"get",
- 				url:"${pageContext.request.contextPath}/tipcategory.do",
- 				data:"category="+$(this).text(),
- 				dataType:"json",
- 				success:function(data){
- 				
- 			 	  	var info="";
-					for(var i=0;i<data.lvo.length;i++){
- 						info+="<tr><td>"+data.lvo[i].no+"</td>";
- 						info+="<td><a href='${pageContext.request.contextPath}/tip/tip_content.do?no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a></td>";
- 						info+="<td>"+data.lvo[i].memberVO.name+"</td>";
- 						info+="<td>"+data.lvo[i].postedDate+"</td>";
- 						info+="<td>"+data.lvo[i].hits+"</td></tr>";
- 					} 
- 					
- 					 $("#tipBoardInfo").html(info); 
- 					 var pre=data.pb.startPageOfPageGroup-1;
- 					 var next=data.pb.endPageOfPageGroup+1; 
- 			 		 var paging="";
- 			 		 if(data.pb.previousPageGroup)
- 						 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
- 					 for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
- 						 if(data.pb.nowPage==k){
- 							paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
- 						 }else{
- 							paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
- 						 }
- 					 }
- 					 if(data.pb.nextPageGroup)
- 						 paging+="<li class='next' value="+next+"><a>next</a><li>";
- 					 $(".pagination").html(paging);
- 				}//success
- 			});//ajax
-        });//click
-       
-        $(".pagination").on("click", "li", function(){
-   		 $(".pagination .active").removeClass("active");
-   		 $(this).addClass("active"); 
-   		 $.ajax({
-   			type:"get",
-   			url:"${pageContext.request.contextPath}/tipcategory.do",
-   			dataType:"json",
-   			data:"nowpage="+$(this).val()+"&category="+$(".nav-tabs .active").text(),
-   			success:function(data){
-   				var info="";
+ var category=null;
+ 	function getTipCategoryList(page){
+ 		$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/tipcategory.do",
+				data:"category="+category+"&nowpage="+page,
+				dataType:"json",
+				success:function(data){
+				
+			 	  	var info="";
 				for(var i=0;i<data.lvo.length;i++){
 						info+="<tr><td>"+data.lvo[i].no+"</td>";
+						info+="<td>"+data.lvo[i].category+"</td>";
 						info+="<td><a href='${pageContext.request.contextPath}/tip/tip_content.do?no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a></td>";
 						info+="<td>"+data.lvo[i].memberVO.name+"</td>";
 						info+="<td>"+data.lvo[i].postedDate+"</td>";
 						info+="<td>"+data.lvo[i].hits+"</td></tr>";
 					} 
 					
-					  $("#tipBoardInfo").html(info); 
-					  	 var pre=data.pb.startPageOfPageGroup-1;
-	 					 var next=data.pb.endPageOfPageGroup+1; 
-	 			 		 var paging="";
-	 			 		 if(data.pb.previousPageGroup)
-	 						 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
-	 					 for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
-	 						 if(data.pb.nowPage==k){
-	 							paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
-	 						 }else{
-	 							paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
-	 						 }
-	 					 }
-	 					 if(data.pb.nextPageGroup)
-	 						 paging+="<li class='next' value="+next+"><a>next</a><li>";
-	 					 $(".pagination").html(paging);
-   			}//success
-   		  })//ajax
+					 $("#tipBoardInfo").html(info); 
+					 var pre=data.pb.startPageOfPageGroup-1;
+					 var next=data.pb.endPageOfPageGroup+1; 
+			 		 var paging="";
+			 		 if(data.pb.previousPageGroup)
+						 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
+					 for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
+						 if(data.pb.nowPage==k){
+							paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
+						 }else{
+							paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
+						 }
+					 }
+					 if(data.pb.nextPageGroup)
+						 paging+="<li class='next' value="+next+"><a>next</a><li>";
+					 $(".pagination").html(paging);
+				}//success
+			});//ajax
+ 	}//function
+ 
+  	$(document).ready(function(){
+    	$(".menu").click(function(){
+        	$(".active").removeClass("active");
+        	$(this).addClass("active");
+        	category=$(this).text();
+        	getTipCategoryList(1);
+        });//click
+       
+        $(".pagination").on("click", "li", function(){
+			$(".pagination .active").removeClass("active");
+   		 		$(this).addClass("active"); 
+   				category=$(".nav-tabs .active").text();
+   				getTipCategoryList($(this).val());
    		});//on
-    	$("#tipWrite").click(function(){
+    	
+   		$("#tipWrite").click(function(){
     		location.href="${pageContext.request.contextPath}/tip/tipWriteForm.do";
-    	});
+    	});//click
+    	
     });//ready
-  </script>
+  
+</script>
 
 <div class="container">
 	<h2>나만의 tip</h2>
@@ -108,11 +87,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>글쓴이</th>
-				<th>날짜</th>
-				<th>조회수</th>
+				<th style="width:5%;">번호</th>
+				<th style="width:10%;">분류</th>
+				<th style="width:30%;">제목</th>
+				<th style="width:10%;">글쓴이</th>
+				<th style="width:10%;">날짜</th>
+				<th style="width:5%;">조회수</th>
 			</tr>
 		</thead>
 		<tbody id="tipBoardInfo">
@@ -120,6 +100,7 @@
 				<c:forEach items="${list.LVO }" var="list">
 					<tr>
 						<td>${list.no}</td>
+						<td>${list.category }</td>
 						<td><a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${list.no}">
 						${list.title }</a></td>
 						<td>${list.memberVO.name }</td>

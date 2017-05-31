@@ -1,11 +1,14 @@
 package org.kosta.healthin.model.service;
 
-import java.util.List;
-
-import org.kosta.healthin.model.vo.VO;
+import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 
 public interface TrainerService {
 
-	List<VO> getTrainerList(String pageNo);
+	ListVO getTrainerList(String pageNo);
+
+	Object trainerListOrder(String order, String pageNo);
+
+	TrainerVO trainerDetail(String trainerId);
 
 }

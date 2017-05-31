@@ -40,7 +40,7 @@
 			<div class="inner_head">
 				<h1>
 					<a href="${pageContext.request.contextPath}/home.do"
-						id="daumServiceLogo" class="ico_join"> <span class="ir_wa"></span></a>
+						id="ServiceLogo" class="ico_join"> <span class="ir_wa"></span></a>
 				</h1>
 			</div>
 		</div>
@@ -55,12 +55,10 @@
 			<div class="wrap_tit">
 				<h3 class="tit_join">가입 정보 입력</h3>
 				<div class="txt_desc">로그인 정보 및 가입 정보를 입력하세요.</div>
-			</div>
+			</div> 
 			<form
 				action="${pageContext.request.contextPath}/register_step3.do?type=${param.type}"
-				method="post" enctype="multipart/form-data" id="joinInput"
-				name="joinInput">
-
+				method="post" enctype="multipart/form-data" id="joinInput" name="joinInput">
 				<fieldset class="fld_comm">
 					<legend class="screen_out">가입 정보</legend>
 					<div class="wrap_info">
@@ -110,8 +108,9 @@
 									<div class="wrap_inp">
 										<label for="password1" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="password" id="password1" name="password"
-											class="inp_info pw" value="" maxlength="32" placeholder="비밀번호 
+										<input type="password" id="password1" name="password1"
+											class="inp_info pw" value="" maxlength="32"
+											placeholder="비밀번호 
 											(8자 이상)" required="required">
 										<span class="mark_valid" style="display: none;">불가</span>
 									</div>
@@ -197,8 +196,7 @@
 										<input type="text" id="mobile" name="mobile" class="inp_info"
 											value="" autocomplete="off" maxlength="11"
 											placeholder="0101234568" required="required"> <span
-											class="mark_valid">
-											<span class="ico_join ico_valid"></span><span
+											class="mark_valid"> <span class="ico_join ico_valid"></span><span
 											class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
@@ -231,7 +229,7 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="address" name="address"
-											class="inp_info" value="" maxlength="30" placeholder="집주소"
+											class="inp_info" value="" maxlength="50" placeholder="집주소"
 											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
@@ -241,9 +239,18 @@
 							<!--  
 							istrainer : trainer/ user
 					 	-->
-							<input type="hidden" value="trainer" name="istrainer"
-								id="istrainer"> <input type="hidden" value="N"
-								name="withdrawal">
+
+							<c:choose>
+								<c:when test="${param.type == 'y'}">
+									<input type="hidden" value="trainer" name="istrainer"
+										id="istrainer">
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" value="user" name="istrainer"
+										id="istrainer">
+								</c:otherwise>
+							</c:choose>
+							<input type="hidden" value="N" name="withdrawal">
 						</div>
 					</div>
 
@@ -344,8 +351,6 @@
 	</script>
 
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.input.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.methods.js"></script>
@@ -357,7 +362,5 @@
 		src="${pageContext.request.contextPath}/resources/js/validation.value.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/validation.addition.js"></script>
 </body>
 </html>
