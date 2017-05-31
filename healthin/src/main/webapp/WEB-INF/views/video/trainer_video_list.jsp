@@ -90,10 +90,6 @@
 			<c:if test="${mvo.istrainer=='trainer'}">
 				<li><a href="${pageContext.request.contextPath}/trainerVideoWriteForm.do" class="btn">
 				<strong>Write</strong></a></li>
-				<li><a href="#" class="btn">
-				<strong>Edit</strong></a></li>
-				<li><a href="#" class="btn">
-				<strong>Delete</strong></a></li>
 			</c:if>
 				<li class="active"></li>
 			</ol>

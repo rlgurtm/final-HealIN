@@ -34,5 +34,19 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	public void trainerVideoWrite(TrainerVideoVO trainerVideoVO){
 		template.insert("trainervideo.trainerVideoWrite",trainerVideoVO);
 	}
-
+	
+	@Override
+	public void trainerVideoUpdateNewFile(TrainerVideoVO trainerVideoVO){
+		template.update("trainervideo.trainerVideoUpdateNewFile",trainerVideoVO);
+	}
+	
+	@Override
+	public void trainerVideoUpdate(TrainerVideoVO trainerVideoVO){
+		template.update("trainervideo.trainerVideoUpdate",trainerVideoVO);
+	}
+	
+	@Override
+	public void trainerVideoDelete(int videoNo){
+		template.update("trainervideo.trainerVideoDelete",videoNo);
+	}
 }

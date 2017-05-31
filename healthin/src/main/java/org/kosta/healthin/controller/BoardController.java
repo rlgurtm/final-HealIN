@@ -2,7 +2,6 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,7 +10,6 @@ import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
-import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,11 +74,15 @@ public class BoardController {
 	public String gettrainerList(Model model,String pageNo){
 		if(pageNo==null)
 			pageNo="1";
-		List<VO> list=trainerService.getTrainerList(pageNo);
-		System.out.println("trainer Controller : "+list);
+		ListVO list=trainerService.getTrainerList(pageNo);
 		model.addAttribute("list",list);
 		return "trainer/trainerList.tiles";
-		
-		
+	}
+	@RequestMapping("order.do")
+	@ResponseBody
+	public Object trainerListOrder(String order,String pageNo){
+		if(pageNo==null)
+			pageNo="1";
+		return trainerService.trainerListOrder(order, pageNo);
 	}
 }

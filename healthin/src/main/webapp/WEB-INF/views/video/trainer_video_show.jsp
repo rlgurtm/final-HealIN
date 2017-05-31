@@ -68,6 +68,28 @@
 			</ol>
 		</div>
 	</div>
+	
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12" align="center">
+			<ol class="breadcrumb">
+				<li class="active"></li>
+				<li><a href="${pageContext.request.contextPath}/trainerVideoList.do" class="btn">
+				<strong>List</strong></a></li>
+			<c:if test="${mvo.istrainer=='trainer'}">
+				<li><a href="${pageContext.request.contextPath}/trainerVideoWriteForm.do" class="btn">
+				<strong>Write</strong></a></li>
+			</c:if>
+			<c:if test="${mvo.id==videoVO.trainerId}">
+				<li><a href="${pageContext.request.contextPath}/trainerVideoUpdateForm.do?videoNo=${videoVO.videoNo}" class="btn">
+				<strong>Edit</strong></a></li>
+				<li><a href="${pageContext.request.contextPath}/trainerVideoDelete.do?videoNo=${videoVO.videoNo}" class="btn">
+				<strong>Delete</strong></a></li>
+			</c:if>
+				<li class="active"></li>
+			</ol>
+		</div>
+	</div>
 </div>
 
 

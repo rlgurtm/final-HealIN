@@ -14,4 +14,10 @@ public interface TrainerVideoDAO {
 
 	ListVO trainerVideoList(PagingBean pb);
 
+	void trainerVideoUpdateNewFile(TrainerVideoVO trainerVideoVO);
+
+	void trainerVideoUpdate(TrainerVideoVO trainerVideoVO);
+
+	void trainerVideoDelete(int videoNo);
+
 }
