@@ -10,6 +10,7 @@ import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,5 +85,12 @@ public class BoardController {
 		if(pageNo==null)
 			pageNo="1";
 		return trainerService.trainerListOrder(order, pageNo);
+	}
+		
+	@RequestMapping("trainer/trainerDetail.do")
+	public String trainerDetail(Model model,String trainerId){
+		TrainerVO vo= trainerService.trainerDetail(trainerId);
+		model.addAttribute("list",vo);
+		return "trainer/trainerDetail.tiles";
 	}
 }
