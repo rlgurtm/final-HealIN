@@ -1,18 +1,18 @@
 -- 여기는 health sql문을 쓸 수 있습니다
 
 -- 전체 drop
-drop table exercise;
 drop table consumption_member;
+drop table exercise;
 drop table physical_info;
-drop table food;
 drop table intake_member;
+drop table food;
 drop table matching;
 drop table following;
 drop table mentoring;
 drop table pay;
 drop table trainer_rate;
-drop table field_category;
 drop table field;
+drop table field_category;
 drop table video_comment;
 drop table video_like;
 drop table trainer_video;
@@ -25,7 +25,7 @@ drop table health_member;
 drop sequence board_no_seq;
 drop sequence comment_no_seq;
 drop sequence mentoring_no_seq;
-drop sequence consumpton_no_seq;
+drop sequence consumption_no_seq;
 drop sequence physical_no_seq;
 drop sequence intake_no_seq;
 drop sequence pay_no_seq;
@@ -78,7 +78,7 @@ create table tipandqna(
 	board_no number primary key,
 	title varchar2(100) not null,
 	content clob not null,
-	attached_file varchar2(100) not null,
+	attached_file varchar2(100),
 	hits number default 0,
 	posted_date date not null,
 	category varchar2(100) not null,
@@ -180,6 +180,7 @@ create table intake_member(
 	intake_no number primary key,
 	intake_date date not null,
 	food_name varchar2(100) not null,
+	count number default 0,
 	user_id varchar2(100) not null,
 	constraint fk_intake_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_intake_food_name foreign key(food_name) references food(food_name)
@@ -225,6 +226,7 @@ create table trainer_rate(
 	rate number default 0,
 	content clob not null,
 	rate_date date not null,
+	primary key(user_id,trainer_id),
 	constraint fk_rate_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_rate_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );
@@ -260,7 +262,7 @@ CREATE TABLE video_like (
  CONSTRAINT fk_trainer_like_video_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no)
 );
 select * from video_like
-insert into video_like values('rlgurtm',)
+
 -- 동영상 댓글
 drop table video_comment
 CREATE TABLE video_comment (
@@ -305,6 +307,12 @@ insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트�
 insert into health_member 
 values('user1','1234','유저1','멸치','19911111','male','서울시 종로구 통인동 65 201호','01098967896','user1@naver.com','user','N');
 insert into health_user  values('user1')
+insert into health_member 
+values('user2','1234','유저2','이쑤시개','19911112','female','서울시 종로구 통인동 65 201호','01098967896','user2@naver.com','user','N');
+insert into health_user  values('user2')
+insert into health_member 
+values('user3','1234','유저3','이쑤시개2','19911112','female','서울시 종로구 통인동 65 201호','01098967896','user2@naver.com','user','N');
+insert into health_user  values('user3')
 
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'분류1','healthboy',0);
@@ -345,10 +353,14 @@ values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨
 insert into health_member 
 values('healthma','1234','헬쓰마','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
 insert into trainer  values('healthma','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+
 insert into health_member 
 values('yogagirl','1234','요가걸','섹시짱','19810902','female','성남시 분당구 구미동 65 201호','01098967896','healthboy@naver.com','trainer','N')
 insert into trainer  values('yogagirl','분당구 생활체육센터 요가 2년',0,'성남시','healthboy3.png')
 
+insert into health_member 
+values('sanggirl','1234','상걸','상짱','19910902','female','서울시 노원구 상계동 1259 ','01090000000','sanggirl@naver.com','trainer','N')
+insert into trainer  values('sanggirl','노원구 Sangfitness 필라테스 6년',0,'노원구','sanggirl1.png')
 
 -- food 테스트 db
 insert into food
@@ -358,11 +370,43 @@ values('탕수육', 350, '탕수육');
 insert into food
 values('치킨', 400, '치킨');
 
+insert into health_member 
+values('swimmingguy','1234','수영남1','수영남','19890902','male','양평군 양평읍 군청앞길','01000000010','swimmingguy@naver.com','trainer','N')
+insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','swimmingguy1.png')
+
+insert into health_member 
+values('swimmingguy2','1234','수영남2','수영남이','19870902','male','서울특별시 용산구 용산동1가 8','01000000100','swimmingguy2@naver.com','trainer','N')
+insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','swimmingguy2.png')
+
+insert into health_member 
+values('swimminggirl','1234','수영녀','수영녀','19900101','male','경기도 용인시 수지구 동천동 240','01000001000','swimminggirl@naver.com','trainer','N')
+insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','swimminggirl.png')
+
+insert into health_member 
+values('healthman6','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
+insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+
+select * from TRAINER
 -- intake_member 테스트 db
-insert into intake_member
-values(intake_no_seq.nextval, '20170529', '치킨', 'user1');
-insert into intake_member
-values(intake_no_seq.nextval, '20170529', '공기밥', 'user1');
+delete from intake_member;
+insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-30', '치킨', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-25', '치킨', 3, 'user2');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-01', '공기밥', 2, 'user3');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-05', '치킨', 3, 'user3');
+select to_char(intake_date, 'YYYY-MM-DD') as intakeDate, im.food_name as foodName, im.count
+from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31';
+-- 일일 총 칼로리 섭취량
+select sum(f.calorie) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and im.user_id='user1';
+-- 월 총 칼로리 섭취량
+--
+select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
+from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1';
 
 
 --physical_info 테스트 db
@@ -373,4 +417,6 @@ insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
+
+select * from food
 
