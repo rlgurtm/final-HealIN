@@ -46,10 +46,13 @@ $(document)
 											rules : {
 												required : true,
 												strTrim : true,
-												nameinvalid : true,
+												onlydigits : true,
 												minKoreanNameLength : true,
 												maxKoreanNameLength : true,
-												englishnamelength : true
+												nameenglishnamelength : true,
+												koreannamelength : true,
+												englishnamelength : true,
+												nameinvalid : true
 											}
 										},
 										address : {

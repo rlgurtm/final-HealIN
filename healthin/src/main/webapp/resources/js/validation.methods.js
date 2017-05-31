@@ -161,6 +161,14 @@ a.fn,
 								var d = /^.*[a-z-_\.]+.*$/.test(e);
 								return this.optional(c) || (b && d)
 							},
+							
+							// 사용할 수 없는 문자가 있어요. <br>영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있어요. 
+							nameinvalid : function(e, c) {
+								var b = (/^([a-zA-Z])([a-zA-Z]+)([a-zA-Z])$/
+										.test(e));
+								var d = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/.test(e);
+								return this.optional(c) || (b || d)
+							},
 							checkjuminnoformat : function(h, f) {
 								var c = [ 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5 ];
 								var b = h.replace(/[^0-9]/g, "");
@@ -301,10 +309,6 @@ a.fn,
 									}
 								}
 								return true
-							},
-							nameinvalid : function(c, b) {
-								return this.optional(b)
-										this.optional(b) || /^\d+$/.test(c)
 							},
 							birthdateinvalid : function(c, b) {
 								return this.optional(b)
