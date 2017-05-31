@@ -40,8 +40,7 @@ public class BoardController {
 	public Object tipBoardCategoryList(String category,String nowpage){
 		if(nowpage==null)
 			nowpage="1";
-		System.out.println(tipService.tipBoardCategoryList(category, nowpage));
-		return tipService.tipBoardCategoryList(category, nowpage);
+		return tipService.tipBoardCategoryList(category.trim(), nowpage);
 	}
 	@RequestMapping("tip/tip_content.do")
 	public String gettipBoardContent(String no,Model model){
@@ -59,7 +58,6 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		System.out.println("tipboard::::"+tvo);
 		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
