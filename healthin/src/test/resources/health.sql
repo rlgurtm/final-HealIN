@@ -25,7 +25,7 @@ drop table health_member;
 drop sequence board_no_seq;
 drop sequence comment_no_seq;
 drop sequence mentoring_no_seq;
-drop sequence consumpton_no_seq;
+drop sequence consumption_no_seq;
 drop sequence physical_no_seq;
 drop sequence intake_no_seq;
 drop sequence pay_no_seq;
