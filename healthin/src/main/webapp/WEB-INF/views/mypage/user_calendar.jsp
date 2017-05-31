@@ -2,17 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
+	function getData() {
+		
+	}
+</script>
+<script>
 	$(document).ready(function() {
+		var events = "";
+		$("#showBtn").click(function() {
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/mypage/ajaxCalendar.do",
+				//data:"address="+addrValue,
+				dataType:"json",
+				success:function(jsonList){
+					events=jsonList;
+					alert(events);
+					//var data = JSON.parse(jsonList);
+					for (var i=0; i<events.length; i++) {
+						alert(events[i].title);
+					}
+				}//function
+			});//ajax
+		});
 		$(":input[name=type]").change(function() {		// 입력부분 ajax ~ing
 			alert($(this).val());
 			$.ajax({
 				type:"post",
-				url:"${pageContext.request.contextPath}/mypage/user_calendar.do",
+				url:"${pageContext.request.contextPath}/mypage/ajaxCalendar.do",
 				//data:"address="+addrValue,
 				dataType:"json",
 				success:function(jsonList){					
-					var data = JSON.parse(jsonList);
-					alert(data);
+					//var data = JSON.parse(jsonList);
+					for (var i=0; i<jsonList.length; i++) {
+						alert(jsonList[i].title);
+					}
 				}//function
 			});//ajax
 		});
@@ -28,7 +52,7 @@
 			selectHelper: true,
 			select: function(start, end) {
 				/* var title = prompt('Event Title:'); */	// 기존 타이틀 입력하라는 alert 비슷한거였음
-				var eventData;
+				//var eventData;
 				/* if (title) {
 					eventData = {
 						title: title,
@@ -63,12 +87,11 @@
 		            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
 		        });
 		    }, */
-			
-			events: [
+			events: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do' /* [
 				{
-					title: 'All Day Event',
+					title: '${requestScope.jsonList[0].title}',
 					start: '2017-05-01',
-					url: 'http://google.com/'
+					url: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do'
 				},
 				{
 					title: 'Long Event',
@@ -120,13 +143,13 @@
 					url: 'http://google.com/',
 					start: '2017-05-28'
 				}
-			],
-			eventClick: function(event) {
+			] */,
+			/* eventClick: function(event) {
 		        if (event.url) {
 		        	window.open("", "", "width=200,height=100");
 		            return false;
 		        }
-		    }
+		    } */
 		});
 	});
 </script>
@@ -199,6 +222,7 @@
         <!-- /.row -->
         
         <div id="calendar"></div>
+        <div><input type="button" value="보기" id="showBtn"></div>
         <!-- <div id="eventContent" title="Event Details" style="display:none;">
 		    Start: <span id="startTime"></span><br>
 		    End: <span id="endTime"></span><br><br>
