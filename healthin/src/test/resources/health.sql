@@ -307,6 +307,12 @@ insert into trainer  values('healthboy','성동구 생활체육센터 헬쓰트�
 insert into health_member 
 values('user1','1234','유저1','멸치','19911111','male','서울시 종로구 통인동 65 201호','01098967896','user1@naver.com','user','N');
 insert into health_user  values('user1')
+insert into health_member 
+values('user2','1234','유저2','이쑤시개','19911112','female','서울시 종로구 통인동 65 201호','01098967896','user2@naver.com','user','N');
+insert into health_user  values('user2')
+insert into health_member 
+values('user3','1234','유저3','이쑤시개2','19911112','female','서울시 종로구 통인동 65 201호','01098967896','user2@naver.com','user','N');
+insert into health_user  values('user3')
 
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'분류1','healthboy',0);
@@ -383,17 +389,24 @@ insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트
 select * from TRAINER
 -- intake_member 테스트 db
 delete from intake_member;
-insert into intake_member
-values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
-insert into intake_member
-values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
-insert into intake_member
-values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
-insert into intake_member
-values(intake_no_seq.nextval, '2017-05-31', '치킨', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-30', '치킨', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-25', '치킨', 3, 'user2');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-01', '공기밥', 2, 'user3');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-05', '치킨', 3, 'user3');
 select to_char(intake_date, 'YYYY-MM-DD') as intakeDate, im.food_name as foodName, im.count
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31';
+-- 일일 총 칼로리 섭취량
+select sum(f.calorie) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and im.user_id='user1';
+-- 월 총 칼로리 섭취량
+--
+select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
+from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1';
 
 
 --physical_info 테스트 db
@@ -405,4 +418,3 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
-select * from food

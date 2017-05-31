@@ -4,11 +4,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="calendar">
- 	<select id="getTotalIntakeCalorie"></select>
- 	
- 	<select id="getAllIntakeFood">
+ 	<!-- <select id="getTotalIntakeCalorieOfDay" parameterType="map">
+ 		select sum(f.calorie) as totalCalorie from food f, intake_member im, health_user hu
+		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and 
+ 	</select> -->
+ 	<select id="getAllDateIntakeFood" resultType="string" parameterType="string">
+ 		select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
+		from food f, intake_member im, health_user hu
+		where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = #{value}
+ 	</select>
+ 	<!-- <select id="getTotalIntakeCalorieOfMonth">
  	
  	</select>
+ 	<select id="getAllIntakeFood">
+ 	
+ 	</select> -->
 </mapper>
  
  
