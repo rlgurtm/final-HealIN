@@ -28,10 +28,10 @@ $(document)
 										nickname : {
 											rules : {
 												required : true,
-												rangelength : [ 4, 15 ],
+												rangelength : [ 2, 15 ],
 												onlydigits : true,
-												notUpperCase : true,
-												nicknameinvalid : true
+												nicknameenglishnamelength : true,
+												nicknamekoreannamelength : true
 											},
 											inputListener : function(input) {
 												formInput(input);

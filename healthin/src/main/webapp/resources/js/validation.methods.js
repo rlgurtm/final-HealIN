@@ -227,10 +227,10 @@ a.fn,
 							notUpperCase : function(c, b) {
 								return this.optional(b) || /^[^A-Z]*$/.test(c)
 							},
-							nicknameinvalid : function(e, c) {
-								var b = (/^([a-z0-9-_])([a-z0-9-_\.]+)([a-z0-9-_])$/
+							nicknameinvalid : function(e, c) {  
+								var b = (/^([a-zA-Z0-9-_])([a-zA-Z0-9-_\.]+)([ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)([a-zA-Z0-9-_])$/
 										.test(e));
-								var d = /^.*[a-z-_\.]+.*$/.test(e);
+								var d = /^.*[a-zA-Z-_\.]+.*$/.test(e); 
 								return this.optional(c) || (b && d)
 							},
 							existidinvalnickname : function(d, c) {

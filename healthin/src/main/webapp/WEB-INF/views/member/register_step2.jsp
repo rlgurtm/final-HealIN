@@ -357,7 +357,5 @@
 		src="${pageContext.request.contextPath}/resources/js/validation.value.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/validation.addition.js"></script>
 </body>
 </html>
