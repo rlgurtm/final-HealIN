@@ -29,4 +29,16 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public void trainerVideoWrite(TrainerVideoVO trainerVideoVO){
 		videoDAO.trainerVideoWrite(trainerVideoVO);
 	}
+	@Override
+	public void trainerVideoUpdateNewFile(TrainerVideoVO trainerVideoVO){
+		videoDAO.trainerVideoUpdateNewFile(trainerVideoVO);
+	}
+	@Override
+	public void trainerVideoUpdate(TrainerVideoVO trainerVideoVO){
+		videoDAO.trainerVideoUpdate(trainerVideoVO);
+	}
+	@Override
+	public void trainerVideoDelete(int videoNo){
+		videoDAO.trainerVideoDelete(videoNo);
+	}
 }

@@ -228,7 +228,7 @@
 														rangelength : [ 4, 15 ],
 														onlydigits : true,
 														notUpperCase : true,
-														daumidinvalid : true,
+														idinvalid : true,
 														checkjuminnoformat : true
 													},
 													inputListener : function(
@@ -304,7 +304,7 @@
 														}
 													}
 												},
-												password1 : {
+												password : {
 													inputEvent : "focus",
 													validationEvent : "blur keyup",
 													rules : {
@@ -360,7 +360,7 @@
 													inputEvent : "focus",
 													resultCaching : false,
 													rules : {
-														isSameValue : $("#password1")
+														isSameValue : $("#password")
 													},
 													errorListener : function(
 															input, result) {
@@ -921,7 +921,7 @@
 								var id = $(input).attr("id");
 								if ("inpPhone" == id) {
 									target = $("#inpCertCode");
-								} else if ("password1" == id) {
+								} else if ("password" == id) {
 									target = $("#password2");
 								} else {
 									target = input;

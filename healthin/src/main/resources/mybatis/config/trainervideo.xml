@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="trainervideo">
 	<select id="totalCountVideo" resultType="int">
-		select count(*) from trainer_video
+		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9
 	</select>
  	<select id="trainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
  		select a.* from 
 	 		(select row_number() over(order by video_no desc) as rnum
 	 		,video_no as videoNo,title,content,video_file as videoFile
 			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
-			,trainer_id as trainerId,openrank from trainer_video) a
+			,trainer_id as trainerId,openrank from trainer_video where openrank<![CDATA[ < ]]>9) a
 		where rnum between #{startRowNumber} and #{endRowNumber}
  	</select>
  	<select id="trainerVideoShow" resultType="trainerVideoVO">
@@ -28,7 +28,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
 		values(#{videoNo},#{title},#{content},#{videoFile},sysdate,#{category},#{trainerId},#{openrank})
 	</insert>
- 	
+	<update id="trainerVideoUpdateNewFile" parameterType="trainerVideoVO">
+		update trainer_video 
+		set title=#{title},content=#{content},video_file=#{videoFile}
+			,category=#{category},openrank=#{openrank}
+		where video_no=#{videoNo} and trainer_id=#{trainerId}
+	</update>
+	<update id="trainerVideoUpdate" parameterType="trainerVideoVO">
+		update trainer_video 
+		set title=#{title},content=#{content},category=#{category}
+		,openrank=#{openrank}
+		where video_no=#{videoNo} and trainer_id=#{trainerId}
+	</update>
+ 	<update id="trainerVideoDelete" parameterType="int">
+ 		update trainer_video
+ 		set openrank=9
+ 		where video_no=#{value}
+ 	</update>
 </mapper>
  
  

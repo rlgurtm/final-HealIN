@@ -62,12 +62,14 @@
 	$(document).ready(function(){
 		$("#listBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/tip/tip.do";
-		});
+		});//click
 		$("#deleteBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/tipBoardDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
-		});
-	});
+		});//click
+	});//ready
 	</script>
+	
+	
 	<div class="container">
 		<table class="content " style="margin-left: auto; margin-right: auto;">
 			<thead>
@@ -93,4 +95,13 @@
 			</c:if>
 				<button type="button" class="btn" id="listBtn">목록가기</button>
 	</div>
-	<br><br>
+	
+		<c:if test="${!empty mvo }">
+		<div class="box container" >
+			<form>
+			<label>댓글</label>
+				<textarea class="form-control" cols="30" rows="3" id="comment"></textarea>
+			</form>
+		</div>
+		</c:if>
+		<br><br>

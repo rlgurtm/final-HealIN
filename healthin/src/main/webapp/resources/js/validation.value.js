@@ -120,8 +120,7 @@ $(document)
 												setInputError(input,
 														result.message);
 												showValidIcon(input).text("불가");
-												checkPwReconfirm(input,
-														$("#password2"));
+												checkPwReconfirm(input,$("#password2"));
 											},
 											inputListener : function(input) {
 												if (isPassPW) {
