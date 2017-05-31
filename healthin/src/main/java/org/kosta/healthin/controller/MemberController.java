@@ -1,5 +1,8 @@
 package org.kosta.healthin.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +12,7 @@ import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public  class MemberController {
@@ -31,11 +35,13 @@ public  class MemberController {
 	}
 	
 	@RequestMapping("register_step3.do")
-	public String register_step3(MemberVO vo, TrainerVO tvo,HttpServletRequest req ) {
+	public String register_step3(MemberVO vo, TrainerVO tvo,HttpServletRequest req ,MultipartFile uploadfile) {
 		String type = req.getParameter("type");
-		String id = req.getParameter("id");
 		String password = req.getParameter("password1");
+		String tel = req.getParameter("mobile");
+		
 		vo.setPassword(password);
+		vo.setTel(tel);
 		memberService.registerStep3(vo);
 		
 		HttpSession session=req.getSession();
@@ -44,25 +50,29 @@ public  class MemberController {
 		if(type.equals("n")){
 			memberService.registerStudent(vo);
 		}else{
-		//	MultipartFile uploadfile = tvo.getUploadfile();
-//	        if (uploadfile != null) {
-//	            String fileName = uploadfile.getOriginalFilename();
-//	            vo.setFileName(fileName);
-//	            try {
-//	                // 1. FileOutputStream 사용
-//	                // byte[] fileData = file.getBytes();
-//	                // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
-//	                // output.write(fileData);
-//	            	
-//	            	String uploadPath = req.getSession().getServletContext().getRealPath("/resources/upload/");
-//	                // 2. File 사용
-//	                File file = new File(uploadPath + fileName);
-//	                uploadfile.transferTo(file);
-//	                memberService.registerTrainer(tvo);
-//	            } catch (IOException e) {
-//	                e.printStackTrace();
-//	            } // try - catch
-//	        } // if
+			System.out.println("나는 트레이너다:::tvo"+tvo);
+			
+			// 실제 운영시에 사용할 서버 경로
+//			String uploadPath = req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
+			// file path upload
+			String uploadPath =
+					"C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+			
+	        if (uploadfile != null) {
+	            String fileName = uploadfile.getOriginalFilename();
+	            tvo.setTrainerPhoto(fileName);
+	            System.out.println("트레이너1"+tvo);
+	            try {
+	                // 2. File 사용
+	                File file = new File(uploadPath + fileName);
+	                uploadfile.transferTo(file);
+	                System.out.println("트레이너2  fileName"+fileName);
+	                memberService.registerTrainer(tvo);
+	                System.out.println("트레이너3"+tvo);
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            } // try - catch
+	        } // if
 			
 		}
 		return "redirect:member/register_sucess.do";

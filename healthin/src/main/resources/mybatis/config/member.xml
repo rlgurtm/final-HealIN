@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<insert id="registerTrainer">
 		insert into trainer
-		values(#{id},#{career},0,#{location},#{trainer_photo})
+		values(#{id},#{career},0,#{location},#{trainerPhoto})
 	</insert>
 	<select id="login" resultType="memberVO" parameterType="map">
 		select

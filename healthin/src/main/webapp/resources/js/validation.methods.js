@@ -55,7 +55,7 @@ a.fn,
 							},
 							birthdate : function(c, b) {
 								return this.optional(b)
-								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[1-9]{1}[0-3]{1}[0-1]{1}/.test(new Date(c).toString())
+								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}/.test(new Date(c).toString())
 								||  !/Invalid|NaN/.test(new Date(c).toString())
 								|| /^\d{4}\d{1,2}\d{1,2}$/	.test(new Date(c).toString())
 							},
