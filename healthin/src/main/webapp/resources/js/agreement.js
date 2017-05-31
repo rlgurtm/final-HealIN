@@ -27,14 +27,14 @@ $(document).ready(function() {
 
 function addTabFocusEvent() {
 	$(
-			"#daumServiceLogo, #termsAgree, #termsAgreeContainer, #policyAgree, #policyAgreeContainer")
+			"#ServiceLogo, #termsAgree, #termsAgreeContainer, #policyAgree, #policyAgreeContainer")
 			.on("keydown", function(event) {
 				if (event.shiftKey && event.which == 9)
 					return;
 				if (event.which == 9) {
 					var targetId = $(this).attr("id");
 
-					if (targetId === "daumServiceLogo") {
+					if (targetId === "ServiceLogo") {
 						$("#termsAgree").focus();
 					} else if (targetId === "termsAgree") {
 						$("#termsAgreeContainer").attr("tabindex", 0).focus();

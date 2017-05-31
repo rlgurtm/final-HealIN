@@ -1,10 +1,5 @@
 package org.kosta.healthin.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +9,6 @@ import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public  class MemberController {
@@ -40,6 +34,7 @@ public  class MemberController {
 	public String register_step3(MemberVO vo, TrainerVO tvo,HttpServletRequest req ) {
 		String type = req.getParameter("type");
 		String id = req.getParameter("id");
+		String password = req.getParameter("password1");
 		memberService.registerStep3(vo);
 		
 		HttpSession session=req.getSession();
@@ -62,7 +57,7 @@ public  class MemberController {
 //	                // 2. File 사용
 //	                File file = new File(uploadPath + fileName);
 //	                uploadfile.transferTo(file);
-//	                memberService.registerTrainer(vo);
+//	                memberService.registerTrainer(tvo);
 //	            } catch (IOException e) {
 //	                e.printStackTrace();
 //	            } // try - catch
