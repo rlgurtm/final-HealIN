@@ -82,10 +82,9 @@ public class BoardController {
 	}
 	@RequestMapping("order.do")
 	@ResponseBody
-	public Object trainerListOrder(String category,String nowpage){
-		if(nowpage==null)
-			nowpage="1";
-		System.out.println(tipService.tipBoardCategoryList(category, nowpage));
-		return tipService.tipBoardCategoryList(category, nowpage);
+	public Object trainerListOrder(String order,String pageNo){
+		if(pageNo==null)
+			pageNo="1";
+		return trainerService.trainerListOrder(order, pageNo);
 	}
 }

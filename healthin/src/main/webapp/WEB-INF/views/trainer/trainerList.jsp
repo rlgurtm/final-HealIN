@@ -67,12 +67,12 @@ $(document).ready(function(){
         <div class="row">
             <div class="col-sm-3 text-center">
                     <a href="#">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/${t.trainerPhoto}" width="750"  height="450">
                     </a>
                 </div>
             <div class="col-md-9">
             <div id="trainerArea">
-                <h3>이름 : ${t.name}</h3>
+                <h3>이름 : ${t.membervo.name}</h3>
                 <h4>지역 : ${t.location}</h4>
                 <p>경력사항 : ${t.career}</p>
                 <a class="btn btn-primary" href="portfolio-item.html">정보 더보기</a>

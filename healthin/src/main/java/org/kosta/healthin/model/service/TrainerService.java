@@ -6,4 +6,6 @@ public interface TrainerService {
 
 	ListVO getTrainerList(String pageNo);
 
+	Object trainerListOrder(String order, String pageNo);
+
 }

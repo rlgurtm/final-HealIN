@@ -78,7 +78,7 @@ create table tipandqna(
 	board_no number primary key,
 	title varchar2(100) not null,
 	content clob not null,
-	attached_file varchar2(100) not null,
+	attached_file varchar2(100),
 	hits number default 0,
 	posted_date date not null,
 	category varchar2(100) not null,
@@ -225,6 +225,7 @@ create table trainer_rate(
 	rate number default 0,
 	content clob not null,
 	rate_date date not null,
+	primary key(user_id,trainer_id),
 	constraint fk_rate_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_rate_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );
