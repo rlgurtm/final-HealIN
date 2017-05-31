@@ -40,7 +40,7 @@
 			<div class="inner_head">
 				<h1>
 					<a href="${pageContext.request.contextPath}/home.do"
-						id="daumServiceLogo" class="ico_join"> <span class="ir_wa"></span></a>
+						id="ServiceLogo" class="ico_join"> <span class="ir_wa"></span></a>
 				</h1>
 			</div>
 		</div>
@@ -110,7 +110,7 @@
 									<div class="wrap_inp">
 										<label for="password1" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="password" id="password1" name="password"
+										<input type="password" id="password1" name="password1"
 											class="inp_info pw" value="" maxlength="32" placeholder="비밀번호 
 											(8자 이상)" required="required">
 										<span class="mark_valid" style="display: none;">불가</span>
