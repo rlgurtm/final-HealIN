@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,17 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public List<VO> trainerListOrder(Map<String, Object> map) {
-		return template.selectList("trainer.trainerListOrder",map);
+	public List<VO> trainerOrderName(Map<String, Object> map) {
+		return template.selectList("trainer.trainerOrderName",map);
+	}
+
+	@Override
+	public List<VO> trainerOrderRate(Map<String, Object> map) {
+		return template.selectList("trainer.trainerOrderRate",map);
+	}
+
+	@Override
+	public TrainerVO trainerDetail(String trainerId) {
+		return template.selectOne("trainer.trainerDetail",trainerId);
 	}
 }

@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
-import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,14 +22,12 @@ public class TestJUnit {
 	private TipService tipserivce;
 	
 	@Resource
-	private TrainerService treinerservice;
+	private TrainerService trainerservice;
 
 	@Test
 	public void test(){
 
 
-		ListVO list=treinerservice.getTrainerList("1");
-		System.out.println(list.toString());
 	
 		
 	}
