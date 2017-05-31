@@ -7,6 +7,7 @@ public class TrainerVO extends MemberVO {
 	private String trainerPhoto;
 	private MemberVO membervo;
 	
+	
 	public TrainerVO() {
 		super();
 	}

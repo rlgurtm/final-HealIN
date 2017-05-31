@@ -87,7 +87,7 @@
 		            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
 		        });
 		    }, */
-			events: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do' /* [
+			events: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do?id=${sessionScope.mvo.id}' /* [
 				{
 					title: '${requestScope.jsonList[0].title}',
 					start: '2017-05-01',
@@ -211,57 +211,38 @@
 		</c:choose>
 		
 		<br><br><br>
-	
-        <!-- <div>
-            Content Column
-            <div class="col-md-9">
-                <h2>Section Heading</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
-            </div>
-        </div><br> -->
-        <!-- /.row -->
-        
-        <div id="calendar"></div>
-        <div><input type="button" value="보기" id="showBtn"></div>
-        <!-- <div id="eventContent" title="Event Details" style="display:none;">
-		    Start: <span id="startTime"></span><br>
-		    End: <span id="endTime"></span><br><br>
-		    <p id="eventInfo"></p>
-		    <p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>
-		</div> -->
 		
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
-				</div>
-				<div class="modal-body">
-					<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/update_calendar.do">
-						<select name="type">
-							<option>----</option>
-							<option>섭취</option>
-							<option>소비</option>
-						</select>
-					</form>
-					<div id="typeInfo"></div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="testBtn">테스트</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div id="calendar"></div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+	
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Header</h4>
+					</div>
+					<div class="modal-body">
+						<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/update_calendar.do">
+							<select name="type">
+								<option>----</option>
+								<option>섭취</option>
+								<option>소비</option>
+							</select>
+						</form>
+						<div id="typeInfo"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="testBtn">테스트</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
-
 		</div>
-	</div>
-
-	<br><br><br>
-        <hr>
-        
-
+	
+		<br><br><br>
+	    <hr>
     </div>
     <!-- /.container -->

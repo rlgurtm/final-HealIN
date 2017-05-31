@@ -1,8 +1,5 @@
 package org.kosta.healthin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -25,16 +22,11 @@ public class TestJUnit {
 	private TipService tipserivce;
 	
 	@Resource
-	private TrainerService treinerservice;
+	private TrainerService trainerservice;
 
 	@Test
 	public void test(){
-		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("no", 1);
-		map.put("startRowNumber",1);
-		map.put("endRowNumber",3);
-		System.out.println("tipdao 테스트::"+tipdao.getTipCommentList(map));
-		System.out.println(tipserivce.getTipCommentList("1", "1"));
+
 		
 	}
 }

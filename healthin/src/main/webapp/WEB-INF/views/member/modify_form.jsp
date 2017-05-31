@@ -7,9 +7,9 @@
 <meta charset="utf-8">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>회원가입</title>
+<title>회원정보수정</title>
 <meta property="og:title" content="HealthIn 회원가입">
-<title>개인 가입 약관 동의 | HealthIn 회원가입</title>
+<title>회원정보 수정 | HealthIn 회원정보 수정</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -55,7 +55,7 @@ $(document).ready(function () {
 			</div>
 		</div>
 				<hr class="hide">
-		<h2 class="screen_out">회원가입 안내 본문</h2>
+		<h2 class="screen_out">회원정보 수정</h2>
 		<div id="kakaoBody" class="cont_personal">
 			<div class="paging_step">
 				<span class="ico_join ico_paging"></span> <span
@@ -63,8 +63,8 @@ $(document).ready(function () {
 					class="ico_join ico_paging"></span>
 			</div>
 			<div class="wrap_tit">
-				<h3 class="tit_join">가입 정보 입력</h3>
-				<div class="txt_desc">로그인 정보 및 가입 정보를 입력하세요.</div>
+				<h3 class="tit_join">회원정보 수정 입력</h3>
+				<div class="txt_desc">로그인 정보 및 회원님의 정보를 수정하세요.</div>
 			</div>
 			<form  id="modifyFrm" action="${pageContext.request.contextPath}/modify.do"
 			 enctype="multipart/form-data" id="joinInput" name="joinInput">

@@ -10,11 +10,13 @@ public class TrainerVideoVO implements VO {
 	private String category;
 	private String trainerId;
 	private int openrank;
+	private int likeState;
 	public TrainerVideoVO() {
 		super();
 	}
+	
 	public TrainerVideoVO(int videoNo, String title, String content, String videoFile, String postedDate, int hits,
-			String category, String trainerId, int openrank) {
+			String category, String trainerId, int openrank, int likeState) {
 		super();
 		this.videoNo = videoNo;
 		this.title = title;
@@ -25,7 +27,9 @@ public class TrainerVideoVO implements VO {
 		this.category = category;
 		this.trainerId = trainerId;
 		this.openrank = openrank;
+		this.likeState = likeState;
 	}
+
 	public int getVideoNo() {
 		return videoNo;
 	}
@@ -80,11 +84,21 @@ public class TrainerVideoVO implements VO {
 	public void setOpenrank(int openrank) {
 		this.openrank = openrank;
 	}
+	
+	public int getLikeState() {
+		return likeState;
+	}
+
+	public void setLikeState(int likeState) {
+		this.likeState = likeState;
+	}
+
 	@Override
 	public String toString() {
 		return "TrainerVideoVO [videoNo=" + videoNo + ", title=" + title + ", content=" + content + ", videoFile="
-				+ videoFile + ", postedDate=" + postedDate + ", hits=" + hits + ", category=" + category + ", trainerId="
-				+ trainerId + ", openrank=" + openrank + "]";
+				+ videoFile + ", postedDate=" + postedDate + ", hits=" + hits + ", category=" + category
+				+ ", trainerId=" + trainerId + ", openrank=" + openrank + ", likeState=" + likeState + "]";
 	}
+	
 	
 }

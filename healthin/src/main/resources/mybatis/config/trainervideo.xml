@@ -8,18 +8,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9
 	</select>
  	<select id="trainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
- 		select a.* from 
+ 		select a.*,b.likeState from 
 	 		(select row_number() over(order by video_no desc) as rnum
 	 		,video_no as videoNo,title,content,video_file as videoFile
 			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
 			,trainer_id as trainerId,openrank from trainer_video where openrank<![CDATA[ < ]]>9) a
-		where rnum between #{startRowNumber} and #{endRowNumber}
+			,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+		where b.video_no(+)=a.videoNo and rnum between #{startRowNumber} and #{endRowNumber}
  	</select>
+ 	<update id="trainerVideoShowHits" parameterType="int">
+ 		update trainer_video set hits=hits+1 where video_no=#{value}
+ 	</update>
  	<select id="trainerVideoShow" resultType="trainerVideoVO">
- 		select video_no as videoNo,title,content,video_file as videoFile
- 		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
- 		from trainer_video
- 		where video_no=#{value}
+ 		select a.video_no as videoNo,a.title,a.content,a.video_file as videoFile
+ 		,a.posted_date as postedDate,a.hits,a.category,a.trainer_id as trainerId,a.openrank
+ 		,b.likeState from trainer_video a
+ 		,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+ 		where b.video_no(+)=a.video_no and a.video_no=#{value}
  	</select>
  	<insert id="trainerVideoWrite" parameterType="trainerVideoVO">
 		<selectKey keyProperty="videoNo" order="BEFORE" resultType="int">
@@ -45,6 +50,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		set openrank=9
  		where video_no=#{value}
  	</update>
+ 	
+ 	<select id="trainerVideoSelectMember" parameterType="string" resultType="int">
+ 		select count(*) from health_member where id=${value}
+ 	</select>
+ 	<select id="trainerVideoSelectFollowing" parameterType="map" resultType="int">
+ 		select count(*) from following where user_id=${userId} and trainer_id=${trainerId}
+ 	</select>
+ 	<select id="trainerVideoSelectMatching" parameterType="map" resultType="int">
+ 		select count(*) from matching where user_id=${userId} and trainer_id=${trainerId}
+ 	</select>
 </mapper>
  
  

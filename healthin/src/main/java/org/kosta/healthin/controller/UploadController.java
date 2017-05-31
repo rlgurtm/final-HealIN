@@ -2,6 +2,8 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -21,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class UploadController {
 	private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
-	
+
 	@Resource
 	private TrainerVideoService videoService;
 	
@@ -43,9 +45,52 @@ public class UploadController {
 		return "video/trainer_video_list.tiles";
 	}
 	@RequestMapping("trainerVideoShow.do")
-	public String trainerVideoShow(Model model,int videoNo){
-		model.addAttribute("videoVO",videoService.trainerVideoShow(videoNo));
-		return "video/trainer_video_show.tiles";
+	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = null;
+		if (session != null) {
+			mvo = (MemberVO) session.getAttribute("mvo");
+		}
+		TrainerVideoVO videoVO = videoService.trainerVideoDetail(videoNo);
+		if (videoVO.getOpenrank() == 0) {
+			model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+			return "video/trainer_video_show.tiles";
+		} else if (mvo != null) {
+			if (mvo.getId().equals(videoVO.getTrainerId())) {
+				model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+				return "video/trainer_video_show.tiles";
+			} else {
+				if (videoVO.getOpenrank() == 1) {
+					if (videoService.trainerVideoSelectMember(mvo.getId()) > 0) {
+						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						return "video/trainer_video_show.tiles";
+					}
+				} else if (videoVO.getOpenrank() == 2) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("userId", mvo.getId());
+					map.put("trainerId", videoVO.getTrainerId());
+					if (videoService.trainerVideoSelectFollowing(map) > 0) {
+						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						return "video/trainer_video_show.tiles";
+					}
+				} else if (videoVO.getOpenrank() == 3) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("userId", mvo.getId());
+					map.put("trainerId", videoVO.getTrainerId());
+					if (videoService.trainerVideoSelectMatching(map) > 0) {
+						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						return "video/trainer_video_show.tiles";
+					}
+				} else if (videoVO.getOpenrank() == 5) {
+					if (mvo.getId().equals(videoVO.getTrainerId())) {
+						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						return "video/trainer_video_show.tiles";
+					}
+				}
+			}
+		}
+		model.addAttribute("openrank", videoVO.getOpenrank());
+		return "video/trainer_video_show_fail";
 	}
 	@RequestMapping("trainerVideoWriteForm.do")
 	public String trainerVideoWriteForm(){
@@ -61,8 +106,8 @@ public class UploadController {
 		String videoFile = uuid.toString()+"_"+uploadFile.getOriginalFilename();
 		String category = request.getParameter("category");
 		String trainerId = request.getParameter("trainerId");
-		int	openrank = Integer.parseInt(request.getParameter("openrank"));
-		
+		int openrank = Integer.parseInt(request.getParameter("openrank"));
+
 		TrainerVideoVO vo = new TrainerVideoVO();
 		vo.setTitle(title);
 		vo.setContent(content);
@@ -70,7 +115,7 @@ public class UploadController {
 		vo.setCategory(category);
 		vo.setTrainerId(trainerId);
 		vo.setOpenrank(openrank);
-		
+
 		try {
 			file.transferTo(new File(uploadPath+videoFile));
 			videoService.trainerVideoWrite(vo);
@@ -80,7 +125,7 @@ public class UploadController {
 		// System.out.println(vo);
 		return "redirect:trainerVideoShow.do?videoNo="+vo.getVideoNo();
 	}
-	
+
 	@RequestMapping("trainerVideoUpdateForm.do")
 	public String trainerVideoUpdateForm(Model model,int videoNo){
 		TrainerVideoVO videoVO = videoService.trainerVideoShow(videoNo);
@@ -112,7 +157,7 @@ public class UploadController {
 		vo.setCategory(category);
 		vo.setTrainerId(trainerId);
 		vo.setOpenrank(openrank);
-		
+
 		try {
 			if(file.isEmpty()==false){
 				file.transferTo(new File(uploadPath+videoFile));
