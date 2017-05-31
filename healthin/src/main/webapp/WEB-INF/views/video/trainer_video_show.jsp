@@ -21,12 +21,8 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				Trainer Video Show <small>${videoVO.trainerId}</small>
+				Trainer Video Show <small id="loca">${videoVO.trainerId}</small>
 			</h1>
-			<ol id="loca" class="breadcrumb">
-				<li><a href="#">FILTER</a></li>
-				<li class="active"></li>
-			</ol>
 		</div>
 	</div>
 	<!-- /.row -->
@@ -50,6 +46,7 @@
 			<h3>동영상 정보</h3>
 			<ul>
 				<li>조회수 : ${videoVO.hits}</li>
+				<li>좋아요 : ${videoVO.likeState}</li>
 				<li>작성자 : ${videoVO.trainerId}</li>
 				<li>작성일자 : ${videoVO.postedDate}</li>
 			</ul>
@@ -62,10 +59,7 @@
 			<h1 class="page-header">
 				댓글부분<small></small>
 			</h1>
-			<ol class="breadcrumb">
-				<li><a href="#"></a></li>
-				<li class="active"></li>
-			</ol>
+			
 		</div>
 	</div>
 	

@@ -260,7 +260,7 @@ CREATE TABLE video_like (
  CONSTRAINT fk_trainer_like_video_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no)
 );
 select * from video_like
-
+insert into video_like values('rlgurtm',)
 -- 동영상 댓글
 drop table video_comment
 CREATE TABLE video_comment (
