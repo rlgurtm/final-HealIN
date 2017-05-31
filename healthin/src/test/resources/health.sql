@@ -297,9 +297,9 @@ insert into health_member
 values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N')
 insert into health_member
 values('spring','1234','스프링','스프링','19190505','male','서울시 종로구 계동 100 101호','01000010002','physical@daum.net','user','N')
-insert into health_user  values('java')
-insert into health_user  values('maven')
-insert into health_user  values('spring')
+insert into health_user  values('java');
+insert into health_user  values('maven');
+insert into health_user  values('spring');
 
 insert into health_member 
 values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','trainer','N');
@@ -329,19 +329,21 @@ values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '010111
 -- tipandqna 삽입
 
 insert into tipandqna
-values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!','file',0,sysdate,'헬스','java','tip');
+values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!',null,0,sysdate,'다이어트','java','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!','file',0,sysdate,'운동','java','tip');
+values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!',null,0,sysdate,'운동','java','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','file',0,sysdate,'헬스','spring','qna');
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','null',0,sysdate,'운동','spring','qna');
 insert into tipandqna
-values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁','file',0,sysdate,'운동','java','tip');
+values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁',null,0,sysdate,'운동','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'어떤 샐러드가 더 몸에 도움이 되는가?','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁',null,0,sysdate,'식단','java','tip');
 
 -- trainer 테스트 db 
 insert into health_member 
@@ -406,3 +408,11 @@ insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
 select * from food
+
+-- 게시판 댓글
+insert into health_comment
+values(comment_no_seq.nextval,1,'여기 완전 정보가 개판이네 ㅉㅉ',sysdate,'java');
+insert into health_comment
+values(comment_no_seq.nextval,1,'정보도 많고 좋아요~~~!',sysdate,'yogagirl');
+insert into health_comment
+values(comment_no_seq.nextval,1,'맞나맞나~~~신빙성있는 정보인가요~?',sysdate,'healthboy');

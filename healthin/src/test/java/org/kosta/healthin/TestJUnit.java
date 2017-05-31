@@ -1,5 +1,8 @@
 package org.kosta.healthin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -7,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
-import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,11 +29,12 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-
-
-		ListVO list=treinerservice.getTrainerList("1");
-		System.out.println(list.toString());
-	
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("no", 1);
+		map.put("startRowNumber",1);
+		map.put("endRowNumber",3);
+		System.out.println("tipdao 테스트::"+tipdao.getTipCommentList(map));
+		System.out.println(tipserivce.getTipCommentList("1", "1"));
 		
 	}
 }

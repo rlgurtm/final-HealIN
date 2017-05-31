@@ -45,6 +45,18 @@ public class TipDAOImpl implements TipDAO {
 	public void tipWrite(TipBoardVO tvo){
 		template.insert("tip.tipWrite",tvo);
 	}
+	@Override
+	public void tipHitsCount(int no){
+		template.update("tip.tipHitsCount",no);
+	}
+	@Override
+	public List<VO> getTipCommentList(Map<String, Object> map){
+		return template.selectList("tip.getTipCommentList",map);
+	}
+	@Override
+	public int getTotalTipCommentCount(int no){
+		return template.selectOne("tip.getTotalTipCommentCount",no);
+	}
 	
 
 

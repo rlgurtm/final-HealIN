@@ -41,7 +41,8 @@ public class BoardController {
 		return tipService.tipBoardCategoryList(category.trim(), nowpage);
 	}
 	@RequestMapping("tip/tip_content.do")
-	public String gettipBoardContent(String no,Model model){
+	public String getTipBoardContent(String no,Model model){
+		tipService.tipHitsCount(no);
 		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
 		return "tip/tip_content.tiles";
 	}
@@ -69,6 +70,13 @@ public class BoardController {
 			}	
 	
 		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
+	}
+	@RequestMapping("tipComment.do")
+	@ResponseBody
+	public ListVO getTipCommentList(String no,String nowpage){
+		if(nowpage==null)
+			nowpage="1";
+		return tipService.getTipCommentList(no, nowpage);
 	}
 	@RequestMapping("trainer/trainerList.do")
 	public String gettrainerList(Model model,String pageNo){
