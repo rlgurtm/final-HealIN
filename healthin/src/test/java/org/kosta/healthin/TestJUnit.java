@@ -28,20 +28,7 @@ public class TestJUnit {
 	@Test
 	public void test(){
 
-		/*TipBoardVO tvo=new TipBoardVO();
-		tvo.setCategory("다이어트");
-		tvo.setTitle("주제입니다");
-		tvo.setContent("걸어걸어 다 걸어");
-		tvo.setTipqna("tip");
-		tvo.setMemberVO(new MemberVO("java", null, null, null, null, null, null, null, null, null, null));
-		tipdao.tipWrite(tvo);
-		System.out.println("안녕하세요"+tipdao.getTipBoardDetailContent(tvo.getNo()));	
-	
-		insert into tipandqna
-		values(#{no},#{title},#{content},#{attachedFile},0,
-				sysdate,#{category},#{memberVO.id},#{tipqna})
-					private String id;
-*/
+
 		ListVO list=treinerservice.getTrainerList("1");
 		System.out.println(list.toString());
 	
