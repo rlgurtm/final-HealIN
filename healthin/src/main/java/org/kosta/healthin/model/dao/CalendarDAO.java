@@ -7,4 +7,6 @@ import org.kosta.healthin.model.vo.VO;
 
 public interface CalendarDAO {
 	List<VO> getIntakeMember(HashMap<String, String> map);
+	//getAllIntakeFood
+	//getTotalIntakeCalorie
 }

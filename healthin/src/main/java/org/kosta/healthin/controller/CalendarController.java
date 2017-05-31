@@ -17,8 +17,42 @@ public class CalendarController {
 	@Resource
 	private CalendarService calendarService;
 	
-	@RequestMapping("mypage/user_calendar.do")
+	@RequestMapping(value="mypage/user_calendar.do", produces = "application/json")
 	public String userCalendar(Model model, HttpServletRequest request) {
+		System.out.println("user_calendar.do");
+		
+		HashMap<String, Object> jsonObject = new HashMap<String, Object>();
+		HashMap<String, Object> jsonSubObject = null;
+	    ArrayList<HashMap<String, Object>> jsonList = new ArrayList<HashMap<String, Object>>();
+	         
+	    //1번째 데이터
+	    jsonSubObject = new HashMap<String, Object>();
+	    jsonSubObject.put("title", "아오아오");
+	    jsonSubObject.put("start", "2017-05-07");
+	    jsonList.add(jsonSubObject);
+	    //2번째 데이터
+	    jsonSubObject = new HashMap<String, Object>();
+	    jsonSubObject.put("title", "ㅋㅋㅋ");
+	    jsonSubObject.put("start", "2017-05-07");
+	    jsonList.add(jsonSubObject);
+	    //3번째 데이터
+	    jsonSubObject = new HashMap<String, Object>();
+	    jsonSubObject.put("title", "ㅎㅎㅎ");
+	    jsonSubObject.put("start", "2017-05-25");
+	    jsonList.add(jsonSubObject);
+	         
+	    jsonObject.put("success", true);
+	    jsonObject.put("total_count", 10);
+	    jsonObject.put("result_list", jsonList);
+
+	    System.out.println(jsonList);
+		model.addAttribute("jsonList", jsonList);
+		return "mypage/user_calendar.tiles";
+	}
+	
+	@RequestMapping("mypage/ajaxCalendar.do")
+	@ResponseBody
+	public ArrayList<HashMap<String, Object>> ajaxCalendar(Model model, HttpServletRequest request) {
 		System.out.println("user_calendar.do");
 		HashMap<String, Object> jsonObject = new HashMap<String, Object>();
 		HashMap<String, Object> jsonSubObject = null;
@@ -45,12 +79,11 @@ public class CalendarController {
 	    jsonObject.put("result_list", jsonList);
 
 	    System.out.println(jsonList);
-		model.addAttribute("jsonList", jsonList);
-		return "mypage/user_calendar.tiles";
+//		model.addAttribute("jsonList", jsonList);
+		return jsonList;
 	}
 	
 	@RequestMapping("mypage/update_calendar.do")
-	@ResponseBody
 	public String updateCalendar(Model model, HttpServletRequest request) {
 		String type = request.getParameter("type");
 		System.out.println(request.getParameter("param"));

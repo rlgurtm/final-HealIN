@@ -180,6 +180,7 @@ create table intake_member(
 	intake_no number primary key,
 	intake_date date not null,
 	food_name varchar2(100) not null,
+	count number default 0,
 	user_id varchar2(100) not null,
 	constraint fk_intake_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_intake_food_name foreign key(food_name) references food(food_name)
@@ -359,10 +360,18 @@ insert into food
 values('치킨', 400, '치킨');
 
 -- intake_member 테스트 db
+delete from intake_member;
 insert into intake_member
-values(intake_no_seq.nextval, '20170529', '치킨', 'user1');
+values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
 insert into intake_member
-values(intake_no_seq.nextval, '20170529', '공기밥', 'user1');
+values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
+insert into intake_member
+values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
+insert into intake_member
+values(intake_no_seq.nextval, '2017-05-31', '치킨', 1, 'user1');
+select to_char(intake_date, 'YYYY-MM-DD') as intakeDate, im.food_name as foodName, im.count
+from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31';
 
 
 --physical_info 테스트 db
@@ -374,3 +383,4 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
+select * from food
