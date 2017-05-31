@@ -28,10 +28,10 @@ $(document)
 										nickname : {
 											rules : {
 												required : true,
-												rangelength : [ 4, 15 ],
+												rangelength : [ 2, 15 ],
 												onlydigits : true,
-												notUpperCase : true,
-												nicknameinvalid : true
+												nicknameenglishnamelength : true,
+												nicknamekoreannamelength : true
 											},
 											inputListener : function(input) {
 												formInput(input);
@@ -46,10 +46,13 @@ $(document)
 											rules : {
 												required : true,
 												strTrim : true,
-												nameinvalid : true,
+												onlydigits : true,
 												minKoreanNameLength : true,
 												maxKoreanNameLength : true,
-												englishnamelength : true
+												nameenglishnamelength : true,
+												koreannamelength : true,
+												englishnamelength : true,
+												nameinvalid : true
 											}
 										},
 										address : {
@@ -120,8 +123,7 @@ $(document)
 												setInputError(input,
 														result.message);
 												showValidIcon(input).text("불가");
-												checkPwReconfirm(input,
-														$("#password2"));
+												checkPwReconfirm(input,$("#password2"));
 											},
 											inputListener : function(input) {
 												if (isPassPW) {

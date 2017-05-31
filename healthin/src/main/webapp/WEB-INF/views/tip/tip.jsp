@@ -20,6 +20,7 @@
 			 	  	var info="";
 				for(var i=0;i<data.lvo.length;i++){
 						info+="<tr><td>"+data.lvo[i].no+"</td>";
+						info+="<td>"+data.lvo[i].category+"</td>";
 						info+="<td><a href='${pageContext.request.contextPath}/tip/tip_content.do?no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a></td>";
 						info+="<td>"+data.lvo[i].memberVO.name+"</td>";
 						info+="<td>"+data.lvo[i].postedDate+"</td>";
@@ -86,11 +87,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>글쓴이</th>
-				<th>날짜</th>
-				<th>조회수</th>
+				<th style="width:5%;">번호</th>
+				<th style="width:10%;">분류</th>
+				<th style="width:30%;">제목</th>
+				<th style="width:10%;">글쓴이</th>
+				<th style="width:10%;">날짜</th>
+				<th style="width:5%;">조회수</th>
 			</tr>
 		</thead>
 		<tbody id="tipBoardInfo">
@@ -98,6 +100,7 @@
 				<c:forEach items="${list.LVO }" var="list">
 					<tr>
 						<td>${list.no}</td>
+						<td>${list.category }</td>
 						<td><a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${list.no}">
 						${list.title }</a></td>
 						<td>${list.memberVO.name }</td>

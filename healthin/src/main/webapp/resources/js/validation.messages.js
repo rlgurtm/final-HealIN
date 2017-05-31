@@ -11,7 +11,7 @@
 							},
 							nickname : {
 								required : "HealthIN 닉네임을 입력해 주세요.",
-								rangelength : "조금 더! 닉네임은 4자 이상이에요.",
+								rangelength : "조금 더! 닉네임은 2자 이상이에요.",
 								onlydigits : "숫자로 된 닉네임을 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
 							},
 							birthdate : {

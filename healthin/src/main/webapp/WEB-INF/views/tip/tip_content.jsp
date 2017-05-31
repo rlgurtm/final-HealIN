@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
 		.container{
 			position: relative;
@@ -95,12 +96,33 @@
 			</c:if>
 				<button type="button" class="btn" id="listBtn">목록가기</button>
 	</div>
-	
+	<hr>
 		<c:if test="${!empty mvo }">
-		<div class="box container" >
+		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
+			<table style="width:100%;">
+				<tr>
+					<th><i class="glyphicon glyphicon-user"></i>근육맨</th><td align="right">2017-05-29 22:11</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;여기는 뭐 얻어갈 정보가 별로 없네요....실망실망 개실망</td>
+				</tr>
+			</table>
+			
+			<hr>
 			<form>
-			<label>댓글</label>
-				<textarea class="form-control" cols="30" rows="3" id="comment"></textarea>
+				<table style="width:100%;">
+					<tr>
+						<td colspan="2"><label>댓글</label></td>
+					</tr>
+					<tr>
+						<td>
+						<textarea class="form-control"  rows="3" id="comment" style="width:100%;"></textarea>
+						</td>
+						<td>
+						<input type="submit" value="등록">
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
 		</c:if>

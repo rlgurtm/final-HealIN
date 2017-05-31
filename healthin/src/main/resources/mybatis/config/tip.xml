@@ -49,6 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	insert into tipandqna
 			values(#{no},#{title},#{content},#{attachedFile},0,sysdate,#{category},#{memberVO.id},'tip')
 	</insert>
+<!-- 	<update id="tipHitsCount">
+		update 
+	</update> -->
 </mapper>
  
  
