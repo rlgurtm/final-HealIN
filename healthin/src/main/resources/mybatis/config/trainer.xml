@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where t.trainer_id=m.id) a 
        where rnum between #{startRowNumber} and #{endRowNumber}
     </select>
-    <select id="getTrainerList" resultMap="trainerRM" parameterType="map">
+    <select id="trainerListOrder" resultMap="trainerRM" parameterType="map">
        select a.* from 
        (select row_number() over(order by #{ORDER} desc) rnum,
        id,name,location,career,rank,trainer_photo
