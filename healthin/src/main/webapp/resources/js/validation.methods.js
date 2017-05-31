@@ -55,7 +55,7 @@ a.fn,
 							},
 							birthdate : function(c, b) {
 								return this.optional(b)
-								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[1-9]{1}[0-3]{1}[0-1]{1}/.test(new Date(c).toString())
+								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}/.test(new Date(c).toString())
 								||  !/Invalid|NaN/.test(new Date(c).toString())
 								|| /^\d{4}\d{1,2}\d{1,2}$/	.test(new Date(c).toString())
 							},
@@ -161,6 +161,14 @@ a.fn,
 								var d = /^.*[a-z-_\.]+.*$/.test(e);
 								return this.optional(c) || (b && d)
 							},
+							
+							// 사용할 수 없는 문자가 있어요. <br>영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있어요. 
+							nameinvalid : function(e, c) {
+								var b = (/^([a-zA-Z])([a-zA-Z]+)([a-zA-Z])$/
+										.test(e));
+								var d = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/.test(e);
+								return this.optional(c) || (b || d)
+							},
 							checkjuminnoformat : function(h, f) {
 								var c = [ 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5 ];
 								var b = h.replace(/[^0-9]/g, "");
@@ -227,10 +235,10 @@ a.fn,
 							notUpperCase : function(c, b) {
 								return this.optional(b) || /^[^A-Z]*$/.test(c)
 							},
-							nicknameinvalid : function(e, c) {
-								var b = (/^([a-z0-9-_])([a-z0-9-_\.]+)([a-z0-9-_])$/
+							nicknameinvalid : function(e, c) {  
+								var b = (/^([a-zA-Z0-9-_])([a-zA-Z0-9-_\.]+)([ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)([a-zA-Z0-9-_])$/
 										.test(e));
-								var d = /^.*[a-z-_\.]+.*$/.test(e);
+								var d = /^.*[a-zA-Z-_\.]+.*$/.test(e); 
 								return this.optional(c) || (b && d)
 							},
 							existidinvalnickname : function(d, c) {
@@ -301,10 +309,6 @@ a.fn,
 									}
 								}
 								return true
-							},
-							nameinvalid : function(c, b) {
-								return this.optional(b)
-										this.optional(b) || /^\d+$/.test(c)
 							},
 							birthdateinvalid : function(c, b) {
 								return this.optional(b)

@@ -19,6 +19,7 @@
 <link href='http://fullcalendar.io/js/fullcalendar-3.4.0/fullcalendar.css' rel='stylesheet' />
 
 
+
 <!-- for date range picker -->
 <script src="${pageContext.request.contextPath}/resources/js/daterangepicker/daterangepicker.js"></script>
 

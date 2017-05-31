@@ -12,11 +12,17 @@ $(document).ready(function(){
  				success:function(data){
  			 	  	var info="";
 					for(var i=0;i<data.lvo.length;i++){
- 						info+="<h3>이름 : "+data.lvo[i].name+"</h3>";
+						info+="<div class='row'><div class='col-sm-3 text-center'>";
+						info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/";
+						info+=data.lvo[i].trainerPhoto+"' ";
+						info+=" width='750'  height='450'></div><div class='col-md-9'>";
+ 						info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
  						info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
  						info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
- 						info+="<a class='btn btn-primary' href='portfolio-item.html'>정보 더보기</a>";
- 		                
+ 						info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
+ 						info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
+ 	                	info+="<input type='submit' value='강사정보 더보기'></form>";
+ 		                info+="</div></div><hr>";
  					}
 					$("#trainerArea").html(info); 
  				}
@@ -62,25 +68,26 @@ $(document).ready(function(){
           
         </div>
   <hr>
+  <div id="trainerArea">
    <c:forEach items="${list.LVO}" var="t">
         <!-- 강사 리스트  -->
         <div class="row">
             <div class="col-sm-3 text-center">
-                    <a href="#">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" width="750"  height="450">
-                    </a>
-                </div>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/${t.trainerPhoto}" width="750"  height="450">
+            </div>
             <div class="col-md-9">
-            <div id="trainerArea">
-                <h3>이름 : ${t.name}</h3>
+                <h3>이름 : ${t.membervo.name}</h3>
                 <h4>지역 : ${t.location}</h4>
                 <p>경력사항 : ${t.career}</p>
-                <a class="btn btn-primary" href="portfolio-item.html">정보 더보기</a>
-              </div>  
+                <form action="${pageContext.request.contextPath}/trainer/trainerDetail.do" method="post">
+                	<input type="hidden" value="${t.membervo.id}" name="trainerId">
+                	<input type="submit" value="강사정보 더보기">
+                </form>
             </div>
         </div>
         <hr>
 </c:forEach>
+</div>
         
          <div align="center">
 		<ul class="pagination">

@@ -10,6 +10,7 @@ import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +39,7 @@ public class BoardController {
 	public Object tipBoardCategoryList(String category,String nowpage){
 		if(nowpage==null)
 			nowpage="1";
-		System.out.println(tipService.tipBoardCategoryList(category, nowpage));
-		return tipService.tipBoardCategoryList(category, nowpage);
+		return tipService.tipBoardCategoryList(category.trim(), nowpage);
 	}
 	@RequestMapping("tip/tip_content.do")
 	public String gettipBoardContent(String no,Model model){
@@ -57,7 +57,6 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		System.out.println("tipboard::::"+tvo);
 		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
@@ -82,10 +81,16 @@ public class BoardController {
 	}
 	@RequestMapping("order.do")
 	@ResponseBody
-	public Object trainerListOrder(String category,String nowpage){
-		if(nowpage==null)
-			nowpage="1";
-		System.out.println(tipService.tipBoardCategoryList(category, nowpage));
-		return tipService.tipBoardCategoryList(category, nowpage);
+	public Object trainerListOrder(String order,String pageNo){
+		if(pageNo==null)
+			pageNo="1";
+		return trainerService.trainerListOrder(order, pageNo);
+	}
+		
+	@RequestMapping("trainer/trainerDetail.do")
+	public String trainerDetail(Model model,String trainerId){
+		TrainerVO vo= trainerService.trainerDetail(trainerId);
+		model.addAttribute("list",vo);
+		return "trainer/trainerDetail.tiles";
 	}
 }
