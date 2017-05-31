@@ -35,6 +35,7 @@ public  class MemberController {
 		String type = req.getParameter("type");
 		String id = req.getParameter("id");
 		String password = req.getParameter("password1");
+		vo.setPassword(password);
 		memberService.registerStep3(vo);
 		
 		HttpSession session=req.getSession();
@@ -62,7 +63,6 @@ public  class MemberController {
 //	                e.printStackTrace();
 //	            } // try - catch
 //	        } // if
-			
 			
 		}
 		return "redirect:member/register_sucess.do";
