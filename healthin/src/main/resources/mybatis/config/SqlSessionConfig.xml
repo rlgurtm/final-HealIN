@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/trainervideo.xml"/>
 		<mapper resource="mybatis/config/home.xml"/>
 		<mapper resource="mybatis/config/trainer.xml"/>
+		<mapper resource="mybatis/config/mypage.xml"/>
 	</mappers>
 </configuration>
 
