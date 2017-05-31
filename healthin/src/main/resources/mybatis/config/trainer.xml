@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="trainerVO" id="trainerRM">
 		<result property="membervo.id" column="id" />
 		<result property="membervo.name" column="name" />
+		<result property="membervo.email" column="e_mail" />
+		<result property="membervo.tel" column="tel" />
 		<result property="trainerPhoto" column="trainer_photo"/>
 	</resultMap>
 
@@ -23,13 +25,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where t.trainer_id=m.id) a 
        where rnum between #{startRowNumber} and #{endRowNumber}
     </select>
-    <select id="trainerListOrder" resultMap="trainerRM" parameterType="map">
+    <select id="trainerOrderName" resultMap="trainerRM" parameterType="map">
        select a.* from 
-       (select row_number() over(order by #{ORDER} desc) rnum,
+       (select row_number() over(order by name asc) rnum,
        id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m,
+       from trainer t,health_member m
        where t.trainer_id=m.id) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
+    <select id="trainerOrderRate" resultMap="trainerRM" parameterType="map">
+       select a.* from 
+       (select row_number() over(order by rate desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m,trainer_rate r
+       where t.trainer_id=m.id and r.trainer_id(+)=t.trainer_id) a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+    </select>
     
+    <select id="trainerDetail" resultMap="trainerRM">
+    select id,name,tel,e_mail,location,career,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=#{value} and t.trainer_id=m.id
+    </select>
 </mapper>

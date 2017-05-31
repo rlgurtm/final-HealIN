@@ -64,7 +64,7 @@ $(document)
 											rules : {
 												required : true,
 												strTrim : true,
-												birthdate : true,
+												//birthdate : true,
 												dateISO : true,
 												onlyNumber : true
 											}

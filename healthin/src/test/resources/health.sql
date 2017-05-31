@@ -25,7 +25,7 @@ drop table health_member;
 drop sequence board_no_seq;
 drop sequence comment_no_seq;
 drop sequence mentoring_no_seq;
-drop sequence consumpton_no_seq;
+drop sequence consumption_no_seq;
 drop sequence physical_no_seq;
 drop sequence intake_no_seq;
 drop sequence pay_no_seq;
@@ -418,3 +418,5 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
+
+select * from food

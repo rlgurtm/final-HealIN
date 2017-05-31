@@ -11,12 +11,12 @@
 							},
 							nickname : {
 								required : "HealthIN 닉네임을 입력해 주세요.",
-								rangelength : "조금 더! 닉네임은 4자 이상이에요.",
+								rangelength : "조금 더! 닉네임은 2자 이상이에요.",
 								onlydigits : "숫자로 된 닉네임을 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
 							},
 							birthdate : {
 								required : "날짜를 정확하게 입력해 주세요.",
-								birthdate : "날짜를 정확하게 숫자만 입력해주세요.",
+								//birthdate : "날짜를 정확하게 숫자만 입력해주세요.",
 								dateISO : "날짜를 정확하게 숫자만 입력해주세요.",
 								onlyNumber : "숫자가 아닌것은 아예 넣지 마세요."
 							},
