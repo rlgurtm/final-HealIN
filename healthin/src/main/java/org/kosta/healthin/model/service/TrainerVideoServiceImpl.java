@@ -62,4 +62,32 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public int trainerVideoSelectMatching(Map<String,String> map){
 		return videoDAO.trainerVideoSelectMatching(map);
 	}
+	@Override
+	public ListVO filterHitsTrainerVideoList(PagingBean pb){
+		return videoDAO.filterHitsTrainerVideoList(pb);
+	}
+	@Override
+	public ListVO filterLikeStateTrainerVideoList(PagingBean pb){
+		return videoDAO.filterLikeStateTrainerVideoList(pb);
+	}
+	@Override
+	public ListVO filterPostedDateTrainerVideoList(PagingBean pb){
+		return videoDAO.filterPostedDateTrainerVideoList(pb);
+	}
+	@Override
+	public int filterOpenrankTotalCountVideo(int openrank){
+		return videoDAO.filterOpenrankTotalCountVideo(openrank);
+	}
+	@Override
+	public ListVO filterOpenrankTrainerVideoList(Map map){
+		return videoDAO.filterOpenrankTrainerVideoList(map);
+	}
+	@Override
+	public int filterCategoryTotalCountVideo(String category){
+		return videoDAO.filterCategoryTotalCountVideo(category);
+	}
+	@Override
+	public ListVO filterCategoryTrainerVideoList(Map map){
+		return videoDAO.filterCategoryTrainerVideoList(map);
+	}
 }

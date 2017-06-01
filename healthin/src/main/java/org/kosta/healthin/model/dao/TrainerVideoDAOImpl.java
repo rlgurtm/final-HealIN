@@ -68,4 +68,47 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	public int trainerVideoSelectMatching(Map<String,String> map){
 		return template.selectOne("trainervideo.trainerVideoSelectMatching",map);
 	}
+	@Override
+	public ListVO filterHitsTrainerVideoList(PagingBean pb){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.filterHitsTrainerVideoList",pb));
+		//System.out.println(listVO);
+		return listVO;
+	}
+	@Override
+	public ListVO filterLikeStateTrainerVideoList(PagingBean pb){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.filterLikeStateTrainerVideoList",pb));
+		//System.out.println(listVO);
+		return listVO;
+	}
+	@Override
+	public ListVO filterPostedDateTrainerVideoList(PagingBean pb){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.filterPostedDateTrainerVideoList",pb));
+		//System.out.println(listVO);
+		return listVO;
+	}
+	@Override
+	public int filterOpenrankTotalCountVideo(int openrank){
+		return template.selectOne("trainervideo.filterOpenrankTotalCountVideo",openrank);
+	}
+	@Override
+	public ListVO filterOpenrankTrainerVideoList(Map map){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.filterOpenrankTrainerVideoList",map));
+		//System.out.println(listVO);
+		return listVO;
+	}
+	@Override
+	public int filterCategoryTotalCountVideo(String category){
+		return template.selectOne("trainervideo.filterCategoryTotalCountVideo",category);
+	}
+	@Override
+	public ListVO filterCategoryTrainerVideoList(Map map){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.filterCategoryTrainerVideoList",map));
+		//System.out.println(listVO);
+		return listVO;
+	}
 }
