@@ -1,5 +1,5 @@
 -- 여기는 health sql문을 쓸 수 있습니다
-
+select*from tipandqna
 -- 전체 drop
 drop table consumption_member;
 drop table exercise;
@@ -30,7 +30,6 @@ drop sequence physical_no_seq;
 drop sequence intake_no_seq;
 drop sequence pay_no_seq;
 drop sequence video_no_seq;
-
 
 -- 회원 테이블
 drop table health_member;
@@ -70,6 +69,40 @@ select * from health_member;
 select * from health_user;
 select * from trainer;
 
+-- 회원정보 수정
+update health_member set
+password= '1234',
+nickname= '자바퀸',
+name= '자바',
+birthdate='19470901',
+gender='female',
+address='서울시 종로구 통인동 65 202호',
+tel='01078967896',
+e_mail='queen@naver.com',
+is_trainer='trainer',
+withdrawal='N'
+where
+id='java'
+
+-- 회원정보수정 step2 trainer 정보 수정
+update trainer set 
+career='분당구 생활체육센터 요가 2년', 
+location='은평구', 
+trainer_photo='msg.jpg'
+where trainer_id='java'
+	
+trainer_id varchar2(100) primary key 
+	constraint member_fk_trainer references health_member(id),
+	career clob not null,
+	rank number default 0,
+	location varchar2(100) not null,
+	trainer_photo varchar2(100) not null
+
+
+
+select * from health_member
+select * from trainer
+		
 -- 게시판 테이블
 drop sequence board_no_seq;
 create sequence board_no_seq;
@@ -297,9 +330,9 @@ insert into health_member
 values('java','1234','자바퀸','자바','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N')
 insert into health_member
 values('spring','1234','스프링','스프링','19190505','male','서울시 종로구 계동 100 101호','01000010002','physical@daum.net','user','N')
-insert into health_user  values('java')
-insert into health_user  values('maven')
-insert into health_user  values('spring')
+insert into health_user  values('java');
+insert into health_user  values('maven');
+insert into health_user  values('spring');
 
 insert into health_member 
 values('healthboy','1234','헬쓰보이','근육짱','19810902','male','서울시 종로구 통인동 65 201호','01098967896','healthboy@naver.com','trainer','N');
@@ -335,19 +368,21 @@ values('java1', '1234', '강사', '자바', '19910101', '남', '판교', '010111
 -- tipandqna 삽입
 
 insert into tipandqna
-values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!','file',0,sysdate,'헬스','java','tip');
+values(board_no_seq.nextval,'당신도 날씬하고 건강한 몸매를 가질 수 있다!','헬스헬스헬스!!!',null,0,sysdate,'다이어트','java','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!','file',0,sysdate,'운동','java','tip');
+values(board_no_seq.nextval,'채소를 많이 먹으면 피부가 좋아져요~','헬스헬스헬스!!!',null,0,sysdate,'운동','java','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 1탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 2탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!','file',0,sysdate,'헬스','healthboy','tip');
+values(board_no_seq.nextval,'다이어트 개꿀팁! 나도 이참에 살 좀 빼보자!! 3탄','헬스헬스헬스!!!',null,0,sysdate,'다이어트','healthboy','tip');
 insert into tipandqna
-values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','file',0,sysdate,'헬스','spring','qna');
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?','null',0,sysdate,'운동','spring','qna');
 insert into tipandqna
-values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁','file',0,sysdate,'운동','java','tip');
+values(board_no_seq.nextval,'초보자를 위한 운동팁','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁',null,0,sysdate,'운동','java','tip');
+insert into tipandqna
+values(board_no_seq.nextval,'어떤 샐러드가 더 몸에 도움이 되는가?','더워지는 날씨만큼 건강하고 멋진 몸을 만들기 위해 운동을 시작하는 사람들이 늘고 있습니다. 운동을 처음하는 초보자들이 건강하고 효율적으로 운동할 수 있는 팁',null,0,sysdate,'식단','java','tip');
 
 -- trainer 테스트 db 
 insert into health_member 
@@ -372,26 +407,29 @@ values('치킨', 400, '치킨');
 
 insert into health_member 
 values('swimmingguy','1234','수영남1','수영남','19890902','male','양평군 양평읍 군청앞길','01000000010','swimmingguy@naver.com','trainer','N')
-insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','swimmingguy1.png')
+insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','healthboy.jpg')
 
 insert into health_member 
 values('swimmingguy2','1234','수영남2','수영남이','19870902','male','서울특별시 용산구 용산동1가 8','01000000100','swimmingguy2@naver.com','trainer','N')
-insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','swimmingguy2.png')
+insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','healthboy.jpg')
 
 insert into health_member 
 values('swimminggirl','1234','수영녀','수영녀','19900101','male','경기도 용인시 수지구 동천동 240','01000001000','swimminggirl@naver.com','trainer','N')
-insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','swimminggirl.png')
+insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','healthboy.jpg')
 
 insert into health_member 
 values('healthman6','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
-insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy.jpg')
 
 select * from TRAINER
 -- intake_member 테스트 db
 delete from intake_member;
-insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
-insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
-insert into intake_member values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '탕수육', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '곰국', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-30', '치킨', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-25', '치킨', 3, 'user2');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-01', '공기밥', 2, 'user3');
@@ -400,13 +438,27 @@ select to_char(intake_date, 'YYYY-MM-DD') as intakeDate, im.food_name as foodNam
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31';
 -- 일일 총 칼로리 섭취량
-select sum(f.calorie) as totalCalorie from food f, intake_member im, health_user hu
-where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and im.user_id='user1';
+select sum(f.calorie*im.count) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-29' and im.user_id='user1';
 -- 월 총 칼로리 섭취량
---
 select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1';
+
+-- consumption_member test
+insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
+values(consumption_no_seq.nextval, '농구', 3, '2017-06-01', 'user1');
+insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
+values(consumption_no_seq.nextval, '야구', 2, '2017-06-01', 'user1');
+-- 일일 총 칼로리 소비량
+select sum(e.calorie*cm.ex_hour) as totalCalorie from exercise e, consumption_member cm, health_user hu
+where cm.user_id = hu.user_id and e.name = cm.name and ex_date = '2017-06-01' and cm.user_id='user1';
+--
+select * from consumption_member;
+--
+select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
+from exercise e, consumption_member cm, health_user hu
+where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = 'user1';
 
 
 --physical_info 테스트 db
@@ -418,9 +470,10 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
+
 select * from food
+select * from health_member;
+select * from health_user;
+select * from trainer;
 
-
-
-
-
+update trainer set trainer_photo='healthboy.jpg'
