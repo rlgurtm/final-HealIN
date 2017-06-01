@@ -65,20 +65,24 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		System.out.println(tvo);
-		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-		MultipartFile file = uploadFile;
-		UUID uuid = UUID.randomUUID();
-		String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
-		try {
-				file.transferTo(new File(uploadPath+File));
-				tvo.setattachedFile(File);
-				tipService.tipWrite(tvo);
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}	
-	
-		return "redirect:/tip/Hits_tip_content.do?no="+tvo.getNo();
+		if(uploadFile!=null){
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					tipService.tipWrite(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		
+		}else{
+			tipService.tipWrite(tvo);
+		}
+		
+		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
 	}
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){
