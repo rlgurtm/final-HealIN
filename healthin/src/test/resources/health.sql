@@ -1,5 +1,5 @@
 -- 여기는 health sql문을 쓸 수 있습니다
-
+select*from tipandqna
 -- 전체 drop
 drop table consumption_member;
 drop table exercise;
