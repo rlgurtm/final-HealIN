@@ -31,7 +31,7 @@ textarea {
 					<option value="1">회원공개</option>
 					<option value="2">팔로워회원공개</option>
 					<option value="3">PT회원공개</option>
-					<option value="9">전체비공개</option>
+					<option value="5">전체비공개</option>
 				</select>
 			</div>
 			<div class="pure-u-1-8">

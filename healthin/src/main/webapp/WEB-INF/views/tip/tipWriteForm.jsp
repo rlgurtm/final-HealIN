@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-	#tipWriteForm{
-		padding: 10px 30%;
-	}
-</style>
+
 
 
 	<form id="tipWriteForm" method ="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/tip/tipWrite.do">
@@ -12,10 +8,9 @@
 			<label for="comment">카테고리</label>	
 			<select name="category" required="required">
 				<option value="">---</option>
-				<option value="헬스">헬스</option>
-				<option value="식단">식단</option>
 				<option value="운동">운동</option>
 				<option value="다이어트">다이어트</option>
+				<option value="식단">식단</option>
 			</select>
 			</div>
 			 <input type="file" name="uploadFile">

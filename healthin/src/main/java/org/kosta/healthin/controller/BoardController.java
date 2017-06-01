@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
@@ -42,10 +43,17 @@ public class BoardController {
 		return tipService.tipBoardCategoryList(category.trim(), nowpage);
 	}
 	@RequestMapping("tip/tip_content.do")
-	public String gettipBoardContent(String no,Model model){
+	public String getTipBoardContent(String no,Model model){
 		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
 		return "tip/tip_content.tiles";
 	}
+	@RequestMapping("tip/Hits_tip_content.do")
+	public String getTipHitsBoardContent(String no,Model model){
+		tipService.tipHitsCount(no);
+		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
+		return "tip/tip_content.tiles";
+	}
+	
 	@RequestMapping("tipBoardDelete.do")
 	public String tipboardDelete(String no,String id){
 		tipService.tipBoardDelete(no, id);
@@ -57,7 +65,7 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
 		String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
@@ -69,7 +77,28 @@ public class BoardController {
 				e.printStackTrace();
 			}	
 	
-		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
+		return "redirect:/tip/Hits_tip_content.do?no="+tvo.getNo();
+	}
+	@RequestMapping("fileDownload.do")
+	public String fileDownload(String fileName){
+		return "downloadView";
+	}
+	@RequestMapping("tipComment.do")
+	@ResponseBody
+	public ListVO getTipCommentList(String no,String nowpage){
+		if(nowpage==null)
+			nowpage="1";
+		return tipService.getTipCommentList(no, nowpage);
+	}
+	@RequestMapping("tipCommentWrite.do")
+	public String tipCommentWrite(CommentVO cvo){
+				tipService.tipCommentWrite(cvo);
+		return "redirect:/tip/tip_content.do?no="+cvo.getBoardNo();
+	}
+	@RequestMapping("tipCommentDelete.do")
+	public String tipCommentDelete(String no,String bno){
+			tipService.tipCommentDelete(no);
+		return "redirect:/tip/tip_content.do?no="+bno;
 	}
 	@RequestMapping("trainer/trainerList.do")
 	public String gettrainerList(Model model,String pageNo){
