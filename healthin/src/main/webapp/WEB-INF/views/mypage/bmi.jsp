@@ -14,6 +14,12 @@ table, th, td {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	function bmi_list(){
+  		//alert('test');
+  		location.href="bmi_list.do";
+  	}
+  </script>
 </head>
 <body>
 <div class="container">
@@ -37,7 +43,7 @@ table, th, td {
       <tr class="active">
         <td>User ID(보여주기?)</td>
       <tr class="">
-      	<td><input type="button" id="bmi_Test" value="측정하기"></td>
+      	<td><input type="button" id="bmi_Test" value="측정하기" onclick="bmi_list()"></td>
       </tr>
    </tbody>  
 </table>

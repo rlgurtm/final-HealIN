@@ -22,6 +22,7 @@ public class HomeController {
 		//tilesbase 는 tiles-config.xml의 definition name이다
 		// tiles config의 difinition name을 반환하면 tiles viewResolver 방식으로
 		// 응답한다.
+		System.out.println("###########################");
 		return viewName+".tiles"; 
 	}
 	@RequestMapping("{dirName}/{viewName}.do")

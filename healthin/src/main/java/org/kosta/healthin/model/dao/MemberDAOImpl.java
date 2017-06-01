@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,14 +23,12 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO registerStudent(MemberVO vo) {
-		// TODO Auto-generated method stub
 		int result= sqlSessionTemplate.insert("member.registerStudent", vo);
 		return vo;
 	}
 
 	@Override
 	public MemberVO registerTrainer(MemberVO vo) {
-		// TODO Auto-generated method stub
 		int result= sqlSessionTemplate.insert("member.registerTrainer", vo);
 		return vo;
 	}
@@ -39,7 +38,6 @@ public class MemberDAOImpl implements MemberDAO {
 		Map<String, String>map = new HashMap<String,String>();
 		map.put("id", id);
 		map.put("password", password);
-		System.out.println(map);
 		MemberVO vo  = sqlSessionTemplate.selectOne("member.login", map);
 		return vo;
 	}
@@ -48,5 +46,18 @@ public class MemberDAOImpl implements MemberDAO {
 	public void modify(MemberVO vo) {
 		sqlSessionTemplate.update("member.modify", vo);
 	}
+	
+	@Override
+	public MemberVO modifyStudent(MemberVO vo) {
+		sqlSessionTemplate.update("member.modifyStudent", vo);
+		return vo;
+	}
+
+	@Override
+	public MemberVO modifyTrainer(TrainerVO tvo) {
+		sqlSessionTemplate.update("member.modifyTrainer", tvo);
+		return tvo;
+	}
+
 	
 }

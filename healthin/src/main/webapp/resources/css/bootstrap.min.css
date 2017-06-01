@@ -7405,3 +7405,85 @@ button.close {
 select.sbox {
     float: right;
 }
+.hearty {
+    position: relative;
+    background: url(https://abs.twimg.com/a/1446686284/img/t1/web_heart_animation.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 60px;
+    width: 100px;
+    bottom: 0px;
+    float: left;
+}
+
+.hearty:hover {
+  -webkit-animation: play 1s steps(7) ; 
+}
+
+@-webkit-keyframes play {
+   0% { background-position: 0px -20px; }
+    100% { background-position: -2800px -20px; }
+}
+
+span.follow {
+    float: left;
+    margin-top: 38px;
+}
+#tipWrite{
+ 	position:absolute;
+ 	right: 8%;
+ 	}
+#tipWriteForm{
+	padding: 10px 30%;
+} 	
+
+.container{
+	position: relative;
+}
+table.content {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin : 50px 10px;
+    width:500px;
+    margin-left: auto; 
+    margin-right: auto;
+}
+table.content th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.content td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+ .content tbody pre {
+ 	position:relative;
+	background-color:#E6E6E6;
+	height: 500px;
+	padding: 30px;
+	padding-top: 60px;
+	width: 800px;
+	margin-top: 10px;
+	line-height:2em
+   
+}
+#attechedFile {
+	position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+#AllBtn{
+	position:absolute;
+	right: 17%;
+	bottom: 0px;
+}

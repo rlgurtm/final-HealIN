@@ -39,6 +39,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		id=#{id}
 	</update>
+	<update id="modifyTrainer">
+		update trainer set
+		career=#{career},
+		location=#{location},
+		trainer_photo=#{trainerPhoto}
+		where trainer_id=#{id}
+	</update>
 </mapper>
 
  

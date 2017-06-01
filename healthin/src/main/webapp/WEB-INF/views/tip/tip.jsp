@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <style>
- 	#tipWrite{
- 	position:absolute;
- 	right: 8%;
- 	}
- </style>
+
  <script>
  var category=null;
  	function getTipCategoryList(page){
@@ -16,13 +11,19 @@
 				data:"category="+category+"&nowpage="+page,
 				dataType:"json",
 				success:function(data){
-				
+					var session="${mvo.id}";
 			 	  	var info="";
 				for(var i=0;i<data.lvo.length;i++){
 						info+="<tr><td>"+data.lvo[i].no+"</td>";
-						info+="<td>"+data.lvo[i].category+"</td>";
-						info+="<td><a href='${pageContext.request.contextPath}/tip/tip_content.do?no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a></td>";
-						info+="<td>"+data.lvo[i].memberVO.name+"</td>";
+						info+="<td>"+data.lvo[i].category+"</td><td>";
+							if(session==null||session=="" ){
+								info+=data.lvo[i].title;
+							}else{
+								info+="<a href='${pageContext.request.contextPath}/tip/tip_content.do?";
+								info+="no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a>";
+							} 
+						
+						info+="</td><td>"+data.lvo[i].memberVO.name+"</td>";
 						info+="<td>"+data.lvo[i].postedDate+"</td>";
 						info+="<td>"+data.lvo[i].hits+"</td></tr>";
 					} 
@@ -81,7 +82,6 @@
 		<li class="menu"><a href="#">운동</a></li>
 		<li class="menu"><a href="#">다이어트</a></li>
 		<li class="menu"><a href="#">식단</a></li>
-		<li class="menu"><a href="#">헬스</a></li>
 	</ul>
 	<br>
 	<table class="table">
@@ -101,8 +101,17 @@
 					<tr>
 						<td>${list.no}</td>
 						<td>${list.category }</td>
-						<td><a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${list.no}">
-						${list.title }</a></td>
+						<td>
+							<c:choose >
+								<c:when test="${mvo!=null }">
+									<a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${list.no}">
+									${list.title }</a>
+								</c:when>
+								<c:otherwise>
+									${list.title }
+								</c:otherwise>
+							</c:choose>
+						</td>
 						<td>${list.memberVO.name }</td>
 						<td>${list.postedDate }</td>
 						<td>${list.hits}</td>

@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.MemberDAO;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,6 +35,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO registerStudent(MemberVO vo) {
 		return memberDAO.registerStudent(vo) ;
+	}
+
+	@Override
+	public MemberVO modifyTrainer(TrainerVO tvo) {
+		return memberDAO.modifyTrainer(tvo) ;
+	}
+
+	@Override
+	public MemberVO modifyStudent(MemberVO vo) {
+		return memberDAO.modifyStudent(vo) ;
 	}
 
 	

@@ -513,15 +513,14 @@
 							<span class="ico_join_pre"><img
 								src="${pageContext.request.contextPath}/resources/img/pre.png"></span>이전으로
 						</button>
-						<button type="submit" id="nextBtn"
-							class="btn_comm btn_type1 disabled">동의하기</button>
+						<button type="submit" id="nextBtn" class="btn_comm btn_type1 disabled">동의하기</button>
 						<!-- 전체 동의 체크 후 .disabled 제거 -->
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=n"
-							class="btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="userBtn" class="btn_comm btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=y"
-							class="btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="trainerBtn" class="btn_comm btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
 					</div>
 				</fieldset>
 		</div>
@@ -537,7 +536,7 @@
 				class="link_info">회원가입 도움말</a>
 			<div class="txt_copyright">
 				© <a href="${pageContext.request.contextPath}/home.do"
-					class="link_daum" target="_blank">OGGIGEMAPZO Corp.</a>
+					class="link_helthin" target="_blank">OGGIGEMAPZO Corp.</a>
 			</div>
 		</div>
 	</div>
