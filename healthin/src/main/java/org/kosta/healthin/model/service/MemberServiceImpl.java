@@ -47,6 +47,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.modifyStudent(vo) ;
 	}
 
+	@Override
+	public TrainerVO trainerInfo(String id) {
+		TrainerVO tvo = memberDAO.trainerInfo(id);
+		return tvo;
+	}
+
 	
 
 }

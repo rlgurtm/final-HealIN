@@ -54,8 +54,7 @@ public class MemberController {
 			// String uploadPath =
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-			System.out.println(tvo.getTrainerPhoto());
+			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 			
 			if (uploadfile != null) {
 				String fileName = uploadfile.getOriginalFilename();
@@ -65,6 +64,7 @@ public class MemberController {
 					File file = new File(uploadPath + fileName);
 					uploadfile.transferTo(file);
 					memberService.registerTrainer(tvo);
+					session.setAttribute("tvo", tvo);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} // try - catch
@@ -81,7 +81,6 @@ public class MemberController {
 
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request, String id, String password) {
-		System.out.println(memberService.login(id, password));
 		if (memberService.login(id, password) == null) {
 			return "member/login_fail";
 		} else {
@@ -89,8 +88,10 @@ public class MemberController {
 			session.setAttribute("mvo", memberService.login(id, password));
 			
 			MemberVO vo = memberService.login(id, password);
-			if(vo.getIstrainer().equals("trainer")){
-//				TrainerVO tvo = memberService.
+			
+			if (vo.getIstrainer().equals("trainer")) {
+				TrainerVO tvo= memberService.trainerInfo(id);
+				session.setAttribute("tvo", tvo);
 			}
 			
 			return "redirect:home.do";
@@ -110,6 +111,8 @@ public class MemberController {
 
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo,HttpServletRequest req) {
+		memberService.trainerInfo(vo.getId());
+		
 		String password = req.getParameter("password1");
 		String tel = req.getParameter("mobile");
 
@@ -123,7 +126,7 @@ public class MemberController {
 		if (vo.getIstrainer().equals("user")) {
 			memberService.modifyStudent(vo);
 		} else {
-			System.out.println("니는 트레이너다!!!!");
+			
 			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 			
 			

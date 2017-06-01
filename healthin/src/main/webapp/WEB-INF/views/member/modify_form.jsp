@@ -257,9 +257,9 @@ istrainer : trainer/ user
 		<div class="wrap_inp">
 			<label for="name" class="txt_placeholder "></label>
 			<!-- 텍스트 입력 시 .screen_out  -->
-			${tvo  }
+			
 			<textarea class="inp_info" rows="5" id="career" name="career"
-				required="required"></textarea>
+				required="required">${tvo.career  }</textarea>
 			<span class="mark_valid"><span
 				class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 		</div>
@@ -272,14 +272,20 @@ istrainer : trainer/ user
 		<label for="inpNmae" class="lab_info">근무지 위치</label>
 	</dt>
 	<dd>
-		<div class="wrap_inp">
-			<label for="name" class="txt_placeholder ">서초구/강남구/,,,</label>
 			<!-- 텍스트 입력 시 .screen_out  -->
-			<input type="text" id="location" name="location"
-				class="inp_info" value="" maxlength="30"> <span
-				class="mark_valid"><span class="ico_join ico_valid"></span><span
-				class="screen_out">유효</span></span>
-		</div>
+			<select  id="location" name="location" required="required">
+				<option value="${tvo.location  }">${tvo.location  }</option>
+				<option value="강남구">강남구</option>
+				<option value="노원구">노원구</option>
+				<option value="서초구">서초구</option>
+				<option value="용산구">용산구</option>
+				<option value="은평구">은평구</option>
+				<option value="성남시">성남시</option>
+				<option value="안양시">안양시</option>
+				<option value="양평군">양평군</option>
+				<option value="용인시">용인시</option>
+				<option value="의정부시">의정부시</option>
+			</select>
 		<p class="txt_message" style="display: none;"></p>
 	</dd>
 </dl>
@@ -289,7 +295,7 @@ istrainer : trainer/ user
 	</dt>
 	<dd>
 		<!-- 텍스트 입력 시 .screen_out  -->
-		<input type="file" name="uploadfile" required="required">
+		<input type="file" name="uploadfile" required="required"> ${tvo.trainerPhoto  }
 		<span class="mark_valid"><span
 			class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 		<p class="txt_message" style="display: none;"></p>

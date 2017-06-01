@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO registerTrainer(MemberVO vo) {
-		int result= sqlSessionTemplate.insert("member.registerTrainer", vo);
+		sqlSessionTemplate.insert("member.registerTrainer", vo);
 		return vo;
 	}
 
@@ -52,12 +52,21 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSessionTemplate.update("member.modifyStudent", vo);
 		return vo;
 	}
+	
+
+	@Override
+	public TrainerVO trainerInfo(String id) {
+		TrainerVO tvo =
+		sqlSessionTemplate.selectOne("member.trainerInfo", id);
+		return tvo;
+	}
 
 	@Override
 	public MemberVO modifyTrainer(TrainerVO tvo) {
 		sqlSessionTemplate.update("member.modifyTrainer", tvo);
 		return tvo;
 	}
+
 
 	
 }

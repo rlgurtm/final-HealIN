@@ -77,6 +77,7 @@ public class UploadController {
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 3) {
+					//System.out.println("3실행");
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("userId", mvo.getId());
 					map.put("trainerId", videoVO.getTrainerId());

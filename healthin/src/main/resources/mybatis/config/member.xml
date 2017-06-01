@@ -24,6 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from health_member where
 		id=#{id} and password=#{password}
 	</select>
+	<select id="trainerInfo" resultType="trainerVO">
+		select trainer_id,career,location,trainer_photo as trainerPhoto
+		from trainer
+		where trainer_id=#{value}
+	</select>
 	<update id="modify" parameterType="memberVO">
 		update health_member set
 		password= #{password},
@@ -44,7 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		career=#{career},
 		location=#{location},
 		trainer_photo=#{trainerPhoto}
-		where trainer_id=#{id}
+		where
+		trainer_id=#{id}
 	</update>
 </mapper>
 

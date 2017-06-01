@@ -12,5 +12,6 @@ public interface MemberService {
 
 	void modify(MemberVO vo);
 	MemberVO modifyStudent(MemberVO vo);
+	TrainerVO trainerInfo(String id);
 	MemberVO modifyTrainer(TrainerVO tvo);
 }

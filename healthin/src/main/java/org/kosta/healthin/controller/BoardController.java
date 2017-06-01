@@ -70,6 +70,8 @@ public class BoardController {
 			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			//지선
 			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
