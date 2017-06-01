@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".hearty").click(function(){
+		alert($("#trainerId").val());
+	});
+});
+</script>
 <div class="container">
 
 	<!-- Page Heading/Breadcrumbs -->
@@ -16,44 +23,44 @@
 	<!-- Intro Content -->
 	<div class="row">
 		<div class="col-md-6">
-			<img class="img-responsive" src="${pageContext.request.contextPath}/resources/trainerPic/${list.trainerPhoto}" width="750"  height="450">
+			<img class="img-responsive" src="${pageContext.request.contextPath}/resources/trainerPic/${tvo.trainerPhoto}" width="750"  height="450">
 		</div>
 		<div class="col-md-6">
 		<table >
 			<tr>
-			<td><h2>이름 : </h2></td><td><h2>${list.membervo.name}</h2></td>
+			<td><h2>이름 : </h2></td><td><h2>${tvo.membervo.name}</h2></td>
 			</tr>
 			<tr>
-			<td><h4>전화번호 : </h4></td><td><h4>${list.membervo.tel}</h4></td>
+			<td><h4>전화번호 : </h4></td><td><h4>${tvo.membervo.tel}</h4></td>
 			</tr>
 			<tr>
-			<td><h4>메일 : </h4></td><td><h4>${list.membervo.email}</h4></td>
+			<td><h4>메일 : </h4></td><td><h4>${tvo.membervo.email}</h4></td>
 			</tr>
 			<tr>
-			<td><h4>지역 : </h4></td><td><h4>${list.location}</h4></td>
+			<td><h4>지역 : </h4></td><td><h4>${tvo.location}</h4></td>
 			</tr>
 			<tr>
-			<td><h4>경력사항 : </h4></td><td><h4>${list.career}</h4></td>
+			<td><h4>경력사항 : </h4></td><td><h4>${tvo.career}</h4></td>
 			</tr>
 			
 			<tr>
-			<th>팔로잉</th><td><div class="hearty"></div></td>
+			<th>팔로잉</th><td><div class="hearty" style="cursor:pointer;"></div></td>
 			</tr>
 			<tr>
-			<th colspan="2">팔로워 :  06</th><th></tr>
+			<th colspan="2">팔로워 :  ${tvo.count}</th><th></tr>
 			
 		</table>
 			
 		</div>
 	</div>
-
+<input type="hidden" id="trainerId" value="${tvo.membervo.id}">
 	
 <br><br>	
 
 	<!-- Team Members -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">Our Team</h2>
+			<h2 class="page-header">강사님의 동영상</h2>
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="thumbnail">
