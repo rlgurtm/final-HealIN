@@ -50,8 +50,6 @@ public  class MemberController {
 		if(type.equals("n")){
 			memberService.registerStudent(vo);
 		}else{
-			System.out.println("나는 트레이너다:::tvo"+tvo);
-			
 			// 실제 운영시에 사용할 서버 경로
 //			String uploadPath = req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
@@ -61,14 +59,11 @@ public  class MemberController {
 	        if (uploadfile != null) {
 	            String fileName = uploadfile.getOriginalFilename();
 	            tvo.setTrainerPhoto(fileName);
-	            System.out.println("트레이너1"+tvo);
 	            try {
 	                // 2. File 사용
 	                File file = new File(uploadPath + fileName);
 	                uploadfile.transferTo(file);
-	                System.out.println("트레이너2  fileName"+fileName);
 	                memberService.registerTrainer(tvo);
-	                System.out.println("트레이너3"+tvo);
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            } // try - catch
@@ -78,11 +73,6 @@ public  class MemberController {
 		return "redirect:member/register_sucess.do";
 	}
 	
-/*	@RequestMapping("register_sucess.do")
-	public String register_sucess() { 
-		return "member/register_sucess.do";
-	}*/
-	
 	@RequestMapping("login_form.do")
 	public String login_form() { 
 		return "member/login_form";
@@ -90,9 +80,9 @@ public  class MemberController {
 	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,String id,String password) {
-		System.out.println("로그인 들어왔다" + id +"/"+ password);
+		System.out.println(memberService.login(id,password));
 		if(memberService.login(id,password) == null){
-			return "member/login_fail.do";
+			return "member/login_fail";
 		}else{
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", memberService.login(id,password));

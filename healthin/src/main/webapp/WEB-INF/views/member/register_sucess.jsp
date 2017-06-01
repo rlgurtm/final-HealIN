@@ -56,12 +56,8 @@
             <dd>${sessionScope.mvo.name}/${sessionScope.mvo.nickname}</dd>
         </dl>
     </div>
-    <div class="txt_desc">
-        닉네임 등 프로필 정보는 <a href="modify_form.do?id=${sessionScope.mvo.id}" class="f_link">내정보 관리</a>에서 수정할 수 있어요.
-    </div>
     <div class="wrap_btn">
         <button id="rtnService" type="button" class="btn_comm btn_type1">서비스로 돌아가기</button>
-
     </div>
 
 </div>
@@ -91,10 +87,7 @@
         se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
         var s = d.getElementsByTagName('head')[0]; s.appendChild(se);
     })(document);
-</script>
 
-
-<script type="text/javascript">
     $(document).ready(function () {
         $("#rtnService").click(function () {
             location.href = decodeURIComponent('${pageContext.request.contextPath}/home.do');

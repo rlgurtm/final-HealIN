@@ -66,7 +66,6 @@ function checkAgreeState() {
 
 $("#nextBtn").click(function() {
 	if ($("#termsAgree").prop("checked") && $("#policyAgree").prop("checked")) {
-		alert('아래 두개의 버튼 중 하나를 선택해주세요.');
 		return true;
 	} else {
 		alert("서비스 약관과 개인정보 수집 및 이용에 대해 모두 동의해 주세요.");
