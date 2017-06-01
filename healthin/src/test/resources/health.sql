@@ -411,16 +411,20 @@ where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '
 select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1';
+-- 일일 각 음식 섭취 내역
+select f.food_name, f.calorie, im.count, f.calorie*im.count as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-29' and im.user_id='user1';
+
 
 -- consumption_member test
+delete from consumption_member;
 insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
-values(consumption_no_seq.nextval, '농구', 3, '2017-06-01', 'user1');
+values(consumption_no_seq.nextval, '농구', 60, '2017-05-31', 'user1');
 insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
-values(consumption_no_seq.nextval, '야구', 2, '2017-06-01', 'user1');
+values(consumption_no_seq.nextval, '야구', 120, '2017-05-31', 'user1');
 -- 일일 총 칼로리 소비량
-select sum(e.calorie*cm.ex_hour) as totalCalorie from exercise e, consumption_member cm, health_user hu
-where cm.user_id = hu.user_id and e.name = cm.name and ex_date = '2017-06-01' and cm.user_id='user1';
---
+select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e, consumption_member cm, health_user hu, physical_info pi
+where cm.user_id = hu.user_id and hu.user_id = pi.user_id and e.name = cm.name and ex_date = '2017-06-01' and cm.user_id='user1';
 select * from consumption_member;
 --
 select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
@@ -431,11 +435,9 @@ where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = 'user1';
 --physical_info 테스트 db
 select * from physical_info;
 insert into physical_info(physical_no,height,weight,today,user_id)
-values(physical_no_seq.nextval,'180','80',sysdate,'java');
+values(physical_no_seq.nextval, 172, 65, sysdate, 'user1');
 insert into physical_info(physical_no,height,weight,today,user_id)
-values(physical_no_seq.nextval,'190','90',sysdate,'maven');
-insert into physical_info(physical_no,height,weight,today,user_id)
-values(physical_no_seq.nextval,'185','100',sysdate,'spring')
+values(physical_no_seq.nextval, 180, 80, sysdate, 'user2');
 
 
 select * from food

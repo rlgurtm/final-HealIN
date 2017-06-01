@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.CalendarDAO;
+import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,7 +41,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    	eventObject = new HashMap<String, Object>();
 	    	eventObject.put("title", "총섭취량 : " + calorieList.get(i));
 	    	eventObject.put("start", dateList.get(i));
-	    	eventObject.put("url", "user_calendar.do");
+	    	eventObject.put("url", "intake_calorie.do?id=" + id + "&date=" + dateList.get(i));
 	    	intakeList.add(eventObject);
 	    }
 		return intakeList;
@@ -72,9 +73,14 @@ public class CalendarServiceImpl implements CalendarService {
 	    	eventObject = new HashMap<String, Object>();
 	    	eventObject.put("title", "총소비량 : " + calorieList.get(i));
 	    	eventObject.put("start", dateList.get(i));
-	    	eventObject.put("url", "user_calendar.do");
+	    	eventObject.put("url", "consumption_calorie.do?date=" + dateList.get(i));
 	    	consumptionList.add(eventObject);
 	    }
 		return consumptionList;
+	}
+
+	@Override
+	public List<VO> getAllIntakeFood(HashMap<String, String> map) {
+		return calendarDAO.getAllIntakeFood(map);
 	}
 }
