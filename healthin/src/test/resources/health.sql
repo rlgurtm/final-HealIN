@@ -389,9 +389,12 @@ insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트
 select * from TRAINER
 -- intake_member 테스트 db
 delete from intake_member;
-insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '치킨', 2, 'user1');
-insert into intake_member values(intake_no_seq.nextval, '2017-05-29', '공기밥', 2, 'user1');
-insert into intake_member values(intake_no_seq.nextval, '2017-05-31', '공기밥', 1, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '탕수육', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '곰국', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-30', '치킨', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-25', '치킨', 3, 'user2');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-01', '공기밥', 2, 'user3');
@@ -400,13 +403,27 @@ select to_char(intake_date, 'YYYY-MM-DD') as intakeDate, im.food_name as foodNam
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31';
 -- 일일 총 칼로리 섭취량
-select sum(f.calorie) as totalCalorie from food f, intake_member im, health_user hu
-where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and im.user_id='user1';
+select sum(f.calorie*im.count) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-29' and im.user_id='user1';
 -- 월 총 칼로리 섭취량
---
 select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1';
+
+-- consumption_member test
+insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
+values(consumption_no_seq.nextval, '농구', 3, '2017-06-01', 'user1');
+insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
+values(consumption_no_seq.nextval, '야구', 2, '2017-06-01', 'user1');
+-- 일일 총 칼로리 소비량
+select sum(e.calorie*cm.ex_hour) as totalCalorie from exercise e, consumption_member cm, health_user hu
+where cm.user_id = hu.user_id and e.name = cm.name and ex_date = '2017-06-01' and cm.user_id='user1';
+--
+select * from consumption_member;
+--
+select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
+from exercise e, consumption_member cm, health_user hu
+where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = 'user1';
 
 
 --physical_info 테스트 db

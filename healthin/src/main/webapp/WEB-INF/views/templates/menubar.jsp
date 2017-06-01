@@ -89,7 +89,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mypage/trainer_follower_management.do">팔로워 관리(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/trainer_follower_management.do">팔로워 관리(이름 임시)</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">PT 결제 현황</a>
@@ -105,10 +105,10 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mypage/user_calendar.do">캘린더(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/user_calendar.do">캘린더(이름 임시)</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mypage/user_health_check.do">기간별 건강 변화 체크(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/user_health_check.do">기간별 건강 변화 체크(이름 임시)</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mypage/bmi.do">비만도 측정(기능 임시)</a>

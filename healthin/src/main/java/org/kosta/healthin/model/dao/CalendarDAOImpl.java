@@ -14,12 +14,22 @@ public class CalendarDAOImpl implements CalendarDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<String> getAllDateIntakeFood(String id) {
-		return template.selectList("calendar.getAllDateIntakeFood", id);
+	public List<String> getAllDateIntakeCalorie(String id) {
+		return template.selectList("calendar.getAllDateIntakeCalorie", id);
 	}
 
 	@Override
 	public int getTotalIntakeCalorieOfDay(HashMap<String, String> map) {
 		return template.selectOne("calendar.getTotalIntakeCalorieOfDay", map);
+	}
+
+	@Override
+	public List<String> getAllDateConsumptionCalorie(String id) {
+		return template.selectList("calendar.getAllDateConsumptionCalorie", id);
+	}
+
+	@Override
+	public int getTotalConsumptionCalorieOfDay(HashMap<String, String> map) {
+		return template.selectOne("calendar.getTotalConsumptionCalorieOfDay", map);
 	}
 }
