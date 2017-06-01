@@ -7477,10 +7477,10 @@ table.content td {
 }
 #attechedFile {
 	position: absolute;
-	top: 20px;
-	right: 20px;
-   
+    right: 30px;
+    top: 20px;
 }
+
 #AllBtn{
 	position:absolute;
 	right: 17%;
