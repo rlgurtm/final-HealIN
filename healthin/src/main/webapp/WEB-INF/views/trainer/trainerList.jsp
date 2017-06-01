@@ -13,7 +13,7 @@ $(document).ready(function(){
  			 	  	var info="";
 					for(var i=0;i<data.lvo.length;i++){
 						info+="<div class='row'><div class='col-sm-3 text-center'>";
-						info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/";
+						info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/trainerPic/";
 						info+=data.lvo[i].trainerPhoto+"' ";
 						info+=" width='750'  height='450'></div><div class='col-md-9'>";
  						info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
@@ -73,7 +73,7 @@ $(document).ready(function(){
         <!-- 강사 리스트  -->
         <div class="row">
             <div class="col-sm-3 text-center">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/${t.trainerPhoto}" width="750"  height="450">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/trainerPic/${t.trainerPhoto}" width="750"  height="450">
             </div>
             <div class="col-md-9">
                 <h3>이름 : ${t.membervo.name}</h3>

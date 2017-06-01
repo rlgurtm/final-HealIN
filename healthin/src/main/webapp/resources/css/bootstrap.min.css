@@ -7405,3 +7405,27 @@ button.close {
 select.sbox {
     float: right;
 }
+.hearty {
+    position: relative;
+    background: url(https://abs.twimg.com/a/1446686284/img/t1/web_heart_animation.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 60px;
+    width: 100px;
+    bottom: 0px;
+    float: left;
+}
+
+.hearty:hover {
+  -webkit-animation: play 1s steps(7) ; 
+}
+
+@-webkit-keyframes play {
+   0% { background-position: 0px -20px; }
+    100% { background-position: -2800px -20px; }
+}
+
+span.follow {
+    float: left;
+    margin-top: 38px;
