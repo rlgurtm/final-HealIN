@@ -88,6 +88,9 @@ public class MemberController {
 			session.setAttribute("mvo", memberService.login(id, password));
 			
 			MemberVO vo = memberService.login(id, password);
+			if(vo.getIstrainer().equals("trainer")){
+//				TrainerVO tvo = memberService.
+			}
 			
 			return "redirect:home.do";
 		}
