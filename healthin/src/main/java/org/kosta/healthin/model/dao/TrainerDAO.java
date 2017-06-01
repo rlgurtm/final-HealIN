@@ -19,4 +19,6 @@ public interface TrainerDAO {
 
 	TrainerVO trainerDetail(String trainerId);
 
+	int trainerfollowingCount(String trainerId);
+
 }

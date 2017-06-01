@@ -7405,6 +7405,31 @@ button.close {
 select.sbox {
     float: right;
 }
+.hearty {
+    position: relative;
+    background: url(https://abs.twimg.com/a/1446686284/img/t1/web_heart_animation.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 80px;
+    width: 100px;
+    bottom: 0px;
+    float: left;
+}
+
+.hearty:hover {
+  -webkit-animation: play 1s steps(7) ; 
+}
+
+@-webkit-keyframes play {
+   0% { background-position: 0px -20px; }
+    100% { background-position: -2800px -20px; }
+}
+
+span.follow {
+    float: left;
+    margin-top: 38px;
+}
 #tipWrite{
  	position:absolute;
  	right: 8%;
@@ -7424,7 +7449,8 @@ table.content {
     border-top: 1px solid #ccc;
     margin : 50px 10px;
     width:500px;
-    
+    margin-left: auto; 
+    margin-right: auto;
 }
 table.content th {
     width: 150px;
@@ -7452,12 +7478,15 @@ table.content td {
 }
 #attechedFile {
 	position: absolute;
-	top: 20px;
-	right: 20px;
-   
+    right: 30px;
+    top: 20px;
 }
+
 #AllBtn{
 	position:absolute;
 	right: 17%;
 	bottom: 0px;
+}
+#updateBtn{
+	right: 10%;
 }

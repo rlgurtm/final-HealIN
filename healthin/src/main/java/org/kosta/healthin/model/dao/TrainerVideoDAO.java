@@ -30,4 +30,18 @@ public interface TrainerVideoDAO {
 
 	int trainerVideoSelectMatching(Map<String, String> map);
 
+	ListVO filterHitsTrainerVideoList(PagingBean pb);
+
+	ListVO filterLikeStateTrainerVideoList(PagingBean pb);
+
+	ListVO filterPostedDateTrainerVideoList(PagingBean pb);
+
+	int filterOpenrankTotalCountVideo(int openrank);
+
+	ListVO filterOpenrankTrainerVideoList(Map map);
+
+	int filterCategoryTotalCountVideo(String category);
+
+	ListVO filterCategoryTrainerVideoList(Map map);
+
 }

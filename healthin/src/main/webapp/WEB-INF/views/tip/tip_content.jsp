@@ -41,12 +41,15 @@
 			location.href="${pageContext.request.contextPath}/tipBoardDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
 		});//click
 		
+		$("#updateBtn").click(function(){
+			location.href="${pageContext.request.contextPath}/tip/updateForm.do?no=${tip.no }";
+		});//click
 	});//ready
 	</script>
 	
 	
 	<div class="container">
-		<table class="content " style="margin-left: auto; margin-right: auto;">
+		<table class="content ">
 			<thead>
 				<tr>
 					<th>제목</th><td colspan="5">${tip.title }</td>
@@ -60,16 +63,18 @@
 			<tbody>
 				<tr>
 					<td colspan="6"><pre style="white-space: pre-wrap;">${tip.content }
-						<span id="attechedFile">
-							<a href="${pageContext.request.contextPath }/fileDownload.do?
+						<c:if test="${tip.attachedFile!=null}">
+							<a id="attechedFile" href="${pageContext.request.contextPath }/fileDownload.do?
 							fileName=${tip.attachedFile }">첨부파일</a>
-						</span></pre>
+						</c:if>
+						</pre>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div id="AllBtn">
 			<c:if test="${mvo.id==tip.memberVO.id }">
+				<button type="button" class="btn" id="updateBtn">수정하기</button>
 				<button type="button" class="btn" id="deleteBtn">삭제하기</button>
 			</c:if>
 				<button type="button" class="btn" id="listBtn">목록가기</button>
