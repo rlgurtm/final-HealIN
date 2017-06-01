@@ -34,5 +34,7 @@ public interface TipDAO {
 
 	void tipCommentDelete(int no);
 
+	void tipUpdate(TipBoardVO tvo);
+
 
 }

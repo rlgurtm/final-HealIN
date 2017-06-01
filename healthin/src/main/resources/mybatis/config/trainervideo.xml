@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
 			,trainer_id as trainerId,openrank from trainer_video where openrank<![CDATA[ < ]]>9) a
 			,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
-		where b.video_no(+)=a.videoNo and rnum between #{startRowNumber} and #{endRowNumber}
+		where b.video_no(+)=a.videoNo and rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
  	</select>
  	<update id="trainerVideoShowHits" parameterType="int">
  		update trainer_video set hits=hits+1 where video_no=#{value}
@@ -59,6 +59,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	<select id="trainerVideoSelectMatching" parameterType="map" resultType="int">
  		select count(*) from matching where user_id=${userId} and trainer_id=${trainerId}
+ 	</select>
+	<select id="filterHitsTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select a.* from
+			(select row_number() over(order by hits desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterLikeStateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select a.* from
+			(select row_number() over(order by likeState desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterPostedDateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,posted_date as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterOpenrankTotalCountVideo" resultType="int" parameterType="int">
+		select count(*) from trainer_video where openrank=#{value}
+	</select>
+	<select id="filterOpenrankTrainerVideoList" resultType="trainerVideoVO" parameterType="map">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,posted_date as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank=#{openrank}) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ 	</select>
+	<select id="filterCategoryTotalCountVideo" resultType="int" parameterType="string">
+		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{value}
+	</select>
+	<select id="filterCategoryTrainerVideoList" resultType="trainerVideoVO" parameterType="map">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,posted_date as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{category}) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
  	</select>
 </mapper>
  

@@ -11,4 +11,6 @@ public interface TrainerService {
 
 	TrainerVO trainerDetail(String trainerId);
 
+	int trainerfollowingCount(String trainerId);
+
 }

@@ -41,6 +41,9 @@ public class UploadController {
 		ListVO listVO = new ListVO();
 		listVO = videoService.trainerVideoList(pb);
 		listVO.setPb(pb);
+		/*for(int i=0;i<listVO.getLVO().size();i++){
+			System.out.println(listVO.getLVO().get(i).toString());
+		}*/
 		model.addAttribute("listVO",listVO);
 		return "video/trainer_video_list.tiles";
 	}
@@ -186,6 +189,58 @@ public class UploadController {
 		return "redirect:trainerVideoList.do";
 	}
 	
+	@RequestMapping("filterVideoList.do")
+	public String filterHits(Model model,HttpServletRequest request){
+		int nowPage;
+		PagingBean pb;
+		int filterTotalCount; 
+		ListVO listVO = new ListVO();
+		String filter = request.getParameter("filter");
+		if(request.getParameter("nowPage")!=null){
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		} else {
+			nowPage = 1;
+		}
+		if(filter.equals("hits")){
+			filterTotalCount = videoService.totalCountVideo();
+			pb = new PagingBean(filterTotalCount,nowPage);
+			listVO = videoService.filterHitsTrainerVideoList(pb);
+			listVO.setPb(pb);
+		} else if (filter.equals("likeState")){
+			filterTotalCount = videoService.totalCountVideo();
+			pb = new PagingBean(filterTotalCount,nowPage);
+			listVO = videoService.filterLikeStateTrainerVideoList(pb);
+			listVO.setPb(pb);
+		} else if(filter.equals("postedDate")){
+			filterTotalCount = videoService.totalCountVideo();
+			pb = new PagingBean(filterTotalCount,nowPage);
+			listVO = videoService.filterPostedDateTrainerVideoList(pb);
+			listVO.setPb(pb);
+		} else if(filter.equals("openrank")){
+			int rank = Integer.parseInt(request.getParameter("rank"));
+			filterTotalCount = videoService.filterOpenrankTotalCountVideo(rank);
+			pb = new PagingBean(filterTotalCount,nowPage);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("pb", pb);
+			map.put("openrank", rank);
+			listVO = videoService.filterOpenrankTrainerVideoList(map);
+			listVO.setPb(pb);
+		} else if(filter.equals("category")){
+			String category = request.getParameter("cate");
+			filterTotalCount = videoService.filterCategoryTotalCountVideo(category);
+			pb = new PagingBean(filterTotalCount,nowPage);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("pb", pb);
+			map.put("category", category);
+			listVO = videoService.filterCategoryTrainerVideoList(map);
+			listVO.setPb(pb);
+		}
+		/*for(int i=0;i<listVO.getLVO().size();i++){
+			System.out.println(listVO.getLVO().get(i).toString());
+		}*/
+		model.addAttribute("listVO",listVO);
+		return "video/trainer_video_list.tiles";
+	}
 	
 	
 	
