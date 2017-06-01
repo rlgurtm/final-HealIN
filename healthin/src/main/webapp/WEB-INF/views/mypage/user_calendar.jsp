@@ -2,17 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
-	function getData() {
-		
-	}
-</script>
-<script>
 	$(document).ready(function() {
 		var events = "";
 		$("#showBtn").click(function() {
 			$.ajax({
 				type:"post",
-				url:"${pageContext.request.contextPath}/mypage/ajaxCalendar.do",
+				url:"${pageContext.request.contextPath}/ajaxCalendar.do",
 				//data:"address="+addrValue,
 				dataType:"json",
 				success:function(jsonList){
@@ -29,7 +24,7 @@
 			alert($(this).val());
 			$.ajax({
 				type:"post",
-				url:"${pageContext.request.contextPath}/mypage/ajaxCalendar.do",
+				url:"${pageContext.request.contextPath}/ajaxCalendar.do",
 				//data:"address="+addrValue,
 				dataType:"json",
 				success:function(jsonList){					
@@ -87,7 +82,7 @@
 		            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
 		        });
 		    }, */
-			events: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do?id=${sessionScope.mvo.id}' /* [
+			events: '${pageContext.request.contextPath}/ajaxCalendar.do?id=${sessionScope.mvo.id}' /* [
 				{
 					title: '${requestScope.jsonList[0].title}',
 					start: '2017-05-01',
