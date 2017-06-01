@@ -124,8 +124,9 @@ public class BoardController {
 	@RequestMapping("trainer/trainerDetail.do")
 	public String trainerDetail(Model model,String trainerId){
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
-		//int count =trainerService.trainerfollowingCount(trainerId);
-		model.addAttribute("list",vo);
+		int count =trainerService.trainerfollowingCount(trainerId);
+		vo.setCount(count);
+		model.addAttribute("tvo",vo);
 		return "trainer/trainerDetail.tiles";
 	}
 }

@@ -2,33 +2,61 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
+var order=null;
 $(document).ready(function(){
 	$("#order").change(function(){
-		 $.ajax({
- 				type:"get",
- 				url:"${pageContext.request.contextPath}/order.do",
- 				data:"order="+$(this).val(),
- 				dataType:"json",
- 				success:function(data){
- 			 	  	var info="";
-					for(var i=0;i<data.lvo.length;i++){
-						info+="<div class='row'><div class='col-sm-3 text-center'>";
-						info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/trainerPic/";
-						info+=data.lvo[i].trainerPhoto+"' ";
-						info+=" width='750'  height='450'></div><div class='col-md-9'>";
- 						info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
- 						info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
- 						info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
- 						info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
- 						info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
- 	                	info+="<input type='submit' value='강사정보 더보기'></form>";
- 		                info+="</div></div><hr>";
- 					}
-					$("#trainerArea").html(info); 
- 				}
-		});
-	});
+		order=$(this).val();
+		trainerListOrder(1);
+    });//order change
+   
+    $(".pagination").on("click", "li", function(){
+		$(".pagination .active").removeClass("active");
+		 		$(this).addClass("active"); 
+				category=$(".nav-tabs .active").text();
+				getTipCategoryList($(this).val());
+		});//on
 });
+	
+	function trainerListOrder(page){
+		 $.ajax({
+ 			type:"get",
+ 			url:"${pageContext.request.contextPath}/order.do",
+ 			data:"order="+order+"&pageNo="+page,
+ 			dataType:"json",
+ 			success:function(data){
+ 				  	var info="";
+				for(var i=0;i<data.lvo.length;i++){
+					info+="<div class='row'><div class='col-sm-3 text-center'>";
+					info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/trainerPic/";
+					info+=data.lvo[i].trainerPhoto+"' ";
+					info+=" width='750'  height='450'></div><div class='col-md-9'>";
+ 					info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
+ 					info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
+ 					info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
+ 					info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
+ 					info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
+ 	               	info+="<input type='submit' value='강사정보 더보기'></form>";
+ 		               info+="</div></div><hr>";
+ 				}
+				$("#trainerArea").html(info);
+				var pre=data.pb.startPageOfPageGroup-1;
+				 var next=data.pb.endPageOfPageGroup+1; 
+				 var paging="";
+				 if(data.pb.previousPageGroup)
+					 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
+				for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
+				 if(data.pb.nowPage==k){
+					paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
+				 }else{
+					paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
+					 }
+				 }
+				 if(data.pb.nextPageGroup)
+					 paging+="<li class='next' value="+next+"><a>next</a><li>";
+				 $(".pagination").html(paging);
+ 			}//success
+			});//ajax
+	}//function
 </script>
 <div class="container">
 	<h4>지역별 코치 찾기</h4>
@@ -88,8 +116,7 @@ $(document).ready(function(){
         <hr>
 </c:forEach>
 </div>
-        
-         <div align="center">
+<div align="center">
 		<ul class="pagination">
 			<c:set var="pb" value="${list.pb}"></c:set>
 				<c:if test="${pb.previousPageGroup}">
@@ -103,7 +130,7 @@ $(document).ready(function(){
 							<li><a href="${pageContext.request.contextPath}/trainer/trainerList.do?pageNo=${i}">${i}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a>${i}</a></li>
+							<li class="active"><a>${i}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>	    
@@ -114,5 +141,7 @@ $(document).ready(function(){
 				</c:if>
 		</ul>
 	</div>
+        
+
         
         </div>

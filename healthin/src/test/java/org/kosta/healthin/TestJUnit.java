@@ -30,17 +30,6 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-			CommentVO cvo=new CommentVO();
-			cvo.setBoardNo(2);
-			cvo.setComment("여기 너무 좋아용~~!짱짱");
-			cvo.setId("java");
-			tipdao.tipCommentWrite(cvo);
-			Map<String, Object> map=new HashMap<String,Object>();
-			map.put("no",2);
-			map.put("startRowNumber", 1);
-			map.put("endRowNumber", 5);
-		System.out.println(tipdao.getTipCommentList(map));
-		
 	}
 }
 
