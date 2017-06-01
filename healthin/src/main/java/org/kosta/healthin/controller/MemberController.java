@@ -54,8 +54,9 @@ public class MemberController {
 			// String uploadPath =
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
+			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+			System.out.println(tvo.getTrainerPhoto());
+			
 			if (uploadfile != null) {
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
@@ -108,8 +109,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("modify.do")
-	public String modify(MemberVO vo, TrainerVO tvo,HttpServletRequest req, MultipartFile uploadfile) {
-		String type = req.getParameter("type");
+	public String modify(MemberVO vo, TrainerVO tvo,HttpServletRequest req) {
 		String password = req.getParameter("password1");
 		String tel = req.getParameter("mobile");
 
@@ -119,29 +119,17 @@ public class MemberController {
 		memberService.modify(vo);
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", vo);
-
-		if (type.equals("n")) {
-			memberService.registerStudent(vo);
+		
+		if (vo.getIstrainer().equals("user")) {
+			memberService.modifyStudent(vo);
 		} else {
-			// 실제 운영시에 사용할 서버 경로
-			// String uploadPath =
-			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
-			// file path upload
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
-			if (uploadfile != null) {
-				String fileName = uploadfile.getOriginalFilename();
-				tvo.setTrainerPhoto(fileName);
-				try {
-					// 2. File 사용
-					File file = new File(uploadPath + fileName);
-					uploadfile.transferTo(file);
-					memberService.modifyTrainer(tvo);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} // try - catch
-			} // if
-
+			System.out.println("니는 트레이너다!!!!");
+			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+			
+			
+			String originalPath =tvo.getTrainerPhoto();
+			tvo.setTrainerPhoto("book1.jpg");
+			memberService.modifyTrainer(tvo);	
 		}
 
 		return "redirect:home.do";

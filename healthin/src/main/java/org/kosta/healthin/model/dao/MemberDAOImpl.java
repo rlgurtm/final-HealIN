@@ -38,7 +38,6 @@ public class MemberDAOImpl implements MemberDAO {
 		Map<String, String>map = new HashMap<String,String>();
 		map.put("id", id);
 		map.put("password", password);
-		System.out.println(map);
 		MemberVO vo  = sqlSessionTemplate.selectOne("member.login", map);
 		return vo;
 	}
@@ -50,13 +49,13 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public MemberVO modifyStudent(MemberVO vo) {
-		int result= sqlSessionTemplate.update("member.modifyStudent", vo);
+		sqlSessionTemplate.update("member.modifyStudent", vo);
 		return vo;
 	}
 
 	@Override
 	public MemberVO modifyTrainer(TrainerVO tvo) {
-		int result= sqlSessionTemplate.update("member.modifyTrainer", tvo);
+		sqlSessionTemplate.update("member.modifyTrainer", tvo);
 		return tvo;
 	}
 
