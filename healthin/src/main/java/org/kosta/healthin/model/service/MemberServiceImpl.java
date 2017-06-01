@@ -39,13 +39,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO modifyTrainer(TrainerVO tvo) {
-		// TODO Auto-generated method stub
 		return memberDAO.modifyTrainer(tvo) ;
 	}
 
 	@Override
 	public MemberVO modifyStudent(MemberVO vo) {
-		// TODO Auto-generated method stub
 		return memberDAO.modifyStudent(vo) ;
 	}
 

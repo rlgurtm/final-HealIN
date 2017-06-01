@@ -11,7 +11,7 @@ public interface MemberDAO {
 	MemberVO login(String id,String password);
 
 	void modify(MemberVO vo);
-	MemberVO modifyTrainer(TrainerVO tvo);
 	MemberVO modifyStudent(MemberVO vo);
+	MemberVO modifyTrainer(TrainerVO tvo);
 
 }
