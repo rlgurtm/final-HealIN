@@ -424,17 +424,3 @@ select * from food
 
 
 
-
-	 select a.* from
-		(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
-	 		(select video_no as videoNo,title,content,video_file as videoFile
-			,posted_date as postedDate,hits,category
-			,trainer_id as trainerId,openrank 
-			from trainer_video where openrank<9) a
-			,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
-		where b.video_no(+)=a.videoNo) a
-	where rnum between 1 and 12 order by rnum asc
-		 
-
-
-
