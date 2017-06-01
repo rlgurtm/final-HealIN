@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-	#tipWriteForm{
-		padding: 10px 30%;
-	}
-</style>
+
 
 
 	<form id="tipWriteForm" method ="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/tip/tipWrite.do">
