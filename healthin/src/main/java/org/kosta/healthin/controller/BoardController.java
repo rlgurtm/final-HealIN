@@ -65,8 +65,11 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		if(uploadFile!=null){
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+		if(!uploadFile.isEmpty()){
+			//송희
+			//ploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
@@ -77,11 +80,10 @@ public class BoardController {
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}	
-		
 		}else{
+			tvo.setattachedFile("");
 			tipService.tipWrite(tvo);
 		}
-		
 		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
 	}
 	@RequestMapping("fileDownload.do")

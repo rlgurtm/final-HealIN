@@ -7449,7 +7449,8 @@ table.content {
     border-top: 1px solid #ccc;
     margin : 50px 10px;
     width:500px;
-    
+    margin-left: auto; 
+    margin-right: auto;
 }
 table.content th {
     width: 150px;
@@ -7477,10 +7478,10 @@ table.content td {
 }
 #attechedFile {
 	position: absolute;
-	top: 20px;
-	right: 20px;
-   
+    right: 30px;
+    top: 20px;
 }
+
 #AllBtn{
 	position:absolute;
 	right: 17%;

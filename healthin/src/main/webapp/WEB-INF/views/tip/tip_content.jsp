@@ -46,7 +46,7 @@
 	
 	
 	<div class="container">
-		<table class="content " style="margin-left: auto; margin-right: auto;">
+		<table class="content ">
 			<thead>
 				<tr>
 					<th>제목</th><td colspan="5">${tip.title }</td>
@@ -60,10 +60,11 @@
 			<tbody>
 				<tr>
 					<td colspan="6"><pre style="white-space: pre-wrap;">${tip.content }
-						<span id="attechedFile">
-							<a href="${pageContext.request.contextPath }/fileDownload.do?
+						<c:if test="${tip.attachedFile!=null}">
+							<a id="attechedFile" href="${pageContext.request.contextPath }/fileDownload.do?
 							fileName=${tip.attachedFile }">첨부파일</a>
-						</span></pre>
+						</c:if>
+						</pre>
 					</td>
 				</tr>
 			</tbody>
