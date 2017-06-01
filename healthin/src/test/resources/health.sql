@@ -67,7 +67,10 @@ create table trainer(
 
 select * from health_member;
 select * from health_user;
-select * from trainer;
+select trainer_id,career,location,trainer_photo from trainer;
+		select trainer_id,career,location,trainer_photo
+		from trainer
+		where trainer_id='java'
 
 -- 회원정보 수정
 update health_member set
