@@ -1,5 +1,5 @@
 -- 여기는 health sql문을 쓸 수 있습니다
-select*from tipandqna
+
 -- 전체 drop
 drop table consumption_member;
 drop table exercise;
@@ -65,44 +65,6 @@ create table trainer(
 	trainer_photo varchar2(100) not null
 )
 
-select * from health_member;
-select * from health_user;
-select * from trainer;
-
--- 회원정보 수정
-update health_member set
-password= '1234',
-nickname= '자바퀸',
-name= '자바',
-birthdate='19470901',
-gender='female',
-address='서울시 종로구 통인동 65 202호',
-tel='01078967896',
-e_mail='queen@naver.com',
-is_trainer='trainer',
-withdrawal='N'
-where
-id='java'
-
--- 회원정보수정 step2 trainer 정보 수정
-update trainer set 
-career='분당구 생활체육센터 요가 2년', 
-location='은평구', 
-trainer_photo='msg.jpg'
-where trainer_id='java'
-	
-trainer_id varchar2(100) primary key 
-	constraint member_fk_trainer references health_member(id),
-	career clob not null,
-	rank number default 0,
-	location varchar2(100) not null,
-	trainer_photo varchar2(100) not null
-
-
-
-select * from health_member
-select * from trainer
-		
 -- 게시판 테이블
 drop sequence board_no_seq;
 create sequence board_no_seq;
@@ -480,3 +442,7 @@ update trainer set trainer_photo='healthboy.jpg'
 
 
 
+)
+)
+)
+)
