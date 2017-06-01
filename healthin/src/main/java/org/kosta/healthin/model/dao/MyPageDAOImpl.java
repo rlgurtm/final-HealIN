@@ -2,6 +2,8 @@ package org.kosta.healthin.model.dao;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,7 +17,10 @@ public class MyPageDAOImpl implements MyPageDAO {
 		template.insert("mypage.insertUserPhysicalInfo", pivo);
 	}
 		@Override
-		public String selectUserPhyicalInfo(PhysicalInfoVO pivo){
-		return template.selectOne("mypage.selectUserPhyicalInfo",pivo);	
+		public ListVO selectUserPhyicalInfo(MemberVO mvo){
+			ListVO listVO = new ListVO();
+			listVO.setLVO(template.selectList("mypage.selectUserPhyicalInfo",mvo));
+			System.out.println(listVO);
+		return listVO;
 		}
 }

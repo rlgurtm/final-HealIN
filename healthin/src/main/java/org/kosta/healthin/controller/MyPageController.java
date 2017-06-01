@@ -5,28 +5,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.healthin.model.service.MyPageService;
+import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MyPageController {
 	@Resource
-	private MyPageService service;
-		@RequestMapping("mypage/bmi_list.do")
-		public String bmi(PhysicalInfoVO pivo,HttpServletRequest request, ModelMap map){
-			//service.insertUserPhysicalInfo(pivo);
-			HttpSession session=request.getSession();
-			session.setAttribute("pivo",pivo);
-			
-			 /*bmi_height = bmi_height.value / 100
-			 Square = bmi_height * bmi_height
-			 var bmi_num= F.bmi_weight.value/Square
-		     var strBmi = Math.round(bmi_num*100)/100*/
-			map.addAttribute("test",123);
-			
-			return "mypage/bmi_list.tiles";
-		}
+	private MyPageService myPageService;
+
+	@RequestMapping("insertUserPhysicalInfo.do")
+	public String insertUserPhysicalInfo(PhysicalInfoVO pivo, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		pivo.setUser_Id(mvo.getId());
+		// System.out.println(pivo);
+		myPageService.insertUserPhysicalInfo(pivo);
+
 		
+
+		/*
+		 * bmi_height = bmi_height.value / 100 Square = bmi_height * bmi_height
+		 * int bmi_num= F.bmi_weight.value/Square int strBmi =
+		 * Math.round(bmi_num*100)/100
+		 */
+
+		return "redirect:bmi_list.do";
+	}
+
+	@RequestMapping("bmi_list.do")
+	public String selectUserPhyicalInfo(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		ListVO listVO = myPageService.selectUserPhysicalInfo(mvo);
+		System.out.println(listVO);
+		model.addAttribute("listVO", listVO);
+		return "mypage/bmi_list.tiles";
+	}
+	/*int height = Integer.parseInt(request.getParameter("height"));
+	int weight = Integer.parseInt(request.getParameter("weight"));
+
+	double bmiTest = (height * 2) / weight;
+	System.out.println(bmiTest);
+	model.addAttribute("bmiTest", bmiTest);*/
 }

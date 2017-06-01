@@ -15,13 +15,23 @@ table, th, td {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-  	function bmi_list(){
+  $(document).ready(function(){
+	  $("#bmi_Test").click(function(){
+		  var bmi_height=$("input[name=bmi_height]").attr("value");
+		  var bmi_weight=$("input[name=bmi_weight]").attr("value");
+		  alert("측정되었습니다.");
+		  
+		  location.href="bmi_list.do";
+	  });
+  });
+  	/* function bmi_list(){
   		//alert('test');
   		location.href="bmi_list.do";
-  	}
+  	} */
   </script>
 </head>
 <body>
+<form id="bmi" action="${pageContext.request.contextPath }/insertUserPhysicalInfo.do" >
 <div class="container">
 <table class="table" align="center">
     <thead>
@@ -31,22 +41,20 @@ table, th, td {
       </thead>
       <tbody>
       <tr class="info">
-        <td>&nbsp;&nbsp;신장<input type="text" id="height" name="bmi_height">(cm)</td>
+        <td>&nbsp;&nbsp;신장<input type="text" id="height" name="height">(cm)</td>
       </tr>
       <tr class="active">
-        <td>체중<input type="text" id="weight" name="bmi_weight">(kg)</td>
+        <td>체중<input type="text" id="weight" name="weight">(kg)</td>
       </tr>
-       <tr class="info">
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        	날짜<input type="text" id="date" name="bmi_date">(입력일자)</td>
-      </tr>
-      <tr class="active">
+       
+      <tr class="info">
         <td>User ID(보여주기?)</td>
       <tr class="">
-      	<td><input type="button" id="bmi_Test" value="측정하기" onclick="bmi_list()"></td>
+      	<td><input type="submit" id="bmi_Test" value="측정하기"></td>
       </tr>
    </tbody>  
 </table>
 </div>
+</form>
 </body>
 </html>

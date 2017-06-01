@@ -4,13 +4,22 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
- 	
+ 	<insert id="insertUserPhysicalInfo" parameterType="physicalInfoVO">
+ 		insert into physical_info(physical_no,height,weight,today,user_id)
+ 		values(physical_no_seq.nextval,#{height},#{weight},sysdate,#{user_Id})
+ 	</insert>
+ 	<select id="selectUserPhyicalInfo" resultType="physicalInfoVO" parameterType="memberVO">
+ 		select height,weight,to_char(today,'YYYY.MM.DD') as today,user_id
+ 		from physical_info
+ 		where user_id=#{id}
+ 		order by today desc
+ 	</select>
 </mapper>
  
  
  
  
- 
+
  
  
  

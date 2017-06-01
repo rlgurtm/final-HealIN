@@ -3,6 +3,8 @@ package org.kosta.healthin.model.service;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.MyPageDAO;
+import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class MyPageServcieImpl implements MyPageService{
 			mydao.insertUserPhysicalInfo(pivo);
 		}
 		@Override
-		public String selectUserPhysicalInfo(PhysicalInfoVO pivo){
-			return mydao.selectUserPhyicalInfo(pivo);
+		public ListVO selectUserPhysicalInfo(MemberVO mvo){
+			return mydao.selectUserPhyicalInfo(mvo);
 		}
 }
