@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<update id="trainerVideoShowHits" parameterType="int">
  		update trainer_video set hits=hits+1 where video_no=#{value}
  	</update>
- 	<select id="trainerVideoShow" resultType="trainerVideoVO">
+ 	<select id="trainerVideoShow" resultType="trainerVideoVO" parameterType="int">
  		select a.video_no as videoNo,a.title,a.content,a.video_file as videoFile
  		,a.posted_date as postedDate,a.hits,a.category,a.trainer_id as trainerId,a.openrank
  		,b.likeState from trainer_video a
@@ -52,13 +52,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</update>
  	
  	<select id="trainerVideoSelectMember" parameterType="string" resultType="int">
- 		select count(*) from health_member where id=${value}
+ 		select count(*) from health_member where id=#{value}
  	</select>
- 	<select id="trainerVideoSelectFollowing" parameterType="map" resultType="int">
- 		select count(*) from following where user_id=${userId} and trainer_id=${trainerId}
+ 	<select id="trainerVideoSelectFollowing" parameterType="java.util.Map" resultType="int">
+ 		select count(*) from following where user_id=#{userId} and trainer_id=#{trainerId}
  	</select>
- 	<select id="trainerVideoSelectMatching" parameterType="map" resultType="int">
- 		select count(*) from matching where user_id=${userId} and trainer_id=${trainerId}
+ 	<select id="trainerVideoSelectMatching" parameterType="java.util.Map" resultType="int">
+ 		select count(*) from matching where user_id=#{userId} and trainer_id=#{trainerId}
  	</select>
 	<select id="filterHitsTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
  		select a.* from
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="filterOpenrankTotalCountVideo" resultType="int" parameterType="int">
 		select count(*) from trainer_video where openrank=#{value}
 	</select>
-	<select id="filterOpenrankTrainerVideoList" resultType="trainerVideoVO" parameterType="map">
+	<select id="filterOpenrankTrainerVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
  		select a.* from
 			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
 		 		(select video_no as videoNo,title,content,video_file as videoFile
@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="filterCategoryTotalCountVideo" resultType="int" parameterType="string">
 		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{value}
 	</select>
-	<select id="filterCategoryTrainerVideoList" resultType="trainerVideoVO" parameterType="map">
+	<select id="filterCategoryTrainerVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
  		select a.* from
 			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
 		 		(select video_no as videoNo,title,content,video_file as videoFile

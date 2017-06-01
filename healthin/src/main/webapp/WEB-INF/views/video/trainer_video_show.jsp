@@ -50,6 +50,7 @@
 				<li>작성자 : ${videoVO.trainerId}</li>
 				<li>작성일자 : ${videoVO.postedDate}</li>
 			</ul>
+			<div class="hearty" style="cursor:pointer;"></div>
 		</div>
 	</div>
 	<hr>

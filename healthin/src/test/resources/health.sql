@@ -477,3 +477,6 @@ select * from health_user;
 select * from trainer;
 
 update trainer set trainer_photo='healthboy.jpg'
+
+
+
