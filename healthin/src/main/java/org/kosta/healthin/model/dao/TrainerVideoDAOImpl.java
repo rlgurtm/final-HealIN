@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.dao;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.ListVO;
@@ -26,6 +28,10 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	}
 	
 	@Override
+	public void trainerVideoShowHits(int videoNo){
+		template.update("trainervideo.trainerVideoShowHits",videoNo);
+	}
+	@Override
 	public TrainerVideoVO trainerVideoShow(int videoNo){
 		return template.selectOne("trainervideo.trainerVideoShow",videoNo);
 	}
@@ -48,5 +54,18 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	@Override
 	public void trainerVideoDelete(int videoNo){
 		template.update("trainervideo.trainerVideoDelete",videoNo);
+	}
+	
+	@Override
+	public int trainerVideoSelectMember(String id){
+		return template.selectOne("trainervideo.trainerVideoSelectMember",id);
+	}
+	@Override
+	public int trainerVideoSelectFollowing(Map<String,String> map){
+		return template.selectOne("trainervideo.trainerVideoSelectFollowing",map);
+	}
+	@Override
+	public int trainerVideoSelectMatching(Map<String,String> map){
+		return template.selectOne("trainervideo.trainerVideoSelectMatching",map);
 	}
 }

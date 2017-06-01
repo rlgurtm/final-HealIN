@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.service;
 
+import java.util.Map;
+
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
@@ -19,5 +21,13 @@ public interface TrainerVideoService {
 	void trainerVideoUpdate(TrainerVideoVO trainerVideoVO);
 
 	void trainerVideoDelete(int videoNo);
+
+	TrainerVideoVO trainerVideoDetail(int videoNo);
+
+	int trainerVideoSelectMember(String id);
+
+	int trainerVideoSelectFollowing(Map<String, String> map);
+
+	int trainerVideoSelectMatching(Map<String, String> map);
 
 }

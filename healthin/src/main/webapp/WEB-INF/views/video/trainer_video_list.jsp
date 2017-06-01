@@ -14,6 +14,18 @@
 	href="https://unpkg.com/purecss@0.6.2/build/pure-min.css"
 	integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD"
 	crossorigin="anonymous">
+<script>
+$(document).ready(function(){
+	$("#filterToggle").click(function(){
+		$("#showFilter").toggle("fast");
+		$("#showFilter1").toggle("fast");
+		$("#showFilter2").toggle("fast");
+		$("#showFilter3").toggle("fast");
+		$("#showFilter4").toggle("fast");
+		
+	});
+});
+</script>
 
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
@@ -22,10 +34,22 @@
 			<h1 class="page-header">
 				Trainer Video <small></small>
 			</h1>
+			<div class="col-lg-2" align="center">
 			<ol class="breadcrumb">
-				<li><a class="btn" href="${pageContext.request.contextPath}/filter.do"><strong>FILTER</strong></a></li>
+				<li id="filterToggle"><a class="btn"><strong>FILTER</strong></a></li>
+			</ol>
+			</div>
+			<div class="col-lg-10" align="center">
+			<ol id="showFilter" style="display:none" class="breadcrumb">
+				<li class="active"></li>
+				<li><a class="btn"><strong>조회수순</strong></a></li>
+				<li><a class="btn"><strong>좋아요순</strong></a></li>
+				<li><a class="btn"><strong>최신순</strong></a></li>
+				<li><a class="btn"><strong>공개범위별</strong></a></li>
+				<li><a class="btn"><strong>운동부위별</strong></a></li>
 				<li class="active"></li>
 			</ol>
+			</div>
 		</div>
 	</div>
 	<!-- /.row -->
@@ -41,10 +65,13 @@
 							type="video/mp4">
 					</video>
 				</a>
-				<h3>${lvo.title}</h3>
-				<p>분류 : ${lvo.category}</p>
-				<p>조회수 : ${lvo.hits}</p>
-				<p>${lvo.content}</p>
+				<!-- <div style="background:#F2F2F2"> -->
+				<h3><a>${lvo.title}</a></h3><br>
+				분류 : ${lvo.category}<br>
+				조회수 : ${lvo.hits}<br>
+				좋아요 : ${lvo.likeState}<br>
+				${lvo.content}
+				<!-- </div> -->
 			</div>
 
 		</c:forEach>

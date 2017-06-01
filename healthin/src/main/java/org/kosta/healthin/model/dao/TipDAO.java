@@ -23,5 +23,11 @@ public interface TipDAO {
 
 	void tipWrite(TipBoardVO tvo);
 
+	void tipHitsCount(int no);
+
+	int getTotalTipCommentCount(int no);
+
+	List<VO> getTipCommentList(Map<String, Object> map);
+
 
 }

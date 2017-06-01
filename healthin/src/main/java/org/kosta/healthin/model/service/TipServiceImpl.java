@@ -55,5 +55,22 @@ public class TipServiceImpl implements TipService  {
 	public void tipWrite(TipBoardVO tvo){
 		dao.tipWrite(tvo);
 	}
+	@Override
+	public void tipHitsCount(String no){
+		int NO=Integer.parseInt(no);
+		dao.tipHitsCount(NO);
+	}
+	@Override
+	public ListVO getTipCommentList(String no,String nowpage){
+		int totalContents=dao.getTotalTipCommentCount(Integer.parseInt(no));
+		int nowPage=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+			Map<String, Object> map=new HashMap<String,Object>();
+			map.put("no",Integer.parseInt(no));
+			map.put("startRowNumber", pb.getStartRowNumber());
+			map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO=new ListVO(dao.getTipCommentList(map),pb);
+		return listVO;
+	}
 
 }

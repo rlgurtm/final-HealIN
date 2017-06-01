@@ -15,4 +15,8 @@ public interface TipService {
 
 	void tipWrite(TipBoardVO tvo);
 
+	void tipHitsCount(String no);
+
+	ListVO getTipCommentList(String no, String nowpage);
+
 }

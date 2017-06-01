@@ -46,27 +46,45 @@
 			right: 20px;
 		   
 		}
-		#listBtn{
+		#AllBtn{
 			position:absolute;
 			right: 17%;
 			bottom: 0px;
-			
-		}
-		#deleteBtn{
-			position:absolute;
-			right: 25%;
-			bottom: 0px;
-			
 		}
 	</style>
 	<script type="text/javascript">
+		function getTipCategoryList(page){
+		 		$.ajax({
+						type:"get",
+						url:"${pageContext.request.contextPath}/tipComment.do",
+						data:"no=${tip.no}&nowpage="+page,
+						dataType:"json", 
+						success:function(data){
+								var info="";
+								  for(var i=0;i<data.lvo.length;i++){
+									info+="<table style='width:90%;margin:20px;'>";
+									info+="<tr><th><i class='glyphicon glyphicon-user'></i>&nbsp;";
+									info+=data.lvo[i].id+"</th><td align='right'>";
+									info+=data.lvo[i].date+"</td></tr>";
+									info+="<tr><td colspan='2'>"+data.lvo[i].comment+"</td></tr></table>";
+								}  
+								$("#commentInfo").html(info);
+						}//success
+					});
+			}//function
+	
 	$(document).ready(function(){
+		
+		getTipCategoryList(1);
+		
 		$("#listBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/tip/tip.do";
 		});//click
+		
 		$("#deleteBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/tipBoardDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
 		});//click
+		
 	});//ready
 	</script>
 	
@@ -91,39 +109,31 @@
 				</tr>
 			</tbody>
 		</table>
+		<div id="AllBtn">
 			<c:if test="${mvo.id==tip.memberVO.id }">
 				<button type="button" class="btn" id="deleteBtn">삭제하기</button>
 			</c:if>
 				<button type="button" class="btn" id="listBtn">목록가기</button>
-	</div>
-	<hr>
-		<c:if test="${!empty mvo }">
-		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
-			<table style="width:100%;">
-				<tr>
-					<th><i class="glyphicon glyphicon-user"></i>근육맨</th><td align="right">2017-05-29 22:11</td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;여기는 뭐 얻어갈 정보가 별로 없네요....실망실망 개실망</td>
-				</tr>
-			</table>
+		</div>	
 			
-			<hr>
+	</div>
+	<hr>	
+		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
+			<div id="commentInfo"></div><hr>
 			<form>
 				<table style="width:100%;">
 					<tr>
 						<td colspan="2"><label>댓글</label></td>
 					</tr>
 					<tr>
-						<td>
-						<textarea class="form-control"  rows="3" id="comment" style="width:100%;"></textarea>
+						<td style="width:100%;">
+						<textarea class="form-control"  rows="2" id="comment" ></textarea>
 						</td>
-						<td>
-						<input type="submit" value="등록">
+						<td align="left" style="padding: 5px;">
+						<button type="button" class="btn btn-lg" id="listBtn">등록</button>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		</c:if>
 		<br><br>
