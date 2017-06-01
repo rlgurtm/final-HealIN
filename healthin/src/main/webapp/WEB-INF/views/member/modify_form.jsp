@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
 <meta charset="utf-8">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -121,7 +119,7 @@
 								<dd>
 									<div class="wrap_inp">
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="password1" name="password1"
+										<input type="password" id="password1" name="password1"
 											class="inp_info pw" value="${sessionScope.mvo.password }"
 											maxlength="32"> <span class="mark_valid"
 											style="display: none;">불가</span>
@@ -135,7 +133,7 @@
 								<dd>
 									<div class="wrap_inp">
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="password2" name="password2"
+										<input type="password" id="password2" name="password2"
 											class="inp_info pw" value="${sessionScope.mvo.password }"
 											maxlength="32"> <span class="mark_valid"
 											style="display: none;">불일치</span>
@@ -257,10 +255,11 @@
 								</dt>
 								<dd>
 									<div class="wrap_inp">
-										<label for="name" class="txt_placeholder ">상세경력</label>
+										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="career" name="career" class="inp_info"
-											value="" maxlength="30">${tvo  } <span class="mark_valid"><span
+									     ${tvo  } 
+										<textarea class="inp_info"  rows="5" id="career" name="career" required="required"></textarea>
+											<span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
@@ -353,5 +352,4 @@
 		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
 
 </body>
-</html>
 

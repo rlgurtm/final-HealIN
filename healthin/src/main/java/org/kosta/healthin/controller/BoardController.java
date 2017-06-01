@@ -65,7 +65,8 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+		System.out.println(tvo);
+		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
 		String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();

@@ -47,6 +47,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public void modify(MemberVO vo) {
 		sqlSessionTemplate.update("member.modify", vo);
 	}
+	
+	@Override
+	public MemberVO modifyStudent(MemberVO vo) {
+		int result= sqlSessionTemplate.update("member.modifyStudent", vo);
+		return vo;
+	}
 
 	@Override
 	public MemberVO modifyTrainer(TrainerVO tvo) {
@@ -54,10 +60,5 @@ public class MemberDAOImpl implements MemberDAO {
 		return tvo;
 	}
 
-	@Override
-	public MemberVO modifyStudent(MemberVO vo) {
-		int result= sqlSessionTemplate.update("member.modifyStudent", vo);
-		return vo;
-	}
 	
 }
