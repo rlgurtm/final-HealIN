@@ -65,5 +65,9 @@ public class TipDAOImpl implements TipDAO {
 	public void tipCommentDelete(int no){
 		template.delete("tip.tipCommentDelete",no);
 	}
+	@Override
+	public void tipUpdate(TipBoardVO tvo){
+		template.update("tip.tipUpdate",tvo);
+	}
 
 }

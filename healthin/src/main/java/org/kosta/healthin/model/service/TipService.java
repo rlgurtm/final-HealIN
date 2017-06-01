@@ -24,4 +24,6 @@ public interface TipService {
 
 	void tipCommentDelete(String no);
 
+	void tipBoardUpdate(TipBoardVO tvo);
+
 }
