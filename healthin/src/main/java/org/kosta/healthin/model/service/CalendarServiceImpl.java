@@ -39,7 +39,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    }
 	    for (int i=0; i<dateList.size(); i++) {
 	    	eventObject = new HashMap<String, Object>();
-	    	eventObject.put("title", "총섭취량 : " + calorieList.get(i));
+	    	eventObject.put("title", "총섭취량 : " + calorieList.get(i) + "Kcal");
 	    	eventObject.put("start", dateList.get(i));
 	    	eventObject.put("url", "intake_calorie.do?id=" + id + "&date=" + dateList.get(i));
 	    	intakeList.add(eventObject);
@@ -71,7 +71,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    }
 	    for (int i=0; i<dateList.size(); i++) {
 	    	eventObject = new HashMap<String, Object>();
-	    	eventObject.put("title", "총소비량 : " + calorieList.get(i));
+	    	eventObject.put("title", "총소비량 : " + calorieList.get(i) + "Kcal");
 	    	eventObject.put("start", dateList.get(i));
 	    	eventObject.put("url", "consumption_calorie.do?date=" + dateList.get(i));
 	    	consumptionList.add(eventObject);

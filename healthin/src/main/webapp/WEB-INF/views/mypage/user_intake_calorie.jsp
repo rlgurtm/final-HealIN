@@ -42,12 +42,15 @@
 		</c:choose>
 		
 		<br><br>
-		<div align="right"><h5>섭취한 음식 [${requestScope.date}]</h5></div>
+		<div align="left"><h5>▶ 섭취한 음식 [${requestScope.date}]</h5></div>
 		
 		<table class="table table-hover">
 			<tbody align="center">
 				<tr class="info" style='font-weight:bold;'>
-					<td>음식명</td><td>칼로리</td><td>수량</td><td>총 칼로리</td>
+					<td>음식명</td><td>칼로리</td><td>수량</td>
+					<td>
+						총 칼로리
+					</td>
 				</tr>
 				<c:forEach items="${requestScope.foodList }" var="food">
 					<tr>
@@ -57,13 +60,11 @@
 						<td>${food.totalCalorie}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="4" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : ${requestScope.totalCalorie} Kcal</td>
+				</tr>
 			</tbody>
 		</table>
-		<div>
-			총 먹은 양 : 
-		</div>
-			
-		<hr>
 		
 		<!-- 먹은 음식 입력 -->
 		<form>

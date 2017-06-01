@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kosta.healthin.model.dao.CalendarDAO;
 import org.kosta.healthin.model.service.CalendarService;
 import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CalendarController {
 	@Resource
 	private CalendarService calendarService;
+	@Resource
+	private CalendarDAO calendarDAO;
 	
 	@RequestMapping(value="user_calendar.do", produces = "application/json")
 	public String userCalendar(Model model, HttpServletRequest request) {
@@ -52,8 +55,10 @@ public class CalendarController {
 		map.put("date", date);
 		
 		List<VO> foodList = calendarService.getAllIntakeFood(map);
+		int totalCalorie = calendarDAO.getTotalIntakeCalorieOfDay(map);
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("date", date);
+		model.addAttribute("totalCalorie", totalCalorie);
 		return "mypage/user_intake_calorie.tiles";
 	}
 	
