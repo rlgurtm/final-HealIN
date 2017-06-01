@@ -80,8 +80,9 @@ public  class MemberController {
 	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,String id,String password) {
+		System.out.println(memberService.login(id,password));
 		if(memberService.login(id,password) == null){
-			return "member/login_fail.do";
+			return "member/login_fail";
 		}else{
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", memberService.login(id,password));

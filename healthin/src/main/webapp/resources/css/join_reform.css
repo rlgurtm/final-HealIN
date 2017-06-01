@@ -308,6 +308,10 @@ address, caption, cite, code, dfn, em, var {
 	letter-spacing: 0
 }
 
+.btn_type2.disabled {
+	background: #999
+}
+
 .btn_type2:hover {
 	background: #f8f8f8
 }
@@ -338,7 +342,7 @@ address, caption, cite, code, dfn, em, var {
 	color: #767676
 }
 
-.link_daum {
+.link_helthin {
 	color: #767676;
 	letter-spacing: 0
 }
