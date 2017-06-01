@@ -67,9 +67,11 @@ public class BoardController {
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
 			//송희
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			//지선
 			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
