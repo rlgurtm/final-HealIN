@@ -517,10 +517,10 @@
 						<!-- 전체 동의 체크 후 .disabled 제거 -->
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=n"
-							 id="userBtn" class="btn_comm btn_type2 disabled">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="userBtn" class="btn_comm btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=y"
-							 id="trainerBtn" class="btn_comm btn_type2 disabled">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="trainerBtn" class="btn_comm btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
 					</div>
 				</fieldset>
 		</div>
