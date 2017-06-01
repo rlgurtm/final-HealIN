@@ -55,10 +55,11 @@
 			<div class="wrap_tit">
 				<h3 class="tit_join">가입 정보 입력</h3>
 				<div class="txt_desc">로그인 정보 및 가입 정보를 입력하세요.</div>
-			</div> 
+			</div>
 			<form
 				action="${pageContext.request.contextPath}/register_step3.do?type=${param.type}"
-				method="post" enctype="multipart/form-data" id="joinInput" name="joinInput">
+				method="post" enctype="multipart/form-data" id="joinInput"
+				name="joinInput">
 				<fieldset class="fld_comm">
 					<legend class="screen_out">가입 정보</legend>
 					<div class="wrap_info">
@@ -280,15 +281,20 @@
 									<label for="inpNmae" class="lab_info">근무지 위치</label>
 								</dt>
 								<dd>
-									<div class="wrap_inp">
-										<label for="name" class="txt_placeholder "></label>
-										<!-- 텍스트 입력 시 .screen_out  -->
-										<input type="text" id="location" name="location"
-											class="inp_info" value="" maxlength="30"
-											placeholder="서초구/강남구/,,," required="required"> <span
-											class="mark_valid"><span class="ico_join ico_valid"></span><span
-											class="screen_out">유효</span></span>
-									</div>
+									<select id="location" name="location" required="required">
+										<option value="강남구">강남구</option>
+										<option value="노원구">노원구</option>
+										<option value="서초구">서초구</option>
+										<option value="용산구">용산구</option>
+										<option value="은평구">은평구</option>
+										<option value="성남시">성남시</option>
+										<option value="안양시">안양시</option>
+										<option value="양평군">양평군</option>
+										<option value="용인시">용인시</option>
+										<option value="의정부시">의정부시</option>
+									</select>
+
+
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
 							</dl>

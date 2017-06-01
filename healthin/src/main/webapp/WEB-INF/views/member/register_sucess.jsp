@@ -78,13 +78,13 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="https://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js /jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
     var _tiq = 'undefined' !== typeof _tiq ? _tiq : [];
     _tiq.push(['__trackPageview']);
     (function(d) {
         var se = d.createElement('script'); se.type = 'text/javascript'; se.async = true;
-        se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
+        se.src = location.protocol + '${pageContext.request.contextPath}/resources/js/td.min.js';
         var s = d.getElementsByTagName('head')[0]; s.appendChild(se);
     })(document);
 

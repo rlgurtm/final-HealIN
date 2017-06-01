@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.VO;
@@ -26,7 +27,6 @@ public class TipDAOImpl implements TipDAO {
 	}
 	@Override
 	public List<VO> tipBoardCategoryList(Map<String, Object> map){
-		System.out.println(map.get("category"));
 		return template.selectList("tip.tipBoardCategoryList",map);
 	}
 	@Override
@@ -57,7 +57,17 @@ public class TipDAOImpl implements TipDAO {
 	public int getTotalTipCommentCount(int no){
 		return template.selectOne("tip.getTotalTipCommentCount",no);
 	}
-	
-
+	@Override
+	public void tipCommentWrite(CommentVO cvo){
+		template.insert("tip.tipCommentWrite",cvo);
+	}
+	@Override
+	public void tipCommentDelete(int no){
+		template.delete("tip.tipCommentDelete",no);
+	}
+	@Override
+	public void tipUpdate(TipBoardVO tvo){
+		template.update("tip.tipUpdate",tvo);
+	}
 
 }

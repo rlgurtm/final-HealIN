@@ -47,4 +47,9 @@ public class TrainerServiceImpl implements TrainerService {
 		return dao.trainerDetail(trainerId);
 	}
 
+	@Override
+	public int trainerfollowingCount(String trainerId) {
+		return dao.trainerfollowingCount(trainerId);
+	}
+
 }

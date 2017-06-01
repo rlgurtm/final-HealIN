@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
@@ -47,6 +48,12 @@ public class BoardController {
 		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
 		return "tip/tip_content.tiles";
 	}
+	@RequestMapping("tip/NO_Hits_tip_content.do")
+	public String getTipHitsBoardContent(String no,Model model){
+		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
+		return "tip/tip_content.tiles";
+	}
+	
 	@RequestMapping("tipBoardDelete.do")
 	public String tipboardDelete(String no,String id){
 		tipService.tipBoardDelete(no, id);
@@ -58,19 +65,32 @@ public class BoardController {
 	}
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
-		uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
-		MultipartFile file = uploadFile;
-		UUID uuid = UUID.randomUUID();
-		String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
-		try {
-				file.transferTo(new File(uploadPath+File));
-				tvo.setattachedFile(File);
-				tipService.tipWrite(tvo);
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}	
-	
-		return "redirect:/tip/tip_content.do?no="+tvo.getNo();
+		if(!uploadFile.isEmpty()){
+			//송희
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					tipService.tipWrite(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		}else{
+			tvo.setattachedFile("");
+			tipService.tipWrite(tvo);
+		}
+		return "redirect:/tip/NO_Hits_tip_content.do?no="+tvo.getNo();
+	}
+	@RequestMapping("fileDownload.do")
+	public String fileDownload(String fileName){
+		return "downloadView";
 	}
 	@RequestMapping("tipComment.do")
 	@ResponseBody
@@ -78,6 +98,26 @@ public class BoardController {
 		if(nowpage==null)
 			nowpage="1";
 		return tipService.getTipCommentList(no, nowpage);
+	}
+	@RequestMapping("tipCommentWrite.do")
+	public String tipCommentWrite(CommentVO cvo){
+				tipService.tipCommentWrite(cvo);
+		return "redirect:/tip/tip_content.do?no="+cvo.getBoardNo();
+	}
+	@RequestMapping("tipCommentDelete.do")
+	public String tipCommentDelete(String no,String bno){
+			tipService.tipCommentDelete(no);
+		return "redirect:/tip/tip_content.do?no="+bno;
+	}
+	@RequestMapping("tip/updateForm.do")
+	public String tipUpdateForm(String no,Model model){
+		model.addAttribute("tip", tipService.getTipBoardDetailContent(no));
+		return "tip/updateForm.tiles";
+	}
+	@RequestMapping("tipBoardUpdate.do")
+	public String tipBoardUpdate(TipBoardVO tvo){
+		tipService.tipBoardUpdate(tvo);
+		return "redirect:/tip/NO_Hits_tip_content.do?no="+tvo.getNo();
 	}
 	@RequestMapping("trainer/trainerList.do")
 	public String gettrainerList(Model model,String pageNo){
@@ -98,7 +138,9 @@ public class BoardController {
 	@RequestMapping("trainer/trainerDetail.do")
 	public String trainerDetail(Model model,String trainerId){
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
-		model.addAttribute("list",vo);
+		int count =trainerService.trainerfollowingCount(trainerId);
+		vo.setCount(count);
+		model.addAttribute("tvo",vo);
 		return "trainer/trainerDetail.tiles";
 	}
 }

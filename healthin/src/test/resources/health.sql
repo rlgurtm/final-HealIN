@@ -104,6 +104,7 @@ trainer_id varchar2(100) primary key
 
 
 
+<<<<<<< HEAD
 -- 회원정보 수정
 update health_member set
 password= '1234',
@@ -138,6 +139,8 @@ trainer_id varchar2(100) primary key
 select * from health_member
 select * from trainer
 		
+=======
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
 select * from health_member
 select * from trainer
 		
@@ -362,6 +365,7 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT field_pk primary key(filed_name, id),
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
+<<<<<<< HEAD
 )
 
 
@@ -517,3 +521,6 @@ select * from health_user;
 select * from trainer;
 
 update trainer set trainer_photo='healthboy.jpg'
+=======
+)
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git

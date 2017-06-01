@@ -1,5 +1,6 @@
 package org.kosta.healthin.model.service;
 
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 
@@ -18,5 +19,11 @@ public interface TipService {
 	void tipHitsCount(String no);
 
 	ListVO getTipCommentList(String no, String nowpage);
+
+	void tipCommentWrite(CommentVO cvo);
+
+	void tipCommentDelete(String no);
+
+	void tipBoardUpdate(TipBoardVO tvo);
 
 }

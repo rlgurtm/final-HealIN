@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.MemberDAO;
+import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,7 +36,9 @@ public class Test {
 //		System.out.println(tvo);
 //		memberDAO.registerStep3(tvo);
 //		System.out.println("일반회원가입 OKAY");
-		System.out.println("트레이너 회원가입 OKAY");
+		
+		System.out.println("트레이너 정보찾기 OKAY");
+		System.out.println(memberDAO.trainerInfo("java"));
 		
 	}
 

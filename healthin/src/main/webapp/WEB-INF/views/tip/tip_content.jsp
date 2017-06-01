@@ -2,56 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-		.container{
-			position: relative;
-		}
-		table.content {
-		    border-collapse: separate;
-		    border-spacing: 1px;
-		    text-align: left;
-		    line-height: 1.5;
-		    border-top: 1px solid #ccc;
-		    margin : 50px 10px;
-		    width:500px;
-		    
-		}
-		table.content th {
-		    width: 150px;
-		    padding: 10px;
-		    font-weight: bold;
-		    vertical-align: top;
-		    border-bottom: 1px solid #ccc;
-		}
-		table.content td {
-		    width: 350px;
-		    padding: 10px;
-		    vertical-align: top;
-		    border-bottom: 1px solid #ccc;
-		}
-		 .content tbody pre {
-		 	position:relative;
-			background-color:#E6E6E6;
-			height: 500px;
-			padding: 30px;
-			padding-top: 60px;
-			width: 800px;
-			margin-top: 10px;
-			line-height:2em
-		   
-		}
-		#attechedFile {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-		   
-		}
-		#AllBtn{
-			position:absolute;
-			right: 17%;
-			bottom: 0px;
-		}
-	</style>
 	<script type="text/javascript">
 		function getTipCategoryList(page){
 		 		$.ajax({
@@ -64,9 +14,15 @@
 								  for(var i=0;i<data.lvo.length;i++){
 									info+="<table style='width:90%;margin:20px;'>";
 									info+="<tr><th><i class='glyphicon glyphicon-user'></i>&nbsp;";
-									info+=data.lvo[i].id+"</th><td align='right'>";
-									info+=data.lvo[i].date+"</td></tr>";
-									info+="<tr><td colspan='2'>"+data.lvo[i].comment+"</td></tr></table>";
+									info+=data.lvo[i].id+"</th>";
+									info+="<td align='right'>"+data.lvo[i].date+"&nbsp;&nbsp;";
+								if(data.lvo[i].id=="${mvo.id}"){
+									info+="<a href='${pageContext.request.contextPath}/tipCommentDelete.do?no=";
+									info+=data.lvo[i].commentNo+"&bno="+data.lvo[i].boardNo+"'>";
+									info+="<span class='glyphicon glyphicon-trash'></span></a>";
+								}
+									info+="</td></tr><tr><td colspan='2'><pre>";
+									info+=data.lvo[i].comment+"</pre></td></tr></table>";
 								}  
 								$("#commentInfo").html(info);
 						}//success
@@ -85,12 +41,15 @@
 			location.href="${pageContext.request.contextPath}/tipBoardDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
 		});//click
 		
+		$("#updateBtn").click(function(){
+			location.href="${pageContext.request.contextPath}/tip/updateForm.do?no=${tip.no }";
+		});//click
 	});//ready
 	</script>
 	
 	
 	<div class="container">
-		<table class="content " style="margin-left: auto; margin-right: auto;">
+		<table class="content ">
 			<thead>
 				<tr>
 					<th>제목</th><td colspan="5">${tip.title }</td>
@@ -104,13 +63,18 @@
 			<tbody>
 				<tr>
 					<td colspan="6"><pre style="white-space: pre-wrap;">${tip.content }
-						<span id="attechedFile"><a href="#">첨부파일</a></span></pre>
+						<c:if test="${tip.attachedFile!=null}">
+							<a id="attechedFile" href="${pageContext.request.contextPath }/fileDownload.do?
+							fileName=${tip.attachedFile }">첨부파일</a>
+						</c:if>
+						</pre>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div id="AllBtn">
 			<c:if test="${mvo.id==tip.memberVO.id }">
+				<button type="button" class="btn" id="updateBtn">수정하기</button>
 				<button type="button" class="btn" id="deleteBtn">삭제하기</button>
 			</c:if>
 				<button type="button" class="btn" id="listBtn">목록가기</button>
@@ -120,17 +84,19 @@
 	<hr>	
 		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
 			<div id="commentInfo"></div><hr>
-			<form>
+			<form action="${pageContext.request.contextPath}/tipCommentWrite.do" method="post">
 				<table style="width:100%;">
 					<tr>
 						<td colspan="2"><label>댓글</label></td>
 					</tr>
 					<tr>
 						<td style="width:100%;">
-						<textarea class="form-control"  rows="2" id="comment" ></textarea>
+						<textarea class="form-control"  rows="2" id="comment" name="comment" required="required"></textarea>
 						</td>
 						<td align="left" style="padding: 5px;">
-						<button type="button" class="btn btn-lg" id="listBtn">등록</button>
+						<input type="submit" class="btn btn-lg" value="등록">
+						<input type="hidden" name="boardNo" value="${tip.no }">
+						<input type="hidden" name="id" value="${mvo.id }">
 						</td>
 					</tr>
 				</table>
