@@ -59,17 +59,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="getTipCommentList" parameterType="map" resultMap="commentRM">
 		select h.comment_no,h.board_no,h.health_comment,h.posted_date,h.id
-		from (select row_number() over(order by comment_no desc) rnum,comment_no,board_no,
+		from (select row_number() over(order by comment_no asc) rnum,comment_no,board_no,
 		health_comment,to_char(posted_date,'YYYY-MM-DD HH:MM')as posted_date,id from health_comment where board_no=#{no} ) h 
 		where rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	<select id="getTotalTipCommentCount" parameterType="int" resultType="int">
 		select count(*) from health_comment where board_no=#{value}
 	</select>
+	<insert id="tipCommentWrite" parameterType="commentVO">
+		<selectKey keyProperty="commentNo" resultType="int" order="BEFORE">
+			select comment_no_seq.nextval from dual
+		</selectKey> 
+		insert into health_comment
+		values(#{commentNo},#{boardNo},#{comment},sysdate,#{id})
+	</insert>
+	<delete id="tipCommentDelete">
+		delete from health_comment where comment_no=#{value}
+	</delete>
 </mapper>
- 
 
- 
  
  
  

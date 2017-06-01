@@ -274,13 +274,13 @@ address, caption, cite, code, dfn, em, var {
 	margin: 0 auto;
 	border-radius: 5px;
 	background: #4d87ef;
-	color: #fff;
+	color: #000;
 	text-align: center;
 	-webkit-appearance: none
 }
 
 .btn_comm:hover {
-	background: #447de2
+	background: #c0c0c0
 }
 
 .btn_type1 {
@@ -300,7 +300,7 @@ address, caption, cite, code, dfn, em, var {
 	height: 27px;
 	margin: 30px 5px 0;
 	padding: 0 35px 0 20px;
-	border: 1px solid #b4b4b4;
+	border: 1px solid #ffffff;
 	border-radius: 27px;
 	font-family: '돋움', doutm, 'Apple SD Gothic Neo', 'sans-serif';
 	font-size: 12px;
@@ -338,7 +338,7 @@ address, caption, cite, code, dfn, em, var {
 	color: #767676
 }
 
-.link_daum {
+.link_helthin {
 	color: #767676;
 	letter-spacing: 0
 }

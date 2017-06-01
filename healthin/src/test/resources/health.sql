@@ -374,19 +374,19 @@ values('치킨', 400, '치킨');
 
 insert into health_member 
 values('swimmingguy','1234','수영남1','수영남','19890902','male','양평군 양평읍 군청앞길','01000000010','swimmingguy@naver.com','trainer','N')
-insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','swimmingguy1.png')
+insert into trainer  values('swimmingguy','양평군 belly fitness 수영강사 5년',0,'양평군','healthboy.jpg')
 
 insert into health_member 
 values('swimmingguy2','1234','수영남2','수영남이','19870902','male','서울특별시 용산구 용산동1가 8','01000000100','swimmingguy2@naver.com','trainer','N')
-insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','swimmingguy2.png')
+insert into trainer  values('swimmingguy2','용산구 swim gim 수영강사 7년',0,'용산구','healthboy.jpg')
 
 insert into health_member 
 values('swimminggirl','1234','수영녀','수영녀','19900101','male','경기도 용인시 수지구 동천동 240','01000001000','swimminggirl@naver.com','trainer','N')
-insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','swimminggirl.png')
+insert into trainer  values('swimminggirl','용인시 swimminggirl 수영강사 4년',0,'용인시','healthboy.jpg')
 
 insert into health_member 
 values('healthman6','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N')
-insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy2.png')
+insert into trainer  values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','healthboy.jpg')
 
 select * from TRAINER
 -- intake_member 테스트 db
@@ -422,4 +422,8 @@ values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
 
 select * from food
+select * from health_member;
+select * from health_user;
+select * from trainer;
 
+update trainer set trainer_photo='healthboy.jpg'
