@@ -12,6 +12,7 @@ public interface MemberDAO {
 
 	void modify(MemberVO vo);
 	MemberVO modifyStudent(MemberVO vo);
+	TrainerVO trainerInfo(String id);
 	MemberVO modifyTrainer(TrainerVO tvo);
 
 }

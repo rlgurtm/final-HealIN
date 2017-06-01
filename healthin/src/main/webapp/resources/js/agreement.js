@@ -86,3 +86,4 @@ $(".link_back").click(function() {
 	}
 	location.href = decodeURIComponent(prev);
 });
+
