@@ -422,5 +422,8 @@ values(physical_no_seq.nextval,'185','100',sysdate,'spring')
 
 
 select * from food
+select * from health_member;
+select * from health_user;
+select * from trainer;
 
 update trainer set trainer_photo='healthboy.jpg'
