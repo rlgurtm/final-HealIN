@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.TipDAO;
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
@@ -71,6 +72,14 @@ public class TipServiceImpl implements TipService  {
 			map.put("endRowNumber", pb.getEndRowNumber());
 		ListVO listVO=new ListVO(dao.getTipCommentList(map),pb);
 		return listVO;
+	}
+	@Override
+	public void tipCommentWrite(CommentVO cvo){
+		dao.tipCommentWrite(cvo);
+	}
+	@Override
+	public void tipCommentDelete(String no){
+		dao.tipCommentDelete(Integer.parseInt(no));
 	}
 
 }
