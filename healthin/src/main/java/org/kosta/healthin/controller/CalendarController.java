@@ -2,11 +2,13 @@ package org.kosta.healthin.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.healthin.model.service.CalendarService;
+import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,11 +43,30 @@ public class CalendarController {
 		return eventList;
 	}
 	
-	@RequestMapping("update_calendar.do")
+	@RequestMapping("intake_calorie.do")
+	public String intakeCalorie(Model model, HttpServletRequest request) {
+		String date = request.getParameter("date");
+		String id = request.getParameter("id");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("date", date);
+		
+		List<VO> foodList = calendarService.getAllIntakeFood(map);
+		model.addAttribute("foodList", foodList);
+		model.addAttribute("date", date);
+		return "mypage/user_intake_calorie.tiles";
+	}
+	
+	@RequestMapping("consumption_calorie.do")
+	public String consumptionCalorie(Model model, HttpServletRequest request) {
+		return "mypage/user_consumption_calorie.tiles";
+	}
+	
+	/*@RequestMapping("update_calendar.do")
 	public String updateCalendar(Model model, HttpServletRequest request) {
 		String type = request.getParameter("type");
 		System.out.println(request.getParameter("param"));
 		System.out.println(type);
 		return "reply";
-	}
+	}*/
 }

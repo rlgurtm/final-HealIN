@@ -82,63 +82,7 @@
 		            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
 		        });
 		    }, */
-			events: '${pageContext.request.contextPath}/ajaxCalendar.do?id=${sessionScope.mvo.id}' /* [
-				{
-					title: '${requestScope.jsonList[0].title}',
-					start: '2017-05-01',
-					url: '${pageContext.request.contextPath}/mypage/ajaxCalendar.do'
-				},
-				{
-					title: 'Long Event',
-					start: '2017-05-07',
-					end: '2017-05-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-05-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-05-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2017-05-11',
-					end: '2017-05-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-05-12T10:30:00',
-					end: '2017-05-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2017-05-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-05-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2017-05-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2017-05-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2017-05-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2017-05-28'
-				}
-			] */,
+			events: '${pageContext.request.contextPath}/ajaxCalendar.do?id=${sessionScope.mvo.id}'
 			/* eventClick: function(event) {
 		        if (event.url) {
 		        	window.open("", "", "width=200,height=100");
@@ -154,17 +98,9 @@
         	$(".active").removeClass("active");
         	$(this).addClass("active");
         });
-    
     });
 </script>
 <style>
-	/* body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	} */
-
 	#calendar {
 		max-width: 900px;
 		margin: 0 auto;
@@ -178,17 +114,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">My Page
-                    <small>My Page</small>
+                    <small>My Calendar</small>
                 </h1>
             </div>
         </div>
         <!-- /.row -->
 		
 		<c:choose>
-			<c:when test="${sessionScope.mvo.istrainer == 'user' }">
+			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
-					<li class="menu active"><a href="${pageContext.request.contextPath}/mypage/user_calendar.do">캘린더</a></li>
-					<li class="menu"><a href="${pageContext.request.contextPath}/mypage/user_health_check.do">기간 별 건강 변화 체크</a></li>
+					<li class="menu active"><a href="${pageContext.request.contextPath}/user_calendar.do">캘린더</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 건강 변화 체크</a></li>
 					<li class="menu"><a href="#">비만도 측정</a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 동영상</a></li>
@@ -196,7 +132,7 @@
 					<li class="menu"><a href="#">나의 PT 강사</a></li>
 				</ul>
 			</c:when>
-			<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
+			<c:when test="${sessionScope.mvo.istrainer == 'trainer'}">
 				<ul class="nav nav-tabs">
 					<li class="menu active"><a href="#">팔로워 관리</a></li>
 					<li class="menu"><a href="#">PT 결제 현황</a></li>
