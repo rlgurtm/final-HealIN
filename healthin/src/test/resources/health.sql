@@ -227,7 +227,6 @@ create table trainer_rate(
 );
 
 
-
 -- 강사 동영상
 drop table trainer_video
 create sequence video_no_seq;
@@ -281,4 +280,3 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 );
-
