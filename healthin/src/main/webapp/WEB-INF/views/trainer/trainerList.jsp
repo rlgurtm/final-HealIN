@@ -15,6 +15,9 @@ $(document).ready(function(){
 		 		order=$("#order").val();
 		 		trainerListOrder($(this).val());
 		});//on
+	$(".more").click(function(){
+		alert("로그인한 사용자만 확인할수 있는 정보입니다.");
+	});
 });
 	
 	function trainerListOrder(page){
@@ -33,10 +36,13 @@ $(document).ready(function(){
  					info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
  					info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
  					info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
+ 					info+="<c:choose><c:when test='${mvo.id!=null}'>";
  					info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
  					info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
  	               	info+="<input type='submit' value='강사정보 더보기'></form>";
- 		               info+="</div></div><hr>";
+ 	               	info+="</c:when><c:otherwise>";
+ 	               	info+="<input type='button' value='강사정보 더보기' class='more'>";
+ 		            info+="</c:otherwise></c:choose></div></div><hr>";
  				}
 				$("#trainerArea").html(info);
 				var pre=data.pb.startPageOfPageGroup-1;
@@ -107,10 +113,17 @@ $(document).ready(function(){
                 <h3>이름 : ${t.membervo.name}</h3>
                 <h4>지역 : ${t.location}</h4>
                 <p>경력사항 : ${t.career}</p>
+                <c:choose>
+                <c:when test="${mvo.id!=null}">
                 <form action="${pageContext.request.contextPath}/trainer/trainerDetail.do" method="post">
                 	<input type="hidden" value="${t.membervo.id}" name="trainerId">
                 	<input type="submit" value="강사정보 더보기">
                 </form>
+                </c:when>
+                <c:otherwise>
+                	<input type="button" value="강사정보 더보기" class="more">
+                </c:otherwise>
+                </c:choose>
             </div>
         </div>
         <hr>

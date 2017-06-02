@@ -53,6 +53,18 @@ public class MemberServiceImpl implements MemberService {
 		return tvo;
 	}
 
+	@Override
+	public String findById(String id) {
+		String result = memberDAO.findById(id) ;
+		return result ;
+	}
+
+	@Override
+	public String findByNickname(String nickname) {
+		String result = memberDAO.findByNickname(nickname) ;
+		return result ;
+	}
+
 	
 
 }

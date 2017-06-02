@@ -12,7 +12,9 @@ import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
@@ -74,6 +76,24 @@ public class MemberController {
 		return "redirect:member/register_sucess.do";
 	}
 
+	@ResponseBody
+	@RequestMapping("findById.do")
+	public String findById(String id) {
+		String result= memberService.findById(id);
+		System.out.println("아이디"+id);
+		System.out.println("result"+result);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("findByNickname.do")
+	public String findByNickname(String nickname) {
+		String result= memberService.findByNickname(nickname);
+		System.out.println("닉네임"+nickname);
+		System.out.println("result"+result);
+		return result;
+	}
+	
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		return "member/login_form";

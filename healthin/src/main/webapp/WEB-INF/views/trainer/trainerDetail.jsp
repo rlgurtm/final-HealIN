@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <script type="text/javascript">
 $(document).ready(function(){
+	$.ajax({
+		type:"get",
+		url:"${pageContext.request.contextPath}/followingview.do",
+		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
+		success:function(data){
+			//alert(data);
+		}
+	});
 	$(".hearty").click(function(){
 		alert($("#trainerId").val());
 	});
@@ -44,7 +52,8 @@ $(document).ready(function(){
 			</tr>
 			
 			<tr>
-			<th>팔로잉</th><td><div class="hearty" style="cursor:pointer;"></div></td>
+			<th>팔로잉</th>
+			<td id="imgtd"></td>
 			</tr>
 			<tr>
 			<th colspan="2">팔로워 :  ${tvo.count}</th><th></tr>
