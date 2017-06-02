@@ -143,4 +143,12 @@ public class BoardController {
 		model.addAttribute("tvo",vo);
 		return "trainer/trainerDetail.tiles";
 	}
+	@RequestMapping("followingview.do")
+	@ResponseBody
+	public String followingview(String memId,String trainerId){
+		int count=trainerService.followingViewCount(memId);
+		String flag="N";
+			
+		return flag;
+	}
 }
