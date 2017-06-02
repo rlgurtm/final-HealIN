@@ -52,7 +52,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
 
 </head>
-<body margin="">
+<body>
 	<div class="header2">
 		<tiles:insertAttribute name="header" />
 	</div>

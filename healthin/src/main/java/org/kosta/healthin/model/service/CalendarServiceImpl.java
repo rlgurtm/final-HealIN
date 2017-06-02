@@ -41,7 +41,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    	eventObject = new HashMap<String, Object>();
 	    	eventObject.put("title", "총섭취량 : " + calorieList.get(i) + "Kcal");
 	    	eventObject.put("start", dateList.get(i));
-	    	eventObject.put("url", "intake_calorie.do?id=" + id + "&date=" + dateList.get(i));
+	    	eventObject.put("url", "intakeCalorie.do?id=" + id + "&date=" + dateList.get(i));
 	    	intakeList.add(eventObject);
 	    }
 		return intakeList;
@@ -73,7 +73,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    	eventObject = new HashMap<String, Object>();
 	    	eventObject.put("title", "총소비량 : " + calorieList.get(i) + "Kcal");
 	    	eventObject.put("start", dateList.get(i));
-	    	eventObject.put("url", "consumption_calorie.do?date=" + dateList.get(i));
+	    	eventObject.put("url", "consumptionCalorie.do?date=" + dateList.get(i));
 	    	consumptionList.add(eventObject);
 	    }
 		return consumptionList;
@@ -83,4 +83,29 @@ public class CalendarServiceImpl implements CalendarService {
 	public List<VO> getAllIntakeFood(HashMap<String, String> map) {
 		return calendarDAO.getAllIntakeFood(map);
 	}
+
+	@Override
+	public List<String> getAllFoodCategory() {
+		return calendarDAO.getAllFoodCategory();
+	}
+
+	@Override
+	public void deleteFood(int intakeNo) {
+		calendarDAO.deleteFood(intakeNo);
+	}
+
+	@Override
+	public List<String> getFoodsByCategory(String foodCategory) {
+		return calendarDAO.getFoodsByCategory(foodCategory);
+	}
+
+	@Override
+	public void insertFood(HashMap<String, Object> map) {
+		calendarDAO.insertFood(map);
+	}
+
+//	@Override
+//	public void updateFood(int intakeNo) {
+//		calendarDAO.updateFood(intakeNo);
+//	}
 }
