@@ -12,8 +12,8 @@ $(document).ready(function(){
     $(".pagination").on("click", "li", function(){
 		$(".pagination .active").removeClass("active");
 		 		$(this).addClass("active"); 
-				category=$(".nav-tabs .active").text();
-				getTipCategoryList($(this).val());
+		 		order=$("#order").val();
+		 		trainerListOrder($(this).val());
 		});//on
 });
 	
@@ -55,7 +55,7 @@ $(document).ready(function(){
 					 paging+="<li class='next' value="+next+"><a>next</a><li>";
 				 $(".pagination").html(paging);
  			}//success
-			});//ajax
+		});//ajax
 	}//function
 </script>
 <div class="container">
