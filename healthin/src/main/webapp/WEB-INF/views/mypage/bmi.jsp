@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,19 +16,15 @@ table, th, td {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript">
+  /* function bmi(){
+  		alert('test');
+  location.href="bmi_list.do";
+  }  */
   $(document).ready(function(){
 	  $("#bmi_Test").click(function(){
-		  var bmi_height=$("input[name=bmi_height]").attr("value");
-		  var bmi_weight=$("input[name=bmi_weight]").attr("value");
-		  alert("측정되었습니다.");
-		  
 		  location.href="bmi_list.do";
 	  });
   });
-  	/* function bmi_list(){
-  		//alert('test');
-  		location.href="bmi_list.do";
-  	} */
   </script>
 </head>
 <body>
@@ -46,7 +43,6 @@ table, th, td {
       <tr class="active">
         <td>체중<input type="text" id="weight" name="weight">(kg)</td>
       </tr>
-       
       <tr class="info">
         <td>User ID(보여주기?)</td>
       <tr class="">
