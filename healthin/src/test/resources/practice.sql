@@ -61,9 +61,9 @@ values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'�
 
 --trainer_video
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'분류1','healthboy',0);
+values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'팔','healthboy',0);
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'분류1','healthboy',0);
+values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'팔','healthboy',0);
 
 
 -- tipandqna 삽입

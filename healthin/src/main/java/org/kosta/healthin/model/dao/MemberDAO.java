@@ -14,5 +14,7 @@ public interface MemberDAO {
 	MemberVO modifyStudent(MemberVO vo);
 	TrainerVO trainerInfo(String id);
 	MemberVO modifyTrainer(TrainerVO tvo);
+	String findById(String id);
+	String findByNickname(String nickname);
 
 }
