@@ -143,4 +143,8 @@ public class BoardController {
 		model.addAttribute("tvo",vo);
 		return "trainer/trainerDetail.tiles";
 	}
+	@RequestMapping("pt_qna/qna.do")
+	public String getptQnaList(){
+		return "pt_qna/qna.tiles";
+	}
 }
