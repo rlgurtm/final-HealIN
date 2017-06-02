@@ -4,16 +4,47 @@
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 <!-- Custom CSS -->
-<link href="css/modern-business.css" rel="stylesheet">
+<!-- <link href="css/modern-business.css" rel="stylesheet"> -->
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
+<!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 <script>
 	$(document).ready(function(){
 		//alert("1");
-		$(".container").animate({scrollTop : offset.top}, 400);
+		/* $(".container").animate({scrollTop : offset.top}, 400); */
+		var videoNo = ${videoVO.videoNo};
+		//alert(videoNo);
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/selectVideoLikeState.do",
+			data: "videoNo="+videoNo,
+			dataType:"json",
+			success:function(data){
+				if(data=="0"){
+					document.getElementById("video_like").innerHTML="<hr>안함";
+				} else if(data=="1"){
+					document.getElementById("video_like").innerHTML="<hr>좋아요";
+				} 
+			}//function
+		});//ajax
+		//alert("2");
+		$("#video_like").click(function() {
+			alert("클릭");
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/updateVideoLikeState.do",
+				data: "videoNo="+videoNo,
+				dataType:"json",
+				success:function(data){
+					if(data=="0"){
+						document.getElementById("video_like").innerHTML="<hr>안함";
+					} else if(data=="1"){
+						document.getElementById("video_like").innerHTML="<hr>좋아요";
+					} 
+				}//function
+			});//ajax
+		});
 	});
 </script>
 <div class="container">
@@ -50,7 +81,9 @@
 				<li>작성자 : ${videoVO.trainerId}</li>
 				<li>작성일자 : ${videoVO.postedDate}</li>
 			</ul>
-			<div class="hearty" style="cursor:pointer;"></div>
+			<c:if test="${mvo!=null}">
+				<div id="video_like">기본</div>
+			</c:if>
 		</div>
 	</div>
 	<hr>

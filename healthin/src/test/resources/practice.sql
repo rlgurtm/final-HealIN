@@ -134,3 +134,20 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
+
+
+
+select * 
+from (select row_number() over (order by likeState desc) as rnum,a.* 
+	from (select a.*,nvl(likeState,0) as likeState
+		from (
+			select video_no as videoNo,title,content,video_file as videoFile
+			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+			,trainer_id as trainerId,openrank 
+			from trainer_video 
+			where openrank<9) a
+			,(
+			select video_no,sum(like_state) as likeState 
+			from video_like group by video_no) b
+		where b.video_no(+)=a.videoNo) a )
+where rnum between 1 and 200

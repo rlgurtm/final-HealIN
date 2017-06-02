@@ -111,4 +111,20 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 		//System.out.println(listVO);
 		return listVO;
 	}
+	@Override
+	public int selectVideoLikeState(Map map){
+		if(template.selectOne("trainervideo.selectVideoLikeState",map)==null){
+			return 0;
+		} else {
+			return template.selectOne("trainervideo.selectVideoLikeState",map);
+		}
+	}
+	@Override
+	public int insertVideoLikeState(Map map){
+		return template.insert("trainervideo.insertVideoLikeState",map);
+	}
+	@Override
+	public int deleteVideoLikeState(Map map){
+		return template.delete("trainervideo.deleteVideoLikeState",map);
+	}
 }

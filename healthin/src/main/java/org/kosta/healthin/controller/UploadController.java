@@ -18,6 +18,7 @@ import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -243,6 +244,41 @@ public class UploadController {
 		return "video/trainer_video_list.tiles";
 	}
 	
+	@RequestMapping("selectVideoLikeState.do")
+	@ResponseBody
+	public int selectVideoLikeState(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		int videoNo = Integer.parseInt(request.getParameter("videoNo"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(mvo!=null){
+			map.put("userId", mvo.getId());
+			map.put("videoNo", videoNo);
+			return videoService.selectVideoLikeState(map);
+		} else {
+			return 0;
+		}
+	}
+	@RequestMapping("updateVideoLikeState.do")
+	@ResponseBody
+	public int updateVideoLikeState(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		int videoNo = Integer.parseInt(request.getParameter("videoNo"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(mvo!=null){
+			map.put("userId", mvo.getId());
+			map.put("videoNo", videoNo);
+			if(videoService.selectVideoLikeState(map)==0){
+				videoService.insertVideoLikeState(map);
+			} else if(videoService.selectVideoLikeState(map)==1) {
+				videoService.deleteVideoLikeState(map);
+			} 
+			return videoService.selectVideoLikeState(map);
+		} else {
+			return 0;
+		}
+	}
 	
 	
 	

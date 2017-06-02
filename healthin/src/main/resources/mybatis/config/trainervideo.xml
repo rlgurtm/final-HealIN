@@ -72,14 +72,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
  	</select>
  	<select id="filterLikeStateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
- 		select a.* from
-			(select row_number() over(order by likeState desc) as rnum,a.*,b.likeState from 
-		 		(select video_no as videoNo,title,content,video_file as videoFile
-				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
-				,trainer_id as trainerId,openrank 
-				from trainer_video where openrank<![CDATA[ < ]]>9) a
-				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
-			where b.video_no(+)=a.videoNo) a
+ 		select * 
+		from (select row_number() over (order by likeState desc) as rnum,a.* 
+			from (select a.*,nvl(likeState,0) as likeState
+				from (
+					select video_no as videoNo,title,content,video_file as videoFile
+					,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+					,trainer_id as trainerId,openrank 
+					from trainer_video 
+					where openrank<![CDATA[ < ]]>9) a
+					,(
+					select video_no,sum(like_state) as likeState 
+					from video_like group by video_no) b
+				where b.video_no(+)=a.videoNo) a )
 		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
  	</select>
  	<select id="filterPostedDateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
@@ -121,6 +126,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where b.video_no(+)=a.videoNo) a
 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
  	</select>
+ 	<select id="selectVideoLikeState" resultType="int" parameterType="java.util.Map">
+		select like_state from video_like where video_no=#{videoNo} and id=#{userId}
+	</select>
+ 	<insert id="insertVideoLikeState" parameterType="java.util.Map">
+ 		insert into video_like(id,video_no,like_state) values(#{userId},#{videoNo},1)
+ 	</insert>
+ 	<delete id="deleteVideoLikeState" parameterType="java.util.Map">
+ 		delete from video_like where id=#{userId}
+ 	</delete>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 </mapper>
  
  
