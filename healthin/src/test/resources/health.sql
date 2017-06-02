@@ -227,7 +227,6 @@ create table trainer_rate(
 );
 
 
-
 -- 강사 동영상
 drop table trainer_video
 create sequence video_no_seq;
