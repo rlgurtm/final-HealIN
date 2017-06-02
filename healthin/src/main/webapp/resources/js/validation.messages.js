@@ -6,7 +6,7 @@
 						messages : {
 							   id : {
 								required : "HealthIN 아이디를 입력해 주세요.",
-								rangelength : "조금 더! 아이디는 4자 이상이에요.",
+//								rangelength : "조금 더! 아이디는 4자 이상이에요.",
 								onlydigits : "숫자로 된 아이디는 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
 							},
 							nickname : {

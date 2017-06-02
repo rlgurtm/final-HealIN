@@ -16,6 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into trainer
 		values(#{id},#{career},0,#{location},#{trainerPhoto})
 	</insert>
+	<select id="findById" parameterType="string"  resultType="string">
+		SELECT id from health_member 
+		where id=#{id} 
+	</select>
+	<select id="findByNickname" parameterType="string"  resultType="string">
+		SELECT nickname from health_member 
+		where nickname=#{nickname} 
+	</select>
 	<select id="login" resultType="memberVO" parameterType="map">
 		select
 		id,password,nickname,name,birthdate,gender,address,tel,
@@ -25,7 +33,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		id=#{id} and password=#{password}
 	</select>
 	<select id="trainerInfo" resultType="trainerVO">
-		select trainer_id,career,location,trainer_photo as trainerPhoto
+		select
+		trainer_id,career,location,trainer_photo as trainerPhoto
 		from trainer
 		where trainer_id=#{value}
 	</select>

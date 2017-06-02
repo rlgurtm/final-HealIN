@@ -13,7 +13,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
-
 <!-- Custom CSS -->
 <link href="css/modern-business.css" rel="stylesheet">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,6 +27,34 @@
 	href="${pageContext.request.contextPath}/resources/css/join_reform_font.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/jquery-ui-1.10.4.custom.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#id").keydown(function() {
+			$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/findById.do",
+				data : "id=" + $("#id").val(),
+				success : function(data) {
+					if(data == ($("#id").val())){
+						console.log('XXXX');
+						$(".id_message").html(
+								"중복id입니다.다른 아이디를 입력해주세요.").show();
+					}else{
+						console.log('OOOO');
+						$(".id_message").html(
+						"사용가능한 id입니다.").show();
+					}
+				},error: function () {
+					 console.log("Request Fail!!");
+				}
+			});//ajax
+			
+
+		});
+
+	})
+</script>
 </head>
 <body>
 	<div id="kakaoIndex">
@@ -66,20 +93,18 @@
 						<div class="box_info">
 							<dl class="item_info">
 								<dt>
-									<label for="inpID" class="lab_info"> 아이디</label>
+									<label for="inpID" class="lab_info">아이디</label>
 								</dt>
 								<dd>
 									<div class="wrap_inp">
-										<label for="id" class="txt_placeholder "></label>
+										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="id" name="id" class="inp_info" value=""
-											autocomplete="off" maxlength="15" placeholder="아이디"
-											required="required"> <span class="txt_fix txt_domain"></span>
-										<span class="mark_valid" style="display: none;"><span
+											maxlength="30" placeholder="아이디" required="required">
+										<span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" style="display: none;">이미 사용된 ID
-										입니다. 다른 아이디를 입력하세요.</p>
+									<p class="id_message" ></p>
 								</dd>
 							</dl>
 							<dl class="item_info">
@@ -98,7 +123,7 @@
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" id="nickname_msg" style="display: none;">이미
-										사용된 ID 입니다. 다른 아이디를 입력하세요.</p>
+										사용된 닉네임 입니다. 다른 아이디를 입력하세요.</p>
 								</dd>
 							</dl>
 							<dl class="item_info info_password">
