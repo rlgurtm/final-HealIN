@@ -65,7 +65,6 @@ create table trainer(
 	trainer_photo varchar2(100) not null
 )
 
-		
 -- 게시판 테이블
 drop sequence board_no_seq;
 create sequence board_no_seq;
