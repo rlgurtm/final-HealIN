@@ -22,9 +22,9 @@
 			dataType:"json",
 			success:function(data){
 				if(data=="0"){
-					document.getElementById("video_like").innerHTML="<hr>안함";
+					document.getElementById("video_like").innerHTML="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>";
 				} else if(data=="1"){
-					document.getElementById("video_like").innerHTML="<hr>좋아요";
+					document.getElementById("video_like").innerHTML="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>";
 				} 
 			}//function
 		});//ajax
@@ -38,9 +38,9 @@
 				dataType:"json",
 				success:function(data){
 					if(data=="0"){
-						document.getElementById("video_like").innerHTML="<hr>안함";
+						document.getElementById("video_like").innerHTML="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>";
 					} else if(data=="1"){
-						document.getElementById("video_like").innerHTML="<hr>좋아요";
+						document.getElementById("video_like").innerHTML="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>";
 					} 
 				}//function
 			});//ajax
@@ -73,16 +73,22 @@
 
 		<div class="col-md-4">
 			<h3>${videoVO.title}</h3>
+			<hr>
 			<p>${videoVO.content}</p>
+			<hr>
 			<h3>동영상 정보</h3>
 			<ul>
 				<li>조회수 : ${videoVO.hits}</li>
-				<li>좋아요 : ${videoVO.likeState}</li>
+				<li>추천 : ${videoVO.likeState}</li>
 				<li>작성자 : ${videoVO.trainerId}</li>
 				<li>작성일자 : ${videoVO.postedDate}</li>
 			</ul>
 			<c:if test="${mvo!=null}">
-				<div id="video_like">기본</div>
+			<hr>
+				<div align="center">
+				추천을 원하시면 눌러주세요~
+				</div>
+				<div id="video_like" align="center"></div>
 			</c:if>
 		</div>
 	</div>
@@ -102,7 +108,7 @@
 		<div class="col-lg-12" align="center">
 			<ol class="breadcrumb">
 				<li class="active"></li>
-				<li><a href="${pageContext.request.contextPath}/trainerVideoList.do" class="btn">
+				<li><a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no" class="btn">
 				<strong>List</strong></a></li>
 			<c:if test="${mvo.istrainer=='trainer'}">
 				<li><a href="${pageContext.request.contextPath}/trainerVideoWriteForm.do" class="btn">

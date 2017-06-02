@@ -49,7 +49,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PT 강사 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="${pageContext.request.contextPath}/trainerVideoList.do">PT 강사 동영상</a>
+                                <a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no">PT 강사 동영상</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/trainer/trainerList.do">PT 강사진</a>
@@ -63,7 +63,7 @@
                         <a href="${pageContext.request.contextPath}/tip/tip.do">나만의 Tip</a>
                     </li>
                     <li>
-                        <a href="services.html">PT 강사에게 묻는다!</a>
+                        <a href="${pageContext.request.contextPath}/pt_qna/qna.do">PT 강사에게 묻는다!</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>

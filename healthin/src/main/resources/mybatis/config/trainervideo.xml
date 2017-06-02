@@ -77,12 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from (select a.*,nvl(likeState,0) as likeState
 				from (
 					select video_no as videoNo,title,content,video_file as videoFile
-					,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
-					,trainer_id as trainerId,openrank 
+						,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+						,trainer_id as trainerId,openrank 
 					from trainer_video 
 					where openrank<![CDATA[ < ]]>9) a
-					,(
-					select video_no,sum(like_state) as likeState 
+					,(select video_no,sum(like_state) as likeState 
 					from video_like group by video_no) b
 				where b.video_no(+)=a.videoNo) a )
 		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
@@ -105,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select a.* from
 			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
 		 		(select video_no as videoNo,title,content,video_file as videoFile
-				,posted_date as postedDate,hits,category
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
 				,trainer_id as trainerId,openrank 
 				from trainer_video where openrank=#{openrank}) a
 				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
@@ -119,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select a.* from
 			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
 		 		(select video_no as videoNo,title,content,video_file as videoFile
-				,posted_date as postedDate,hits,category
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
 				,trainer_id as trainerId,openrank 
 				from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{category}) a
 				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
