@@ -10,11 +10,17 @@ $(document)
 										validationEvent : "blur",
 										id : {
 											rules : {
+												uniqueid : function() {
+													return {
+														id : "#id"
+													}
+												},
 												required : true,
-												rangelength : [ 4, 15 ],
-												onlydigits : true,
-												notUpperCase : true,
-												idinvalid : true
+//												idinvalid : true
+//												rangelength : [ 4, 15 ]
+//												onlydigits : true,
+//												notUpperCase : true,
+												onlydigits : true
 											},
 											inputListener : function(input) {
 												formInput(input);
