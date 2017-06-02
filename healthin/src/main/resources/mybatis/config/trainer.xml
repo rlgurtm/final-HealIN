@@ -47,7 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        from trainer t,health_member m
        where t.trainer_id=#{value} and t.trainer_id=m.id
     </select>
+    
     <select id="trainerfollowingCount" resultType="int">
     	select count(*) from following where trainer_id=#{value} and apply_result='Y'
     </select>
+    <select id="followingViewCount" resultType="int">
+    	select count(*) from following where user_id=#{value} and apply_result='Y'
+    </select>
+    
 </mapper>

@@ -61,9 +61,9 @@ values('healthman6','은평구 생활체육센터 헬쓰트레이너 3년',0,'�
 
 --trainer_video
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'분류1','healthboy',0);
+values (video_no_seq.nextval,'쵸파 play3','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160903.mp4',sysdate,'팔','healthboy',0);
 insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
-values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'분류1','healthboy',0);
+values (video_no_seq.nextval,'쵸파 play4444','신들린 쵸파의 멋진 샷발!! 기가맥힌 쵸파입니다.','20160905.mp4',sysdate,'팔','healthboy',0);
 
 
 -- tipandqna 삽입
@@ -137,6 +137,7 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
+
 select food_name from food where food_name='곰국'
 select distinct food_category from food
 delete from intake_member where user_id = 'user1' and intake_date = '2017-06-01'
@@ -144,3 +145,21 @@ select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f
 from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-30' and im.user_id = 'user1'
 select food_name from food where food_category = '한식'
+
+
+
+
+select * 
+from (select row_number() over (order by likeState desc) as rnum,a.* 
+	from (select a.*,nvl(likeState,0) as likeState
+		from (
+			select video_no as videoNo,title,content,video_file as videoFile
+			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+			,trainer_id as trainerId,openrank 
+			from trainer_video 
+			where openrank<9) a
+			,(
+			select video_no,sum(like_state) as likeState 
+			from video_like group by video_no) b
+		where b.video_no(+)=a.videoNo) a )
+where rnum between 1 and 200

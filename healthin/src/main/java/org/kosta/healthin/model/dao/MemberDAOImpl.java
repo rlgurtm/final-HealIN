@@ -17,7 +17,6 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void registerStep3(MemberVO vo) {
-		// TODO Auto-generated method stub
 		int result= sqlSessionTemplate.insert("member.registerAll", vo);
 	}
 
@@ -65,6 +64,18 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO modifyTrainer(TrainerVO tvo) {
 		sqlSessionTemplate.update("member.modifyTrainer", tvo);
 		return tvo;
+	}
+
+	@Override
+	public String findById(String id) {
+		String result = sqlSessionTemplate.selectOne("member.findById", id);
+		return result;
+	}
+
+	@Override
+	public String findByNickname(String nickname) {
+		String result = sqlSessionTemplate.selectOne("member.findByNickname", nickname);
+		return result;
 	}
 
 

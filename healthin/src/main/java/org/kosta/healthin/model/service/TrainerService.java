@@ -13,4 +13,6 @@ public interface TrainerService {
 
 	int trainerfollowingCount(String trainerId);
 
+	int followingViewCount(String memId);
+
 }

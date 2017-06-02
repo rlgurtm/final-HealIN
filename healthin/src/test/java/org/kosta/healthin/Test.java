@@ -29,7 +29,7 @@ public class Test {
 			*/
 	@org.junit.Test
 	public void test(){
-		System.out.println("테스트 0527");
+		System.out.println("테스트 0602");
 //		memberDAO.login("java", "1234");
 //		memberDAO.login("healthboy", "1234");
 //		System.out.println(memberDAO.login("healthboy", "1234"));
@@ -37,8 +37,9 @@ public class Test {
 //		memberDAO.registerStep3(tvo);
 //		System.out.println("일반회원가입 OKAY");
 		
-		System.out.println("트레이너 정보찾기 OKAY");
-		System.out.println(memberDAO.trainerInfo("java"));
+		System.out.println("아이디 중복확인 OKAY");
+		System.out.println("아이디"+memberDAO.findById("java"));
+		System.out.println("이거 왜 안나오냐");
 		
 	}
 

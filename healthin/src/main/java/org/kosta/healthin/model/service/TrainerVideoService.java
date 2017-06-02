@@ -44,4 +44,10 @@ public interface TrainerVideoService {
 
 	ListVO filterCategoryTrainerVideoList(Map map);
 
+	int selectVideoLikeState(Map map);
+
+	int insertVideoLikeState(Map map);
+
+	int deleteVideoLikeState(Map map);
+
 }

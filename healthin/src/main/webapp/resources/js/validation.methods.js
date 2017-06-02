@@ -516,110 +516,23 @@ a.fn,
 									return false
 								}
 								var d=a.ajax({
-																				type : "POST",
-											url : "https://member.daum.net/api/check/member",
+											type : "GET",
+											url : "${pageContext.request.contextPath}/findById.do",
 											dataType : "json",
 											async : false,
-											data : {
-												PAGEID : i.pageId,
-												type : "daumid",
-												key : g
-											}
+											data:"id="+id
 										}).responseJSON;
 								var c = "success";
 								var f;
 								var b = {};
-								if (d.code == "200") {
-									if (d.message == "EXIST") {
+								if (d !== null) {
 										c = "fail";
-										f = "이미 사용된 Daum 메일 주소여서 또 사용할 수 없어요. 다른 아이디를 입력해 주세요.";
-									} else {
-										if (d.message == "NOT_USABLE") {
-											c = "fail";
-											f = "이미 사용된 Daum 메일 주소여서 또 사용할 수 없어요. 다른 아이디를 입력해 주세요."
-										} else {
-											f = d.message
-										}
-									}
-								} else {
-									if (d.code == "403") {
-										c = "fail";
-										if (d.message == "ABUSE") {
-											f = "보안 정책에 의해 접근이 제한되었습니다."
-										} else {
-											if (d.message == "FORBIDDEN") {
-												f = "유효시간이 초과되거나, 잘못된 접근입니다. 처음부터 다시 시도해 주세요."
-											}
-										}
-										b.responseCode = d.code
-									} else {
-										c = "fail";
-										f = d.message
-									}
+										f = "이미 사용된 ID여서 또 사용할 수 없어요. 다른 아이디를 입력해 주세요.";
 								}
 								return {
 									result : c,
 									message : f,
 									extra : b
-								}
-							},
-							certcodePolicy : function(k, g, h) {
-								if (h().eventType == "keyup"
-										|| h().isAuthenticated == true) {
-									return
-								}
-								var b = k;
-								var e = h().pageId;
-								var i = h().mobileNationalCode;
-								var j = h().mobileNational;
-								var c = h().serviceType;
-								if (b == "" || i == "" || j == "") {
-									m = "fail";
-									l = "국가를 입력해주세요";
-									return {
-										result : m,
-										message : l
-									}
-								}
-								var f=a.ajax({
-																				type : "POST",
-											url : "https://member.daum.net/api/valid/certcodepolicy",
-											dataType : "json",
-											async : false,
-											data : {
-												PAGEID : e,
-												countryCode : i,
-												countryNo : j,
-												mobile : b,
-												serviceType : c,
-												authType : "phone"
-											}
-										}).responseJSON;
-								var m = "success";
-								var l;
-								var d = {};
-								if (f.code == "200") {
-									if (f.message == "NOT_VALID"
-											|| f.message == "BLOCKED") {
-										m = "fail";
-										l = f.result
-									} else {
-										m = "success"
-									}
-								} else {
-									if (f.code == "403") {
-										m = "fail";
-										l = "유효시간이 초과되거나, 잘못된 접근입니다. 처음부터 다시 시도해 주세요.";
-										d.responseCode = f.code
-									} else {
-										m = "fail";
-										l = f.result
-									}
-								}
-								return {
-									result : m,
-									message : l,
-									extra : d
 								}
 							},
 							pwValid : function(e, c, f) {
