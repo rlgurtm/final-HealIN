@@ -114,6 +114,9 @@
 			                                <a href="${pageContext.request.contextPath}/mypage/bmi.do">비만도 측정(기능 임시)</a>
 			                            </li>
 			                            <li>
+			                            	<a href="${pageContext.request.contextPath}/mypage/graph.do">그래프 보기(기능 임시)</a>
+			                            </li>
+			                            <li>
 			                                <a href="#">팔로우 한 강사(이름 임시)</a>
 			                            </li>
 			                            <li>
