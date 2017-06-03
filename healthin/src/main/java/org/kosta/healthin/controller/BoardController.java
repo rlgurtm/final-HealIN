@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.service.QnAService;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.CommentVO;
@@ -24,6 +25,8 @@ public class BoardController {
 	
 	@Resource
 	private TipService tipService;
+	@Resource
+	private QnAService qnaService;
 	@Resource
 	private TrainerService trainerService;	
 	
@@ -148,7 +151,72 @@ public class BoardController {
 	public String getptQnaList(){
 		return "pt_qna/qna.tiles";
 	}
-	
+	@RequestMapping("ptQnaList.do")
+	@ResponseBody
+	public ListVO getTipBoardList(String nowpage,String category){
+		if(nowpage==null)
+			nowpage="1";
+		if(category.equals("null")||category.equals("Home")){
+			return qnaService.getptQnaList(nowpage);
+		}else{
+			return qnaService.getptQnaCategoryList(category.trim(), nowpage);
+		}
+	}
+	@RequestMapping("pt_qna/pt_qna_content.do")
+	public String ptQnaContent(String no,Model model){
+		qnaService.ptQnaHitsCount(no);
+		model.addAttribute("tip",qnaService.getptQnaDetailContent(no));
+		return "pt_qna/pt_qna_content.tiles";
+	}
+	@RequestMapping("pt_qna/NO_Hits_ptQna_content.do")
+	public String ptQnaNiHitsContent(String no,Model model){
+		model.addAttribute("tip",qnaService.getptQnaDetailContent(no));
+		return "pt_qna/pt_qna_content.tiles";
+	}
+	@RequestMapping("pt_qna/ptQnaWriteForm.do")
+	public String ptQnaWriteForm(){
+		return "pt_qna/ptQnaWriteForm.tiles";
+	}
+	@RequestMapping("pt_qna/ptQnaWrite.do")
+	public String ptQnaWrite(TipBoardVO tvo,MultipartFile uploadFile){
+		if(!uploadFile.isEmpty()){
+			//송희
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					qnaService.ptQnaWrite(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		}else{
+			tvo.setattachedFile("");
+			qnaService.ptQnaWrite(tvo);
+		}
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
+	}
+	@RequestMapping("ptQnaDelete.do")
+	public String ptQnaDelete(String no,String id){
+		qnaService.ptQnaDelete(no, id);
+		return "redirect:/pt_qna/qna.do";
+	}
+	@RequestMapping("pt_qna/ptQnaUpdateForm.do")
+	public String ptQnaUpdateForm(String no,Model model){
+		model.addAttribute("tip", qnaService.getptQnaDetailContent(no));
+		return "pt_qna/ptQnaUpdateForm.tiles";
+	}
+	@RequestMapping("ptQnaUpdate.do")
+	public String ptQnaUpdate(TipBoardVO tvo){
+		qnaService.ptQnaUpdate(tvo);
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
+	}
 	@RequestMapping("followingview.do")
 	@ResponseBody
 	public String followingview(String memId,String trainerId){
