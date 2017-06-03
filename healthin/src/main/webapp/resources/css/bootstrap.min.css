@@ -7430,9 +7430,9 @@ span.follow {
     float: left;
     margin-top: 38px;
 }
-#tipWrite{
+.write{
  	position:absolute;
- 	right: 8%;
+ 	right: 5%;
  	}
 #tipWriteForm{
 	padding: 10px 30%;

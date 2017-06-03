@@ -10,7 +10,7 @@
 	<c:otherwise>
 	${sessionScope.mvo.id}
 	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
 	</c:otherwise>
 	</c:choose>

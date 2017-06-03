@@ -4,16 +4,31 @@
 $(document).ready(function(){
 	$.ajax({
 		type:"get",
-		url:"${pageContext.request.contextPath}/followingview.do",
+		url:"${pageContext.request.contextPath}/selectfollowstate.do",
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
-			//alert(data);
+			if(data=='Y')
+				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+			else
+				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+	
 		}
-	});
-	$(".hearty").click(function(){
-		alert($("#trainerId").val());
-	});
-});
+	}); //ajax
+	$("#imgtd").click(function(){
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/updatefollowState.do",
+				data: "trainerId="+$("#trainerId").val(),
+				success:function(data){
+					if(data=='Y')
+						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+					else
+						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+				}//function
+			});//ajax
+		});//click
+	});//ready
+	
 </script>
 <div class="container">
 

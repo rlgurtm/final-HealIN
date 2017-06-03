@@ -108,6 +108,9 @@ address, caption, cite, code, dfn, em, var {
 	color: #3c64e6;
 	text-decoration: underline
 }
+.inp_info {
+	color: #3c64e6;
+}
 
 .cl_b {
 	clear: both;
@@ -666,7 +669,7 @@ address, caption, cite, code, dfn, em, var {
 	top: 0;
 	left: 0;
 	height: 38px;
-	color: #999;
+	color: #f6f6f6;
 	font-weight: normal;
 	font-family: '맑은 고딕', 'Malgun Gothic', '돋움', 'dotum',
 		'Apple SD Gothic Neo', 'sans-serif'
