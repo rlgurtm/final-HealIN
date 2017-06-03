@@ -95,7 +95,7 @@ values('치킨', 400, '치킨');
 
 -- intake_member
 delete from intake_member;
-insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '치킨', 2, 'user1');
+insert into intake_member values(intake_no_seq.nextval, '2017-06-01', '치킨', 2, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '탕수육', 2, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-09', '곰국', 2, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '치킨', 2, 'user1');
@@ -103,8 +103,11 @@ insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥
 insert into intake_member values(intake_no_seq.nextval, '2017-05-11', '공기밥', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-30', '치킨', 1, 'user1');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-25', '치킨', 3, 'user2');
-insert into intake_member values(intake_no_seq.nextval, '2017-05-01', '공기밥', 2, 'user3');
+insert into intake_member values(intake_no_seq.nextval, '2017-06-01', '공기밥', 2, 'user3');
 insert into intake_member values(intake_no_seq.nextval, '2017-05-05', '치킨', 3, 'user3');
+insert into intake_member(intake_no, intake_date, food_name, count, user_id)
+values(intake_no_seq.nextval, '2017-06-01', '치킨', 3, 'user1')
+select food_name from food where food_name like '%"%'
 
 -- consumption_member
 insert into consumption_member(consumption_no, name, ex_hour, ex_date, user_id) 
@@ -133,6 +136,33 @@ insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
+
+
+select food_name from food where food_name='곰국'
+select distinct food_category from food
+delete from intake_member where user_id = 'user1' and intake_date = '2017-06-01'
+select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f.calorie*im.count as totalCalorie 
+from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-30' and im.user_id = 'user1'
+select food_name from food where food_category = '한식'
+
+
+
+
+select * 
+from (select row_number() over (order by likeState desc) as rnum,a.* 
+	from (select a.*,nvl(likeState,0) as likeState
+		from (
+			select video_no as videoNo,title,content,video_file as videoFile
+			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+			,trainer_id as trainerId,openrank 
+			from trainer_video 
+			where openrank<9) a
+			,(
+			select video_no,sum(like_state) as likeState 
+			from video_like group by video_no) b
+		where b.video_no(+)=a.videoNo) a )
+where rnum between 1 and 200
 
 
 -- 회원정보 
