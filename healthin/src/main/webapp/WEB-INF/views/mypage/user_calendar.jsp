@@ -41,7 +41,7 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2017-05-12',
+			//defaultDate: '2017-05-12',
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectHelper: true,
@@ -123,7 +123,7 @@
 		<c:choose>
 			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
-					<li class="menu active"><a href="${pageContext.request.contextPath}/user_calendar.do">캘린더</a></li>
+					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">캘린더</a></li>
 					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 건강 변화 체크</a></li>
 					<li class="menu"><a href="#">비만도 측정</a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
@@ -156,7 +156,7 @@
 						<h4 class="modal-title">Modal Header</h4>
 					</div>
 					<div class="modal-body">
-						<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/update_calendar.do">
+						<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/updateCalendar.do">
 							<select name="type">
 								<option>----</option>
 								<option>섭취</option>

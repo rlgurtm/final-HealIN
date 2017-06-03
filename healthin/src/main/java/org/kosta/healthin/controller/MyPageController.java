@@ -24,15 +24,6 @@ public class MyPageController {
 		pivo.setUser_Id(mvo.getId());
 		// System.out.println(pivo);
 		myPageService.insertUserPhysicalInfo(pivo);
-
-		
-
-		/*
-		 * bmi_height = bmi_height.value / 100 Square = bmi_height * bmi_height
-		 * int bmi_num= F.bmi_weight.value/Square int strBmi =
-		 * Math.round(bmi_num*100)/100
-		 */
-
 		return "redirect:bmi_list.do";
 	}
 
@@ -43,6 +34,7 @@ public class MyPageController {
 		ListVO listVO = myPageService.selectUserPhysicalInfo(mvo);
 		System.out.println(listVO);
 		model.addAttribute("listVO", listVO);
+		
 		return "mypage/bmi_list.tiles";
 	}
 	/*int height = Integer.parseInt(request.getParameter("height"));

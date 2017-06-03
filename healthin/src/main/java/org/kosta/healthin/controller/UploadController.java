@@ -18,6 +18,7 @@ import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -27,7 +28,7 @@ public class UploadController {
 	@Resource
 	private TrainerVideoService videoService;
 	
-	@RequestMapping("trainerVideoList.do")
+	/*@RequestMapping("trainerVideoList.do")
 	public String trainerVideoList(Model model,HttpServletRequest request){
 		int nowPage;
 		PagingBean pb;
@@ -41,12 +42,12 @@ public class UploadController {
 		ListVO listVO = new ListVO();
 		listVO = videoService.trainerVideoList(pb);
 		listVO.setPb(pb);
-		/*for(int i=0;i<listVO.getLVO().size();i++){
+		for(int i=0;i<listVO.getLVO().size();i++){
 			System.out.println(listVO.getLVO().get(i).toString());
-		}*/
+		}
 		model.addAttribute("listVO",listVO);
 		return "video/trainer_video_list.tiles";
-	}
+	}*/
 	@RequestMapping("trainerVideoShow.do")
 	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -191,7 +192,7 @@ public class UploadController {
 	}
 	
 	@RequestMapping("filterVideoList.do")
-	public String filterHits(Model model,HttpServletRequest request){
+	public String filterVideoList(Model model,HttpServletRequest request){
 		int nowPage;
 		PagingBean pb;
 		int filterTotalCount; 
@@ -202,21 +203,30 @@ public class UploadController {
 		} else {
 			nowPage = 1;
 		}
-		if(filter.equals("hits")){
+		if(filter.equals("no")){
+			filterTotalCount = videoService.totalCountVideo();
+			pb = new PagingBean(filterTotalCount,nowPage);
+			listVO = videoService.trainerVideoList(pb);
+			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
+		} else if(filter.equals("hits")){
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterHitsTrainerVideoList(pb);
 			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
 		} else if (filter.equals("likeState")){
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterLikeStateTrainerVideoList(pb);
 			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
 		} else if(filter.equals("postedDate")){
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterPostedDateTrainerVideoList(pb);
 			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
 		} else if(filter.equals("openrank")){
 			int rank = Integer.parseInt(request.getParameter("rank"));
 			filterTotalCount = videoService.filterOpenrankTotalCountVideo(rank);
@@ -226,6 +236,7 @@ public class UploadController {
 			map.put("openrank", rank);
 			listVO = videoService.filterOpenrankTrainerVideoList(map);
 			listVO.setPb(pb);
+			model.addAttribute("filter",filter+"&rank="+rank);
 		} else if(filter.equals("category")){
 			String category = request.getParameter("cate");
 			filterTotalCount = videoService.filterCategoryTotalCountVideo(category);
@@ -235,6 +246,7 @@ public class UploadController {
 			map.put("category", category);
 			listVO = videoService.filterCategoryTrainerVideoList(map);
 			listVO.setPb(pb);
+			model.addAttribute("filter",filter+"&cate="+category);
 		}
 		/*for(int i=0;i<listVO.getLVO().size();i++){
 			System.out.println(listVO.getLVO().get(i).toString());
@@ -243,6 +255,41 @@ public class UploadController {
 		return "video/trainer_video_list.tiles";
 	}
 	
+	@RequestMapping("selectVideoLikeState.do")
+	@ResponseBody
+	public int selectVideoLikeState(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		int videoNo = Integer.parseInt(request.getParameter("videoNo"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(mvo!=null){
+			map.put("userId", mvo.getId());
+			map.put("videoNo", videoNo);
+			return videoService.selectVideoLikeState(map);
+		} else {
+			return 0;
+		}
+	}
+	@RequestMapping("updateVideoLikeState.do")
+	@ResponseBody
+	public int updateVideoLikeState(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		int videoNo = Integer.parseInt(request.getParameter("videoNo"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(mvo!=null){
+			map.put("userId", mvo.getId());
+			map.put("videoNo", videoNo);
+			if(videoService.selectVideoLikeState(map)==0){
+				videoService.insertVideoLikeState(map);
+			} else if(videoService.selectVideoLikeState(map)==1) {
+				videoService.deleteVideoLikeState(map);
+			} 
+			return videoService.selectVideoLikeState(map);
+		} else {
+			return 0;
+		}
+	}
 	
 	
 	

@@ -3,13 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
 <script src="http://vjs.zencdn.net/c/video.js"></script>
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="css/modern-business.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@0.6.2/build/pure-min.css"
 	integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD"
@@ -120,6 +113,7 @@ $(document).ready(function(){
 	<div class="row">
 		<c:forEach items="${listVO.LVO}" var="lvo">
 			<div class="col-md-3 img-portfolio">
+		<div class="videoList">
 				<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
 					<video width="270" height="200">
 						<source src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
@@ -135,7 +129,7 @@ $(document).ready(function(){
 				${lvo.content}<br>
 				<!-- </div> -->
 			</div>
-
+		</div>
 		</c:forEach>
 	</div>
 
@@ -153,17 +147,17 @@ $(document).ready(function(){
 			<ul class="pagination">
 				<c:choose>
 					<c:when test="${listVO.pb.previousPageGroup}">
-						<li><a href="${ pageContext.request.contextPath }/trainerVideoList.do?nowPage=${listVO.pb.startPageOfPageGroup-1}">&laquo;</a></li>
+						<li><a href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${listVO.pb.startPageOfPageGroup-1}">&laquo;</a></li>
 					</c:when>
 				</c:choose>
 				<li class="active">
 				<c:forEach var="pg" begin="${listVO.pb.startPageOfPageGroup}" end="${listVO.pb.endPageOfPageGroup}">
-					<li><a href="${ pageContext.request.contextPath }/trainerVideoList.do?nowPage=${ pg }">${ pg }</a></li>
+					<li><a href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${ pg }">${ pg }</a></li>
 				</c:forEach>
 				<li class="active">
 				<c:choose>
 					<c:when test="${listVO.pb.nextPageGroup}">
-						<li><a href="${ pageContext.request.contextPath }/trainerVideoList.do?nowPage=${listVO.pb.endPageOfPageGroup+1}">&raquo;</a></li>
+						<li><a href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${listVO.pb.endPageOfPageGroup+1}">&raquo;</a></li>
 					</c:when>
 				</c:choose>
 			</ul>
@@ -174,7 +168,7 @@ $(document).ready(function(){
 		<div class="col-lg-12" align="center">
 			<ol class="breadcrumb">
 				<li class="active"></li>
-				<li><a href="${pageContext.request.contextPath}/trainerVideoList.do" class="btn">
+				<li><a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no" class="btn">
 				<strong>List</strong></a></li>
 			<c:if test="${mvo.istrainer=='trainer'}">
 				<li><a href="${pageContext.request.contextPath}/trainerVideoWriteForm.do" class="btn">

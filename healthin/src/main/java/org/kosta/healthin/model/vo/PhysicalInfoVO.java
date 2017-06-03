@@ -5,16 +5,18 @@ public class PhysicalInfoVO implements VO{
 	private String weight;
 	private String today;
 	private String user_Id;
+	private double bmiValue;
 	public PhysicalInfoVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PhysicalInfoVO(String height, String weight, String today, String user_Id) {
+	public PhysicalInfoVO(String height, String weight, String today, String user_Id, double bmiValue) {
 		super();
 		this.height = height;
 		this.weight = weight;
 		this.today = today;
 		this.user_Id = user_Id;
+		this.bmiValue = bmiValue;
 	}
 	public String getHeight() {
 		return height;
@@ -40,10 +42,16 @@ public class PhysicalInfoVO implements VO{
 	public void setUser_Id(String user_Id) {
 		this.user_Id = user_Id;
 	}
+	public double getBmiValue() {
+		return bmiValue;
+	}
+	public void setBmiValue(double bmiValue) {
+		this.bmiValue = bmiValue;
+	}
 	@Override
 	public String toString() {
 		return "PhysicalInfoVO [height=" + height + ", weight=" + weight + ", today=" + today + ", user_Id=" + user_Id
-				+ "]";
+				+ ", bmiValue=" + bmiValue + "]";
 	}
 	
 }

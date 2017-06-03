@@ -52,4 +52,9 @@ public class TrainerServiceImpl implements TrainerService {
 		return dao.trainerfollowingCount(trainerId);
 	}
 
+	@Override
+	public int followingViewCount(String memId) {
+		return dao.followingViewCount(memId);
+	}
+
 }

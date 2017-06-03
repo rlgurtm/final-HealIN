@@ -49,7 +49,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PT 강사 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="${pageContext.request.contextPath}/trainerVideoList.do">PT 강사 동영상</a>
+                                <a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no">PT 강사 동영상</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/trainer/trainerList.do">PT 강사진</a>
@@ -105,7 +105,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/user_calendar.do">캘린더(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/userCalendar.do">캘린더(이름 임시)</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/user_health_check.do">기간별 건강 변화 체크(이름 임시)</a>

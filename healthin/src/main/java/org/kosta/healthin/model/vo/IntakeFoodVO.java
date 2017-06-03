@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.vo;
 
 public class IntakeFoodVO {
+	private int intakeNo;
 	private String foodName;
 	private int calorie;
 	private int count;
@@ -9,12 +10,19 @@ public class IntakeFoodVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public IntakeFoodVO(String foodName, int calorie, int count, int totalCalorie) {
+	public IntakeFoodVO(int intakeNo, String foodName, int calorie, int count, int totalCalorie) {
 		super();
+		this.intakeNo = intakeNo;
 		this.foodName = foodName;
 		this.calorie = calorie;
 		this.count = count;
 		this.totalCalorie = totalCalorie;
+	}
+	public int getIntakeNo() {
+		return intakeNo;
+	}
+	public void setIntakeNo(int intakeNo) {
+		this.intakeNo = intakeNo;
 	}
 	public String getFoodName() {
 		return foodName;
@@ -42,7 +50,7 @@ public class IntakeFoodVO {
 	}
 	@Override
 	public String toString() {
-		return "IntakeFoodVO [foodName=" + foodName + ", calorie=" + calorie + ", count=" + count + ", totalCalorie="
-				+ totalCalorie + "]";
+		return "IntakeFoodVO [intakeNo=" + intakeNo + ", foodName=" + foodName + ", calorie=" + calorie + ", count="
+				+ count + ", totalCalorie=" + totalCalorie + "]";
 	}
 }

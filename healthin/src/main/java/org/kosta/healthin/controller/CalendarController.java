@@ -22,7 +22,7 @@ public class CalendarController {
 	@Resource
 	private CalendarDAO calendarDAO;
 	
-	@RequestMapping(value="user_calendar.do", produces = "application/json")
+	@RequestMapping(value="userCalendar.do", produces = "application/json")
 	public String userCalendar(Model model, HttpServletRequest request) {
 		return "mypage/user_calendar.tiles";
 	}
@@ -46,28 +46,62 @@ public class CalendarController {
 		return eventList;
 	}
 	
-	@RequestMapping("intake_calorie.do")
+	@RequestMapping("intakeCalorie.do")
 	public String intakeCalorie(Model model, HttpServletRequest request) {
 		String date = request.getParameter("date");
 		String id = request.getParameter("id");
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();	// id와 date 정보를 저장하는 map
 		map.put("id", id);
 		map.put("date", date);
 		
-		List<VO> foodList = calendarService.getAllIntakeFood(map);
-		int totalCalorie = calendarDAO.getTotalIntakeCalorieOfDay(map);
+		List<VO> foodList = calendarService.getAllIntakeFood(map);			// 음식 리스트
+		List<String> foodCategory = calendarService.getAllFoodCategory();	// 음식 카테고리 리스트
+		int totalCalorie = calendarDAO.getTotalIntakeCalorieOfDay(map);	// 각 일 별 총 섭취 칼로리
 		model.addAttribute("foodList", foodList);
+		model.addAttribute("foodCategory", foodCategory);
 		model.addAttribute("date", date);
 		model.addAttribute("totalCalorie", totalCalorie);
 		return "mypage/user_intake_calorie.tiles";
 	}
 	
-	@RequestMapping("consumption_calorie.do")
+	@RequestMapping("consumptionCalorie.do")
 	public String consumptionCalorie(Model model, HttpServletRequest request) {
 		return "mypage/user_consumption_calorie.tiles";
 	}
 	
-	/*@RequestMapping("update_calendar.do")
+	@RequestMapping("getFoodsByCategory.do")
+	@ResponseBody
+	public List<String> getFoodsByCategory(Model model, HttpServletRequest request) {
+		String foodCategory = request.getParameter("foodCategory");
+		List<String> foodList = calendarService.getFoodsByCategory(foodCategory);
+		return foodList;
+	}
+	
+	@RequestMapping("deleteFood.do")
+	public String deleteFood(Model model, HttpServletRequest request) {
+		int intakeNo = Integer.parseInt(request.getParameter("intakeNo"));
+		String id = request.getParameter("id");
+		String date = request.getParameter("date");
+		calendarService.deleteFood(intakeNo);
+		return "redirect:intakeCalorie.do?id=" + id + "&date=" + date;
+	}
+	
+	@RequestMapping("insertFood.do")
+	public String insertFood(Model model, HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String date = request.getParameter("date");
+		String foodName = request.getParameter("foodName");
+		int count = Integer.parseInt(request.getParameter("count"));
+		HashMap<String, Object> foodMap = new HashMap<String, Object>();
+		foodMap.put("id", id);
+		foodMap.put("foodName", foodName);
+		foodMap.put("date", date);
+		foodMap.put("count", count);
+		calendarService.insertFood(foodMap);
+		return "redirect:intakeCalorie.do?id=" + id + "&date=" + date;
+	}
+	
+	/*@RequestMapping("updateCalendar.do")
 	public String updateCalendar(Model model, HttpServletRequest request) {
 		String type = request.getParameter("type");
 		System.out.println(request.getParameter("param"));

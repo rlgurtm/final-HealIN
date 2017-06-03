@@ -45,4 +45,9 @@ public class TrainerDAOImpl implements TrainerDAO {
 	public int trainerfollowingCount(String trainerId) {
 		return template.selectOne("trainer.trainerfollowingCount",trainerId);
 	}
+
+	@Override
+	public int followingViewCount(String memId) {
+		return template.selectOne("trainer.followingViewCount",memId);
+	}
 }

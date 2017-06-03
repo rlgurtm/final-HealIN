@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</insert>
  	<select id="selectUserPhyicalInfo" resultType="physicalInfoVO" parameterType="memberVO">
  		select height,weight,to_char(today,'YYYY.MM.DD') as today,user_id
+ 		,round(weight/(height*height/10000),2) as bmiValue
  		from physical_info
  		where user_id=#{id}
  		order by today desc

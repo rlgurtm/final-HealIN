@@ -38,4 +38,29 @@ public class CalendarDAOImpl implements CalendarDAO {
 	public List<VO> getAllIntakeFood(HashMap<String, String> map) {
 		return template.selectList("calendar.getAllIntakeFood", map);
 	}
+
+	@Override
+	public List<String> getAllFoodCategory() {
+		return template.selectList("calendar.getAllFoodCategory");
+	}
+
+	@Override
+	public void deleteFood(int intakeNo) {
+		template.delete("calendar.deleteFood", intakeNo);
+	}
+
+	@Override
+	public List<String> getFoodsByCategory(String foodCategory) {
+		return template.selectList("calendar.getFoodsByCategory", foodCategory);
+	}
+
+	@Override
+	public void insertFood(HashMap<String, Object> map) {
+		template.insert("calendar.insertFood", map);
+	}
+
+//	@Override
+//	public void updateFood(HashMap<String, String> map) {
+//		template.update("calendar.updateFood", intakeNo);
+//	}
 }
