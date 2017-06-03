@@ -1,7 +1,7 @@
 body {
     margin:40px;
     font-family: 'Roboto Condensed', sans-serif;
-    background: #D8D8D8;
+    background: #000000;
     
 }
 
@@ -25,6 +25,7 @@ body {
 }
 
 .liner {
+	
     height: 2px;
     background: #ddd;
     position: absolute;
@@ -152,8 +153,8 @@ body {
 }
 
 .nav-tabs > li > a.disabled span {
-    border-color: #ddd;
-    color: #aaa;
+    border-color: #000000;
+    color: #000000;
 }
 
 div#step-1 {

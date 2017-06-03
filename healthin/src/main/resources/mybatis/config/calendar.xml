@@ -23,10 +23,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = #{value}
  	</select>
  	<select id="getAllIntakeFood" resultType="intakeFoodVO" parameterType="map">
- 		select f.food_name as foodName, f.calorie, im.count, f.calorie*im.count as totalCalorie 
+ 		select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f.calorie*im.count as totalCalorie 
  		from food f, intake_member im, health_user hu
 		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = #{date} and im.user_id = #{id}
- 	</select> 
+ 	</select>
+ 	<select id="getAllFoodCategory" resultType="string">
+ 		select distinct food_category from food
+ 	</select>
+ 	<select id="getFoodsByCategory" resultType="String" parameterType="string">
+ 		select food_name from food where food_category = #{value}
+ 	</select>
+ 	<delete id="deleteFood" parameterType="int">
+ 		delete from intake_member where intake_no = #{value}
+ 	</delete>
+ 	<insert id="insertFood" parameterType="map">
+ 		insert into intake_member(intake_no, intake_date, food_name, count, user_id)
+ 		values(intake_no_seq.nextval, #{date}, #{foodName}, #{count}, #{id})
+ 	</insert>
+ 	<!-- <update id="updateFood" parameterType="map">
+ 	
+ 	</update> -->
 </mapper>
  
  

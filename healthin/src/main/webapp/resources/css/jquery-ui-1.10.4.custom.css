@@ -207,7 +207,7 @@ address, caption, cite, code, dfn, em, var {
 .txt_desc {
 	padding-top: 7px;
 	font-size: 16px;
-	color: #767676;
+	color: #f7f7f7;
 	text-align: center
 }
 
@@ -465,7 +465,7 @@ address, caption, cite, code, dfn, em, var {
 
 .main_corp .link_more {
 	float: right;
-	color: #767676;
+	color: #f9fc69;
 	text-decoration: underline
 }
 
@@ -961,7 +961,7 @@ address, caption, cite, code, dfn, em, var {
 }
 
 .list_nationinfo .item_info:hover {
-	background: #f8f8f8;
+	background: #000000;
 	font-weight: bold
 }
 

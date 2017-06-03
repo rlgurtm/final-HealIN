@@ -90,4 +90,16 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public ListVO filterCategoryTrainerVideoList(Map map){
 		return videoDAO.filterCategoryTrainerVideoList(map);
 	}
+	@Override
+	public int selectVideoLikeState(Map map){
+		return videoDAO.selectVideoLikeState(map);
+	}
+	@Override
+	public int insertVideoLikeState(Map map){
+		return videoDAO.insertVideoLikeState(map);
+	}
+	@Override
+	public int deleteVideoLikeState(Map map){
+		return videoDAO.deleteVideoLikeState(map);
+	}
 }
