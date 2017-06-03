@@ -2,6 +2,7 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
+	private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+
 	@Resource
 	private MemberService memberService;
 
@@ -56,8 +58,7 @@ public class MemberController {
 			// String uploadPath =
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-			
+
 			if (uploadfile != null) {
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
@@ -79,21 +80,18 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("findById.do")
 	public String findById(String id) {
-		String result= memberService.findById(id);
-		System.out.println("아이디"+id);
-		System.out.println("result"+result);
+		String result = memberService.findById(id);
 		return result;
 	}
-	
+
 	@ResponseBody
-	@RequestMapping("findByNickname.do")
+	@RequestMapping(value = "findByNickname.do", produces = "application/text; charset=utf8")
 	public String findByNickname(String nickname) {
-		String result= memberService.findByNickname(nickname);
-		System.out.println("닉네임"+nickname);
-		System.out.println("result"+result);
+		String result = memberService.findByNickname(nickname);
+		System.out.println("result" + result);
 		return result;
 	}
-	
+
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		return "member/login_form";
@@ -106,14 +104,13 @@ public class MemberController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", memberService.login(id, password));
-			
+
 			MemberVO vo = memberService.login(id, password);
-			
+
 			if (vo.getIstrainer().equals("trainer")) {
-				TrainerVO tvo= memberService.trainerInfo(id);
+				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
 			}
-			
 			return "redirect:home.do";
 		}
 	}
@@ -130,29 +127,50 @@ public class MemberController {
 	}
 
 	@RequestMapping("modify.do")
-	public String modify(MemberVO vo, TrainerVO tvo,HttpServletRequest req) {
+	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
 		memberService.trainerInfo(vo.getId());
 		
+		System.out.println("아이디"+vo.getId());
+
+		String id = vo.getId();
 		String password = req.getParameter("password1");
 		String tel = req.getParameter("mobile");
 
 		vo.setPassword(password);
 		vo.setTel(tel);
+		System.out.println("셋팅"+tel);
 
 		memberService.modify(vo);
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", vo);
-		
+		System.out.println("session"+session);
+
 		if (vo.getIstrainer().equals("user")) {
 			memberService.modifyStudent(vo);
+			System.out.println("getIstrainer>>>>>>"+vo.getIstrainer());
 		} else {
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+
+			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+
+			String originalPath = tvo.getTrainerPhoto();
+			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
 			
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-			
-			
-			String originalPath =tvo.getTrainerPhoto();
-			tvo.setTrainerPhoto("book1.jpg");
-			memberService.modifyTrainer(tvo);	
+			System.out.println("uploadPath>>>"+uploadPath);
+			System.out.println("originalPath>>>"+originalPath);
+			System.out.println("trainerPicFile>>>"+trainerPicFile);
+
+			if (file.isEmpty() == false) {
+				tvo.setTrainerPhoto(uuid.toString() + "_" + uploadFile.getOriginalFilename());
+				System.out.println("uuid>>>"+uuid.toString());
+			} else {
+				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
+				System.out.println("trainerPhoto>>>"+req.getParameter("trainerPhoto"));
+			}
+
+			memberService.modifyTrainer(tvo);
+			System.out.println("modifyTrainer>>>"+tvo);
 		}
 
 		return "redirect:home.do";

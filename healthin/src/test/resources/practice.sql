@@ -134,3 +134,9 @@ values(physical_no_seq.nextval,'190','90',sysdate,'maven');
 insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
+
+-- 회원정보 
+select * from health_member;
+select * from health_user;
+select * from trainer;
+

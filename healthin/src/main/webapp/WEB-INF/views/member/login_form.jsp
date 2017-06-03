@@ -39,12 +39,12 @@
 		<h2>Login</h2>
 		<form action="${pageContext.request.contextPath}/login.do"
 			id="loginFrm">
-			<input type="text" class="user active" name="id" value="UserID"
+			<input type="text" class="user active" name="id" value="사용자 아이디를 입력해주세요"
 				onfocus="this.value = '';"
-				onblur="if (this.value == '') {this.value = 'User name';}" /> <input
+				onblur="if (this.value == '') {this.value = '아이디를 입력해주세요';}" /> <input
 				type="password" class="lock active" name="password" value="Password"
 				onfocus="this.value = '';"
-				onblur="if (this.value == '') {this.value = 'Password';}" />
+				onblur="if (this.value == '') {this.value = '비번을 입력해주세요';}" />
 			<div class="forgot">
 				<div class="login-check"></div>
 				<div class="login-para">
@@ -72,10 +72,10 @@
 					<div class="clear"></div>
 				</div>
 				<h4>
-					가입이 안되어있나요? <a href="#"> 지금 등록!</a>
+					가입이 안되어있나요? <a href="${pageContext.request.contextPath}/member/register_step1.do">지금 등록!</a>
 				</h4>
 				<div class="reg-bwn">
-					<a href="#">회원가입</a>
+					<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>
 				</div>
 			</div>
 		</div>
