@@ -80,6 +80,7 @@ public class BoardController {
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
 			try {
 					file.transferTo(new File(uploadPath+File));
+					System.out.println("파일이 업로드되고 있습니다");
 					tvo.setattachedFile(File);
 					tipService.tipWrite(tvo);
 				} catch (IllegalStateException | IOException e) {
