@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script type="text/javascript">
+<script type="text/javascript">
 		function getTipCategoryList(page){
 		 		$.ajax({
 						type:"get",
@@ -34,21 +33,19 @@
 		getTipCategoryList(1);
 		
 		$("#listBtn").click(function(){
-			location.href="${pageContext.request.contextPath}/tip/tip.do";
+			location.href="${pageContext.request.contextPath}/pt_qna/qna.do";
 		});//click
 		
 		$("#deleteBtn").click(function(){
-			location.href="${pageContext.request.contextPath}/tipBoardDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
+			location.href="${pageContext.request.contextPath}/ptQnaDelete.do?no=${tip.no }&id=${tip.memberVO.id}";
 		});//click
 		
 		$("#updateBtn").click(function(){
-			location.href="${pageContext.request.contextPath}/tip/updateForm.do?no=${tip.no }";
+			location.href="${pageContext.request.contextPath}/pt_qna/ptQnaUpdateForm.do?no=${tip.no }";
 		});//click
 	});//ready
 	</script>
-	
-	
-	<div class="container">
+<div class="container">
 		<table class="content ">
 			<thead>
 				<tr>
@@ -62,11 +59,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td colspan="6">
-					<pre style="white-space: pre-wrap;">
-						<img src="${pageContext.request.contextPath }/resources/tipFile/${tip.attachedFile }"
-							style="width: 50%;" align="left">
-							${tip.content }
+					<td colspan="6"><pre style="white-space: pre-wrap;">${tip.content }
 						<c:if test="${tip.attachedFile!=null}">
 							<a id="attechedFile" href="${pageContext.request.contextPath }/fileDownload.do?
 							fileName=${tip.attachedFile }">첨부파일</a>

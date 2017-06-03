@@ -146,9 +146,6 @@ from food f, intake_member im, health_user hu
 where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-30' and im.user_id = 'user1'
 select food_name from food where food_category = '한식'
 
-
-
-
 select * 
 from (select row_number() over (order by likeState desc) as rnum,a.* 
 	from (select a.*,nvl(likeState,0) as likeState

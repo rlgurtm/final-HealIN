@@ -71,6 +71,7 @@
 				<div class="txt_desc">로그인 정보 및 회원님의 정보를 수정하세요.</div>
 			</div>
 			<form id="modifyFrm"
+			    method="post"
 				action="${pageContext.request.contextPath}/modify.do"
 				enctype="multipart/form-data" id="joinInput" name="joinInput">
 
@@ -302,7 +303,7 @@ istrainer : trainer/ user
 								</dt>
 								<dd>
 									<!-- 텍스트 입력 시 .screen_out  -->
-									<input type="file" name="uploadfile" required="required">
+									<input type="file" name="uploadFile" required="required">
 									${tvo.trainerPhoto  } <span class="mark_valid"><span
 										class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									<p class="txt_message" style="display: none;"></p>
