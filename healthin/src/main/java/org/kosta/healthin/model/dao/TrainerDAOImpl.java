@@ -47,7 +47,18 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public int followingViewCount(String memId) {
-		return template.selectOne("trainer.followingViewCount",memId);
+	public String selectfollowState(Map<String, String> map) {
+		return template.selectOne("trainer.selectfollowState",map);
 	}
+
+	@Override
+	public void updatefollowState(Map<String, String> map) {
+		template.update("trainer.updatefollowState",map);
+	}
+
+	@Override
+	public void insertfollowtrainer(Map<String, String> map) {
+		template.insert("trainer.insertfollowtrainer",map);
+	}
+
 }

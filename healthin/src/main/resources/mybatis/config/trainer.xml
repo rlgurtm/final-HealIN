@@ -51,8 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="trainerfollowingCount" resultType="int">
     	select count(*) from following where trainer_id=#{value} and apply_result='Y'
     </select>
-    <select id="followingViewCount" resultType="int">
-    	select count(*) from following where user_id=#{value} and apply_result='Y'
+    <select id="selectfollowState" resultType="String" parameterType="map">
+    	select apply_result from following where user_id=#{MEMID} and trainer_id=#{TRAINERID}
     </select>
-    
+    <insert id="insertfollowtrainer">
+ 	   insert into following (user_id,trainer_id,apply_result) values(#{MEMID},#{TRAINERID},'Y')
+    </insert>
+    <update id="updatefollowState">
+    	update following set apply_result=#{STATE} where user_id=#{MEMID} and trainer_id=#{TRAINERID}
+    </update>
 </mapper>

@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
@@ -149,12 +152,36 @@ public class BoardController {
 		return "pt_qna/qna.tiles";
 	}
 	
-	@RequestMapping("followingview.do")
+	@RequestMapping("selectfollowstate.do")
 	@ResponseBody
-	public String followingview(String memId,String trainerId){
-		int count=trainerService.followingViewCount(memId);
-		String flag="N";
-			
-		return flag;
+	public String selectfollowstate(String memId,String trainerId){
+		String apply=trainerService.selectfollowState(memId,trainerId);
+		if(apply=="N"||apply==null)
+			apply="N";
+		return apply;
+	}
+	
+	@RequestMapping("updatefollowState.do")
+	@ResponseBody
+	public String updatefollowState(HttpServletRequest request,String trainerId){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String memId=mvo.getId();
+			String state=trainerService.selectfollowState(memId,trainerId);
+			if(state.equals("Y")){
+				trainerService.updatefollowState(memId,trainerId,state);
+			}
+			else if(state.equals("N")) {
+				trainerService.updatefollowState(memId,trainerId,state);
+			}
+			else{
+				trainerService.insertfollowtrainer(memId,trainerId);
+			}
+			state=trainerService.selectfollowState(memId,trainerId);
+			return state;
+		} else {
+			return "home.do";
+		}
 	}
 }
