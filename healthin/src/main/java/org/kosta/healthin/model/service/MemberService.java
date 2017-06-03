@@ -16,4 +16,5 @@ public interface MemberService {
 	MemberVO modifyTrainer(TrainerVO tvo);
 	String findById(String id);
 	String findByNickname(String nickname);
+	MemberVO findByIdLostPassword(String id);
 }

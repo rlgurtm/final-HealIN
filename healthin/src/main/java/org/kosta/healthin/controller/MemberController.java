@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,6 +84,17 @@ public class MemberController {
 		String result = memberService.findById(id);
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping("findByIdLostPassword.do")
+	public MemberVO findByIdLostPassword(String id,HttpServletRequest req ) {
+		MemberVO mvo = memberService.findByIdLostPassword(id);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("mvo", mvo);
+		
+		return mvo;
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "findByNickname.do", produces = "application/text; charset=utf8")
@@ -91,6 +103,19 @@ public class MemberController {
 		System.out.println("result" + result);
 		return result;
 	}
+	
+	@RequestMapping("passwordSearchform.do")
+	public String passwordSearchform() {
+		return "member/passwordSearchform";
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "findByPassword.do", produces = "application/text; charset=utf8")
+//	public String findByPassword(String id,String name,String nickname) {
+//		String result = memberService.findByPassword(nickname);
+//		System.out.println("result" + result);
+//		return result;
+//	}
 
 	@RequestMapping("login_form.do")
 	public String login_form() {
