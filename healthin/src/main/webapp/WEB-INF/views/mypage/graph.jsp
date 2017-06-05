@@ -11,14 +11,14 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Year', '체중(kg)', 'BMI지수'],
-          ['data',	1000,      400],
-          ['180',  1170,      460],
-          ['data',  660,       1120],
-          ['180',  1030,      540]
+          ['data',	30,      30],
+          ['180',  50,      50],
+          ['data',  70,       70],
+          ['180',  100,      100]
         ]);
 
         var options = {
-          title: '체중과 그래프 확인하기',
+          title: '체중&그래프 확인하기',
           hAxis: {title: '확인하기',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };

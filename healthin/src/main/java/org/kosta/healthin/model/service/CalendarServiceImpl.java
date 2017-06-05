@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.CalendarDAO;
+import org.kosta.healthin.model.vo.DoneExerciseVO;
+import org.kosta.healthin.model.vo.IntakeFoodVO;
 import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Service;
 
@@ -73,7 +75,7 @@ public class CalendarServiceImpl implements CalendarService {
 	    	eventObject = new HashMap<String, Object>();
 	    	eventObject.put("title", "총소비량 : " + calorieList.get(i) + "Kcal");
 	    	eventObject.put("start", dateList.get(i));
-	    	eventObject.put("url", "consumptionCalorie.do?date=" + dateList.get(i));
+	    	eventObject.put("url", "consumptionCalorie.do?id="+ id + "&date=" + dateList.get(i));
 	    	consumptionList.add(eventObject);
 	    }
 		return consumptionList;
@@ -104,8 +106,58 @@ public class CalendarServiceImpl implements CalendarService {
 		calendarDAO.insertFood(map);
 	}
 
-//	@Override
-//	public void updateFood(int intakeNo) {
-//		calendarDAO.updateFood(intakeNo);
-//	}
+	@Override
+	public List<String> getAllDateIntakeCalorie(String id) {
+		return calendarDAO.getAllDateIntakeCalorie(id);
+	}
+
+	@Override
+	public List<String> getAllDateConsumptionCalorie(String id) {
+		return calendarDAO.getAllDateConsumptionCalorie(id);
+	}
+
+	@Override
+	public void updateFood(HashMap<String, Object> map) {
+		calendarDAO.updateFood(map);
+	}
+
+	@Override
+	public IntakeFoodVO getFoodByIntakeNo(int intakeNo) {
+		return calendarDAO.getFoodByIntakeNo(intakeNo);
+	}
+
+	@Override
+	public List<VO> getAllDoneExercise(HashMap<String, String> map) {
+		return calendarDAO.getAllDoneExercise(map);
+	}
+
+	@Override
+	public List<String> getAllExerciseCategory() {
+		return calendarDAO.getAllExerciseCategory();
+	}
+
+	@Override
+	public void deleteExercise(int consumptionNo) {
+		calendarDAO.deleteExercise(consumptionNo);
+	}
+
+	@Override
+	public void insertExercise(HashMap<String, Object> map) {
+		calendarDAO.insertExercise(map);
+	}
+
+	@Override
+	public void updateExercise(HashMap<String, Object> map) {
+		calendarDAO.updateExercise(map);
+	}
+
+	@Override
+	public List<String> getExercisesByCategory(String exerciseCategory) {
+		return calendarDAO.getExercisesByCategory(exerciseCategory);
+	}
+
+	@Override
+	public DoneExerciseVO getExerciseByConsumptionNo(int consumptionNo) {
+		return calendarDAO.getExerciseByConsumptionNo(consumptionNo);
+	}
 }
