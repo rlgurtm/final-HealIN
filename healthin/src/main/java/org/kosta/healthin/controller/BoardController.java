@@ -2,6 +2,8 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,9 +13,11 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.QnAService;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
@@ -32,6 +36,8 @@ public class BoardController {
 	private QnAService qnaService;
 	@Resource
 	private TrainerService trainerService;	
+	@Resource
+	private TrainerVideoService trainerVideoService;
 	
 	@RequestMapping("tip/tip.do")
 	public String getTipBoardList(Model model,String nowpage){
@@ -148,6 +154,17 @@ public class BoardController {
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
 		model.addAttribute("tvo",vo);
+		
+		
+		int nowPage=1;
+		PagingBean pb;
+		ListVO listVO = new ListVO();
+        pb = new PagingBean(3,nowPage);
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("pb", pb);
+        map.put("trainerId", trainerId);
+        listVO = trainerVideoService.findByTrainerIdVideoList(map);
+        model.addAttribute("listVO",listVO);
 		return "trainer/trainerDetail.tiles";
 	}
 	

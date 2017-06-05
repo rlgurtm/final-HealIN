@@ -152,8 +152,7 @@
 		<c:forEach items="${listVO.LVO}" var="lvo">
 			<div class="col-md-3 img-portfolio">
 				<div class="videoList">
-					<a
-						href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
+					<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
 						<video width="270" height="200">
 							<source
 								src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
@@ -164,8 +163,11 @@
 					<h3>
 						<a>${lvo.title}</a>
 					</h3>
-					<br> 추천 : ${lvo.likeState}<br> 분류 : ${lvo.category}<br>
-					조회수 : ${lvo.hits}<br> 등록일 : ${lvo.postedDate}<br>
+					작성자 : ${lvo.trainerId}<br>
+					추천 : ${lvo.likeState}<br> 
+					분류 : ${lvo.category}<br>
+					조회수 : ${lvo.hits}<br> 
+					등록일 : ${lvo.postedDate}<br>
 					${lvo.content}<br>
 					<!-- </div> -->
 				</div>
@@ -175,11 +177,10 @@
 
 	<hr>
 	<div class="col-lg-12" align="right">
-		<form class="pure-form">
+		<form class="pure-form" method="post" action="${pageContext.request.contextPath}/filterVideoList.do?filter=findByTrainerId">
 			<h4>PT 강사별 조회</h4>
-			<input id="trainerNameKeyword" type="text" class="pure-input-rounded">
+			<input name="trainerId" id="trainerNameKeyword" type="text" class="pure-input-rounded">
 			<button type="submit" class="pure-button">Search</button>
-			<ul id="trainerNameList"></ul>
 		</form>
 	</div>
 

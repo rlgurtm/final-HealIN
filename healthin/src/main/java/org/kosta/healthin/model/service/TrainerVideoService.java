@@ -53,4 +53,8 @@ public interface TrainerVideoService {
 
 	List<String> trainerNameKeywordSelect(String keyword);
 
+	int findByTotalCount(String trainerId);
+
+	ListVO findByTrainerIdVideoList(Map map);
+
 }

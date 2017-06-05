@@ -107,4 +107,12 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public List<String> trainerNameKeywordSelect(String keyword){
 		return videoDAO.trainerNameKeywordSelect(keyword);
 	}
+	@Override
+	public int findByTotalCount(String trainerId){
+		return videoDAO.findByTotalCount(trainerId);
+	}
+	@Override
+	public ListVO findByTrainerIdVideoList(Map map){
+		return videoDAO.findByTrainerIdVideoList(map);
+	}
 }
