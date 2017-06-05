@@ -5,9 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home">
  	<select id="getVideoListOnMainpage" resultType="trainerVideoVO">
- 		select video_no as videoNo, title, content, video_file as videoFile
- 		, posted_date as postedDate, hits, category, trainer_id as trainerId, openrank
- 		from trainer_video
+ 		select * 
+		from (select row_number() over (order by likeState desc) as rnum,a.* 
+			from (select a.*,nvl(likeState,0) as likeState
+				from (
+					select video_no as videoNo,title,content,video_file as videoFile
+						,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+						,trainer_id as trainerId,openrank 
+					from trainer_video 
+					where openrank<![CDATA[ < ]]>9) a
+					,(select video_no,sum(like_state) as likeState 
+					from video_like group by video_no) b
+				where b.video_no(+)=a.videoNo) a )
+		where rnum between 1 and 9 order by rnum asc
  	</select>
  	<!-- <select id="trainerVideoShow" resultType="trainerVideoVO">
  		select video_no as videoNo,title,content,video_file as videoFile
