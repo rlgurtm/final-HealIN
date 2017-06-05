@@ -3,38 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(document).ready(function() {
-		var events = "";
-		$("#showBtn").click(function() {
-			$.ajax({
-				type:"post",
-				url:"${pageContext.request.contextPath}/ajaxCalendar.do",
-				//data:"address="+addrValue,
-				dataType:"json",
-				success:function(jsonList){
-					events=jsonList;
-					alert(events);
-					//var data = JSON.parse(jsonList);
-					for (var i=0; i<events.length; i++) {
-						alert(events[i].title);
-					}
-				}//function
-			});//ajax
-		});
-		$(":input[name=type]").change(function() {		// 입력부분 ajax ~ing
-			alert($(this).val());
-			$.ajax({
-				type:"post",
-				url:"${pageContext.request.contextPath}/ajaxCalendar.do",
-				//data:"address="+addrValue,
-				dataType:"json",
-				success:function(jsonList){					
-					//var data = JSON.parse(jsonList);
-					for (var i=0; i<jsonList.length; i++) {
-						alert(jsonList[i].title);
-					}
-				}//function
-			});//ajax
-		});
+		var mydate = "";
+		$("#typeSendBtn").click(function() {
+			if (document.getElementById("type").value == "") {
+				alert("타입을 선택하세요!");
+				$('#type').prop('selectedIndex', 0);
+				$("#type").focus();
+				return;
+			}
+			$("#inputTypeForm").submit();
+    	});
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -46,70 +24,32 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
-				/* var title = prompt('Event Title:'); */	// 기존 타이틀 입력하라는 alert 비슷한거였음
-				//var eventData;
-				/* if (title) {
-					eventData = {
-						title: title,
-						start: start,
-						end: end
-					};
-					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-				} */
 				$('#calendar').fullCalendar('unselect');
 			},
-			
-			/* jsEvent : 클릭한 좌표에 접근 가능 */
-			/* dayClick: function(date, jsEvent, view) {    
-	            alert('Clicked on: ' + date.format());
-	            alert('Coordinates: ' + jsEvent.pageX + ', ' + jsEvent.pageY);	// 좌표
-	            alert('Current view: ' + view.name);
-	        }, */
 	        dayClick: function(date, jsEvent, view) {
+	        	var date = date.format();
+	        	document.getElementById("mydate").value = date;
 	            $("#myModal").modal("show");
 	        },
-	        
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			
-			/* eventRender: function (event, element) {
-		        element.attr('href', 'javascript:void(0);');
-		        element.click(function() {
-		            $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-		            $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-		            $("#eventInfo").html(event.description);
-		            $("#eventLink").attr('href', event.url);
-		            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
-		        });
-		    }, */
 			events: '${pageContext.request.contextPath}/ajaxCalendar.do?id=${sessionScope.mvo.id}'
-			/* eventClick: function(event) {
-		        if (event.url) {
-		        	window.open("", "", "width=200,height=100");
-		            return false;
-		        }
-		    } */
 		});
 	});
-</script>
-<script>
-  	$(document).ready(function(){
-    	$(".menu").click(function(){
-        	$(".active").removeClass("active");
-        	$(this).addClass("active");
-        });
-    });
 </script>
 <style>
 	#calendar {
 		max-width: 900px;
 		margin: 0 auto;
 	}
+	
+	select {
+		height: 25px;
+	}
 </style>
 
     <!-- Page Content -->
     <div class="container">
-
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
@@ -148,25 +88,26 @@
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
-	
 				<!-- Modal content-->
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" align="center">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Modal Header</h4>
+						<h4 class="modal-title">섭취칼로리 or 소비칼로리 선택</h4>
 					</div>
-					<div class="modal-body">
-						<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/updateCalendar.do">
-							<select name="type">
-								<option>----</option>
-								<option>섭취</option>
-								<option>소비</option>
+					<div class="modal-body" align="center">
+						<form id="inputTypeForm" action="${pageContext.request.contextPath}/calorieType.do">
+							<input type="hidden" id="id" name="id" value="${sessionScope.mvo.id}">
+							<input type="hidden" id="mydate" name="mydate" value="">
+							<div id="tmp"></div>
+							<select id="type" name="type">
+								<option value="">--타입선택--</option>
+								<option value="intakeCalorie">섭취칼로리</option>
+								<option value="consumptionCalorie">소비칼로리</option>
 							</select>
 						</form>
-						<div id="typeInfo"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="testBtn">테스트</button>
+						<button type="button" class="btn btn-default" id="typeSendBtn">OK</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>

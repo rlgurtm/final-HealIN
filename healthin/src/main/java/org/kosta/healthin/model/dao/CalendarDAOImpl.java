@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.DoneExerciseVO;
+import org.kosta.healthin.model.vo.IntakeFoodVO;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -59,8 +61,48 @@ public class CalendarDAOImpl implements CalendarDAO {
 		template.insert("calendar.insertFood", map);
 	}
 
-//	@Override
-//	public void updateFood(HashMap<String, String> map) {
-//		template.update("calendar.updateFood", intakeNo);
-//	}
+	@Override
+	public void updateFood(HashMap<String, Object> map) {
+		template.update("calendar.updateFood", map);
+	}
+
+	@Override
+	public IntakeFoodVO getFoodByIntakeNo(int intakeNo) {
+		return template.selectOne("calendar.getFoodByIntakeNo", intakeNo);
+	}
+
+	@Override
+	public List<VO> getAllDoneExercise(HashMap<String, String> map) {
+		return template.selectList("calendar.getAllDoneExercise", map);
+	}
+
+	@Override
+	public List<String> getAllExerciseCategory() {
+		return template.selectList("calendar.getAllExerciseCategory");
+	}
+
+	@Override
+	public void deleteExercise(int consumptionNo) {
+		template.delete("calendar.deleteExercise", consumptionNo);
+	}
+
+	@Override
+	public void insertExercise(HashMap<String, Object> map) {
+		template.insert("calendar.insertExercise", map);
+	}
+
+	@Override
+	public void updateExercise(HashMap<String, Object> map) {
+		template.update("calendar.updateExercise", map);
+	}
+
+	@Override
+	public List<String> getExercisesByCategory(String exerciseCategory) {
+		return template.selectList("calendar.getExercisesByCategory", exerciseCategory);
+	}
+
+	@Override
+	public DoneExerciseVO getExerciseByConsumptionNo(int consumptionNo) {
+		return template.selectOne("calendar.getFoodByConsumptionNo", consumptionNo);
+	}
 }
