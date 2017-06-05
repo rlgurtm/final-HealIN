@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	$.ajax({
@@ -86,65 +87,32 @@ $(document).ready(function(){
 		<div class="col-lg-12">
 			<h2 class="page-header">강사님의 동영상</h2>
 		</div>
+		<c:forEach items="${listVO.LVO}" var="lvo">
 		<div class="col-md-4 text-center">
 			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
+				<!-- <img class="img-responsive" src="http://placehold.it/750x450" alt=""> -->
 				<div class="caption">
+					<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
+						<video width="270" height="200">
+							<source
+								src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
+								type="video/mp4">
+						</video>
+					</a>
 					<h3>
-						John Smith<br> <small>Job Title</small>
+						${lvo.title}<br> <small></small>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
+					<p>
+					작성자 : ${lvo.trainerId}<br>
+					추천 : ${lvo.likeState}<br> 
+					분류 : ${lvo.category}<br>
+					조회수 : ${lvo.hits}<br> 
+					등록일 : ${lvo.postedDate}<br>
+					${lvo.content}<br>
+					</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 text-center">
-			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
-				<div class="caption">
-					<h3>
-						John Smith<br> <small>Job Title</small>
-					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 text-center">
-			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
-				<div class="caption">
-					<h3>
-						John Smith<br> <small>Job Title</small>
-					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </div>

@@ -137,8 +137,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="trainerNameKeywordSelect" resultType="string" parameterType="string">
  		select trainer_id from trainer where trainer_id like '%' || #{value} ||'%'
  	</select>
- 	
- 	
+ 	<select id="findByTotalCount" resultType="int" parameterType="string">
+ 		select count(*) from trainer_video where trainer_id like '%' || #{value} ||'%'
+ 	</select>
+ 	<select id="findByTrainerIdVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
+ 		select * 
+		from (select row_number() over (order by videoNo desc) as rnum,a.* 
+			from (select a.*,nvl(likeState,0) as likeState
+				from (
+					select video_no as videoNo,title,content,video_file as videoFile
+						,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+						,trainer_id as trainerId,openrank 
+					from trainer_video 
+					where openrank<![CDATA[ < ]]>9) a
+					,(select video_no,sum(like_state) as likeState 
+					from video_like group by video_no) b
+				where b.video_no(+)=a.videoNo and a.trainerId like '%' || #{trainerId} ||'%') a )
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ 	</select>
  	
  	
  	

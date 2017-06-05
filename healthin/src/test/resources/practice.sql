@@ -160,3 +160,19 @@ from (select row_number() over (order by likeState desc) as rnum,a.*
 			from video_like group by video_no) b
 		where b.video_no(+)=a.videoNo) a )
 where rnum between 1 and 200
+
+
+select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f.calorie*im.count as totalCalorie 
+ 		from food f, intake_member im, health_user hu
+		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_no = 123
+select cm.consumption_no as consumptionNo, e.name as exName, e.calorie, cm.ex_hour as exHour, e.calorie*cm.ex_hour as totalCalorie 
+ 		from exercise e, consumption_member cm, health_user hu
+		where cm.user_id = hu.user_id and e.name = cm.name and consumption_no = 1		
+select cm.consumption_no as consumptionNo, e.name as exName, e.calorie, cm.ex_hour as exHour, e.calorie*cm.ex_hour*pi.weight as totalCalorie 
+ 		from exercise e, consumption_member cm, health_user hu, physical_info pi
+		where cm.user_id = hu.user_id and cm.user_id = pi.user_id and e.name = cm.name and ex_date = '2017-06-01' and cm.user_id = 'user1'
+
+select sum(f.calorie*im.count) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = 'user1' and im.intake_date like '%06%' and im.intake_date like '%30%' 
+
+		select food_name from food where food_name like '%"%'

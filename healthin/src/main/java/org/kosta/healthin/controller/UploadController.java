@@ -248,6 +248,16 @@ public class UploadController {
 			listVO = videoService.filterCategoryTrainerVideoList(map);
 			listVO.setPb(pb);
 			model.addAttribute("filter",filter+"&cate="+category);
+		} else if(filter.equals("findByTrainerId")){
+			String trainerId = request.getParameter("trainerId");
+			filterTotalCount = videoService.findByTotalCount(trainerId);
+			pb = new PagingBean(filterTotalCount,nowPage);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("pb", pb);
+			map.put("trainerId", trainerId);
+			listVO = videoService.findByTrainerIdVideoList(map);
+			listVO.setPb(pb);
+			model.addAttribute("filter",filter+"&trainerId="+trainerId);
 		}
 		/*for(int i=0;i<listVO.getLVO().size();i++){
 			System.out.println(listVO.getLVO().get(i).toString());
@@ -301,6 +311,29 @@ public class UploadController {
 		return trainerNamelist;
 	}
 	
+	/*@RequestMapping("findByTrainerIdVideoList.do")
+	public String findByTrainerIdVideoList(Model model,HttpServletRequest request){
+		int nowPage;
+		PagingBean pb;
+		int findByTotalCount; 
+		ListVO listVO = new ListVO();
+		String trainerId = request.getParameter("trainerId");
+		if(request.getParameter("nowPage")!=null){
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		} else {
+			nowPage = 1;
+		}
+		findByTotalCount = videoService.findByTotalCount(trainerId);
+		pb = new PagingBean(findByTotalCount,nowPage);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("pb", pb);
+		map.put("trainerId", trainerId);
+		listVO = videoService.findByTrainerIdVideoList(map);
+		listVO.setPb(pb);
+		model.addAttribute("listVO",listVO);
+		
+		return "video/trainer_video_list.tiles";
+	}*/
 	
 	
 	@RequestMapping("filter.do")

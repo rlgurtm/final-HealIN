@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where t.trainer_id=m.id) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
-    <select id="trainerOrderRate" resultMap="trainerRM" parameterType="map">
+    <select id="trainerOrderFollowing" resultMap="trainerRM" parameterType="map">
        select a.* from 
        (select row_number() over(order by rate desc) rnum,
        id,name,location,career,rank,trainer_photo

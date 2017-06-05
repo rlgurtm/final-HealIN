@@ -7,6 +7,9 @@
 		/* $("#backBtn").click(function() {
 			location.href = "${pageContext.request.contextPath}/userCalendar.do";
 		}); */
+		$("#deleteBtn").click(function() {
+			return confirm("정말 삭제하시겠습니까?");
+		});
 		$("#insertBtn").click(function() {
 			if (document.getElementById("foodCategory").value == "") {
 				alert("카테고리를 선택하세요!");
@@ -18,21 +21,42 @@
 				$("#foodName").focus();
 				return;
 			}
-			if (document.getElementById("count").value == 0) {
+			if (document.getElementById("insertCount").value == 0) {
 				alert("수량을 입력하세요!");
-				$("#count").focus();
+				$("#insertCount").focus();
 				return;
 			}
 			$("#insertFoodForm").submit();
 		});
-		$("#updateFood").click(function() {
-			$("#updateModal").modal("show");
+		$(".updateFormBtn").click(function() {
+			var targetFoodIntakeNo = $(this).data("id");
+			$.ajax({
+				type: "post",		// 넘겨주는 방식
+				url: "${pageContext.request.contextPath}/getFoodByIntakeNo.do",	// 보낼 url
+				data: "intakeNo=" + targetFoodIntakeNo,	// 넘길 데이타 값
+				success: function(food) {	// 성공했을 때 결과
+					document.getElementById("updateFoodIntakeNo").value = food.intakeNo;
+					document.getElementById("updateFoodName").value = food.foodName;
+					document.getElementById("updateFoodCount").value = food.count;
+					document.getElementById("updateFoodCalorie").value = food.calorie; 
+					$("#updateModal").modal("show");
+				}
+			});
+		});
+		$("#updateBtn").click(function() {
+			if (document.getElementById("updateFoodCount").value <= 0) {
+				alert("수량을 0 이상으로 입력하세요!");
+				$("#updateFoodCount").focus();
+				return;
+			}
+			$("#updateFoodForm").submit();
 		});
 		$("#foodCategory").change(function() {
 			$.ajax({
 				type: "post",		// 넘겨주는 방식
 				url: "${pageContext.request.contextPath}/getFoodsByCategory.do",	// 보낼 url
 				data: "foodCategory=" + document.getElementById("foodCategory").value,	// 넘길 데이타 값
+				dataType: "json",
 				success: function(foodList) {	// 성공했을 때 결과
 					var foodNameInfo = "";
 					foodNameInfo += "<option value=''>--음식명--</option>";
@@ -47,7 +71,7 @@
 </script>
 <style>
   /* Icon when the collapsible content is shown */
-  .btn-default:after {
+  #toggleBtn:after {
     font-family: "Glyphicons Halflings";
     content: "\e114";
     float: right;
@@ -55,16 +79,19 @@
   }
 
   /* Icon when the collapsible content is hidden */
-  .btn-default.collapsed:after {
+  #toggleBtn.collapsed:after {
     content: "\e080";
   }
   input[type=number]{
-    width: 50px;
+    width: 40px;
     height: 25px;
   }
   select {
     height: 25px;
   }     
+  #updateFoodCalorie {
+ 	 width:40px;
+  }
 </style>
 
     <!-- Page Heading/Breadcrumbs -->
@@ -103,7 +130,7 @@
 		<br><br>
 		<!-- 먹은 음식 입력 -->
 		<br>
-		<button type="button" class="btn btn-sm btn-default collapsed" data-toggle="collapse" data-target="#demo">먹은 음식 추가</button>
+		<button id="toggleBtn" type="button" class="btn btn-sm btn-default collapsed" data-toggle="collapse" data-target="#demo">먹은 음식 추가</button>
 		<div id="demo" class="collapse">
 			<br>
 			<form id="insertFoodForm" action="${pageContext.request.contextPath}/insertFood.do">
@@ -119,7 +146,7 @@
 				<select id="foodName" name="foodName" required="required">
 					<option value="">--음식명--</option>
 				</select>&nbsp;&nbsp;&nbsp;
-				수량 : <input type="number" required="required" id="count" name="count">개
+				수량 : <input type="number" required="required" id="insertCount" name="count">개
 				<c:forEach begin="0" end="4">
 					&nbsp;
 				</c:forEach>
@@ -132,7 +159,7 @@
 		<div align="left"><h5>▶ 섭취한 음식 [${requestScope.date}]</h5></div>
 		
 		<table class="table table-hover">
-			<tbody align="center">
+			<tbody align="center" id="intakeFoodTable">
 				<tr class="info" style='font-weight:bold;'>
 					<td>음식명</td><td>칼로리</td><td>수량</td>
 					<td>
@@ -147,14 +174,24 @@
 						<td>${food.count}</td>
 						<td>${food.totalCalorie}</td>
 						<td>
-							<a href="#" id="updateFood"><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
-							<a href="${pageContext.request.contextPath}/deleteFood.do?intakeNo=${food.intakeNo}&id=${sessionScope.mvo.id}&date=${requestScope.date}"><span class='glyphicon glyphicon-trash'></span></a>
+							<a id="updateForm" class="updateFormBtn" data-target="#updateModal" href="#" data-id="${food.intakeNo}"><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
+							<a id="deleteBtn" href="${pageContext.request.contextPath}/deleteFood.do?intakeNo=${food.intakeNo}&id=${sessionScope.mvo.id}&date=${requestScope.date}"><span class='glyphicon glyphicon-trash'></span></a>
 						</td>
 					</tr>
 				</c:forEach>
-				<tr>
-					<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : ${requestScope.totalCalorie} Kcal</td>
-				</tr>
+				<c:choose>
+					<c:when test="${requestScope.foodList == null}">
+						<tr>
+							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : 0 Kcal</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : ${requestScope.totalCalorie} Kcal</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+				
 			</tbody>
 		</table>
 		
@@ -169,17 +206,17 @@
 						<h4 class="modal-title">먹은 음식 수정</h4>
 					</div>
 					<div class="modal-body">
-						<form id="calorieForm" action="${pageContext.request.contextPath}/mypage/updateCalendar.do">
-							<select name="type">
-								<option>----</option>
-								<option>섭취</option>
-								<option>소비</option>
-							</select>
+						<form id="updateFoodForm" action="${pageContext.request.contextPath}/updateFood.do">
+							<input type="hidden" name="intakeNo" id="updateFoodIntakeNo" value="">
+							<input type="hidden" name="id" id="id" value="${sessionScope.mvo.id}">
+							<input type="hidden" name="date" id="date" value="${requestScope.date}">
+							음식명 : <input type="text" name="foodName" id="updateFoodName" value="" readonly="readonly">&nbsp;&nbsp;&nbsp;&nbsp;
+							수량 : <input type="number" name="count" id="updateFoodCount"  value="" required="required"> 개 &nbsp;&nbsp;
+							(1회 기준 칼로리 : <input type="text" name="calorie" id="updateFoodCalorie" value="" readonly="readonly"> Kcal)
 						</form>
-						<div id="typeInfo"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="testBtn">테스트</button>
+						<button type="button" class="btn btn-default" id="updateBtn">Update</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
@@ -188,40 +225,3 @@
 		
 		<br><br><br>
 	</div>
-<!-- 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#name").change(function() {
-			if (document.getElementById("name").value == "") {
-				$("#addressView").text("");	// or $("#addressView").empty();
-				alert("이름을 선택하세요!");
-				return;
-			}
-			$.ajax({
-				type: "post",		// 넘겨주는 방식
-				url: "AddressServlet",	// 보낼 url
-				data: "name=" + document.getElementById("name").value,	// 넘길 데이타 값
-				success: function(result) {	// 성공했을 때 결과
-					$("#addressView").html(result).css("background", "yellow");
-				},
-				timeout: 1000,
-				error: function() {
-					alert("timeout error!");
-				}
-			});
-		});
-	});
-</script>
-</head>
-<body>
-	<select id="name">
-		<option value="">-주소검색-</option>
-		<option value="기성용">기성용</option>
-		<option value="이청용">이청용</option>
-		<option value="손흥민">손흥민</option>
-	</select>
-	<span id="addressView"></span>
-</body>
-</html>
-
- -->
