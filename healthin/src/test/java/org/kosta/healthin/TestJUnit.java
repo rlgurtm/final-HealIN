@@ -30,6 +30,7 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
+		System.out.println(qnadao.getIsTrainer("java"));
 	}
 }
 

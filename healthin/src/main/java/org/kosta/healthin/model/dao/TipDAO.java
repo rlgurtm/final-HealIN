@@ -14,27 +14,27 @@ public interface TipDAO {
 
 	int getTotalTipCount();
 
-	List<VO> tipBoardCategoryList(Map<String, Object> map);
+	List<VO> getTipBoardCategoryList(Map<String, Object> map);
 
 	int getTotalTipCategoryCount(String category);
 
+	void tipQnaBoardHitsCount(int no);
+
 	TipBoardVO getTipBoardDetailContent(int no);
 
-	void tipBoardDelete(Map<String, Object> map);
+	void tipQnaBoardDelete(Map<String, Object> map);
 
 	void tipWrite(TipBoardVO tvo);
 
-	void tipHitsCount(int no);
+	List<VO> getTipQnaCommentList(Map<String, Object> map);
+	
+	int getTotalTipQnaCommentCount(int no);
 
-	int getTotalTipCommentCount(int no);
+	void tipQnaCommentWrite(CommentVO cvo);
 
-	List<VO> getTipCommentList(Map<String, Object> map);
+	void tipQnaCommentDelete(int no);
 
-	void tipCommentWrite(CommentVO cvo);
-
-	void tipCommentDelete(int no);
-
-	void tipUpdate(TipBoardVO tvo);
+	void tipQnaBoardUpdate(TipBoardVO tvo);
 
 
 }

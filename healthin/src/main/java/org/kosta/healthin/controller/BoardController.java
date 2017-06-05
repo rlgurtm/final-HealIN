@@ -2,6 +2,8 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,9 +13,11 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.QnAService;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
@@ -32,6 +36,8 @@ public class BoardController {
 	private QnAService qnaService;
 	@Resource
 	private TrainerService trainerService;	
+	@Resource
+	private TrainerVideoService trainerVideoService;
 	
 	@RequestMapping("tip/tip.do")
 	public String getTipBoardList(Model model,String nowpage){
@@ -109,7 +115,7 @@ public class BoardController {
 	@RequestMapping("tipCommentWrite.do")
 	public String tipCommentWrite(CommentVO cvo){
 				tipService.tipCommentWrite(cvo);
-		return "redirect:/tip/tip_content.do?no="+cvo.getBoardNo();
+		return "redirect:/tip/NO_Hits_tip_content.do?no="+cvo.getBoardNo();
 	}
 	@RequestMapping("tipCommentDelete.do")
 	public String tipCommentDelete(String no,String bno){
@@ -148,6 +154,17 @@ public class BoardController {
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
 		model.addAttribute("tvo",vo);
+		
+		
+		int nowPage=1;
+		PagingBean pb;
+		ListVO listVO = new ListVO();
+        pb = new PagingBean(3,nowPage);
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("pb", pb);
+        map.put("trainerId", trainerId);
+        listVO = trainerVideoService.findByTrainerIdVideoList(map);
+        model.addAttribute("listVO",listVO);
 		return "trainer/trainerDetail.tiles";
 	}
 	
@@ -222,7 +239,29 @@ public class BoardController {
 		qnaService.ptQnaUpdate(tvo);
 		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
 	}
-	
+	@RequestMapping("ptQnaCommentWrite.do")
+	public String ptQnaCommentWrite(CommentVO cvo){
+		qnaService.ptQnaCommentWrite(cvo);
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+cvo.getBoardNo();
+	}
+	@RequestMapping("ptQnaComment.do")
+	@ResponseBody
+	public ListVO getPtQnaCommentList(String no,String nowpage){
+		if(nowpage==null)
+			nowpage="1";
+		return qnaService.getPtQnaCommentList(no, nowpage);
+		
+	}
+	@RequestMapping("ptQnaCommentDelete")
+	public String ptQnaCommentDelete(String no,String bno){
+		qnaService.ptQnaCommentDelete(no);
+	return "redirect://pt_qna/NO_Hits_ptQna_content.do?no="+bno;
+	}
+	@RequestMapping("isTrainer.do")
+	@ResponseBody
+	public String getIsTrainer(String id){
+		return qnaService.getIsTrainer(id);
+	}
 	@RequestMapping("selectfollowstate.do")
 	@ResponseBody
 	public String selectfollowstate(String memId,String trainerId){
@@ -240,14 +279,16 @@ public class BoardController {
 		if(mvo!=null){
 			String memId=mvo.getId();
 			String state=trainerService.selectfollowState(memId,trainerId);
-			if(state.equals("Y")){
-				trainerService.updatefollowState(memId,trainerId,state);
-			}
-			else if(state.equals("N")) {
-				trainerService.updatefollowState(memId,trainerId,state);
+			if(state == null){
+				trainerService.insertfollowtrainer(memId,trainerId);
 			}
 			else{
-				trainerService.insertfollowtrainer(memId,trainerId);
+				if(state.equals("Y")){
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
+				else if(state.equals("N")) {
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
 			}
 			state=trainerService.selectfollowState(memId,trainerId);
 			return state;

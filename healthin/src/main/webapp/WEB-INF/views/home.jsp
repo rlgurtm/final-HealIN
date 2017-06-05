@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
         	$(".active").removeClass("active");
         	$(this).addClass("active");
         });
+  		$(".regular").slick({
+	        dots: true,
+	        infinite: true,
+	        slidesToShow: 3,
+	        slidesToScroll: 3
+		});
     });
+  /* 	$(document).ready(function() {
+  	    $('.pgwSlider').pgwSlider();
+  	}); */
 </script>
 
     <!-- Header Carousel -->
@@ -192,30 +202,40 @@
         <br><br><br>
         
         <!-- 인기 동영상 section -->
-        <div class="row">
+        <div class="row" >
             <div class="col-lg-12">
                 <div class="col-lg-12">
 	                <h2 class="page-header">Video
 	                    <small>popular video</small>
 	                </h2>
+				<section class="regular slider">
+					<c:forEach items="${videoList.LVO}" var="lvo">
+						<div class="videoList" align="center">
+						<div>
+							<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
+							<video width="270" height="200">
+								<source
+									src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
+										type="video/mp4">
+								</video>
+							</a>
+							<!-- <div style="background:#F2F2F2"> -->
+							<h3>
+								<a>${lvo.title}</a>
+							</h3>
+							작성자 : ${lvo.trainerId}<br>
+							추천 : ${lvo.likeState}<br> 
+							분류 : ${lvo.category}<br>
+							조회수 : ${lvo.hits}<br> 
+							등록일 : ${lvo.postedDate}<br>
+							${lvo.content}<br>
+							<!-- </div> -->
+						</div>
+						</div>
+					</c:forEach>
+				</section>
 	            </div>
             </div>
-            
-          	 <c:forEach items="${videoList.LVO}" var="video" begin="0" end="7">
-	          	 <div class="col-md-3 col-sm-6">
-	          		<a
-					href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${video.videoNo}#loca">
-					<video width="250" height="185">		<!-- 280,210 -->
-						<source
-							src="${pageContext.request.contextPath}/resources/video/${video.videoFile}"
-							type="video/mp4">
-					</video>
-					</a>
-					<h3>${video.title}</h3>
-					<p>작성자 : ${video.hits}</p>
-					<p>${video.content}</p>
-	          	 </div>
-          	 </c:forEach>
         </div>
         <!-- /.row -->
         

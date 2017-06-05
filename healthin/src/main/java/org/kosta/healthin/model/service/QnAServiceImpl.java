@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.QnaDAO;
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
@@ -42,7 +43,7 @@ public class QnAServiceImpl implements QnAService {
 	@Override
 	public void ptQnaHitsCount(String no) {
 			int NO=Integer.parseInt(no);
-			qnaDao.ptQnaHitsCount(NO);
+			qnaDao.tipQnaBoardHitsCount(NO);
 		
 	}
 	@Override
@@ -59,11 +60,37 @@ public class QnAServiceImpl implements QnAService {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("no", Integer.parseInt(no));
 		map.put("id", id);
-		qnaDao.ptQnaDelete(map);
+		qnaDao.tipQnaBoardDelete(map);
 	}
 	@Override
 	public void ptQnaUpdate(TipBoardVO tvo) {
-		qnaDao.ptQnaUpdate(tvo);
+		qnaDao.tipQnaBoardUpdate(tvo);
 		
+	}
+	@Override
+	public ListVO getPtQnaCommentList(String no, String nowpage) {
+		int totalContents=qnaDao.getTotalTipQnaCommentCount(Integer.parseInt(no));
+		int nowPage=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+			Map<String, Object> map=new HashMap<String,Object>();
+			map.put("no",Integer.parseInt(no));
+			map.put("startRowNumber", pb.getStartRowNumber());
+			map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO=new ListVO(qnaDao.getTipQnaCommentList(map),pb);
+		return listVO;
+	}
+	@Override
+	public void ptQnaCommentWrite(CommentVO cvo) {
+		if(qnaDao.getIsTrainer(cvo.getId()).equals("trainer")){
+			qnaDao.tipQnaCommentWrite(cvo);
+		}
+	}
+	@Override
+	public void ptQnaCommentDelete(String no) {
+		qnaDao.tipQnaCommentDelete(Integer.parseInt(no));
+	}
+	@Override
+	public String getIsTrainer(String id){
+		return qnaDao.getIsTrainer(id);
 	}
 }
