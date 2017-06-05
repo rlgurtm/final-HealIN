@@ -28,9 +28,10 @@ table, th, td {
   </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/graph.do">그래프보기</a>
 <form id="bmi" action="${pageContext.request.contextPath }/insertUserPhysicalInfo.do" >
 <div class="container">
-<table class="table" align="center">
+<table class="table" align="center" width="100">
     <thead>
       <tr>
         <th align="center"><h3>BMI 측정하기</h3>	</th>
@@ -43,9 +44,9 @@ table, th, td {
       <tr class="active">
         <td>체중<input type="text" id="weight" name="weight">(kg)</td>
       </tr>
-      <tr class="info">
-        <td>User ID(보여주기?)</td>
-      <tr class="">
+		<!-- <tr class="info">
+		</tr> -->
+		<tr class="">
       	<td><input type="submit" id="bmi_Test" value="측정하기"></td>
       </tr>
    </tbody>  

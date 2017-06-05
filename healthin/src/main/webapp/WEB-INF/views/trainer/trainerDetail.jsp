@@ -1,19 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	$.ajax({
 		type:"get",
-		url:"${pageContext.request.contextPath}/followingview.do",
+		url:"${pageContext.request.contextPath}/selectfollowstate.do",
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
-			//alert(data);
+			if(data=='Y')
+				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+			else
+				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+	
 		}
-	});
-	$(".hearty").click(function(){
-		alert($("#trainerId").val());
-	});
-});
+	}); //ajax
+	$("#imgtd").click(function(){
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/updatefollowState.do",
+				data: "trainerId="+$("#trainerId").val(),
+				success:function(data){
+					if(data=='Y')
+						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+					else
+						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+				}//function
+			});//ajax
+		});//click
+	});//ready
+	
 </script>
 <div class="container">
 
@@ -71,65 +87,32 @@ $(document).ready(function(){
 		<div class="col-lg-12">
 			<h2 class="page-header">강사님의 동영상</h2>
 		</div>
+		<c:forEach items="${listVO.LVO}" var="lvo">
 		<div class="col-md-4 text-center">
 			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
+				<!-- <img class="img-responsive" src="http://placehold.it/750x450" alt=""> -->
 				<div class="caption">
+					<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
+						<video width="270" height="200">
+							<source
+								src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
+								type="video/mp4">
+						</video>
+					</a>
 					<h3>
-						John Smith<br> <small>Job Title</small>
+						${lvo.title}<br> <small></small>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
+					<p>
+					작성자 : ${lvo.trainerId}<br>
+					추천 : ${lvo.likeState}<br> 
+					분류 : ${lvo.category}<br>
+					조회수 : ${lvo.hits}<br> 
+					등록일 : ${lvo.postedDate}<br>
+					${lvo.content}<br>
+					</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 text-center">
-			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
-				<div class="caption">
-					<h3>
-						John Smith<br> <small>Job Title</small>
-					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 text-center">
-			<div class="thumbnail">
-				<img class="img-responsive" src="http://placehold.it/750x450" alt="">
-				<div class="caption">
-					<h3>
-						John Smith<br> <small>Job Title</small>
-					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Iste saepe et quisquam nesciunt maxime.</p>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </div>

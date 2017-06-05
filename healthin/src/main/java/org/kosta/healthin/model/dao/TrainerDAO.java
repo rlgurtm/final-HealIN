@@ -21,6 +21,12 @@ public interface TrainerDAO {
 
 	int trainerfollowingCount(String trainerId);
 
-	int followingViewCount(String memId);
+	String selectfollowState(Map<String, String> map);
+
+	void updatefollowState(Map<String, String> map);
+
+	void insertfollowtrainer(Map<String, String> map);
+
+
 
 }

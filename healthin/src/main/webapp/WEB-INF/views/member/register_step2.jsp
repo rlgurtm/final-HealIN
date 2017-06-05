@@ -38,12 +38,39 @@
 				success : function(data) {
 					if(data == ($("#id").val())){
 						console.log('XXXX');
-						$(".id_message").html(
+						$("#id_message").html(
 								"중복id입니다.다른 아이디를 입력해주세요.").show();
 					}else{
 						console.log('OOOO');
-						$(".id_message").html(
+						$("#id_message").html(
 						"사용가능한 id입니다.").show();
+					}
+				},error: function () {
+					 console.log("Request Fail!!");
+				}
+			});//ajax
+
+		});
+		$("#nickname").keydown(function() {
+			$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/findByNickname.do",
+				data : "nickname=" + $("#nickname").val(),
+				datatype: 'json', 
+				success : function(nickdata) {
+					console.log(nickdata);
+					
+					if(nickdata == ($("#nickname").val())){
+						console.log('XXXX');
+						console.log(nickdata);
+						
+						$("#nickname_msg").html(
+								"중복nickname입니다.다른 아이디를 입력해주세요.").show();
+					}else{
+						console.log(nickdata);
+						console.log('OOOO');
+						$("#nickname_msg").html(
+						"사용가능한 nickname입니다.").show();
 					}
 				},error: function () {
 					 console.log("Request Fail!!");
@@ -104,7 +131,7 @@
 										<span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="id_message" ></p>
+									<p class="txt_message" id="id_message" ></p>
 								</dd>
 							</dl>
 							<dl class="item_info">

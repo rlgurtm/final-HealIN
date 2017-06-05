@@ -2,14 +2,22 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.kosta.healthin.model.service.QnAService;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
@@ -25,7 +33,11 @@ public class BoardController {
 	@Resource
 	private TipService tipService;
 	@Resource
+	private QnAService qnaService;
+	@Resource
 	private TrainerService trainerService;	
+	@Resource
+	private TrainerVideoService trainerVideoService;
 	
 	@RequestMapping("tip/tip.do")
 	public String getTipBoardList(Model model,String nowpage){
@@ -77,6 +89,7 @@ public class BoardController {
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
 			try {
 					file.transferTo(new File(uploadPath+File));
+					System.out.println("파일이 업로드되고 있습니다");
 					tvo.setattachedFile(File);
 					tipService.tipWrite(tvo);
 				} catch (IllegalStateException | IOException e) {
@@ -141,6 +154,17 @@ public class BoardController {
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
 		model.addAttribute("tvo",vo);
+		
+		
+		int nowPage=1;
+		PagingBean pb;
+		ListVO listVO = new ListVO();
+        pb = new PagingBean(3,nowPage);
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("pb", pb);
+        map.put("trainerId", trainerId);
+        listVO = trainerVideoService.findByTrainerIdVideoList(map);
+        model.addAttribute("listVO",listVO);
 		return "trainer/trainerDetail.tiles";
 	}
 	
@@ -149,12 +173,103 @@ public class BoardController {
 		return "pt_qna/qna.tiles";
 	}
 	
-	@RequestMapping("followingview.do")
+	@RequestMapping("ptQnaList.do")
 	@ResponseBody
-	public String followingview(String memId,String trainerId){
-		int count=trainerService.followingViewCount(memId);
-		String flag="N";
-			
-		return flag;
+	public ListVO getTipBoardList(String nowpage,String category){
+		if(nowpage==null)
+			nowpage="1";
+		if(category.equals("null")||category.equals("Home")){
+			return qnaService.getptQnaList(nowpage);
+		}else{
+			return qnaService.getptQnaCategoryList(category.trim(), nowpage);
+		}
+	}
+	@RequestMapping("pt_qna/pt_qna_content.do")
+	public String ptQnaContent(String no,Model model){
+		qnaService.ptQnaHitsCount(no);
+		model.addAttribute("tip",qnaService.getptQnaDetailContent(no));
+		return "pt_qna/pt_qna_content.tiles";
+	}
+	@RequestMapping("pt_qna/NO_Hits_ptQna_content.do")
+	public String ptQnaNiHitsContent(String no,Model model){
+		model.addAttribute("tip",qnaService.getptQnaDetailContent(no));
+		return "pt_qna/pt_qna_content.tiles";
+	}
+	@RequestMapping("pt_qna/ptQnaWriteForm.do")
+	public String ptQnaWriteForm(){
+		return "pt_qna/ptQnaWriteForm.tiles";
+	}
+	@RequestMapping("pt_qna/ptQnaWrite.do")
+	public String ptQnaWrite(TipBoardVO tvo,MultipartFile uploadFile){
+		if(!uploadFile.isEmpty()){
+			//송희
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					qnaService.ptQnaWrite(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		}else{
+			tvo.setattachedFile("");
+			qnaService.ptQnaWrite(tvo);
+		}
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
+	}
+	@RequestMapping("ptQnaDelete.do")
+	public String ptQnaDelete(String no,String id){
+		qnaService.ptQnaDelete(no, id);
+		return "redirect:/pt_qna/qna.do";
+	}
+	@RequestMapping("pt_qna/ptQnaUpdateForm.do")
+	public String ptQnaUpdateForm(String no,Model model){
+		model.addAttribute("tip", qnaService.getptQnaDetailContent(no));
+		return "pt_qna/ptQnaUpdateForm.tiles";
+	}
+	@RequestMapping("ptQnaUpdate.do")
+	public String ptQnaUpdate(TipBoardVO tvo){
+		qnaService.ptQnaUpdate(tvo);
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
+	}
+	
+	@RequestMapping("selectfollowstate.do")
+	@ResponseBody
+	public String selectfollowstate(String memId,String trainerId){
+		String apply=trainerService.selectfollowState(memId,trainerId);
+		if(apply=="N"||apply==null)
+			apply="N";
+		return apply;
+	}
+	
+	@RequestMapping("updatefollowState.do")
+	@ResponseBody
+	public String updatefollowState(HttpServletRequest request,String trainerId){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String memId=mvo.getId();
+			String state=trainerService.selectfollowState(memId,trainerId);
+			if(state.equals("Y")){
+				trainerService.updatefollowState(memId,trainerId,state);
+			}
+			else if(state.equals("N")) {
+				trainerService.updatefollowState(memId,trainerId,state);
+			}
+			else{
+				trainerService.insertfollowtrainer(memId,trainerId);
+			}
+			state=trainerService.selectfollowState(memId,trainerId);
+			return state;
+		} else {
+			return "home.do";
+		}
 	}
 }

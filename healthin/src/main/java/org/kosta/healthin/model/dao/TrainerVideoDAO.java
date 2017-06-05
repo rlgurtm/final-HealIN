@@ -1,5 +1,6 @@
 package org.kosta.healthin.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.kosta.healthin.model.vo.ListVO;
@@ -49,5 +50,11 @@ public interface TrainerVideoDAO {
 	int insertVideoLikeState(Map map);
 
 	int deleteVideoLikeState(Map map);
+
+	List<String> trainerNameKeywordSelect(String keyword);
+
+	int findByTotalCount(String trainerId);
+
+	ListVO findByTrainerIdVideoList(Map map);
 
 }

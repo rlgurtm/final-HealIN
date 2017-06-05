@@ -37,10 +37,4 @@ public class MyPageController {
 		
 		return "mypage/bmi_list.tiles";
 	}
-	/*int height = Integer.parseInt(request.getParameter("height"));
-	int weight = Integer.parseInt(request.getParameter("weight"));
-
-	double bmiTest = (height * 2) / weight;
-	System.out.println(bmiTest);
-	model.addAttribute("bmiTest", bmiTest);*/
 }

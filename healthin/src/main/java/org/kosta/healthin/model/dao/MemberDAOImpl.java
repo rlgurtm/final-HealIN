@@ -78,6 +78,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 
+	@Override
+	public MemberVO findByIdLostPassword(String id) {
+		MemberVO mvo = sqlSessionTemplate.selectOne("member.findByIdLostPassword", id);
+		return mvo;
+	}
+
 
 	
 }

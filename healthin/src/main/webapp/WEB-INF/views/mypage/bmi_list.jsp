@@ -4,7 +4,7 @@
 <style>
 table.bmiTable {
     border-collapse: collapse;
-    text-align: left;
+    text-align: center;
     line-height: 1.5;
     border-top: 1px solid #ccc;
     border-left: 3px solid #369;
@@ -42,7 +42,6 @@ table.bmiTable td {
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"></script>
-<div class="container">
 <table class="bmiTable">
 	<caption>BMI측정지수</caption>
 	<%-- <c:choose> --%>
@@ -65,46 +64,10 @@ table.bmiTable td {
 		</c:forEach>
 		</table>
 		<table class="table">
-<tr>
-	<th></th>
-</tr>
-<tr>
-</tr>
-<!-- bmi_height = bmi_height.value / 100
-		  Square = bmi_height * bmi_height
-	      var bmi_num= bmi_weight.value/Square
-		  var strBmi = Math.round(bmi_num*100)/100 -->
-<tr>
-<td>※계산식※신체질량지수(BMI)=
-체중(kg)/[신장(m)]2</td>
-</tr>
-<tr>
-<td>판정기준</td>
-</tr>
-<tr>
-<td>저체중=20 미만</td>
-</tr>
-<tr>
-<td>		
-정상=20 - 24
-</td>
-</tr>
-<tr>
-<td>		
-과체중=25 - 29
-</td>
-</tr>
-<tr>
-<td>		
-비만=30 이상
-</td>
-</tr>
-
-<td>
-장단점 : 표준체중보다는 체지방을 비교적 정확하게 반영할 수 있으면서도 매우 간단히 계산하여 판정할 수 있다.
-</td>
-
-	<%-- </c:when> --%>
-	<%-- </c:choose> --%>
+		<tr>
+			<td align="center">
+			<img src="${pageContext.request.contextPath}/resources/img/bmi.png" 
+			 width="500" height="200">
+			</td>
+		</tr>
 </table>
-</div>

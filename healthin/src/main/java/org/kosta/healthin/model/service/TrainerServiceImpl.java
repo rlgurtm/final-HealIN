@@ -53,8 +53,32 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-	public int followingViewCount(String memId) {
-		return dao.followingViewCount(memId);
+	public String selectfollowState(String memId, String trainerId) {
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("MEMID", memId);
+		map.put("TRAINERID", trainerId);
+		return dao.selectfollowState(map);
+	}
+
+	@Override
+	public void updatefollowState(String memId, String trainerId, String state) {
+		if(state.equals("Y"))
+			state="N";
+		else if(state.equals("N"))
+			state="Y";
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("MEMID", memId);
+		map.put("TRAINERID", trainerId);
+		map.put("STATE", state);
+		dao.updatefollowState(map);
+	}
+
+	@Override
+	public void insertfollowtrainer(String memId, String trainerId) {
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("MEMID", memId);
+		map.put("TRAINERID", trainerId);
+		dao.insertfollowtrainer(map);
 	}
 
 }
