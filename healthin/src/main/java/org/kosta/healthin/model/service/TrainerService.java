@@ -13,6 +13,10 @@ public interface TrainerService {
 
 	int trainerfollowingCount(String trainerId);
 
-	int followingViewCount(String memId);
+	String selectfollowState(String memId, String trainerId);
+
+	void updatefollowState(String memId, String trainerId, String state);
+
+	void insertfollowtrainer(String memId, String trainerId);
 
 }

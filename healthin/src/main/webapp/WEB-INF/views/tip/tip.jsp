@@ -121,7 +121,7 @@
 		</tbody>
 	</table>
 	<c:if test="${mvo!=null }">
-		<button type="button" class="btn btn-default" id="tipWrite">글쓰기</button>
+		<button type="button" class="btn btn-default write" id="tipWrite">글쓰기</button>
 	</c:if>
  	
 	<div align="center">

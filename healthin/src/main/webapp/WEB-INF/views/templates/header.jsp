@@ -6,11 +6,13 @@
 	<c:when test="${sessionScope.mvo == null}">
 	<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/login_form.do">로그인</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/passwordSearchform.do">비밀번호 찾기</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/idSearchform.do">아이디 찾기</a>&nbsp;&nbsp;
 	</c:when>
 	<c:otherwise>
 	${sessionScope.mvo.id}
 	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
 	</c:otherwise>
 	</c:choose>

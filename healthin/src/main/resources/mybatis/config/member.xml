@@ -16,6 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into trainer
 		values(#{id},#{career},0,#{location},#{trainerPhoto})
 	</insert>
+	<select id="findByIdLostPassword" parameterType="string"  resultType="memberVO">
+		SELECT 	id,password,nickname,name,birthdate,gender,address,tel,e_mail as
+		email,is_trainer as istrainer,withdrawal
+		from health_member 
+		where id=#{id} 
+	</select>
 	<select id="findById" parameterType="string"  resultType="string">
 		SELECT id from health_member 
 		where id=#{id} 
