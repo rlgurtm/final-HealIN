@@ -257,14 +257,16 @@ public class BoardController {
 		if(mvo!=null){
 			String memId=mvo.getId();
 			String state=trainerService.selectfollowState(memId,trainerId);
-			if(state.equals("Y")){
-				trainerService.updatefollowState(memId,trainerId,state);
-			}
-			else if(state.equals("N")) {
-				trainerService.updatefollowState(memId,trainerId,state);
+			if(state == null){
+				trainerService.insertfollowtrainer(memId,trainerId);
 			}
 			else{
-				trainerService.insertfollowtrainer(memId,trainerId);
+				if(state.equals("Y")){
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
+				else if(state.equals("N")) {
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
 			}
 			state=trainerService.selectfollowState(memId,trainerId);
 			return state;

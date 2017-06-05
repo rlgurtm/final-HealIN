@@ -36,8 +36,8 @@ public class TrainerServiceImpl implements TrainerService {
 			map.put("ENDROWNUM", pb.getEndRowNumber());
 		if(order.equals("name"))
 			listVO=new ListVO(dao.trainerOrderName(map),pb);
-		else if(order.equals("rate"))
-			listVO=new ListVO(dao.trainerOrderRate(map),pb);
+		else if(order.equals("following"))
+			listVO=new ListVO(dao.trainerOrderFollowing(map),pb);
 		
 		return listVO;
 	}

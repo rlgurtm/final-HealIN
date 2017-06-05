@@ -95,7 +95,7 @@ $(document).ready(function(){
             <select name="job" class="sbox" id="order">
            	 	<option value="">정렬선택</option>
           		<option value="name">이름순</option>
-   				<option value="rate">인기순</option>
+   				<option value="following">인기순</option>
 			</select>
              
             </div>
