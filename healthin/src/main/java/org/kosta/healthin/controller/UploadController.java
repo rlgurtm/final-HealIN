@@ -3,6 +3,7 @@ package org.kosta.healthin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -291,6 +292,14 @@ public class UploadController {
 		}
 	}
 	
+	@RequestMapping("trainerNameKeywordSelect")
+	@ResponseBody
+	public List<String> trainerNameKeywordSelect(HttpServletRequest request){
+		String keyword = request.getParameter("keyword");
+		List<String> trainerNamelist = videoService.trainerNameKeywordSelect(keyword);
+		
+		return trainerNamelist;
+	}
 	
 	
 	

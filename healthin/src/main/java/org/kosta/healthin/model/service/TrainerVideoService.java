@@ -1,5 +1,6 @@
 package org.kosta.healthin.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.kosta.healthin.model.vo.ListVO;
@@ -49,5 +50,7 @@ public interface TrainerVideoService {
 	int insertVideoLikeState(Map map);
 
 	int deleteVideoLikeState(Map map);
+
+	List<String> trainerNameKeywordSelect(String keyword);
 
 }

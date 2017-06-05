@@ -134,7 +134,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<delete id="deleteVideoLikeState" parameterType="java.util.Map">
  		delete from video_like where id=#{userId}
  	</delete>
- 	
+ 	<select id="trainerNameKeywordSelect" resultType="string" parameterType="string">
+ 		select trainer_id from trainer where trainer_id like '%' || #{value} ||'%'
+ 	</select>
  	
  	
  	

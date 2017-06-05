@@ -1,5 +1,6 @@
 package org.kosta.healthin.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -101,5 +102,9 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	@Override
 	public int deleteVideoLikeState(Map map){
 		return videoDAO.deleteVideoLikeState(map);
+	}
+	@Override
+	public List<String> trainerNameKeywordSelect(String keyword){
+		return videoDAO.trainerNameKeywordSelect(keyword);
 	}
 }
