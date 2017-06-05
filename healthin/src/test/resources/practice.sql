@@ -160,3 +160,7 @@ from (select row_number() over (order by likeState desc) as rnum,a.*
 			from video_like group by video_no) b
 		where b.video_no(+)=a.videoNo) a )
 where rnum between 1 and 200
+
+
+select * from HEALTH_MEMBER
+update  HEALTH_MEMBER set password='1234'  where id='vovo'
