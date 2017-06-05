@@ -35,7 +35,7 @@ public class TipServiceImpl implements TipService  {
 			map.put("category",category);
 			map.put("startRowNumber", pb.getStartRowNumber());
 			map.put("endRowNumber", pb.getEndRowNumber());
-		ListVO listVO=new ListVO(dao.tipBoardCategoryList(map),pb);
+		ListVO listVO=new ListVO(dao.getTipBoardCategoryList(map),pb);
 		
 		return listVO;
 		
@@ -50,11 +50,11 @@ public class TipServiceImpl implements TipService  {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("no", Integer.parseInt(no));
 		map.put("id", id);
-		dao.tipBoardDelete(map);
+		dao.tipQnaBoardDelete(map);
 	}
 	@Override
 	public void tipBoardUpdate(TipBoardVO tvo){
-		dao.tipUpdate(tvo);
+		dao.tipQnaBoardUpdate(tvo);
 	}
 	@Override
 	public void tipWrite(TipBoardVO tvo){
@@ -63,27 +63,27 @@ public class TipServiceImpl implements TipService  {
 	@Override
 	public void tipHitsCount(String no){
 		int NO=Integer.parseInt(no);
-		dao.tipHitsCount(NO);
+		dao.tipQnaBoardHitsCount(NO);
 	}
 	@Override
 	public ListVO getTipCommentList(String no,String nowpage){
-		int totalContents=dao.getTotalTipCommentCount(Integer.parseInt(no));
+		int totalContents=dao.getTotalTipQnaCommentCount(Integer.parseInt(no));
 		int nowPage=Integer.parseInt(nowpage);
 		PagingBean pb=new PagingBean(totalContents, nowPage);
 			Map<String, Object> map=new HashMap<String,Object>();
 			map.put("no",Integer.parseInt(no));
 			map.put("startRowNumber", pb.getStartRowNumber());
 			map.put("endRowNumber", pb.getEndRowNumber());
-		ListVO listVO=new ListVO(dao.getTipCommentList(map),pb);
+		ListVO listVO=new ListVO(dao.getTipQnaCommentList(map),pb);
 		return listVO;
 	}
 	@Override
 	public void tipCommentWrite(CommentVO cvo){
-		dao.tipCommentWrite(cvo);
+		dao.tipQnaCommentWrite(cvo);
 	}
 	@Override
 	public void tipCommentDelete(String no){
-		dao.tipCommentDelete(Integer.parseInt(no));
+		dao.tipQnaCommentDelete(Integer.parseInt(no));
 	}
 
 }
