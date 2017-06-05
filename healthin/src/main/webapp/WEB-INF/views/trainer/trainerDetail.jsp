@@ -9,9 +9,9 @@ $(document).ready(function(){
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
 			if(data=='Y')
-				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
 			else
-				$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 	
 		}
 	}); //ajax
@@ -22,9 +22,9 @@ $(document).ready(function(){
 				data: "trainerId="+$("#trainerId").val(),
 				success:function(data){
 					if(data=='Y')
-						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
 					else
-						$("#imgtd").html("<img class='img-responsive' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 				}//function
 			});//ajax
 		});//click

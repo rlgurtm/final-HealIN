@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +35,7 @@ public class MemberController {
 
 	@RequestMapping("register_step2.do")
 	public String register_step2() {
-		return "member/register_step2.do";
+		return "member/register_step2";
 	}
 
 	@RequestMapping("register_step3.do")
@@ -84,16 +83,71 @@ public class MemberController {
 		String result = memberService.findById(id);
 		return result;
 	}
+	@RequestMapping("passwordSearchform.do")
+	public String passwordSearchform() {
+		System.out.println("왜 안돼지");
+		return "member/passwordSearchform";
+	}
 	
-	@ResponseBody
-	@RequestMapping("findByIdLostPassword.do")
-	public MemberVO findByIdLostPassword(String id,HttpServletRequest req ) {
-		MemberVO mvo = memberService.findByIdLostPassword(id);
+	@RequestMapping("findByIdLostPassword.do") 
+	public String findByIdLostPassword(String searchId,HttpServletRequest req ) {
+		MemberVO mvo = memberService.findByIdLostPassword(searchId);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", mvo);
 		
-		return mvo;
+		System.out.println("엠브리오"+mvo);
+		
+		return "member/findByIdLostPassword";
+	}
+	
+	@RequestMapping("findByIdLostPasswordAuth.do") 
+	public String findByIdLostPasswordAuth(HttpServletRequest req ) {
+		String hiddenAuthType = req.getParameter("hiddenAuthType");
+		String name = req.getParameter("smsNumName");
+		String smsNum = req.getParameter("smsNum");
+		String otherMailName = req.getParameter("otherMailName");
+		String otherMail = req.getParameter("otherMail");
+		HttpSession session = req.getSession();
+		MemberVO mvo = null;
+		
+		System.out.println("name"+name);
+		System.out.println("smsNum"+smsNum);
+		
+		if(hiddenAuthType.equals("tel")){
+			mvo = memberService.findPasswordByPhone(name,smsNum);
+			
+			if(mvo != null){
+				System.out.println("널값이 아니다");
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				System.out.println("널값이 맞다");
+				return "member/findByIdLostPassword";
+			}
+		}else{
+			System.out.println(otherMailName+"ㅇㄹㅇㄹㅇㄹ"+otherMail);
+			mvo =  memberService.findPasswordByMail(otherMailName,otherMail);
+			
+			if(mvo != null){
+				System.out.println("널값이 아니다");
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				System.out.println("널값이 맞다");
+				return "member/findByIdLostPassword";
+			}
+		}
+		
+	}
+	
+	@RequestMapping("passwordSearchPasswordResult.do") 
+	public String modifyPassword(String id,String newPassword,HttpServletRequest req ) {
+		String result = memberService.modifyPassword(id,newPassword);
+		System.out.println("result" + result);
+		System.out.println("비밀번호 변경완료 페이지 빠빵222...");
+		 
+		return "member/passwordSearchPasswordResult";
 	}
 
 	@ResponseBody
@@ -102,11 +156,6 @@ public class MemberController {
 		String result = memberService.findByNickname(nickname);
 		System.out.println("result" + result);
 		return result;
-	}
-	
-	@RequestMapping("passwordSearchform.do")
-	public String passwordSearchform() {
-		return "member/passwordSearchform";
 	}
 	
 //	@ResponseBody

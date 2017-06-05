@@ -32,8 +32,8 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public List<VO> trainerOrderRate(Map<String, Object> map) {
-		return template.selectList("trainer.trainerOrderRate",map);
+	public List<VO> trainerOrderFollowing(Map<String, Object> map) {
+		return template.selectList("trainer.trainerOrderFollowing",map);
 	}
 
 	@Override
@@ -59,6 +59,11 @@ public class TrainerDAOImpl implements TrainerDAO {
 	@Override
 	public void insertfollowtrainer(Map<String, String> map) {
 		template.insert("trainer.insertfollowtrainer",map);
+	}
+
+	@Override
+	public int getTrainerfollowingTotalCount() {
+		return template.selectOne("trainer.getTrainerfollowingTotalCount");
 	}
 
 }

@@ -17,4 +17,7 @@ public interface MemberService {
 	String findById(String id);
 	String findByNickname(String nickname);
 	MemberVO findByIdLostPassword(String id);
+	MemberVO findPasswordByPhone(String name, String smsNum);
+	MemberVO findPasswordByMail(String otherMailName, String otherMail);
+	String modifyPassword(String id, String newPassword);
 }

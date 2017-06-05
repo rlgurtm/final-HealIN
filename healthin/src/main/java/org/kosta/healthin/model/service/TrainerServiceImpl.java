@@ -27,17 +27,27 @@ public class TrainerServiceImpl implements TrainerService {
 
 	@Override
 	public Object trainerListOrder(String order, String pageNo) {
-		int totalCount=dao.getTrainerTotalCount();
+		
 		int pageNum=Integer.parseInt(pageNo);
 		ListVO listVO=null;
-		PagingBean pb=new PagingBean(totalCount, pageNum);
+		
+		if(order.equals("name")){
+			int totalCount=dao.getTrainerTotalCount();
+			PagingBean pb=new PagingBean(totalCount, pageNum);
 			Map<String, Object> map=new HashMap<String,Object>();
 			map.put("STARTROWNUM", pb.getStartRowNumber());
-			map.put("ENDROWNUM", pb.getEndRowNumber());
-		if(order.equals("name"))
+			map.put("ENDROWNUM", pb.getEndRowNumber());	
 			listVO=new ListVO(dao.trainerOrderName(map),pb);
-		else if(order.equals("rate"))
-			listVO=new ListVO(dao.trainerOrderRate(map),pb);
+		}
+		else if(order.equals("following")){
+			int totalCount=dao.getTrainerfollowingTotalCount();
+			PagingBean pb=new PagingBean(totalCount, pageNum);
+			Map<String, Object> map=new HashMap<String,Object>();
+			map.put("STARTROWNUM", pb.getStartRowNumber());
+			map.put("ENDROWNUM", pb.getEndRowNumber());	
+			listVO=new ListVO(dao.trainerOrderFollowing(map),pb);
+		}
+		
 		
 		return listVO;
 	}

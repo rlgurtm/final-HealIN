@@ -15,7 +15,7 @@ public interface TrainerDAO {
 
 	List<VO> trainerOrderName(Map<String, Object> map);
 
-	List<VO> trainerOrderRate(Map<String, Object> map);
+	List<VO> trainerOrderFollowing(Map<String, Object> map);
 
 	TrainerVO trainerDetail(String trainerId);
 
@@ -26,6 +26,8 @@ public interface TrainerDAO {
 	void updatefollowState(Map<String, String> map);
 
 	void insertfollowtrainer(Map<String, String> map);
+
+	int getTrainerfollowingTotalCount();
 
 
 

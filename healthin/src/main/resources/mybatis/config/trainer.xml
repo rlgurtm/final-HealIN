@@ -33,12 +33,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where t.trainer_id=m.id) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
-    <select id="trainerOrderRate" resultMap="trainerRM" parameterType="map">
-       select a.* from 
-       (select row_number() over(order by rate desc) rnum,
-       id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m,trainer_rate r
-       where t.trainer_id=m.id and r.trainer_id(+)=t.trainer_id) a 
+    <select id="trainerOrderFollowing" resultMap="trainerRM" parameterType="map">
+       select a.* from
+       (select row_number() over(order by fcount desc) rnum,b.*,
+       h.id,h.name,t.location,t.career,t.rank,t.trainer_photo
+       from (select count(decode(apply_result,'Y',1)) as fcount ,f.trainer_id
+       from FOLLOWING f,TRAINER t
+       where t.trainer_id=f.trainer_id
+       group by f.trainer_id) b,health_member h,trainer t
+       where b.trainer_id=h.id and t.trainer_id=h.id) a
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
     
@@ -60,4 +63,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updatefollowState">
     	update following set apply_result=#{STATE} where user_id=#{MEMID} and trainer_id=#{TRAINERID}
     </update>
+    <select id="getTrainerfollowingTotalCount" resultType="int">
+    select count(*)
+    from (select count(*)
+	 	 from FOLLOWING f,TRAINER t
+		 where t.trainer_id=f.trainer_id
+	  	 group by f.trainer_id)
+    </select>
 </mapper>

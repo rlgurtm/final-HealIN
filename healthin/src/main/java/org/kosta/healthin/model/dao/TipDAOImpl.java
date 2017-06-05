@@ -19,55 +19,55 @@ public class TipDAOImpl implements TipDAO {
 	
 	@Override
 	public List<VO> getTipBoardList(PagingBean pb){
-		return template.selectList("tip.getTipBoardList",pb);
+		return template.selectList("tipQna.getTipBoardList",pb);
 	}
 	@Override
 	public int getTotalTipCount(){
-		return template.selectOne("tip.getTotalTipCount");
+		return template.selectOne("tipQna.getTotalTipCount");
 	}
 	@Override
-	public List<VO> tipBoardCategoryList(Map<String, Object> map){
-		return template.selectList("tip.tipBoardCategoryList",map);
+	public List<VO> getTipBoardCategoryList(Map<String, Object> map){
+		return template.selectList("tipQna.getTipBoardCategoryList",map);
 	}
 	@Override
 	public int getTotalTipCategoryCount(String category){
-		return template.selectOne("tip.getTotalTipCategoryCount",category);
+		return template.selectOne("tipQna.getTotalTipCategoryCount",category);
 	}
 	@Override
 	public TipBoardVO getTipBoardDetailContent(int no){
-		return template.selectOne("tip.getTipBoardDetailContent",no);
+		return template.selectOne("tipQna.getTipBoardDetailContent",no);
 	}
 	@Override
-	public void tipBoardDelete(Map<String, Object> map){
-		template.delete("tip.tipBoardDelete",map);
+	public void tipQnaBoardDelete(Map<String, Object> map){
+		template.delete("tipQna.tipQnaBoardDelete",map);
 	}
 	@Override
 	public void tipWrite(TipBoardVO tvo){
-		template.insert("tip.tipWrite",tvo);
+		template.insert("tipQna.tipWrite",tvo);
 	}
 	@Override
-	public void tipHitsCount(int no){
-		template.update("tip.tipHitsCount",no);
+	public void tipQnaBoardHitsCount(int no){
+		template.update("tipQna.tipQnaBoardHitsCount",no);
 	}
 	@Override
-	public List<VO> getTipCommentList(Map<String, Object> map){
-		return template.selectList("tip.getTipCommentList",map);
+	public List<VO> getTipQnaCommentList(Map<String, Object> map){
+		return template.selectList("tipQna.getTipQnaCommentList",map);
 	}
 	@Override
-	public int getTotalTipCommentCount(int no){
-		return template.selectOne("tip.getTotalTipCommentCount",no);
+	public int getTotalTipQnaCommentCount(int no){
+		return template.selectOne("tipQna.getTotalTipQnaCommentCount",no);
 	}
 	@Override
-	public void tipCommentWrite(CommentVO cvo){
-		template.insert("tip.tipCommentWrite",cvo);
+	public void tipQnaCommentWrite(CommentVO cvo){
+		template.insert("tipQna.tipQnaCommentWrite",cvo);
 	}
 	@Override
-	public void tipCommentDelete(int no){
-		template.delete("tip.tipCommentDelete",no);
+	public void tipQnaCommentDelete(int no){
+		template.delete("tipQna.tipQnaCommentDelete",no);
 	}
 	@Override
-	public void tipUpdate(TipBoardVO tvo){
-		template.update("tip.tipUpdate",tvo);
+	public void tipQnaBoardUpdate(TipBoardVO tvo){
+		template.update("tipQna.tipQnaBoardUpdate",tvo);
 	}
 
 }

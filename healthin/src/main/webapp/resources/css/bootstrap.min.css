@@ -7493,3 +7493,7 @@ table.content td {
 .videoList{
 	height: 420px;
 }
+
+img.img-responsive.heartimg {
+    cursor: pointer;
+}

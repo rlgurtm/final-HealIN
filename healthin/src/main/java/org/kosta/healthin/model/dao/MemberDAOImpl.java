@@ -84,6 +84,32 @@ public class MemberDAOImpl implements MemberDAO {
 		return mvo;
 	}
 
+	@Override
+	public MemberVO findPasswordByPhone(String name, String smsNum) {
+		Map< String, String> map= new HashMap< String, String>();
+		map.put("name", name);
+		map.put("smsNum", smsNum);
+		MemberVO mvo = sqlSessionTemplate.selectOne("member.findPasswordByPhone", map);
+		return mvo;
+	}
+
+	@Override
+	public MemberVO findPasswordByMail(String otherMailName, String otherMail) {
+		Map< String, String> map= new HashMap< String, String>();
+		map.put("otherMailName", otherMailName);
+		map.put("otherMail", otherMail);
+		MemberVO mvo = sqlSessionTemplate.selectOne("member.findPasswordByMail", map);
+		return mvo;
+	}
+
+	@Override
+	public void modifyPassword(String id, String newPassword) {
+		Map<String, String> map = new HashMap< String, String>();
+		map.put("id", id);
+		map.put("newPassword", newPassword);
+		sqlSessionTemplate.update("member.modifyPassword", map);
+	}
+
 
 	
 }

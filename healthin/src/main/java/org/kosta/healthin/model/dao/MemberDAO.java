@@ -17,5 +17,8 @@ public interface MemberDAO {
 	String findById(String id);
 	String findByNickname(String nickname);
 	MemberVO findByIdLostPassword(String id);
+	MemberVO findPasswordByPhone(String name, String smsNum);
+	MemberVO findPasswordByMail(String otherMailName, String otherMail);
+	void modifyPassword(String id, String newPassword);
 
 }
