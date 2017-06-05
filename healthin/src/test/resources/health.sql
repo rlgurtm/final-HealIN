@@ -280,3 +280,4 @@ field_state  VARCHAR2(50) NOT NULL,
  CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
  CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 );
+
