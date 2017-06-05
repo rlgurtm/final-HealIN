@@ -54,17 +54,20 @@
             <div class="dimmed_layer" style="display:none"></div>
             <h2 id="daumBody" class="screen_out">비밀번호찾기 홈</h2>
 
-            <p class="desc_g"><strong>비밀번호가 기억나지 않아 답답하셨나요?</strong><br>아이디를 입력하시면, 찾을 수 있는 방법을 알려드려요.</p>
+            <p class="desc_g">
+            <strong>비밀번호가 기억나지 않아 답답하셨나요?</strong><br>
+            <strong><font color="#008000">아이디 입력 후 Enter Key를 눌러주세요.</font></strong><br>
 
             <div class="cont_g cont_type3">
                 <div class="info_detail">
-                    <form method="post" action="/find/findByPassword.do?action=daumid-check">
+                    <form method="post" action="${pageContext.request.contextPath}/findByIdLostPassword.do">
                         <input type="hidden" id="searchIdType" name="searchIdType" value="daumId"/>
                         <fieldset>
                             <legend class="screen_out">비밀번호찾기 입력 폼</legend>
+                                    <p class="basic_txt_message" id="id_message" >아이디 입력 후 Enter Key를 눌러주세요.</p>
                             <div class="box_detail">
                                 <div class="bg_find bg_data">
-                                    <div class="bg_find inner_bg">
+                                    <div class="bg_find inner_bg"> 
                                         <label for="searchId" class="screen_out">아이디를 입력해 주세요.</label>
                                         <input type="text" id="searchId" name="searchId" class="tf_g" value="">
                                     </div>
@@ -79,10 +82,10 @@
             </div>
             <ul class="list_method">
                 <li>
-                    아이디를 모르시나요?<a href="/find/id.do" class="link_tip">아이디 찾기</a><span class="ico_find ico_more"></span>
+                    아이디를 모르시나요?<a href="${pageContext.request.contextPath}/idSearchform.do" class="link_tip">아이디 찾기</a><span class="ico_find ico_more"></span>
                 </li>
                 <li>
-                    폰번호 아이디 또는 이메일 아이디로 찾고 싶으시다면!<a href="/find/password.do?action=loginid-check" class="link_tip">폰번호, 이메일 아이디 찾기</a><span class="ico_find ico_more"></span>
+                    폰번호 아이디 또는 이메일 아이디로 찾고 싶으시다면!<a href="${pageContext.request.contextPath}/mobileAndEmailSearchform.do" class="link_tip">폰번호, 이메일 아이디 찾기</a><span class="ico_find ico_more"></span>
                 </li>
             </ul>
 
@@ -165,7 +168,9 @@
     }
   </script>
   <script src="https://go.daum.net/jsa_minidaum_pc.daum" charset="utf-8" type="text/javascript"></script>
-  <script type="text/javascript" src="https://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
+    <!--   script type="text/javascript" src="https://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.10.2.min.js"></script>
+    -->
 </div>
 
 
@@ -174,6 +179,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+    	$("#nextBtn").hide();
+    	$("#id_message").html(
+		"아이디를 입력하고 enter key 눌러주세요.").show();
+    	
 		$("#searchId").keydown(function() {
 			console.log('아이디>>>>>'+ $("#searchId").val());
 			$.ajax({
@@ -187,12 +196,15 @@
 								"아이디를 맞게 입력하셨습니다").show();
 						$("#nextBtn").removeAttr("disabled");
 						$("#nextBtn").attr("disabled",false);
+						$("#nextBtn").show();
+						
 					}else{
 						console.log('XXXX');
 
 						$("#id_message").html(
 						"없는 id입니다.").show();
 						$("#nextBtn").attr("disabled",true);
+						$("#nextBtn").hide();
 					}
 				},error: function () {
 					 console.log("Request Fail!!");
@@ -220,8 +232,6 @@
 
         var form = $("form").getForm();
         form.initWebRow('.box_detail');
-
-        
                         
         $(".btn_close, .btn_ok").click(function () {
             form.hideAllLayer();

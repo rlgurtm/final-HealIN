@@ -71,6 +71,23 @@ public class MemberServiceImpl implements MemberService {
 		return mvo;
 	}
 
+	@Override
+	public MemberVO findPasswordByPhone(String name, String smsNum) {
+		MemberVO vo = memberDAO.findPasswordByPhone(name,smsNum);
+		return vo;
+	}
+
+	@Override
+	public MemberVO findPasswordByMail(String otherMailName, String otherMail) {
+		MemberVO vo = memberDAO.findPasswordByMail(otherMailName,otherMail);
+		return vo;
+	}
+
+	@Override
+	public String modifyPassword(String id, String newPassword) {
+		memberDAO.modifyPassword(id,newPassword);
+		return null;
+	}
 	
 
 }
