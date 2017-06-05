@@ -299,6 +299,10 @@ address, caption, cite, code, dfn, em, var {
 	border-left: 1px solid #ededed
 }
 
+.login-bwn {
+	text-align: center;
+}
+
 .info_detail .bg_data {
 	position: relative;
 	width: 395px;

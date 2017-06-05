@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{id},#{career},0,#{location},#{trainerPhoto})
 	</insert>
 	<select id="findByIdLostPassword" parameterType="string"  resultType="memberVO">
-		SELECT 	id,password,nickname,name,birthdate,gender,address,tel,e_mail as
+		SELECT id,password,nickname,name,birthdate,gender,address,tel,e_mail as
 		email,is_trainer as istrainer,withdrawal
 		from health_member 
 		where id=#{id} 
@@ -30,6 +30,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT nickname from health_member 
 		where nickname=#{nickname} 
 	</select>
+	<select id="findPasswordByPhone" parameterType="map"  resultType="memberVO">
+		SELECT id,password,nickname,name,tel,e_mail as email
+		from health_member 
+		where name=#{name} and tel=#{smsNum}
+	</select>
+	<select id="findPasswordByMail" parameterType="map"  resultType="memberVO">
+		SELECT id,password,nickname,name,tel,e_mail as email
+		from health_member 
+		where name=#{otherMailName} and e_mail=#{otherMail}
+	</select>  
+	<update id="modifyPassword" parameterType="map">
+	update  HEALTH_MEMBER set password=#{newPassword}  where id=#{id}
+	</update>
 	<select id="login" resultType="memberVO" parameterType="map">
 		select
 		id,password,nickname,name,birthdate,gender,address,tel,

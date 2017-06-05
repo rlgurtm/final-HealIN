@@ -115,7 +115,7 @@ public class BoardController {
 	@RequestMapping("tipCommentWrite.do")
 	public String tipCommentWrite(CommentVO cvo){
 				tipService.tipCommentWrite(cvo);
-		return "redirect:/tip/tip_content.do?no="+cvo.getBoardNo();
+		return "redirect:/tip/NO_Hits_tip_content.do?no="+cvo.getBoardNo();
 	}
 	@RequestMapping("tipCommentDelete.do")
 	public String tipCommentDelete(String no,String bno){
@@ -239,7 +239,29 @@ public class BoardController {
 		qnaService.ptQnaUpdate(tvo);
 		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
 	}
-	
+	@RequestMapping("ptQnaCommentWrite.do")
+	public String ptQnaCommentWrite(CommentVO cvo){
+		qnaService.ptQnaCommentWrite(cvo);
+		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+cvo.getBoardNo();
+	}
+	@RequestMapping("ptQnaComment.do")
+	@ResponseBody
+	public ListVO getPtQnaCommentList(String no,String nowpage){
+		if(nowpage==null)
+			nowpage="1";
+		return qnaService.getPtQnaCommentList(no, nowpage);
+		
+	}
+	@RequestMapping("ptQnaCommentDelete")
+	public String ptQnaCommentDelete(String no,String bno){
+		qnaService.ptQnaCommentDelete(no);
+	return "redirect://pt_qna/NO_Hits_ptQna_content.do?no="+bno;
+	}
+	@RequestMapping("isTrainer.do")
+	@ResponseBody
+	public String getIsTrainer(String id){
+		return qnaService.getIsTrainer(id);
+	}
 	@RequestMapping("selectfollowstate.do")
 	@ResponseBody
 	public String selectfollowstate(String memId,String trainerId){
@@ -257,14 +279,16 @@ public class BoardController {
 		if(mvo!=null){
 			String memId=mvo.getId();
 			String state=trainerService.selectfollowState(memId,trainerId);
-			if(state.equals("Y")){
-				trainerService.updatefollowState(memId,trainerId,state);
-			}
-			else if(state.equals("N")) {
-				trainerService.updatefollowState(memId,trainerId,state);
+			if(state == null){
+				trainerService.insertfollowtrainer(memId,trainerId);
 			}
 			else{
-				trainerService.insertfollowtrainer(memId,trainerId);
+				if(state.equals("Y")){
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
+				else if(state.equals("N")) {
+					trainerService.updatefollowState(memId,trainerId,state);
+				}
 			}
 			state=trainerService.selectfollowState(memId,trainerId);
 			return state;

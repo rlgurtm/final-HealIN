@@ -1,5 +1,6 @@
 package org.kosta.healthin.model.service;
 
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 
@@ -18,6 +19,14 @@ public interface QnAService {
 	void ptQnaDelete(String no, String id);
 
 	void ptQnaUpdate(TipBoardVO tvo);
+
+	ListVO getPtQnaCommentList(String no, String nowpage);
+
+	void ptQnaCommentWrite(CommentVO cvo);
+
+	void ptQnaCommentDelete(String no);
+
+	String getIsTrainer(String id);
 
 
 }

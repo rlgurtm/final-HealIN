@@ -15,9 +15,9 @@ $(document).ready(function(){
 		 		order=$("#order").val();
 		 		trainerListOrder($(this).val());
 		});//on
-	$(".more").click(function(){
-		alert("로그인한 사용자만 확인할수 있는 정보입니다.");
-	});
+		$(document).on("click",".more",function(){ 
+			alert("로그인한 사용자만 확인할수 있는 정보입니다.");
+			});//on	
 });
 	
 	function trainerListOrder(page){
@@ -95,7 +95,7 @@ $(document).ready(function(){
             <select name="job" class="sbox" id="order">
            	 	<option value="">정렬선택</option>
           		<option value="name">이름순</option>
-   				<option value="rate">인기순</option>
+   				<option value="following">인기순</option>
 			</select>
              
             </div>

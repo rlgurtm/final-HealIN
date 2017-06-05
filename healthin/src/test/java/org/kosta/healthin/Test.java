@@ -16,9 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class Test {
 	@Resource
 	private MemberDAO memberDAO;
-	private MemberVO vo = 
-			new MemberVO("spring", "1234", "spring여신", "spring여신님", "19810614", "female", "서울시 종로구 통인동 69 1202호",
-					"01099991234", "spring@lycos.co.kr", "user", "N");
+//	private MemberVO vo = 
+//			new MemberVO("spring", "1234", "spring여신", "spring여신님", "19810614", "female", "서울시 종로구 통인동 69 1202호",
+//					"01099991234", "spring@lycos.co.kr", "user", "N");
 /*	private MemberVO tvo = 
 //			new MemberVO("podo", "1234", "spring여신", "spring여신님", "19810614", "female", "서울시 종로구 통인동 69 1202호",
 //					"01099991234", "spring@lycos.co.kr", "user", "N","성동구 사회복지관 어르신 스트레칭 교육 4년",0,"성동구","podo1.png");
@@ -38,8 +38,9 @@ public class Test {
 //		System.out.println("일반회원가입 OKAY");
 		
 		System.out.println("아이디 중복확인 OKAY");
-		System.out.println("아이디"+memberDAO.findById("java"));
-		System.out.println("이거 왜 안나오냐");
+//		System.out.println("아이디"+memberDAO.findPasswordByMail("자바", "queen@naver.com"));
+		memberDAO.modifyPassword("gogo", "1234");
+		System.out.println("비번 수정 완료");
 		
 	}
 

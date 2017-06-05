@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript">
 		function getTipCategoryList(page){
 		 		$.ajax({
 						type:"get",
-						url:"${pageContext.request.contextPath}/tipComment.do",
+						url:"${pageContext.request.contextPath}/ptQnaComment.do",
 						data:"no=${tip.no}&nowpage="+page,
 						dataType:"json", 
 						success:function(data){
@@ -16,7 +17,7 @@
 									info+=data.lvo[i].id+"</th>";
 									info+="<td align='right'>"+data.lvo[i].date+"&nbsp;&nbsp;";
 								if(data.lvo[i].id=="${mvo.id}"){
-									info+="<a href='${pageContext.request.contextPath}/tipCommentDelete.do?no=";
+									info+="<a href='${pageContext.request.contextPath}/ptQnaCommentDelete.do?no=";
 									info+=data.lvo[i].commentNo+"&bno="+data.lvo[i].boardNo+"'>";
 									info+="<span class='glyphicon glyphicon-trash'></span></a>";
 								}
@@ -42,6 +43,18 @@
 		
 		$("#updateBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/pt_qna/ptQnaUpdateForm.do?no=${tip.no }";
+		});//click
+		
+		$("#ptcomment").click(function(){
+			$.ajax({
+				type:"get",
+				url:"${pageContext.request.contextPath}/isTrainer.do",
+				data:"id=${mvo.id}",
+				success:function(data){
+					if(data=="user")
+					alert("강사님만 댓글을 달 수 있습니다!");
+				}//success
+			});//ajax
 		});//click
 	});//ready
 	</script>
@@ -81,7 +94,7 @@
 	<hr>	
 		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
 			<div id="commentInfo"></div><hr>
-			<form action="${pageContext.request.contextPath}/tipCommentWrite.do" method="post">
+			<form action="${pageContext.request.contextPath}/ptQnaCommentWrite.do" method="post">
 				<table style="width:100%;">
 					<tr>
 						<td colspan="2"><label>댓글</label></td>
@@ -91,7 +104,7 @@
 						<textarea class="form-control"  rows="2" id="comment" name="comment" required="required"></textarea>
 						</td>
 						<td align="left" style="padding: 5px;">
-						<input type="submit" class="btn btn-lg" value="등록">
+						<input type="submit" class="btn btn-lg" id="ptcomment" value="등록">
 						<input type="hidden" name="boardNo" value="${tip.no }">
 						<input type="hidden" name="id" value="${mvo.id }">
 						</td>
