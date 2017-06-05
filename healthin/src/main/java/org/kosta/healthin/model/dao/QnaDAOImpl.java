@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.VO;
@@ -18,41 +19,61 @@ public class QnaDAOImpl implements QnaDAO {
 	
 	@Override
 	public List<VO> getPtQnaList(PagingBean pb){
-		return template.selectList("ptqna.getPtQnaList",pb);
-	}
-	@Override
-	public List<VO> getptQnaCategoryList(Map<String, Object> map){
-		return template.selectList("ptqna.getptQnaCategoryList",map);
+		return template.selectList("tipQna.getPtQnaList",pb);
 	}
 	@Override
 	public int getTotalPtQnaCount() {
-		return template.selectOne("ptqna.getTotalPtQnaCount");
+		return template.selectOne("tipQna.getTotalPtQnaCount");
+	}
+	@Override
+	public List<VO> getptQnaCategoryList(Map<String, Object> map){
+		return template.selectList("tipQna.getptQnaCategoryList",map);
 	}
 	@Override
 	public int getTotalPtQnaCategoryCount(String category) {
-		return template.selectOne("ptqna.getTotalPtQnaCategoryCount",category);
+		return template.selectOne("tipQna.getTotalPtQnaCategoryCount",category);
 	}
 	@Override
-	public void ptQnaHitsCount(int no) {
-		template.update("ptqna.ptQnaHitsCount",no);
+	public void tipQnaBoardHitsCount(int no) {
+		template.update("tipQna.tipQnaBoardHitsCount",no);
 	}
 	@Override
-	public Object getptQnaDetailContent(int no) {
-		return template.selectOne("ptqna.getptQnaDetailContent",no);
+	public TipBoardVO getptQnaDetailContent(int no) {
+		return template.selectOne("tipQna.getptQnaDetailContent",no);
 	}
 	@Override
 	public void ptQnaWrite(TipBoardVO tvo) {
-		template.insert("ptqna.ptQnaWrite",tvo);
+		template.insert("tipQna.ptQnaWrite",tvo);
 		
 	}
 	@Override
-	public void ptQnaDelete(Map<String, Object> map) {
-		template.delete("ptqna.ptQnaDelete",map);
+	public void tipQnaBoardDelete(Map<String, Object> map) {
+		template.delete("tipQna.tipQnaBoardDelete",map);
 	}
 	@Override
-	public void ptQnaUpdate(TipBoardVO tvo) {
-		template.update("ptqna.ptQnaUpdate",tvo);
+	public void tipQnaBoardUpdate(TipBoardVO tvo) {
+		template.update("tipQna.tipQnaBoardUpdate",tvo);
 		
+	}
+	@Override
+	public int getTotalTipQnaCommentCount(int no) {
+		return template.selectOne("tipQna.getTotalTipQnaCommentCount",no);
+	}
+	@Override
+	public List<VO> getTipQnaCommentList(Map<String, Object> map) {
+		return template.selectList("tipQna.getTipQnaCommentList",map);
+	}
+	@Override
+	public void tipQnaCommentWrite(CommentVO cvo) {
+		template.insert("tipQna.tipQnaCommentWrite",cvo);
+	}
+	@Override
+	public void tipQnaCommentDelete(int no) {
+		template.delete("tipQna.tipQnaCommentDelete",no);
+	}
+	@Override
+	public String getIsTrainer(String id){
+		return template.selectOne("tipQna.getIsTrainer",id);
 	}
 
 }
