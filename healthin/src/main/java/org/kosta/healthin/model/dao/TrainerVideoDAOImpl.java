@@ -132,4 +132,15 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	public List<String> trainerNameKeywordSelect(String keyword){
 		return template.selectList("trainervideo.trainerNameKeywordSelect",keyword);
 	}
+	@Override
+	public int findByTotalCount(String trainerId){
+		return template.selectOne("trainervideo.findByTotalCount",trainerId);
+	}
+	@Override
+	public ListVO findByTrainerIdVideoList(Map map){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.findByTrainerIdVideoList",map));
+		//System.out.println(listVO);
+		return listVO;
+	}
 }
