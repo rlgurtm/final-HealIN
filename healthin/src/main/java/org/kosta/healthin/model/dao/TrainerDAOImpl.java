@@ -61,4 +61,9 @@ public class TrainerDAOImpl implements TrainerDAO {
 		template.insert("trainer.insertfollowtrainer",map);
 	}
 
+	@Override
+	public int getTrainerfollowingTotalCount() {
+		return template.selectOne("trainer.getTrainerfollowingTotalCount");
+	}
+
 }
