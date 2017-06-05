@@ -44,7 +44,7 @@
 			});
 		});
 		$("#updateBtn").click(function() {
-			if (document.getElementById("updateExerciseCount").value <= 0) {
+			if (document.getElementById("updateExerciseExHour").value <= 0) {
 				alert("수량을 0 이상으로 입력하세요!");
 				$("#updateExerciseCount").focus();
 				return;
@@ -180,7 +180,7 @@
 						<td>${exercise.exHour}</td>
 						<td>${exercise.totalCalorie}</td>
 						<td>
-							<a id="updateForm" class="updateFormBtn" data-target="#updateModal" href="#" data-id="${exercise.consumptionNo}"><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
+							<a id="updateForm" class="updateFormBtn" data-target="#updateModal" href="#" data-id="${exercise.consumptionNo}">${exercise.consumptionNo}<span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
 							<a id="deleteBtn" href="${pageContext.request.contextPath}/deleteExercise.do?consumptionNo=${exercise.consumptionNo}&id=${sessionScope.mvo.id}&date=${requestScope.date}"><span class='glyphicon glyphicon-trash'></span></a>
 						</td>
 					</tr>
@@ -214,7 +214,7 @@
 						<h4 class="modal-title">한 운동 수정</h4>
 					</div>
 					<div class="modal-body">
-						<form id="updateFoodForm" action="${pageContext.request.contextPath}/updateExercise.do">
+						<form id="updateExerciseForm" action="${pageContext.request.contextPath}/updateExercise.do">
 							<input type="hidden" name="consumptionNo" id="updateExerciseConsumptionNo" value="">
 							<input type="hidden" name="id" id="id" value="${sessionScope.mvo.id}">
 							<input type="hidden" name="date" id="date" value="${requestScope.date}">
