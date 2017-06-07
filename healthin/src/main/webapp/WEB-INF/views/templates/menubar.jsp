@@ -115,28 +115,22 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/userCalendar.do">캘린더(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/user_health_check.do">기간별 건강 변화 체크(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/user_health_check.do">기간별 칼로리 체크</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mypage/bmi_list.do">비만도 측정(기능 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/mypage/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
-			                            	<a href="${pageContext.request.contextPath}/mypage/graph.do">그래프 보기(기능 임시)</a>
+			                                <a href="#">팔로우 한 강사</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">팔로우 한 강사(이름 임시)</a>
+			                                <a href="#">1:1 매칭 현황</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">팔로우 한 강사 동영상(이름 임시)</a>
-			                            </li>
-			                            <li>
-			                                <a href="#">PT 결제 현황(이름 임시)</a>
-			                            </li>
-			                            <li>
-			                                <a href="#">나의 PT 강사(이름 임시)</a>
+			                                <a href="#">나의 PT 강사</a>
 			                            </li>
 			                        </ul>
 			                    </li>
