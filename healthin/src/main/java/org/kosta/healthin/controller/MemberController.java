@@ -217,7 +217,14 @@ public class MemberController {
 
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request, String id, String password) {
-		if (memberService.login(id, password) == null) {
+		if(id.equals("admin")&&password.equals("rhksflwk")){
+			HttpSession session = request.getSession();
+			MemberVO vo = new MemberVO();
+			vo.setIstrainer("admin");
+			session.setAttribute("mvo", vo);
+			//System.out.println(session.getAttribute("mvo"));
+			return "redirect:home.do";
+		} else if (memberService.login(id, password)==null) {
 			return "member/login_fail";
 		} else {
 			HttpSession session = request.getSession();
@@ -227,8 +234,6 @@ public class MemberController {
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
-			}else if(id.equals("admin") && password.equals("rhksflwk")){
-				session.setAttribute("mvo", "admin");
 			}
 			
 			

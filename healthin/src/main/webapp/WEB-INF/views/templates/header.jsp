@@ -8,6 +8,10 @@
 	<a href="${pageContext.request.contextPath}/login_form.do" target="_blank">로그인</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/idSearchform.do" target="_blank">아이디 찾기</a>&nbsp;&nbsp;
 	</c:when>
+	<c:when test="${sessionScope.mvo.istrainer=='admin'}">
+	관리자님 로그인 하셨습니다.&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+	</c:when>
 	<c:otherwise>
 	${sessionScope.mvo.id}
 	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;

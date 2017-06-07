@@ -84,6 +84,16 @@
                      -->
                     <c:if test="${sessionScope.mvo != null }">
                     	<c:choose>
+                    		<c:when test="${sessionScope.mvo.istrainer == 'admin' }">
+	                    		<li class="dropdown">
+		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자 Page <b class="caret"></b></a>
+		                        <ul class="dropdown-menu">
+		                            <li>
+		                                <a href="${pageContext.request.contextPath}/adminAuthority.do">관리자페이지</a>
+		                            </li>
+		                        </ul>
+		                    	</li>
+                    		</c:when>
                     		<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
                     			<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
@@ -127,16 +137,6 @@
 			                            </li>
 			                            <li>
 			                                <a href="#">나의 PT 강사(이름 임시)</a>
-			                            </li>
-			                        </ul>
-			                    </li>
-                    		</c:when>
-                    		<c:when test="${sessionScope.mvo == 'admin' }">
-                    			<li class="dropdown">
-			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자 Page <b class="caret"></b></a>
-			                        <ul class="dropdown-menu">
-			                            <li>
-			                                <a href="${pageContext.request.contextPath}/adminAuthority.do">관리자페이지</a>
 			                            </li>
 			                        </ul>
 			                    </li>
