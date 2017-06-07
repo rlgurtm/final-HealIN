@@ -63,7 +63,6 @@
 		});
 	});
 </script>
-<a href="adminAuthority.do">관리자 페이지</a>
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
