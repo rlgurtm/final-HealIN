@@ -194,16 +194,16 @@
 	<tr>
 		<td>${lvo.no}</td>
 		<td>${lvo.title}</td>
-		<td>${lvo.date}</td>
+		<td>${lvo.postedDate}</td>
 		<td>${lvo.hits}</td>
 		<td>${lvo.category}</td>
 		<td>${lvo.memberVO.id}</td>
 		<td>${lvo.tipqna}</td>
 		<td><a class="btn"
-		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.boardNo}&state=정지">
+		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=정지">
 		정지</a></td>
 		<td><a class="btn"
-		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.boardNo}&state=사용">
+		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=사용">
 		사용</a></td>
 	</tr>
 	</tbody>

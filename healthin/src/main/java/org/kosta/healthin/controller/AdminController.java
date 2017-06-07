@@ -98,7 +98,7 @@ public class AdminController {
 	@RequestMapping("deleteBoard.do")
 	public String deleteBoard(HttpServletRequest request,Model model){
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("boardNo", request.getParameter("boardNo"));
+		map.put("boardNo", request.getParameter("no"));
 		String state = request.getParameter("state");
 		if(state.equals("사용")){
 			//map.put("openrank", "1");
