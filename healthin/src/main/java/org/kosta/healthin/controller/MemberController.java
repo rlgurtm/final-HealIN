@@ -83,9 +83,12 @@ public class MemberController {
 		String result = memberService.findById(id);
 		return result;
 	}
+	@RequestMapping("idSearchform.do")
+	public String idSearchform() {
+		return "member/idSearchform";
+	}
 	@RequestMapping("passwordSearchform.do")
 	public String passwordSearchform() {
-		System.out.println("왜 안돼지");
 		return "member/passwordSearchform";
 	}
 	
@@ -94,47 +97,61 @@ public class MemberController {
 		MemberVO mvo = memberService.findByIdLostPassword(searchId);
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("mvo", mvo);
-		
-		System.out.println("엠브리오"+mvo);
-		
+		session.setAttribute("mvo_password", mvo);
 		return "member/findByIdLostPassword";
 	}
 	
 	@RequestMapping("findByIdLostPasswordAuth.do") 
 	public String findByIdLostPasswordAuth(HttpServletRequest req ) {
-		String hiddenAuthType = req.getParameter("hiddenAuthType");
+		String hiddenAuthType = req.getParameter("contactType");
 		String name = req.getParameter("smsNumName");
 		String smsNum = req.getParameter("smsNum");
 		String otherMailName = req.getParameter("otherMailName");
 		String otherMail = req.getParameter("otherMail");
 		HttpSession session = req.getSession();
 		MemberVO mvo = null;
-		
-		System.out.println("name"+name);
-		System.out.println("smsNum"+smsNum);
+		System.out.println(hiddenAuthType);
+		switch (hiddenAuthType) {
+		case "smsNum":
+			mvo = memberService.findPasswordByPhone(name,smsNum);
+			
+			if(mvo != null){
+				session.setAttribute("findmvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				return "member/findByIdLostPassword";
+			}
+			
+		case "otherMail":
+			mvo = memberService.findPasswordByMail(otherMailName, otherMail);
+			
+			if(mvo != null){
+				session.setAttribute("findmvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				return "member/findByIdLostPassword";
+			}
+
+		default:
+			break;
+		}
 		
 		if(hiddenAuthType.equals("tel")){
 			mvo = memberService.findPasswordByPhone(name,smsNum);
 			
 			if(mvo != null){
-				System.out.println("널값이 아니다");
 				session.setAttribute("mvo", mvo);
 				return "member/findByIdLostPasswordAuth";
 			}else{
-				System.out.println("널값이 맞다");
 				return "member/findByIdLostPassword";
 			}
 		}else{
-			System.out.println(otherMailName+"ㅇㄹㅇㄹㅇㄹ"+otherMail);
 			mvo =  memberService.findPasswordByMail(otherMailName,otherMail);
 			
 			if(mvo != null){
-				System.out.println("널값이 아니다");
 				session.setAttribute("mvo", mvo);
 				return "member/findByIdLostPasswordAuth";
 			}else{
-				System.out.println("널값이 맞다");
 				return "member/findByIdLostPassword";
 			}
 		}
@@ -144,17 +161,52 @@ public class MemberController {
 	@RequestMapping("passwordSearchPasswordResult.do") 
 	public String modifyPassword(String id,String newPassword,HttpServletRequest req ) {
 		String result = memberService.modifyPassword(id,newPassword);
-		System.out.println("result" + result);
-		System.out.println("비밀번호 변경완료 페이지 빠빵222...");
-		 
 		return "member/passwordSearchPasswordResult";
+	}
+	
+	@RequestMapping("idSearchResult.do") 
+	public String idSearchResult(HttpServletRequest req ) {
+		String hiddenAuthType = req.getParameter("contactType");
+		String smsName = req.getParameter("smsNumName");
+		String smsNum = req.getParameter("smsNum");
+		
+		String otherName = req.getParameter("otherMailName");
+		String otherMail = req.getParameter("otherMail");
+		System.out.println(hiddenAuthType);
+		
+		System.out.println(smsName);
+		System.out.println(smsNum);
+		System.out.println(otherName);
+		System.out.println(otherMail);
+		
+		System.out.println("이름"+otherName);
+		System.out.println("메일"+otherMail);
+		
+		String id="";
+		
+		if(hiddenAuthType.equals("smsNum") ){
+			id = memberService.idSearchByNumResult(smsName,smsNum);
+		}else if(hiddenAuthType.equals("otherMail") ){
+			System.out.println("여기로 들어왔다");
+			id = memberService.idSearchByMailResult(otherName,otherMail);
+		}
+		
+		HttpSession session = req.getSession();
+		
+		if(id != null){
+			session.setAttribute("id", id);
+			System.out.println("id"+id);
+		}else{
+			session.setAttribute("id", "정보가 없습니다");
+		}
+		
+		return "member/idSearchResult";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "findByNickname.do", produces = "application/text; charset=utf8")
 	public String findByNickname(String nickname) {
 		String result = memberService.findByNickname(nickname);
-		System.out.println("result" + result);
 		return result;
 	}
 	
@@ -180,7 +232,6 @@ public class MemberController {
 			session.setAttribute("mvo", memberService.login(id, password));
 
 			MemberVO vo = memberService.login(id, password);
-
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
@@ -203,8 +254,7 @@ public class MemberController {
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
 		memberService.trainerInfo(vo.getId());
-		
-		System.out.println("아이디"+vo.getId());
+		System.out.println("xml 작업 후");
 
 		String id = vo.getId();
 		String password = req.getParameter("password1");
@@ -212,39 +262,38 @@ public class MemberController {
 
 		vo.setPassword(password);
 		vo.setTel(tel);
-		System.out.println("셋팅"+tel);
 
 		memberService.modify(vo);
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", vo);
-		System.out.println("session"+session);
+		
+		System.out.println("트레이너 냐?? 유저냐??"+vo.getIstrainer());
 
 		if (vo.getIstrainer().equals("user")) {
-			memberService.modifyStudent(vo);
-			System.out.println("getIstrainer>>>>>>"+vo.getIstrainer());
+			System.out.println("유저정보"+vo);
+			
+			memberService.modify(vo);
+			
+			System.out.println("user 기본 정보 저장 후"+vo);
 		} else {
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
-			String originalPath = tvo.getTrainerPhoto();
-			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
+//			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+//
+//			String originalPath = tvo.getTrainerPhoto();
+//			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
 			
-			System.out.println("uploadPath>>>"+uploadPath);
-			System.out.println("originalPath>>>"+originalPath);
-			System.out.println("trainerPicFile>>>"+trainerPicFile);
-
 			if (file.isEmpty() == false) {
 				tvo.setTrainerPhoto(uuid.toString() + "_" + uploadFile.getOriginalFilename());
-				System.out.println("uuid>>>"+uuid.toString());
+				System.out.println("트레이너 파일 저장..낫 엠티"+uuid.toString() + "_" + uploadFile.getOriginalFilename());
 			} else {
 				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
-				System.out.println("trainerPhoto>>>"+req.getParameter("trainerPhoto"));
+				System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
 			}
 
 			memberService.modifyTrainer(tvo);
-			System.out.println("modifyTrainer>>>"+tvo);
+			System.out.println("트레이너modifyTrainer xml 작업 후"+tvo);
 		}
 
 		return "redirect:home.do";

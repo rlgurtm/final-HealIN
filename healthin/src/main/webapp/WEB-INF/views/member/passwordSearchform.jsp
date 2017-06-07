@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>아이디/비밀번호 찾기</title>
+<title>비밀번호 찾기</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -11,9 +11,6 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta property="og:title" content="비밀번호찾기 홈 | Health 비밀번호 찾기">
-<meta property="og:type" content="website">
-<meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,15 +21,6 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/find.css" />
-
-<script>
-	$(document).ready(function() {
-		
-		$("#btn-login").click(function() {
-			$("#loginFrm").submit();
-		});
-	});
-</script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -43,7 +31,7 @@
   <div id="daumWrap" >
     <div id="daumHead">
       <h1>
-        <a href="/find/password.do" id="daumServiceLogo" class="link_findpw"><span class="ir_wa">비밀번호찾기</span></a>
+        <a href="${pageContext.request.contextPath}/findByIdLostPassword.do" id="daumServiceLogo" class="link_findpw"><span class="ir_wa">비밀번호찾기</span></a>
       </h1>
     </div>
     <!-- // daumHead -->
@@ -174,8 +162,8 @@
 </div>
 
 
-<script type="text/javascript" src="/content/js/jquery.form.member.init.js?v=170601010314"></script>
-<script type="text/javascript" src="/content/js/jquery.form.validate.js?v=170601010314"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.form.member.init.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.form.validate.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -220,12 +208,6 @@
                             required: true,
                             existdaumidinvalid: true
                         }
-                    },
-                    messages: {
-                        searchId: {
-                            required: "Daum 아이디를 입력해 주세요.",
-                            existdaumidinvalid: "Daum 아이디를 정확히 입력해 주세요."
-                        }
                     }
                 }
         );
@@ -258,10 +240,6 @@
 
     });
 
-    function gotoKakaoFindPw() {
-        var findpw = "https://accounts.kakao.com/weblogin/find_password?continue=%s";
-        window.open(findpw.replace('%s', 'http://www.daum.net'), "_blank");
-    }
 </script>
 </body>
 

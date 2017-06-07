@@ -106,7 +106,7 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="nickname" name="nickname"
 											class="inp_info pw" value="${sessionScope.mvo.nickname }"
-											maxlength="32"> <span class="mark_valid"
+											maxlength="32" readonly="readonly"> <span class="mark_valid"
 											style="display: none;">불가</span>
 									</div>
 									<p class="txt_message" style="display: none;">이미 사용된
@@ -246,9 +246,9 @@
 								</dd>
 							</dl>
 							<!--  
-istrainer : trainer/ user
--->
-							<input type="hidden" value="trainer" name="istrainer"> <input
+								istrainer : trainer/ user
+							-->
+							<input type="hidden" value="${mvo.istrainer}" name="istrainer"> <input
 								type="hidden" value="N" name="withdrawal">
 						</div>
 					</div>
@@ -303,7 +303,7 @@ istrainer : trainer/ user
 								</dt>
 								<dd>
 									<!-- 텍스트 입력 시 .screen_out  -->
-									<input type="file" name="uploadFile" required="required">
+									<input type="file" name="uploadFile" value=" " required="required">
 									${tvo.trainerPhoto  } <span class="mark_valid"><span
 										class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									<p class="txt_message" style="display: none;"></p>

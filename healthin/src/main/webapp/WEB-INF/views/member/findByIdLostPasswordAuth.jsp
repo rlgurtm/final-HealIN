@@ -48,7 +48,7 @@
 						<div class="info_detail">
 							<div class="info_result">
 								<form method="post"
-									action="${pageContext.request.contextPath}/member/passwordSearchPasswordResult.do">
+									action="${pageContext.request.contextPath}/passwordSearchPasswordResult.do">
 									<fieldset>
 										<legend class="screen_out">비밀번호 재설정 폼</legend>
 										<input type="password" id="id"

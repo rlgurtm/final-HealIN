@@ -26,9 +26,7 @@
 	<div id="daumWrap">
 		<div id="daumHead">
 			<h1>
-				<a
-					href="${pageContext.request.contextPath}/findByIdLostPasswordAuth.do"
-					id="daumServiceLogo" class="link_findpw"><span class="ir_wa">비밀번호찾기</span></a>
+				<a href="${pageContext.request.contextPath}/idSearchform.do" id="daumServiceLogo"><span class="ir_wa">아이디찾기</span></a>
 			</h1>
 			${sessionScope.msg }
 		</div>
@@ -38,21 +36,18 @@
 			<div id="cMain">
 				<div id="mArticle">
 					<div class="dimmed_layer" style="display: none"></div>
-					<h2 id="daumBody" class="screen_out">개인비밀번호 찾기 본문</h2>
+					<h2 id="daumBody" class="screen_out">아이디 찾기 본문</h2>
 					<p class="desc_g">
-						<em class="emph_g">${mvo.id}</em> 님, 인증 가능한 연락처를 선택한 후, 연락처를 입력해
-						주세요.<br>
+						<strong>아이디를 모르시나요?</strong><br>아이디 찾기 방법 중 가능한 방법을 선택해 주세요.
 					</p>
 
 					<div class="cont_g">
 						<div class="info_detail">
 							<form method="post"
-								action="${pageContext.request.contextPath}/findByIdLostPasswordAuth.do"
+								action="${pageContext.request.contextPath}/idSearchResult.do"
 								id="checkForm">
 								<input type="hidden" id="contact" name="contact" /> <input
-									type="hidden" id="name" name="name" /> <input type="hidden"
-									id="mobileNational" name="mobileNational" /> <input
-									type="hidden" id="mobileNationalCode" name="mobileNationalCode" />
+									type="hidden" id="name" name="name" /> 
 								<fieldset>
 									<legend class="screen_out">비밀번호찾기 방법 개인아이디 폼</legend>
 									<ul class="list_certify">
@@ -69,8 +64,7 @@
 														<div class="bg_find inner_bg">
 															<label for="smsNumName" class="screen_out">이름을
 																입력해주세요.</label> <input type="text" id="smsNumName"
-																name="smsNumName" class="tf_g" value=""> <input
-																type="hidden" id="hiddenMvoName" value="${mvo.name}">
+																name="smsNumName" class="tf_g" value="">
 														</div>
 
 
@@ -83,12 +77,10 @@
 														<div class="bg_find inner_bg">
 															<label for="smsNum" class="screen_out">휴대폰 번호를
 																입력해주세요.</label> <input type="text" id="smsNum" name="smsNum"
-																class="tf_g " value=""> <input type="hidden"
-																id="hiddenMvoSmsNum" value="${mvo.tel}">
+																class="tf_g " value="">
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
-													<input type="hidden" name="hiddenAuthType" value="tel">
 													<button type="submit" class="btn_find btn_next"
 														id="nextStepBtn">다음단계</button>
 
@@ -107,8 +99,7 @@
 														<div class="bg_find inner_bg">
 															<label for="otherMailName" class="screen_out"> 이름
 																을 입력해 주세요.</label> <input type="text" id="otherMailName"
-																name="otherMailName" class="tf_g" value=""> <input
-																type="hidden" id="originname" value="${mvo.name}">
+																name="otherMailName" class="tf_g" value=""> 
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
@@ -118,12 +109,10 @@
 														<div class="bg_find inner_bg">
 															<label for="otherMail" class="screen_out">이메일 주소를
 																입력해주세요.</label> <input type="text" id="otherMail"
-																name="otherMail" class="tf_g " value=""> <input
-																type="hidden" id="originemail" value="${mvo.email}">
+																name="otherMail" class="tf_g " value=""> 
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
-													<input type="hidden" name="hiddenAuthType" value="email">
 													<button type="submit" class="btn_find btn_next"
 														id="nextEmailBtn">다음단계</button>
 												</div>
@@ -282,6 +271,8 @@
 							$("#checkForm")
 									.submit(
 											function() {
+												var choiceRadio = $(":input:radio[name=contactType]:checked").val();
+												alert(choiceRadio);
 												if (!submitted) {
 													submitted = true;
 													var contactType = $(
@@ -331,42 +322,26 @@
 					.click(
 							function() {
 								// var choiceRadio = $(":input:radio[name=contactType]:checked").val();
-								var mvoName = document
-										.getElementById("hiddenMvoName").value;
 								var smsName = document
 										.getElementById("smsNumName").value;
-								var mvoSmsNum = document
-										.getElementById("hiddenMvoSmsNum").value;
 								var smsNum = document.getElementById("smsNum").value;
 								
-								if (mvoName.equals(smsName)
-										&& mvoSmsNum.equals(smsNum)) {
 									$("#checkForm").submit();
 									return false;
-								}else {
-									return true;
-								}
 							});
 
 			$("#nextEmailBtn")
 					.click(
 							function() {
-								var originname = document
-										.getElementById("originname").value;
+								//var choiceRadio = $(":input:radio[name=contactType]:checked").val();
+								
 								var otherMailName = document
 										.getElementById("otherMailName").value;
-								var originemail =
-									document.getElementById("originemail").value;
 								var otherMail = document
 										.getElementById("otherMail").value;
 								
-								if(originname.equals(otherMailName)
-										&& originemail.equals(otherMail)	){
 									$("#checkForm").submit();
 									return false;
-								}else {
-									return true;
-								}
 							});
 
 		}

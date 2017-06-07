@@ -91,4 +91,17 @@ public class TrainerServiceImpl implements TrainerService {
 		dao.insertfollowtrainer(map);
 	}
 
+	@Override
+	public ListVO getTrainerLoc(String pageNo, String local) {
+		int totalCount=dao.getTrainerLocTotalCount(local);
+		int pageNum=Integer.parseInt(pageNo);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("STARTROWNUM", pb.getStartRowNumber());
+		map.put("ENDROWNUM", pb.getEndRowNumber());	
+		map.put("LOC", local);
+		ListVO listVO=new ListVO(dao.getTrainerLoc(map),pb);
+		return listVO;
+	}
+
 }
