@@ -17,4 +17,8 @@ public class TrainerPageController {
 		model.addAttribute("ptList", trainerPageService.trainerPtList(id));
 		return "trainer/ptList.tiles";
 	}
+	@RequestMapping("trainer/ptListPopup.do")
+	public String ptListPopup(){
+		return "trainer/ptListPopup";
+	}
 }

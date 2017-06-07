@@ -32,7 +32,7 @@ table.type03 td {
 <script>
 function popupOpen(){
 
-	var popUrl = "${pageContext.request.contextPath}/WEB-INF/views/trainer/ptListPopup.jsp";	
+	var popUrl = "${pageContext.request.contextPath}/trainer/ptListPopup.do";	
 
 	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";   
 

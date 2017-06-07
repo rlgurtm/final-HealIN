@@ -93,8 +93,9 @@ create table health_comment(
 	posted_date date not null,
 	id varchar2(100) not null
 	constraint member_fk_comment references health_member(id),
-	constraint qna_fk_board foreign key(board_no) references tipandqna(board_no)
 )
+alter table health_comment add constraint qna_fk_board foreign key (board_no) 
+references tipandqna(board_no) on delete cascade
 
 -- 매칭 테이블
 drop table matching;
