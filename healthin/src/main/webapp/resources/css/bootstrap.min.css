@@ -7497,3 +7497,8 @@ table.content td {
 img.img-responsive.heartimg {
     cursor: pointer;
 }
+
+span.followingidnick {
+    float: left;
+    padding: 16px;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+<resultMap type="trainerVO" id="trainerRM">
+	<result column="id" property="membervo.id"/>
+	<result column="nickname" property="membervo.nickname"/>
+	<result column="name" property="membervo.name"/>
+	<result column="withdrawal" property="membervo.withdrawal"/>
+</resultMap>
+<select id="findByIsTrainer" resultMap="trainerRM">
+	select a.* from
+		(select m.id,m.nickname,m.name,m.withdrawal,m.is_trainer as istrainer,t.rank
+			from trainer t,health_member m
+		where t.trainer_id=m.id ) a
+	where istrainer='trainer' order by withdrawal asc
+</select>
+<update id="trainerRankDesignation" parameterType="java.util.Map">
+	update trainer set rank=#{rank} where trainer_id=#{trainerId}
+</update>
+<select id="memberSecessionForm" resultType="memberVO">
+	select id,nickname,name,birthdate,gender,e_mail as email
+		,is_trainer as istrainer,withdrawal
+	from health_member
+	order by withdrawal asc
+</select>
+<update id="memberSecession" parameterType="java.util.Map">
+	update health_member set withdrawal=#{withdrawal} where id=#{id}
+</update>
+<select id="findByTrainerVideoForm" resultType="trainerVideoVO">
+	select video_no as videoNo,title,video_file as videoFile,posted_date as postedDate
+		,hits,category,trainer_id as trainerId,openrank
+	from trainer_video 
+	order by video_no desc
+</select>
+<update id="deleteTrainerVideo" parameterType="java.util.Map">
+	update trainer_video set openrank=#{openrank} where video_no=#{videoNo}
+</update>
+
+
+
+
+
+
+
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
