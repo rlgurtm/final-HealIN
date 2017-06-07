@@ -92,7 +92,7 @@
 			                                <a href="${pageContext.request.contextPath}/trainer_follower_management.do">팔로워 관리(이름 임시)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">PT 결제 현황</a>
+			                                <a href="${pageContext.request.contextPath}/trainer_pt_List.do">PT List</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">나의 PT 회원</a>
