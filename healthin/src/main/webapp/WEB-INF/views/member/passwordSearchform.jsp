@@ -11,9 +11,6 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta property="og:title" content="비밀번호찾기 홈 | Health 비밀번호 찾기">
-<meta property="og:type" content="website">
-<meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -174,8 +171,8 @@
 </div>
 
 
-<script type="text/javascript" src="/content/js/jquery.form.member.init.js?v=170601010314"></script>
-<script type="text/javascript" src="/content/js/jquery.form.validate.js?v=170601010314"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.form.member.init.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.form.validate.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
