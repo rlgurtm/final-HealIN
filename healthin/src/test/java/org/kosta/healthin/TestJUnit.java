@@ -6,9 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.QnaDAO;
 import org.kosta.healthin.model.dao.TipDAO;
+import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
-import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,12 +28,13 @@ public class TestJUnit {
 	
 	@Resource
 	private TrainerService trainerservice;
+	
+	@Resource
+	private TrainerPageDAO tpdao;
 
 	@Test
 	public void test(){
-		ListVO list=trainerservice.getTrainerLoc("1","은평구");
-		System.out.println(list);
-		
+		System.out.println(tpdao.trainerPtList("healthboy"));
 	}
 }
 
