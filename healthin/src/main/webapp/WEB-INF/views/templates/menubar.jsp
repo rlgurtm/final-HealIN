@@ -92,7 +92,7 @@
 			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following List</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">PT 결제 현황</a>
+			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">PT List</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">나의 PT 회원</a>
