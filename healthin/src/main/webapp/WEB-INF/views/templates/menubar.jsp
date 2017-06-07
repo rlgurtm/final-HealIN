@@ -89,7 +89,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/FollowingList.do">Following List</a>
+			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following List</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">PT 결제 현황</a>
