@@ -68,20 +68,22 @@ $(document).ready(function(){
 	<h4>지역별 코치 찾기</h4>
 	<div class="well" style="background-color: lightgray;">
 		<div class="coachloc">
-		서울 > &nbsp;&nbsp;&nbsp;
+		<form action="${pageContext.request.contextPath}/trainer/trainerLoc.do" method="get">
+		서울 > &emsp;
 		<input type="radio" value="강남구" name="local">강남구&nbsp; 
 		<input type="radio" value="노원구" name="local">노원구&nbsp;
 		<input type="radio" value="서초구" name="local">서초구&nbsp;
 		<input type="radio" value="용산구" name="local">용산구&nbsp;
 		<input type="radio" value="은평구" name="local">은평구
 		<br>
-		경기 > &nbsp;&nbsp;&nbsp;
+		경기 > &emsp;
 		<input type="radio" value="성남시" name="local">성남시&nbsp;
 		<input type="radio" value="안양시" name="local">안양시&nbsp;
 		<input type="radio" value="양평군" name="local">양평군&nbsp;
 		<input type="radio" value="용인시" name="local">용인시&nbsp;
 		<input type="radio" value="의정부시" name="local">의정부시
-		<br>
+		<input type="submit" class="btn btn-default" value="검색" style="float: right">
+		</form>
 		</div>
 	</div>
 
