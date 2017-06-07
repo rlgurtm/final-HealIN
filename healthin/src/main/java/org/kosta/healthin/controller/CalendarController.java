@@ -130,7 +130,6 @@ public class CalendarController {
 	public String insertFood(Model model, HttpServletRequest request) {
 		String id = request.getParameter("id");
 		String date = request.getParameter("date");
-		System.out.println(date);
 		String foodName = request.getParameter("foodName");
 		int count = Integer.parseInt(request.getParameter("count"));
 		HashMap<String, Object> foodMap = new HashMap<String, Object>();

@@ -27,6 +27,8 @@ public interface TrainerDAO {
 
 	void insertfollowtrainer(Map<String, String> map);
 
+	int getTrainerfollowingTotalCount();
+
 
 
 }

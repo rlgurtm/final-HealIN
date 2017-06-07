@@ -34,7 +34,14 @@ public class MyPageController {
 		ListVO listVO = myPageService.selectUserPhysicalInfo(mvo);
 		System.out.println(listVO);
 		model.addAttribute("listVO", listVO);
-		
 		return "mypage/bmi_list.tiles";
 	}
+	/*@RequestMapping("tip/tip.do")
+	public String getTipBoardList(Model model,String nowpage){
+		if(nowpage==null)
+			nowpage="1";
+		ListVO list=tipService.getTipBoardList(nowpage);
+		model.addAttribute("list",list );
+		return "tip/tip.tiles";
+	}*/
 }

@@ -49,7 +49,7 @@
 				<div class="login-check"></div>
 				<div class="login-para">
 					<p>
-						<a href="#"> 암호를 분실하셨나요? </a>
+						<a href="${pageContext.request.contextPath}/passwordSearchform.do"> 암호를 분실하셨나요? </a>
 					</p>
 				</div>
 				<div class="clear"></div>

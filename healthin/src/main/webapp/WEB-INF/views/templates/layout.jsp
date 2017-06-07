@@ -63,9 +63,9 @@
 <!-- slick -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick-theme.css"/>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <%-- <script src='${pageContext.request.contextPath}/resources/js/slick.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/js/slick.js'></script>
 <link href='${pageContext.request.contextPath}/resources/css/slick.css' rel='stylesheet' />

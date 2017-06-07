@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +35,7 @@ public class MemberController {
 
 	@RequestMapping("register_step2.do")
 	public String register_step2() {
-		return "member/register_step2.do";
+		return "member/register_step2";
 	}
 
 	@RequestMapping("register_step3.do")
@@ -84,29 +83,92 @@ public class MemberController {
 		String result = memberService.findById(id);
 		return result;
 	}
+	@RequestMapping("idSearchform.do")
+	public String idSearchform() {
+		return "member/idSearchform";
+	}
+	@RequestMapping("passwordSearchform.do")
+	public String passwordSearchform() {
+		return "member/passwordSearchform";
+	}
 	
-	@ResponseBody
-	@RequestMapping("findByIdLostPassword.do")
-	public MemberVO findByIdLostPassword(String id,HttpServletRequest req ) {
-		MemberVO mvo = memberService.findByIdLostPassword(id);
+	@RequestMapping("findByIdLostPassword.do") 
+	public String findByIdLostPassword(String searchId,HttpServletRequest req ) {
+		MemberVO mvo = memberService.findByIdLostPassword(searchId);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", mvo);
+		return "member/findByIdLostPassword";
+	}
+	
+	@RequestMapping("findByIdLostPasswordAuth.do") 
+	public String findByIdLostPasswordAuth(HttpServletRequest req ) {
+		String hiddenAuthType = req.getParameter("contactType");
+		String name = req.getParameter("smsNumName");
+		String smsNum = req.getParameter("smsNum");
+		String otherMailName = req.getParameter("otherMailName");
+		String otherMail = req.getParameter("otherMail");
+		HttpSession session = req.getSession();
+		MemberVO mvo = null;
 		
-		return mvo;
+		switch (hiddenAuthType) {
+		case "smsNum":
+			mvo = memberService.findPasswordByPhone(name,smsNum);
+			
+			if(mvo != null){
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				return "member/findByIdLostPassword";
+			}
+			
+		case "otherMail":
+			mvo = memberService.findPasswordByPhone(name,smsNum);
+			
+			if(mvo != null){
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				mvo =  memberService.findPasswordByMail(otherMailName,otherMail);
+			}
+
+		default:
+			break;
+		}
+		
+		if(hiddenAuthType.equals("tel")){
+			mvo = memberService.findPasswordByPhone(name,smsNum);
+			
+			if(mvo != null){
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				return "member/findByIdLostPassword";
+			}
+		}else{
+			mvo =  memberService.findPasswordByMail(otherMailName,otherMail);
+			
+			if(mvo != null){
+				session.setAttribute("mvo", mvo);
+				return "member/findByIdLostPasswordAuth";
+			}else{
+				return "member/findByIdLostPassword";
+			}
+		}
+		
+	}
+	
+	@RequestMapping("passwordSearchPasswordResult.do") 
+	public String modifyPassword(String id,String newPassword,HttpServletRequest req ) {
+		String result = memberService.modifyPassword(id,newPassword);
+		return "member/passwordSearchPasswordResult";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "findByNickname.do", produces = "application/text; charset=utf8")
 	public String findByNickname(String nickname) {
 		String result = memberService.findByNickname(nickname);
-		System.out.println("result" + result);
 		return result;
-	}
-	
-	@RequestMapping("passwordSearchform.do")
-	public String passwordSearchform() {
-		return "member/passwordSearchform";
 	}
 	
 //	@ResponseBody
@@ -131,7 +193,6 @@ public class MemberController {
 			session.setAttribute("mvo", memberService.login(id, password));
 
 			MemberVO vo = memberService.login(id, password);
-
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
@@ -154,8 +215,6 @@ public class MemberController {
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
 		memberService.trainerInfo(vo.getId());
-		
-		System.out.println("아이디"+vo.getId());
 
 		String id = vo.getId();
 		String password = req.getParameter("password1");
@@ -163,39 +222,29 @@ public class MemberController {
 
 		vo.setPassword(password);
 		vo.setTel(tel);
-		System.out.println("셋팅"+tel);
 
 		memberService.modify(vo);
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", vo);
-		System.out.println("session"+session);
 
 		if (vo.getIstrainer().equals("user")) {
 			memberService.modifyStudent(vo);
-			System.out.println("getIstrainer>>>>>>"+vo.getIstrainer());
 		} else {
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 
-			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
-			String originalPath = tvo.getTrainerPhoto();
-			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
+//			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+//
+//			String originalPath = tvo.getTrainerPhoto();
+//			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
 			
-			System.out.println("uploadPath>>>"+uploadPath);
-			System.out.println("originalPath>>>"+originalPath);
-			System.out.println("trainerPicFile>>>"+trainerPicFile);
-
 			if (file.isEmpty() == false) {
 				tvo.setTrainerPhoto(uuid.toString() + "_" + uploadFile.getOriginalFilename());
-				System.out.println("uuid>>>"+uuid.toString());
 			} else {
 				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
-				System.out.println("trainerPhoto>>>"+req.getParameter("trainerPhoto"));
 			}
 
 			memberService.modifyTrainer(tvo);
-			System.out.println("modifyTrainer>>>"+tvo);
 		}
 
 		return "redirect:home.do";
