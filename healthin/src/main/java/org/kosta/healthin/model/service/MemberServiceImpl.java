@@ -88,6 +88,17 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.modifyPassword(id,newPassword);
 		return null;
 	}
-	
+
+	@Override
+	public String idSearchByNumResult(String smsName, String smsNum) {
+		String id =memberDAO.idSearchByNumResult(smsName,smsNum);
+		return id;
+	}
+
+	@Override
+	public String idSearchByMailResult(String otherName, String otherMail) {
+		String id =memberDAO.idSearchByMailResult(otherName,otherMail);
+		return id;
+	}
 
 }

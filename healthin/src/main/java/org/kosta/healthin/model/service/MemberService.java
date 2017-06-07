@@ -20,4 +20,6 @@ public interface MemberService {
 	MemberVO findPasswordByPhone(String name, String smsNum);
 	MemberVO findPasswordByMail(String otherMailName, String otherMail);
 	String modifyPassword(String id, String newPassword);
+	String idSearchByNumResult(String smsName, String smsNum);
+	String idSearchByMailResult(String otherName, String otherMail);
 }
