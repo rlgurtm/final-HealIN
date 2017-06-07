@@ -8,29 +8,29 @@ $(document)
 									{
 										inputEvent : "keydown focus",
 										validationEvent : "blur",
-										id : {
-											rules : {
-												uniqueid : function() {
-													return {
-														id : "#id"
-													}
-												},
-												required : true,
-//												idinvalid : true
-//												rangelength : [ 4, 15 ]
+//										id : {
+//											rules : {
+//												uniqueid : function() {
+//													return {
+//														id : "#id"
+//													}
+//												},
+//												required : true,
+//												idinvalid : true,
+//												rangelength : [ 4, 15 ],
 //												onlydigits : true,
 //												notUpperCase : true,
-												onlydigits : true
-											},
-											inputListener : function(input) {
-												formInput(input);
-											},
-											errorListener : function(input,
-													result) {
-												var extra = result.extra;
-												formError(input, result);
-											}
-										},
+//												onlydigits : true
+//											},
+//											inputListener : function(input) {
+//												formInput(input);
+//											},
+//											errorListener : function(input,
+//													result) {
+//												var extra = result.extra;
+//												formError(input, result);
+//											}
+//										},
 										nickname : {
 											rules : {
 												required : true,

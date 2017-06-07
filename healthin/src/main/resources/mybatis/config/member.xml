@@ -26,6 +26,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT id from health_member 
 		where id=#{id} 
 	</select>
+	<select id="idSearchByNumResult" parameterType="map"  resultType="string">
+		SELECT id,name,tel from health_member 
+		where name=#{smsName} and tel=#{smsNum}
+	</select>
+	<select id="idSearchByMailResult" parameterType="map"  resultType="string">
+		SELECT id,name,e_mail  from health_member 
+		where name=#{otherName} and e_mail=#{otherMail}
+	</select>
+	
 	<select id="findByNickname" parameterType="string"  resultType="string">
 		SELECT nickname from health_member 
 		where nickname=#{nickname} 

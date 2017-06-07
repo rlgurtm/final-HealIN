@@ -17,12 +17,12 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void registerStep3(MemberVO vo) {
-		int result= sqlSessionTemplate.insert("member.registerAll", vo);
+		 sqlSessionTemplate.insert("member.registerAll", vo);
 	}
 
 	@Override
 	public MemberVO registerStudent(MemberVO vo) {
-		int result= sqlSessionTemplate.insert("member.registerStudent", vo);
+		sqlSessionTemplate.insert("member.registerStudent", vo);
 		return vo;
 	}
 
@@ -108,6 +108,25 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("id", id);
 		map.put("newPassword", newPassword);
 		sqlSessionTemplate.update("member.modifyPassword", map);
+	}
+
+	@Override
+	public String idSearchByNumResult(String smsName, String smsNum) {
+		Map<String, String> map = new HashMap< String, String>();
+		map.put("smsName", smsName);
+		map.put("smsNum", smsNum);
+		String id= sqlSessionTemplate.selectOne("member.idSearchByNumResult", map);
+		return id;
+	}
+
+	@Override
+	public String idSearchByMailResult(String otherName, String otherMail) {
+		Map<String, String> map = new HashMap< String, String>();
+		map.put("otherName", otherName);
+		map.put("otherMail", otherMail);
+		String id=  sqlSessionTemplate.selectOne("member.idSearchByMailResult", map);
+		System.out.println("멤버디에오임플 아이디 찾기 바이 이메일"+id);
+		return id;
 	}
 
 
