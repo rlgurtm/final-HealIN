@@ -63,9 +63,9 @@
 			<tbody>
 				<tr>
 					<td colspan="6">
-					<pre style="white-space: pre-wrap;">
+					<pre style="overflow-y:hidden;  height:100%;">
 						<img src="${pageContext.request.contextPath }/resources/tipFile/${tip.attachedFile }"
-							style="width: 50%;" align="left">${tip.content }
+							style="width: 60%; display:block;">${tip.content }
 						<c:if test="${tip.attachedFile!=null}">
 							<a id="attechedFile" href="${pageContext.request.contextPath }/fileDownload.do?
 							fileName=${tip.attachedFile }">첨부파일</a>
