@@ -210,14 +210,6 @@ public class MemberController {
 		return result;
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "findByPassword.do", produces = "application/text; charset=utf8")
-//	public String findByPassword(String id,String name,String nickname) {
-//		String result = memberService.findByPassword(nickname);
-//		System.out.println("result" + result);
-//		return result;
-//	}
-
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		return "member/login_form";
@@ -235,7 +227,11 @@ public class MemberController {
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
+			}else if(id.equals("admin") && password.equals("rhksflwk")){
+				session.setAttribute("mvo", "admin");
 			}
+			
+			
 			return "redirect:home.do";
 		}
 	}
