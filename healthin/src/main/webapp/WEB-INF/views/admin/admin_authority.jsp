@@ -192,12 +192,12 @@
 	<c:forEach items="${listVO.LVO}" var="lvo">
 	<tbody>
 	<tr>
-		<td>${lvo.boardNo}</td>
+		<td>${lvo.no}</td>
 		<td>${lvo.title}</td>
 		<td>${lvo.date}</td>
 		<td>${lvo.hits}</td>
 		<td>${lvo.category}</td>
-		<td>${lvo.id}</td>
+		<td>${lvo.memberVO.id}</td>
 		<td>${lvo.tipqna}</td>
 		<td><a class="btn"
 		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.boardNo}&state=정지">
