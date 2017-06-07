@@ -63,7 +63,6 @@
 		});
 	});
 </script>
-
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
@@ -217,7 +216,7 @@
 				<li><a
 					href="${pageContext.request.contextPath}/filterVideoList.do?filter=no"
 					class="btn"> <strong>List</strong></a></li>
-				<c:if test="${mvo.istrainer=='trainer'}">
+				<c:if test="${mvo.istrainer=='trainer'&&mvo.withdrawal=='N'&&tvo.rank>0}">
 					<li><a
 						href="${pageContext.request.contextPath}/trainerVideoWriteForm.do"
 						class="btn"> <strong>Write</strong></a></li>
@@ -228,5 +227,6 @@
 	</div>
 </div>
 <br>
+${tvo.rank}
 
 

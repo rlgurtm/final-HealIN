@@ -89,10 +89,10 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/trainer_follower_management.do">팔로워 관리(이름 임시)</a>
+			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following List</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">PT 결제 현황</a>
+			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">PT List</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">나의 PT 회원</a>
@@ -127,6 +127,16 @@
 			                            </li>
 			                            <li>
 			                                <a href="#">나의 PT 강사(이름 임시)</a>
+			                            </li>
+			                        </ul>
+			                    </li>
+                    		</c:when>
+                    		<c:when test="${sessionScope.mvo == 'admin' }">
+                    			<li class="dropdown">
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자 Page <b class="caret"></b></a>
+			                        <ul class="dropdown-menu">
+			                            <li>
+			                                <a href="${pageContext.request.contextPath}/adminAuthority.do">관리자페이지</a>
 			                            </li>
 			                        </ul>
 			                    </li>

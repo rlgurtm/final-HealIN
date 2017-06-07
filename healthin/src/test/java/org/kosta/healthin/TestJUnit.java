@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosta.healthin.model.dao.QnaDAO;
 import org.kosta.healthin.model.dao.TipDAO;
+import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,10 +28,13 @@ public class TestJUnit {
 	
 	@Resource
 	private TrainerService trainerservice;
+	
+	@Resource
+	private TrainerPageDAO tpdao;
 
 	@Test
 	public void test(){
-		System.out.println(qnadao.getIsTrainer("java"));
+		System.out.println(tpdao.trainerPtList("healthboy"));
 	}
 }
 

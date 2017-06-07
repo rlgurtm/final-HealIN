@@ -31,13 +31,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#id").keydown(function() {
+			val idVal = $("#id").val();
+			console.log('idVal'+idVal);
 			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/findById.do",
 				data : "id=" + $("#id").val(),
 				success : function(data) {
 					if(data == ($("#id").val())){
-						console.log('XXXX');
+						console.log(data+'XXXX');
 						$("#id_message").html(
 								"중복id입니다.다른 아이디를 입력해주세요.").show();
 					}else{
@@ -127,7 +129,7 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="id" name="id" class="inp_info" value=""
-											maxlength="30" placeholder="아이디" required="required">
+											maxlength="30" placeholder="영어 소문자,숫자만 허용됩니다." required="required">
 										<span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
@@ -144,7 +146,7 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="nickname" name="nickname"
 											class="inp_info" value="" autocomplete="off" maxlength="15"
-											placeholder="닉네임" required="required"> <span
+											placeholder="한글,영어 소문자/대문자, 특수문자 허용" required="required"> <span
 											class="txt_fix txt_domain"></span> <span class="mark_valid"
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
@@ -163,8 +165,8 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="password" id="password1" name="password1"
 											class="inp_info pw" value="" maxlength="32"
-											placeholder="비밀번호 
-											(8자 이상)" required="required">
+											placeholder="(8자 이상) 
+											" required="required">
 										<span class="mark_valid" style="display: none;">불가</span>
 									</div>
 								</dd>
@@ -199,7 +201,7 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="name" name="name" class="inp_info"
-											value="" maxlength="30" placeholder="이름" required="required">
+											value="" maxlength="30" placeholder="한글 및 영어" required="required">
 										<span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
@@ -217,7 +219,7 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="birthdate" name="birthdate"
 											class="inp_info" value="" maxlength="8"
-											placeholder="20051230" required="required"> <span
+											placeholder="date of birth" required="required"> <span
 											class="mark_valid"><span class="ico_join ico_valid"></span><span
 											class="screen_out">유효</span></span>
 									</div>
@@ -248,7 +250,7 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="mobile" name="mobile" class="inp_info"
 											value="" autocomplete="off" maxlength="11"
-											placeholder="0101234568" required="required"> <span
+											placeholder="phonenumber" required="required"> <span
 											class="mark_valid"> <span class="ico_join ico_valid"></span><span
 											class="screen_out">유효</span></span>
 									</div>
@@ -264,7 +266,7 @@
 										<span class="txt_placeholder "></span>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="email" name="email" class="inp_info"
-											value="" autocomplete="off" placeholder="이메일"
+											value="" autocomplete="off" placeholder="email 입력"
 											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
