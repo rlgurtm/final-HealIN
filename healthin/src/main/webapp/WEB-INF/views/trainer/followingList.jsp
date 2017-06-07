@@ -61,7 +61,7 @@
 				<td><span class="followingidnick">아이디 닉네임&emsp;&emsp;</span>
 				<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>
 				</td>
-				
+				  
 			</tr>
 		</thead>
 		<tbody id="tipBoardInfo">
