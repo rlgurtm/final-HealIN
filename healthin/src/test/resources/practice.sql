@@ -184,3 +184,6 @@ select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f
 		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = '2017-05-31' and im.user_id = 'user1'
 
 		select * from CONSUMPTION_MEMBER
+select * from HEALTH_MEMBER
+select * from TRAINER
+update HEALTH_MEMBER set is_trainer='user' where id='gogo'

@@ -191,7 +191,6 @@
 						function() {
 							
 							var choiceRadio = $(":input:radio[name=contactType]:checked").val();
-							alert(choiceRadio);
 
 							var require_name_or_regnum = messages.require_name;
 							var validator = $("form")

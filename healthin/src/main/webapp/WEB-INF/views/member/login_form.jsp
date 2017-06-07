@@ -52,6 +52,12 @@
 						<a href="${pageContext.request.contextPath}/passwordSearchform.do"> 암호를 분실하셨나요? </a>
 					</p>
 				</div>
+				&nbsp;&nbsp;&nbsp;
+				<div class="login-para">
+					<p>
+						<a href="${pageContext.request.contextPath}/idSearchform.do"> 아이디를 분실하셨나요? </a>
+					</p>
+				</div>
 				<div class="clear"></div>
 			</div>
 			<div class="login-bwn">

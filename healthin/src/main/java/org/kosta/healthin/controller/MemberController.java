@@ -97,7 +97,7 @@ public class MemberController {
 		MemberVO mvo = memberService.findByIdLostPassword(searchId);
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("mvo", mvo);
+		session.setAttribute("mvo_password", mvo);
 		return "member/findByIdLostPassword";
 	}
 	
@@ -110,26 +110,26 @@ public class MemberController {
 		String otherMail = req.getParameter("otherMail");
 		HttpSession session = req.getSession();
 		MemberVO mvo = null;
-		
+		System.out.println(hiddenAuthType);
 		switch (hiddenAuthType) {
 		case "smsNum":
 			mvo = memberService.findPasswordByPhone(name,smsNum);
 			
 			if(mvo != null){
-				session.setAttribute("mvo", mvo);
+				session.setAttribute("findmvo", mvo);
 				return "member/findByIdLostPasswordAuth";
 			}else{
 				return "member/findByIdLostPassword";
 			}
 			
 		case "otherMail":
-			mvo = memberService.findPasswordByPhone(name,smsNum);
+			mvo = memberService.findPasswordByMail(otherMailName, otherMail);
 			
 			if(mvo != null){
-				session.setAttribute("mvo", mvo);
+				session.setAttribute("findmvo", mvo);
 				return "member/findByIdLostPasswordAuth";
 			}else{
-				mvo =  memberService.findPasswordByMail(otherMailName,otherMail);
+				return "member/findByIdLostPassword";
 			}
 
 		default:
@@ -162,6 +162,45 @@ public class MemberController {
 	public String modifyPassword(String id,String newPassword,HttpServletRequest req ) {
 		String result = memberService.modifyPassword(id,newPassword);
 		return "member/passwordSearchPasswordResult";
+	}
+	
+	@RequestMapping("idSearchResult.do") 
+	public String idSearchResult(HttpServletRequest req ) {
+		String hiddenAuthType = req.getParameter("contactType");
+		String smsName = req.getParameter("smsNumName");
+		String smsNum = req.getParameter("smsNum");
+		
+		String otherName = req.getParameter("otherMailName");
+		String otherMail = req.getParameter("otherMail");
+		System.out.println(hiddenAuthType);
+		
+		System.out.println(smsName);
+		System.out.println(smsNum);
+		System.out.println(otherName);
+		System.out.println(otherMail);
+		
+		System.out.println("이름"+otherName);
+		System.out.println("메일"+otherMail);
+		
+		String id="";
+		
+		if(hiddenAuthType.equals("smsNum") ){
+			id = memberService.idSearchByNumResult(smsName,smsNum);
+		}else if(hiddenAuthType.equals("otherMail") ){
+			System.out.println("여기로 들어왔다");
+			id = memberService.idSearchByMailResult(otherName,otherMail);
+		}
+		
+		HttpSession session = req.getSession();
+		
+		if(id != null){
+			session.setAttribute("id", id);
+			System.out.println("id"+id);
+		}else{
+			session.setAttribute("id", "정보가 없습니다");
+		}
+		
+		return "member/idSearchResult";
 	}
 
 	@ResponseBody
@@ -215,6 +254,7 @@ public class MemberController {
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
 		memberService.trainerInfo(vo.getId());
+		System.out.println("xml 작업 후");
 
 		String id = vo.getId();
 		String password = req.getParameter("password1");
@@ -226,9 +266,15 @@ public class MemberController {
 		memberService.modify(vo);
 		HttpSession session = req.getSession();
 		session.setAttribute("mvo", vo);
+		
+		System.out.println("트레이너 냐?? 유저냐??"+vo.getIstrainer());
 
 		if (vo.getIstrainer().equals("user")) {
-			memberService.modifyStudent(vo);
+			System.out.println("유저정보"+vo);
+			
+			memberService.modify(vo);
+			
+			System.out.println("user 기본 정보 저장 후"+vo);
 		} else {
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
@@ -240,11 +286,14 @@ public class MemberController {
 			
 			if (file.isEmpty() == false) {
 				tvo.setTrainerPhoto(uuid.toString() + "_" + uploadFile.getOriginalFilename());
+				System.out.println("트레이너 파일 저장..낫 엠티"+uuid.toString() + "_" + uploadFile.getOriginalFilename());
 			} else {
 				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
+				System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
 			}
 
 			memberService.modifyTrainer(tvo);
+			System.out.println("트레이너modifyTrainer xml 작업 후"+tvo);
 		}
 
 		return "redirect:home.do";

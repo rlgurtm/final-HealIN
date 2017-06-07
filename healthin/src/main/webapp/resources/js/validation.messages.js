@@ -6,7 +6,7 @@
 						messages : {
 							   id : {
 								required : "HealthIN 아이디를 입력해 주세요.",
-//								rangelength : "조금 더! 아이디는 4자 이상이에요.",
+								rangelength : "조금 더! 아이디는 4자 이상이에요.",
 								onlydigits : "숫자로 된 아이디는 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
 							},
 							nickname : {
@@ -48,7 +48,6 @@
 							nicknameinvalid : "사용할 수 없는 문자가 있어요. <br>영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있어요. (단, .은 처음과 끝에 사용불가)",
 							checkjuminnoformat : "개인정보(주민등록번호) 형태가 포함된 아이디는 사용할 수 없어요.",
 							existidinvalid : "HealthIn 아이디를 정확히 입력해 주세요.",
-							emailinvalid : "Daum 메일(@daum.net,@hanmail.net)은 사용할 수 없어요.",
 							daumemailnotsame : "지금 로그인한 다음메일은 입력할 수 없어요. 다른 이메일 주소를 입력해 주세요.",
 							othermail : "잘못된 이메일 주소 입니다. 이메일 주소를 확인한 다음 다시 입력해 주세요.",
 							digits : "숫자만 입력 가능해요.",
