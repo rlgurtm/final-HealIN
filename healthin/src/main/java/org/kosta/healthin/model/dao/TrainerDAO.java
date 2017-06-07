@@ -29,6 +29,10 @@ public interface TrainerDAO {
 
 	int getTrainerfollowingTotalCount();
 
+	int getTrainerLocTotalCount(String local);
+
+	List<VO> getTrainerLoc(Map<String, Object> map);
+
 
 
 }
