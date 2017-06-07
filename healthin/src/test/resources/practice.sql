@@ -191,3 +191,4 @@ select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f
 select * from HEALTH_MEMBER
 select * from TRAINER
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
+
