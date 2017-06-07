@@ -15,39 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where user_id=#{id}
  		order by today desc
  	</select>
- 	<select id="totalValueCount" resultType="int">
- 		select count(*) from physical_info
+ 	<select id="graphContentCount" resultType="int">
+ 		select count(*) 
+ 		from physical_info
+ 		order by today desc
+ 	</select>
+ 	<select id="graphPagingBean" resultType="listVO" parameterType="pagingBean">
+ 		<!-- where b.video_no(+)=a.videoNo and rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc -->
  	</select>
 </mapper>
  
- 
- 
- 
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

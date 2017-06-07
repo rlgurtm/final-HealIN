@@ -72,8 +72,8 @@ table, th, td {
         chart.draw(data, options);
       }
     </script>
+<hr>
 <div class="container">
-
   <form id="bmi" action="${pageContext.request.contextPath }/insertUserPhysicalInfo.do" >
 <table class="table" align="center" width="100">
     <thead>
@@ -101,7 +101,9 @@ table, th, td {
     </div>
     
 </div>
-
+<hr>
+<div>
+<form id="graphPb" action="${pageContext.request.contextPath }/graphPagingBean.do">
  <table class="bmiTable">
 	<caption>BMI측정지수</caption>
 	<%-- <c:choose> --%>
@@ -131,3 +133,5 @@ table, th, td {
 			</td>
 		</tr>
   </table>
+</form>
+</div>

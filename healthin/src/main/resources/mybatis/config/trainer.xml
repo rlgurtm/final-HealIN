@@ -70,4 +70,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where t.trainer_id=f.trainer_id
 	  	 group by f.trainer_id)
     </select>
+    <select id="getTrainerLocTotalCount" resultType="int">
+ 	   select count(*) from trainer where location=#{value}
+    </select>
+    <select id="getTrainerLoc" resultMap="trainerRM" parameterType="map">
+    	select a.* from 
+       (select row_number() over(order by name desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=m.id and location=#{LOC}) a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+    </select>
 </mapper>

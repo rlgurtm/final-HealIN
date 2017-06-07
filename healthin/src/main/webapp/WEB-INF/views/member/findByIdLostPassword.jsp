@@ -88,7 +88,7 @@
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
-													<input type="hidden" id="hiddenAuthType" value="tel">
+													<input type="hidden" name="hiddenAuthType" value="tel">
 													<button type="submit" class="btn_find btn_next"
 														id="nextStepBtn">다음단계</button>
 
@@ -107,7 +107,8 @@
 														<div class="bg_find inner_bg">
 															<label for="otherMailName" class="screen_out"> 이름
 																을 입력해 주세요.</label> <input type="text" id="otherMailName"
-																name="otherMailName" class="tf_g" value="">
+																name="otherMailName" class="tf_g" value=""> <input
+																type="hidden" id="originname" value="${mvo.name}">
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
@@ -117,13 +118,14 @@
 														<div class="bg_find inner_bg">
 															<label for="otherMail" class="screen_out">이메일 주소를
 																입력해주세요.</label> <input type="text" id="otherMail"
-																name="otherMail" class="tf_g " value="">
+																name="otherMail" class="tf_g " value=""> <input
+																type="hidden" id="originemail" value="${mvo.email}">
 														</div>
 													</div>
 													<p class="desc_add emph_notice" style="display: none"></p>
-													<input type="hidden" id="hiddenAuthType" value="email">
+													<input type="hidden" name="hiddenAuthType" value="email">
 													<button type="submit" class="btn_find btn_next"
-														id="nextBtn">다음단계</button>
+														id="nextEmailBtn">다음단계</button>
 												</div>
 											</div></li>
 									</ul>
@@ -187,6 +189,8 @@
 		$(document)
 				.ready(
 						function() {
+							
+							var choiceRadio = $(":input:radio[name=contactType]:checked").val();
 
 							var require_name_or_regnum = messages.require_name;
 							var validator = $("form")
@@ -273,7 +277,7 @@
 							form.initWebRadioRow('.list_certify');
 							form.bindCheckBoxEvent();
 							form.initTabFocusWeb('.choice_comm');
-
+							
 							var submitted = false;
 							$("#checkForm")
 									.submit(
@@ -323,10 +327,10 @@
 						});
 
 		function goNextStep(authType, code) {
-
 			$("#nextStepBtn")
 					.click(
 							function() {
+								// var choiceRadio = $(":input:radio[name=contactType]:checked").val();
 								var mvoName = document
 										.getElementById("hiddenMvoName").value;
 								var smsName = document
@@ -334,12 +338,33 @@
 								var mvoSmsNum = document
 										.getElementById("hiddenMvoSmsNum").value;
 								var smsNum = document.getElementById("smsNum").value;
-
+								
 								if (mvoName.equals(smsName)
 										&& mvoSmsNum.equals(smsNum)) {
 									$("#checkForm").submit();
 									return false;
-								} else {
+								}else {
+									return true;
+								}
+							});
+
+			$("#nextEmailBtn")
+					.click(
+							function() {
+								var originname = document
+										.getElementById("originname").value;
+								var otherMailName = document
+										.getElementById("otherMailName").value;
+								var originemail =
+									document.getElementById("originemail").value;
+								var otherMail = document
+										.getElementById("otherMail").value;
+								
+								if(originname.equals(otherMailName)
+										&& originemail.equals(otherMail)	){
+									$("#checkForm").submit();
+									return false;
+								}else {
 									return true;
 								}
 							});

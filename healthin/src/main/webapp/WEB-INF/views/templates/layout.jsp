@@ -53,27 +53,11 @@
 <!-- For date range picker -->
 <link href="${pageContext.request.contextPath}/resources/css/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
 
-<!-- pgwslider -->
-<link href='${pageContext.request.contextPath}/resources/js/PgwSlider-master.zip'/>
-<%-- <script src='${pageContext.request.contextPath}/resources/js/pgwslider.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/pgwslider.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/package.json'></script>
-<script src='${pageContext.request.contextPath}/resources/js/pgwslider.jquery.json'></script>
-<link href='${pageContext.request.contextPath}/resources/css/pgwslider.min.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/css/pgwslider.css' rel='stylesheet' /> --%>
-
 <!-- slick -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slick-theme.css"/>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
-<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-<%-- <script src='${pageContext.request.contextPath}/resources/js/slick.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/slick.js'></script>
-<link href='${pageContext.request.contextPath}/resources/css/slick.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/css/slick-theme.css' rel='stylesheet' />
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script> --%>
 
 </head>
 <body>

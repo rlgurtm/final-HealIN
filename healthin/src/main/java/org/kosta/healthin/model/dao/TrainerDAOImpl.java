@@ -66,4 +66,14 @@ public class TrainerDAOImpl implements TrainerDAO {
 		return template.selectOne("trainer.getTrainerfollowingTotalCount");
 	}
 
+	@Override
+	public int getTrainerLocTotalCount(String local) {
+		return template.selectOne("trainer.getTrainerLocTotalCount",local);
+	}
+
+	@Override
+	public List<VO> getTrainerLoc(Map<String, Object> map) {
+		return template.selectList("trainer.getTrainerLoc",map);
+	}
+
 }

@@ -4,10 +4,9 @@
 <div align="right">
 	<c:choose>
 	<c:when test="${sessionScope.mvo == null}">
-	<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/login_form.do">로그인</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/passwordSearchform.do">비밀번호 찾기</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/idSearchform.do">아이디 찾기</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/member/register_step1.do" >회원가입</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/login_form.do" target="_blank">로그인</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/idSearchform.do" target="_blank">아이디 찾기</a>&nbsp;&nbsp;
 	</c:when>
 	<c:otherwise>
 	${sessionScope.mvo.id}
@@ -19,21 +18,28 @@
 	<c:forEach begin="1" end="10">&nbsp;</c:forEach>
 </div>
 <hr>
-<!-- <form align="right" id="loginForm">
-	ID <input type="text">
-	PW <input type="password">
-</form>	 
-<hr> -->
 <div align="left" >
 	<c:forEach begin="1" end="20">&nbsp;</c:forEach>
 	<a href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/resources/img/로고.png" width="150" height="110"></a>
 	<c:forEach begin="1" end="130">&nbsp;</c:forEach>
 	<img src="${pageContext.request.contextPath}/resources/img/검색.png" width="20" height="20">&nbsp;
-	<select>
+	<select name="searchType">
 		<option>----</option>
-		<option>aaa</option>
-		<option>bbb</option>
-		<option>ccc</option>
+		<option value="qna">QnA</option>
+		<option value="tip">Tip</option>
+		<option value="vod">동영상</option>
+		<option value="tutor">코치리스트</option>
 	</select>
-	<input type="text" size="30"><input type="button" value="검색">
+	<input type="text" size="30" id="searchWord" name="searchWord"><input type="button" value="검색" id="searchBtn">
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$("#searchBtn").click(function () {
+			var choiceType = $("select[name=searchType]").val();
+			var searchWord = $("#searchWord").val();
+			console.log(choiceType+"단어"+searchWord);
+			location.href='${pageContext.request.contextPath}/trainerList.do';
+			// searchType  searchWord
+		});
+	})
+	</script>
 </div>

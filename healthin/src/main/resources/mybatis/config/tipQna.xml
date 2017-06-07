@@ -100,7 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		delete from tipandqna where board_no=#{no} and id=#{id}
  	</delete>
 	<update id="tipQnaBoardUpdate" parameterType="tipBoardVO">
-		update tipandqna set title=#{title},content=#{content},posted_date=sysdate where board_no=#{no}
+		update tipandqna set title=#{title},content=#{content},attached_file=#{attachedFile},posted_date=sysdate where board_no=#{no}
 	</update>
 	<update id="tipQnaBoardHitsCount" parameterType="int">
 		update tipandqna set hits=hits+1 where board_no=#{value} 

@@ -128,8 +128,27 @@ public class BoardController {
 		return "tip/updateForm.tiles";
 	}
 	@RequestMapping("tipBoardUpdate.do")
-	public String tipBoardUpdate(TipBoardVO tvo){
-		tipService.tipBoardUpdate(tvo);
+	public String tipBoardUpdate(TipBoardVO tvo,MultipartFile uploadFile){
+		if(!uploadFile.isEmpty()){
+			//송희
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					tipService.tipBoardUpdate(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		}else{
+			tipService.tipBoardUpdate(tvo);
+		}
 		return "redirect:/tip/NO_Hits_tip_content.do?no="+tvo.getNo();
 	}
 	@RequestMapping("trainer/trainerList.do")
@@ -235,8 +254,27 @@ public class BoardController {
 		return "pt_qna/ptQnaUpdateForm.tiles";
 	}
 	@RequestMapping("ptQnaUpdate.do")
-	public String ptQnaUpdate(TipBoardVO tvo){
-		qnaService.ptQnaUpdate(tvo);
+	public String ptQnaUpdate(TipBoardVO tvo,MultipartFile uploadFile){
+		if(!uploadFile.isEmpty()){
+			//송희
+			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지선
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//지원
+			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			MultipartFile file = uploadFile;
+			UUID uuid = UUID.randomUUID();
+			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
+			try {
+					file.transferTo(new File(uploadPath+File));
+					tvo.setattachedFile(File);
+					qnaService.ptQnaUpdate(tvo);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}	
+		}else{
+			qnaService.ptQnaUpdate(tvo);
+		}
 		return "redirect:/pt_qna/NO_Hits_ptQna_content.do?no="+tvo.getNo();
 	}
 	@RequestMapping("ptQnaCommentWrite.do")
@@ -295,5 +333,14 @@ public class BoardController {
 		} else {
 			return "home.do";
 		}
+	}
+	@RequestMapping("trainer/trainerLoc.do")
+	public String trainerLoc(Model model,String pageNo,String local){
+		System.out.println("trainerLoc : "+local);
+		if(pageNo==null)
+			pageNo="1";
+		ListVO list=trainerService.getTrainerLoc(pageNo,local);
+		model.addAttribute("list",list);
+		return "trainer/trainerList.tiles";
 	}
 }
