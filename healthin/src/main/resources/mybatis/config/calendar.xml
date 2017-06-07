@@ -28,9 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = #{date} and im.user_id = #{id}
  	</select>
  	<select id="getAllDoneExercise" resultType="doneExerciseVO" parameterType="map">
- 		select cm.consumption_no as consumptionNo, e.name as exName, e.calorie, cm.ex_hour as exHour, e.calorie*cm.ex_hour*pi.weight as totalCalorie 
- 		from exercise e, consumption_member cm, health_user hu, physical_info pi
-		where cm.user_id = hu.user_id and cm.user_id = pi.user_id and e.name = cm.name and ex_date = #{date} and cm.user_id = #{id}
+ 		select pi.rnum, cm.consumption_no as consumptionNo, e.name as exName, e.calorie, cm.ex_hour as exHour, (e.calorie*cm.ex_hour*pi.weight) as totalCalorie 
+		from(select p.physical_no, row_number() over(order by physical_no desc) rnum, p.weight from physical_info p, health_user h where p.user_id = h.user_id) pi, exercise e, consumption_member cm, health_user hu
+		where cm.user_id = hu.user_id and e.name = cm.name and cm.ex_date = #{date} and cm.user_id = #{id} and pi.rnum = 1
  	</select>
  	<select id="getAllFoodCategory" resultType="string">
  		select distinct food_category from food

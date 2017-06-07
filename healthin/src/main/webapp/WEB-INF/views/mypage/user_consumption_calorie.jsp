@@ -113,21 +113,20 @@
         <!-- /.row -->
 		
 		<c:choose>
-			<c:when test="${sessionScope.mvo.istrainer == 'user' }">
+			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
-					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">캘린더</a></li>
-					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 건강 변화 체크</a></li>
-					<li class="menu"><a href="#">비만도 측정</a></li>
+					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 칼로리 체크</a></li>
+					<li class="menu"><a href="#">비만도 측정(BMI)</a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
-					<li class="menu"><a href="#">팔로우 한 강사 동영상</a></li>
-					<li class="menu"><a href="#">PT 결제 현황</a></li>
+					<li class="menu"><a href="#">1:1 매칭 현황 </a></li>
 					<li class="menu"><a href="#">나의 PT 강사</a></li>
 				</ul>
 			</c:when>
-			<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
+			<c:when test="${sessionScope.mvo.istrainer == 'trainer'}">
 				<ul class="nav nav-tabs">
 					<li class="menu active"><a href="#">팔로워 관리</a></li>
-					<li class="menu"><a href="#">PT 결제 현황</a></li>
+					<li class="menu"><a href="#">1:1 매칭 관리</a></li>
 					<li class="menu"><a href="#">나의 PT 회원</a></li>
 				</ul>
 			</c:when>
@@ -180,7 +179,7 @@
 						<td>${exercise.exHour}</td>
 						<td>${exercise.totalCalorie}</td>
 						<td>
-							<a id="updateForm" class="updateFormBtn" data-target="#updateModal" href="#" data-id="${exercise.consumptionNo}">${exercise.consumptionNo}<span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
+							<a id="updateForm" class="updateFormBtn" data-target="#updateModal" href="#" data-id="${exercise.consumptionNo}"><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;</a>
 							<a id="deleteBtn" href="${pageContext.request.contextPath}/deleteExercise.do?consumptionNo=${exercise.consumptionNo}&id=${sessionScope.mvo.id}&date=${requestScope.date}"><span class='glyphicon glyphicon-trash'></span></a>
 						</td>
 					</tr>
