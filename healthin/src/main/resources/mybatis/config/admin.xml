@@ -38,7 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="deleteTrainerVideo" parameterType="java.util.Map">
 	update trainer_video set openrank=#{openrank} where video_no=#{videoNo}
 </update>
-
+<select id="findByBoardForm" resultType="tipBoardVO">
+	select board_no as boardNo,title,attached_file as attachedFile,hits
+		,posted_date as postedDate,category,id,tipqna
+	from tipandqna
+	order by board_no desc
+</select>
 
 
 

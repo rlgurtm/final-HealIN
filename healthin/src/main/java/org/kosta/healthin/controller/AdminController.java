@@ -89,7 +89,28 @@ public class AdminController {
 		return "admin/admin_authority";
 	}
 	
-	
+	@RequestMapping("findByBoardForm.do")
+	public String findByBoardForm(Model model){
+		model.addAttribute("listVO",adminService.findByBoardForm());
+		model.addAttribute("adminState","findByBoardForm");
+		return "admin/admin_authority";
+	}
+	@RequestMapping("deleteBoard.do")
+	public String deleteBoard(HttpServletRequest request,Model model){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("boardNo", request.getParameter("boardNo"));
+		String state = request.getParameter("state");
+		if(state.equals("사용")){
+			//map.put("openrank", "1");
+			//adminService.deleteTrainerVideo(map);
+		} else if(state.equals("정지")){
+			//map.put("openrank", "9");
+			//adminService.deleteTrainerVideo(map);
+		}
+		model.addAttribute("listVO",adminService.findByBoardForm());
+		model.addAttribute("adminState","findByBoardForm");
+		return "admin/admin_authority";
+	}
 	
 	
 	

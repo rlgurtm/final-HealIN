@@ -18,4 +18,6 @@ public interface AdminDAO {
 
 	void deleteTrainerVideo(Map map);
 
+	ListVO findByBoardForm();
+
 }

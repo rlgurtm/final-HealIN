@@ -52,6 +52,10 @@
 					href="${pageContext.request.contextPath}/findByTrainerVideoForm.do">
 						<strong>동영상 삭제</strong>
 				</a></li>
+				<li><a class="btn"
+					href="${pageContext.request.contextPath}/findByBoardForm.do">
+						<strong>게시글 삭제</strong>
+				</a></li>
 				<li class="active"></li>
 			</ol>
 		</div>
@@ -170,7 +174,42 @@
 	</c:forEach>
 </table>
 </c:if>
-
+<c:if test="${adminState=='findByBoardForm'}">
+<table class="table">
+	<thead>
+	<tr>
+		<th>BOARD_NO</th>
+		<th>TITLE</th>
+		<th>등록일시</th>
+		<th>조회수</th>
+		<th>CATEGORY</th>
+		<th>ID</th>
+		<th>게시판분류</th>
+		<th>사용정지</th>
+		<th>사용가능</th>
+	</tr>
+	</thead>
+	<c:forEach items="${listVO.LVO}" var="lvo">
+	<tbody>
+	<tr>
+		<td>${lvo.boardNo}</td>
+		<td>${lvo.title}</td>
+		<td>${lvo.date}</td>
+		<td>${lvo.hits}</td>
+		<td>${lvo.category}</td>
+		<td>${lvo.id}</td>
+		<td>${lvo.tipqna}</td>
+		<td><a class="btn"
+		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.boardNo}&state=정지">
+		정지</a></td>
+		<td><a class="btn"
+		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.boardNo}&state=사용">
+		사용</a></td>
+	</tr>
+	</tbody>
+	</c:forEach>
+</table>
+</c:if>
 
 
 </div>

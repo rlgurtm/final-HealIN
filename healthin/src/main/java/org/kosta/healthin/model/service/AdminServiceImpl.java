@@ -30,6 +30,7 @@ public class AdminServiceImpl implements AdminService{
 	public void memberSecession(Map map){
 		adminDAO.memberSecession(map);
 	}
+	
 	@Override
 	public ListVO findByTrainerVideoForm(){
 		return adminDAO.findByTrainerVideoForm();
@@ -37,5 +38,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteTrainerVideo(Map map){
 		adminDAO.deleteTrainerVideo(map);
+	}
+	
+	@Override
+	public ListVO findByBoardForm(){
+		return adminDAO.findByBoardForm();
 	}
 }

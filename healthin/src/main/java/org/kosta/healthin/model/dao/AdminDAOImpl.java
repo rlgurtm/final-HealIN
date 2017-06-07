@@ -46,4 +46,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public void deleteTrainerVideo(Map map){
 		template.update("admin.deleteTrainerVideo",map);
 	}
+	
+	@Override
+	public ListVO findByBoardForm(){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("admin.findByBoardForm"));
+		return listVO;
+	}
 }

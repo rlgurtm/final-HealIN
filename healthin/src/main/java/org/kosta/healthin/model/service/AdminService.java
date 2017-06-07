@@ -18,4 +18,6 @@ public interface AdminService {
 
 	void deleteTrainerVideo(Map map);
 
+	ListVO findByBoardForm();
+
 }
