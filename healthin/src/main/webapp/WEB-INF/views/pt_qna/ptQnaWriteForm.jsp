@@ -10,7 +10,7 @@
 				<option value="식단">식단</option>
 			</select>
 			</div>
-			 <input type="file" name="uploadFile">
+			 <input type="file" name="uploadFile" accept="image/*">
 			<br>
 			
 		<label for="comment">제목:</label>

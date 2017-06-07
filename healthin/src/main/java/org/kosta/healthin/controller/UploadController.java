@@ -24,7 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-	private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	//private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	private String uploadPath = "C:\\Users\\kosta\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 
 	@Resource
 	private TrainerVideoService videoService;
