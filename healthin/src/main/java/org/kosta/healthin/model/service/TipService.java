@@ -26,6 +26,7 @@ public interface TipService {
 	void tipCommentDelete(String no);
 
 	void tipBoardUpdate(TipBoardVO tvo);
+	ListVO getSearchQnaAllList(String nowpage, String searchWord);
 
 
 }

@@ -58,6 +58,7 @@ public class BoardController {
 		System.out.println("나만의 팁 검색 결과"+list);
 		return "tip/search_tip.tiles";
 	}
+	
 	@RequestMapping("tipcategory.do")
 	@ResponseBody
 	public Object tipBoardCategoryList(String category,String nowpage){
@@ -204,8 +205,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("pt_qna/search_qna.do")
-	public String search_qna(){
-		return "pt_qna/search_qna.tiles";
+	public String getSearchQnaAllList(Model model,String nowpage,String searchWord){
+		System.out.println("헤더 검색어>>>"+searchWord);
+		if(nowpage==null)
+			nowpage="1";
+		
+		ListVO list=tipService.getSearchQnaAllList(nowpage,searchWord);
+		
+		System.out.println("리스트"+list);
+		model.addAttribute("list",list );
+		System.out.println("나만의 팁 검색 결과"+list);
+		return "tip/search_qna.tiles";
 	}
 	
 	@RequestMapping("ptQnaList.do")
@@ -218,16 +228,6 @@ public class BoardController {
 		}else{
 			return qnaService.getptQnaCategoryList(category.trim(), nowpage);
 		}
-	}
-	
-	@RequestMapping("tip/search_ptQnaList.do")
-	public String searchQnaCategoryList(Model model,String nowpage,String searchWord){
-		System.out.println("헤더 검색어>>>"+searchWord);
-		if(nowpage==null)
-			nowpage="1";
-		ListVO list=tipService.tipBoardCategoryList(nowpage,searchWord);
-		model.addAttribute("qnalist",list );
-		return "tip/search_tip.tiles";
 	}
 	
 	@RequestMapping("pt_qna/pt_qna_content.do")
