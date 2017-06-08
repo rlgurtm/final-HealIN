@@ -121,7 +121,7 @@
 			                                <a href="${pageContext.request.contextPath}/userHealthCheck.do">기간별 칼로리 체크</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mypage/bmi_list.do">비만도 측정(BMI)</a>
+			                                <a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">팔로우 한 강사</a>

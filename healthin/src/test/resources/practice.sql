@@ -138,6 +138,98 @@ insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
 
+--matching
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','swimmingguy','Y','N');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('user1','healthboy','N','Y');
+
+
+--mentoring
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java1','java','반가워요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','잘부탁드립니다',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','대답이 없네요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'healthboy','java','이제 봣네요?',sysdate);
+
+
+--matching
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','swimmingguy','Y','N');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('user1','healthboy','N','Y');
+
+
+--mentoring
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java1','java','반가워요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','잘부탁드립니다',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','대답이 없네요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'healthboy','java','이제 봣네요?',sysdate);
+
+
+
+--matching
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','swimmingguy','Y','N');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('user1','healthboy','N','Y');
+
+
+--mentoring
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java1','java','반가워요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','잘부탁드립니다',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','대답이 없네요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'healthboy','java','이제 봣네요?',sysdate);
+
+
+
 select food_name from food where food_name='곰국'
 select distinct food_category from food
 delete from intake_member where user_id = 'user1' and intake_date = '2017-06-01'
@@ -207,3 +299,44 @@ select * from HEALTH_MEMBER
 select * from TRAINER
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
 
+select a.* from
+(select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,t.content,
+to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name
+from tipandqna t,health_member m
+where t.id=m.id and t.tipqna='tip' and  
+t.category like '%' || '운' ||'%' or
+t.title like '%' || '몸' ||'%' or
+t.id like '%' || 'j' ||'%' or
+t.content like '%' || 'j' ||'%' 
+) a 
+where rnum between 1 and 5
+
+
+
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum,t.board_no as
+		no,t.title,t.hits,t.content,
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+		(select count(*)from health_comment where board_no=t.board_no )as
+		commentCount
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='ptqna') a
+		where rnum between 1 and 2
+		and category like '%' || '다' ||'%' or
+		title like '%' ||  '다'  ||'%' or
+		id like '%' ||  '다'  ||'%' or
+		content like '%' ||  '다'  ||'%'
+
+
+
+
+select p.*
+ 		from(select row_number() over(order by physical_no desc) as rnum,
+ 				physical_no,height,weight,to_char(today,'YYYY-MM-DD') as today,user_id
+ 				from physical_info
+ 				) p
+ 		where b.user_id = p.user_id and between 1 and 5
+ 		order by physical_no desc;
+ 		
+ 		select * from physical_info 
+ 		where user_id='user1'
