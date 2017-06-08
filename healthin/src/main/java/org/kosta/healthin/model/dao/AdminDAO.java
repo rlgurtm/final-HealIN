@@ -20,4 +20,6 @@ public interface AdminDAO {
 
 	ListVO findByBoardForm();
 
+	void deleteBoard(int boardNo);
+
 }

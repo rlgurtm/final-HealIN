@@ -193,18 +193,17 @@
 							href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${listVO.pb.startPageOfPageGroup-1}">&laquo;</a></li>
 					</c:when>
 				</c:choose>
-				<li class="active"><c:forEach var="pg"
-						begin="${listVO.pb.startPageOfPageGroup}"
-						end="${listVO.pb.endPageOfPageGroup}">
-						<li><a
-							href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${ pg }">${ pg }</a></li>
+				<li class="active">
+				<c:forEach var="pg" begin="${listVO.pb.startPageOfPageGroup}"
+					end="${listVO.pb.endPageOfPageGroup}">
+					<li><a href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${ pg }">${ pg }</a></li>
 					</c:forEach>
-				<li class="active"><c:choose>
-						<c:when test="${listVO.pb.nextPageGroup}">
-							<li><a
-								href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${listVO.pb.endPageOfPageGroup+1}">&raquo;</a></li>
-						</c:when>
-					</c:choose>
+				<li class="active">
+				<c:choose>
+					<c:when test="${listVO.pb.nextPageGroup}">
+						<li><a href="${ pageContext.request.contextPath }/filterVideoList.do?filter=${filter}&nowPage=${listVO.pb.endPageOfPageGroup+1}">&raquo;</a></li>
+					</c:when>
+				</c:choose>
 			</ul>
 		</div>
 	</div>

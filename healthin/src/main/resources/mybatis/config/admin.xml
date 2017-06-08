@@ -47,7 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from tipandqna
 	order by board_no desc
 </select>
-
+<delete id="deleteBoard" parameterType="int">
+	delete from tipandqna where board_no=#{value}
+</delete>
 
 
 

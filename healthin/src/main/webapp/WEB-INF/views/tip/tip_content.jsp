@@ -2,8 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+	
+	.pagination > .active > a,
+	.pagination > .active > a:hover{
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    border-color:gray;
+	}
+	.pagination>li>a{
+	color: black;
+	}
+    
+</style>
+	
+	
 	<script type="text/javascript">
-		function getTipCategoryList(page){
+		function getTipCommentList(page){
 		 		$.ajax({
 						type:"get",
 						url:"${pageContext.request.contextPath}/tipComment.do",
@@ -25,13 +41,34 @@
 									info+=data.lvo[i].comment+"</pre></td></tr></table>";
 								}  
 								$("#commentInfo").html(info);
+								 var pre=data.pb.startPageOfPageGroup-1;
+								 var next=data.pb.endPageOfPageGroup+1; 
+						 		 var paging="";
+						 		 if(data.pb.previousPageGroup)
+									 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
+								 for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
+									 if(data.pb.nowPage==k){
+										paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
+									 }else{
+										paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
+									 }
+								 }
+								 if(data.pb.nextPageGroup)
+									 paging+="<li class='next' value="+next+"><a>next</a><li>";
+								 $(".pagination").html(paging);
 						}//success
 					});
 			}//function
 	
 	$(document).ready(function(){
+		getTipCommentList(1);
 		
-		getTipCategoryList(1);
+		 $(".pagination").on("click", "li", function(){
+				$(".pagination .active").removeClass("active");
+	   		 		$(this).addClass("active"); 
+	   				category=$(".nav-tabs .active").text();
+	   				getTipCommentList($(this).val());
+	   		});//on
 		
 		$("#listBtn").click(function(){
 			location.href="${pageContext.request.contextPath}/tip/tip.do";
@@ -64,7 +101,7 @@
 				<tr>
 				
 					<td colspan="6">
-					<pre style="overflow-y:hidden;  height:100%;">
+					<pre style="overflow-y:hidden;white-space: pre-wrap;height:100%;">
 						<c:if test="${tip.attachedFile!=null}">
 							<img src="${pageContext.request.contextPath }/resources/tipFile/${tip.attachedFile }"
 								style="width: 60%; display:block;"></c:if><br>${tip.content }
@@ -88,7 +125,8 @@
 	</div>
 	<hr>	
 		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
-			<div id="commentInfo"></div><hr>
+			<div id="commentInfo"></div>
+			<div align="center"><ul class="pagination"></ul></div><hr>
 			<form action="${pageContext.request.contextPath}/tipCommentWrite.do" method="post">
 				<table style="width:100%;">
 					<tr>
