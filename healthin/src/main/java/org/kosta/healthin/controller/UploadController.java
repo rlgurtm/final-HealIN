@@ -58,21 +58,38 @@ public class UploadController {
 		if (session != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
 		}
+		
+		int nowPage;
+		PagingBean pb;
+		int commentTotalCount; 
+		if(request.getParameter("nowPage")!=null){
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		} else {
+			nowPage = 1;
+		}
+		commentTotalCount = videoService.commentTotalCount(videoNo);
+		pb = new PagingBean(commentTotalCount,nowPage);
+		Map<String,Object> map1 = new HashMap<String, Object>();
+		map1.put("pb", pb);
+		map1.put("videoNo", videoNo);
+		ListVO listVO = videoService.showVideoComment(map1);
+		listVO.setPb(pb);
+		
 		TrainerVideoVO videoVO = videoService.trainerVideoDetail(videoNo);
 		if (videoVO.getOpenrank() == 0) {
 			model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-			model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+			model.addAttribute("listVO",listVO);
 			return "video/trainer_video_show.tiles";
 		} else if (mvo != null) {
 			if (mvo.getId().equals(videoVO.getTrainerId())) {
 				model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-				model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+				model.addAttribute("listVO",listVO);
 				return "video/trainer_video_show.tiles";
 			} else {
 				if (videoVO.getOpenrank() == 1) {
 					if (videoService.trainerVideoSelectMember(mvo.getId()) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+						model.addAttribute("listVO",listVO);
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 2) {
@@ -81,7 +98,7 @@ public class UploadController {
 					map.put("trainerId", videoVO.getTrainerId());
 					if (videoService.trainerVideoSelectFollowing(map) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+						model.addAttribute("listVO",listVO);
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 3) {
@@ -91,13 +108,13 @@ public class UploadController {
 					map.put("trainerId", videoVO.getTrainerId());
 					if (videoService.trainerVideoSelectMatching(map) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+						model.addAttribute("listVO",listVO);
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 5) {
 					if (mvo.getId().equals(videoVO.getTrainerId())) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
-						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
+						model.addAttribute("listVO",listVO);
 						return "video/trainer_video_show.tiles";
 					}
 				}

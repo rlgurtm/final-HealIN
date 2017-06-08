@@ -97,33 +97,6 @@
 	<!-- 댓글 -->
 	<div class="well" style="width:80%; margin-left: auto; margin-right: auto; " >
 		<c:choose>
-			<c:when test="${commentVO[0]==null}">
-				<div align="center">
-					등록된 댓글이 없습니다.
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div align="center" style="padding-bottom: 30px">
-				<table style="width:90%;margin:20px;">
-				<c:forEach items="${commentVO}" var="cvo">
-					<tr>
-					<th><i class="glyphicon glyphicon-user"></i>${cvo.videoCommentId}&nbsp;</th>
-						<td align="right">${cvo.videoCommentDate}&nbsp;&nbsp;
-						<c:if test="${cvo.videoCommentId==mvo.id}">
-							<a href="${pageContext.request.contextPath}/deleteVideoComment.do?videoCommentNo=${cvo.videoCommentNo}&videoNo=${videoVO.videoNo}">삭제
-							<span class="glyphicon glyphicon-trash"></span></a>
-						</c:if>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><pre>${cvo.videoComment}</pre></td>
-					</tr>
-				</c:forEach>
-				</table>
-				</div>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
 			<c:when test="${mvo.id==null||mvo.id==''}">
 				<div align="center">
 				<h3>
@@ -150,6 +123,57 @@
 						</tr>
 					</table>
 				</form>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${listVO.LVO[0]==null}">
+				<div align="center">
+					등록된 댓글이 없습니다.
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div align="center" style="padding-bottom: 30px">
+				<table style="width:90%;margin:20px;">
+				<c:forEach items="${listVO.LVO}" var="cvo">
+					<tr>
+					<th><i class="glyphicon glyphicon-user"></i>${cvo.videoCommentId}&nbsp;</th>
+						<td align="right">${cvo.videoCommentDate}&nbsp;&nbsp;
+						<c:if test="${cvo.videoCommentId==mvo.id}">
+							<a href="${pageContext.request.contextPath}/deleteVideoComment.do?videoCommentNo=${cvo.videoCommentNo}&videoNo=${videoVO.videoNo}">삭제
+							<span class="glyphicon glyphicon-trash"></span></a>
+						</c:if>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><pre>${cvo.videoComment}</pre></td>
+					</tr>
+				</c:forEach>
+				</table>
+	<!-- Pagination -->
+	<div class="row text-center">
+		<div class="col-lg-12">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${listVO.pb.previousPageGroup}">
+						<li><a
+							href="${ pageContext.request.contextPath }/trainerVideoShow.do?videoNo=${videoVO.videoNo}&nowPage=${listVO.pb.startPageOfPageGroup-1}#loca">&laquo;</a></li>
+					</c:when>
+				</c:choose>
+				<li class="active">
+				<c:forEach var="pg" begin="${listVO.pb.startPageOfPageGroup}"
+					end="${listVO.pb.endPageOfPageGroup}">
+					<li><a href="${ pageContext.request.contextPath }/trainerVideoShow.do?videoNo=${videoVO.videoNo}&nowPage=${ pg }#loca">${ pg }</a></li>
+					</c:forEach>
+				<li class="active">
+				<c:choose>
+					<c:when test="${listVO.pb.nextPageGroup}">
+						<li><a href="${ pageContext.request.contextPath }/trainerVideoShow.do?videoNo=${videoVO.videoNo}&nowPage=${listVO.pb.endPageOfPageGroup+1}#loca">&raquo;</a></li>
+					</c:when>
+				</c:choose>
+			</ul>
+		</div>
+	</div>
 				</div>
 			</c:otherwise>
 		</c:choose>
