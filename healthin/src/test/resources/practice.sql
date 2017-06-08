@@ -192,3 +192,4 @@ select * from HEALTH_MEMBER
 select * from TRAINER
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
 
+select * from tipandqna

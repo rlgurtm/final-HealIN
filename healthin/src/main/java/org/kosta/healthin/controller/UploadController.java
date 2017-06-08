@@ -15,6 +15,7 @@ import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVideoCommentVO;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,15 +61,18 @@ public class UploadController {
 		TrainerVideoVO videoVO = videoService.trainerVideoDetail(videoNo);
 		if (videoVO.getOpenrank() == 0) {
 			model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+			model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 			return "video/trainer_video_show.tiles";
 		} else if (mvo != null) {
 			if (mvo.getId().equals(videoVO.getTrainerId())) {
 				model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+				model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 				return "video/trainer_video_show.tiles";
 			} else {
 				if (videoVO.getOpenrank() == 1) {
 					if (videoService.trainerVideoSelectMember(mvo.getId()) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 2) {
@@ -77,6 +81,7 @@ public class UploadController {
 					map.put("trainerId", videoVO.getTrainerId());
 					if (videoService.trainerVideoSelectFollowing(map) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 3) {
@@ -86,11 +91,13 @@ public class UploadController {
 					map.put("trainerId", videoVO.getTrainerId());
 					if (videoService.trainerVideoSelectMatching(map) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 5) {
 					if (mvo.getId().equals(videoVO.getTrainerId())) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
+						model.addAttribute("commentVO",videoService.showVideoComment(videoNo));
 						return "video/trainer_video_show.tiles";
 					}
 				}
@@ -312,29 +319,19 @@ public class UploadController {
 		return trainerNamelist;
 	}
 	
-	/*@RequestMapping("findByTrainerIdVideoList.do")
-	public String findByTrainerIdVideoList(Model model,HttpServletRequest request){
-		int nowPage;
-		PagingBean pb;
-		int findByTotalCount; 
-		ListVO listVO = new ListVO();
-		String trainerId = request.getParameter("trainerId");
-		if(request.getParameter("nowPage")!=null){
-			nowPage = Integer.parseInt(request.getParameter("nowPage"));
-		} else {
-			nowPage = 1;
-		}
-		findByTotalCount = videoService.findByTotalCount(trainerId);
-		pb = new PagingBean(findByTotalCount,nowPage);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("pb", pb);
-		map.put("trainerId", trainerId);
-		listVO = videoService.findByTrainerIdVideoList(map);
-		listVO.setPb(pb);
-		model.addAttribute("listVO",listVO);
-		
-		return "video/trainer_video_list.tiles";
-	}*/
+	@RequestMapping("registerVideoComment.do")
+	public String registerVideoComment(TrainerVideoCommentVO cvo){
+		// System.out.println(cvo);
+		videoService.registerVideoComment(cvo);
+		return "redirect:trainerVideoShow.do?videoNo="+cvo.getVideoNo()+"#loca";
+	}
+	@RequestMapping("deleteVideoComment.do")
+	public String deleteVideoComment(TrainerVideoCommentVO cvo){
+		// System.out.println(cvo);
+		videoService.deleteVideoComment(cvo.getVideoCommentNo());
+		return "redirect:trainerVideoShow.do?videoNo="+cvo.getVideoNo()+"#loca";
+	}
+	
 	
 	
 	@RequestMapping("filter.do")
