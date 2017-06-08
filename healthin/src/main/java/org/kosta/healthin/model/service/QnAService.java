@@ -28,5 +28,7 @@ public interface QnAService {
 
 	String getIsTrainer(String id);
 
+	ListVO getptQnaSearchList(String category, String nowpage);
+
 
 }
