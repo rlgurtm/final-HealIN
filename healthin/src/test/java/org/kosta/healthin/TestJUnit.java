@@ -8,6 +8,7 @@ import org.kosta.healthin.model.dao.QnaDAO;
 import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.service.TipService;
+import org.kosta.healthin.model.service.TrainerPageService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -31,10 +32,15 @@ public class TestJUnit {
 	
 	@Resource
 	private TrainerPageDAO tpdao;
+	
+	@Resource
+	private TrainerPageDAO pdao;
+	
+	@Resource
+	private TrainerPageService pservice;
 
 	@Test
 	public void test(){
-		System.out.println(tpdao.trainerPtList("healthboy"));
 	}
 }
 

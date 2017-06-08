@@ -229,8 +229,9 @@ create table trainer_rate(
 
 
 -- 강사 동영상
-drop table trainer_video
+drop sequence video_no_seq;
 create sequence video_no_seq;
+drop table trainer_video
 create table trainer_video(
    video_no number primary key, 
    title varchar2(100) not null, 
@@ -256,13 +257,17 @@ CREATE TABLE video_like (
 );
 
 -- 동영상 댓글
+drop sequence video_comment_no_seq;
+create sequence video_comment_no_seq;
 drop table video_comment
 CREATE TABLE video_comment (
  video_comment_no number primary key,
  video_no number  NOT NULL,
  video_comment clob NOT NULL,
  video_comment_date date NOT NULL,
- CONSTRAINT fk_video_comment_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no)
+ video_comment_id VARCHAR2(25) NOT NULL,
+ CONSTRAINT fk_video_no   FOREIGN KEY (video_no)  REFERENCES trainer_video(video_no),
+ CONSTRAINT fk_video_comment_id   FOREIGN KEY (video_comment_id)  REFERENCES health_member(id)
 );
 
 -- 분류카데고리

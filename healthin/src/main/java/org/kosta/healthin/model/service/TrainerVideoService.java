@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVideoCommentVO;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 
 public interface TrainerVideoService {
@@ -56,5 +57,13 @@ public interface TrainerVideoService {
 	int findByTotalCount(String trainerId);
 
 	ListVO findByTrainerIdVideoList(Map map);
+
+	void registerVideoComment(TrainerVideoCommentVO cvo);
+
+	void deleteVideoComment(int videoCommentNo);
+
+	int commentTotalCount(int videoNo);
+
+	ListVO showVideoComment(Map map);
 
 }

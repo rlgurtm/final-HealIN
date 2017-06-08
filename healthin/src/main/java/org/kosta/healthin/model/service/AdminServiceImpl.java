@@ -44,4 +44,8 @@ public class AdminServiceImpl implements AdminService{
 	public ListVO findByBoardForm(){
 		return adminDAO.findByBoardForm();
 	}
+	@Override
+	public void deleteBoard(int boardNo){
+		adminDAO.deleteBoard(boardNo);
+	}
 }

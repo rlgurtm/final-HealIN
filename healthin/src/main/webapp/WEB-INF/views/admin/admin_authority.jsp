@@ -185,8 +185,7 @@
 		<th>CATEGORY</th>
 		<th>ID</th>
 		<th>게시판분류</th>
-		<th>사용정지</th>
-		<th>사용가능</th>
+		<th>삭제</th>
 	</tr>
 	</thead>
 	<c:forEach items="${listVO.LVO}" var="lvo">
@@ -200,11 +199,8 @@
 		<td>${lvo.memberVO.id}</td>
 		<td>${lvo.tipqna}</td>
 		<td><a class="btn"
-		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=정지">
-		정지</a></td>
-		<td><a class="btn"
-		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=사용">
-		사용</a></td>
+		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=삭제">
+		삭제</a></td>
 	</tr>
 	</tbody>
 	</c:forEach>

@@ -227,6 +227,7 @@ content  like '%' || '가'  ||'%'
 
 select * from tipandqna
 
+<<<<<<< HEAD
 	select p.*
  		from(select row_number() over(order by physical_no desc) as rnum,
  				physical_no,height,weight,to_char(today,'YYYY-MM-DD') as today,user_id
@@ -237,3 +238,6 @@ select * from tipandqna
  		
  		select * from physical_info 
  		where user_id='user1'
+=======
+
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git

@@ -93,4 +93,19 @@ public class QnAServiceImpl implements QnAService {
 	public String getIsTrainer(String id){
 		return qnaDao.getIsTrainer(id);
 	}
+	@Override
+	public ListVO getptQnaSearchList(String category,String nowpage){
+		int totalContents=qnaDao.getTotalPtQnaCategoryCount(category);
+		int nowPage=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+			Map<String, Object> map=new HashMap<String,Object>();
+			map.put("category",category);
+			map.put("startRowNumber", pb.getStartRowNumber());
+			map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO=new ListVO(qnaDao.getptQnaSearchList(map),pb);
+		
+		return listVO;
+		
+	}
+	
 }

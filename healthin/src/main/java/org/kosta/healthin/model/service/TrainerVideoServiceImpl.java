@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.dao.TrainerVideoDAO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVideoCommentVO;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,5 +115,22 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	@Override
 	public ListVO findByTrainerIdVideoList(Map map){
 		return videoDAO.findByTrainerIdVideoList(map);
+	}
+	
+	@Override
+	public int commentTotalCount(int videoNo){
+		return videoDAO.commentTotalCount(videoNo);
+	}
+	@Override
+	public ListVO showVideoComment(Map map){
+		return videoDAO.showVideoComment(map);
+	}
+	@Override
+	public void registerVideoComment(TrainerVideoCommentVO cvo){
+		videoDAO.registerVideoComment(cvo);
+	}
+	@Override
+	public void deleteVideoComment(int videoCommentNo){
+		videoDAO.deleteVideoComment(videoCommentNo);
 	}
 }
