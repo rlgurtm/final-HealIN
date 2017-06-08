@@ -9,6 +9,7 @@
 <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
 <!-- Custom Fonts -->
 <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script>
 	$(document).ready(function(){
 		//alert("1");
@@ -30,7 +31,7 @@
 		});//ajax
 		//alert("2");
 		$("#video_like").click(function() {
-			alert("클릭");
+			//alert("클릭");
 			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/updateVideoLikeState.do",
@@ -84,8 +85,8 @@
 				<li>작성일자 : ${videoVO.postedDate}</li>
 			</ul>
 			<c:if test="${mvo!=null}">
-			<hr>
 				<div align="center">
+				<hr>
 				추천을 원하시면 눌러주세요~
 				</div>
 				<div id="video_like" align="center"></div>
@@ -94,13 +95,65 @@
 	</div>
 	<hr>
 	<!-- 댓글 -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">
-				댓글부분<small></small>
-			</h1>
-			
-		</div>
+	<div class="well" style="width:80%; margin-left: auto; margin-right: auto; " >
+		<c:choose>
+			<c:when test="${commentVO[0]==null}">
+				<div align="center">
+					등록된 댓글이 없습니다.
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div align="center" style="padding-bottom: 30px">
+				<table style="width:90%;margin:20px;">
+				<c:forEach items="${commentVO}" var="cvo">
+					<tr>
+					<th><i class="glyphicon glyphicon-user"></i>${cvo.videoCommentId}&nbsp;</th>
+						<td align="right">${cvo.videoCommentDate}&nbsp;&nbsp;
+						<c:if test="${cvo.videoCommentId==mvo.id}">
+							<a href="${pageContext.request.contextPath}/deleteVideoComment.do?videoCommentNo=${cvo.videoCommentNo}&videoNo=${videoVO.videoNo}">삭제
+							<span class="glyphicon glyphicon-trash"></span></a>
+						</c:if>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><pre>${cvo.videoComment}</pre></td>
+					</tr>
+				</c:forEach>
+				</table>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${mvo.id==null||mvo.id==''}">
+				<div align="center">
+				<h3>
+					댓글작성은 로그인 하셔야 이용가능합니다.
+				</h3>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div align="center">
+				<form action="${pageContext.request.contextPath}/registerVideoComment.do" method="post">
+					<table style="width:90%;">
+						<tr>
+							<td colspan="2"><label>댓글</label></td>
+						</tr>
+						<tr>
+							<td style="width:100%;">
+							<textarea class="form-control"  rows="2" name="videoComment" required="required"></textarea>
+							</td>
+							<td align="left" style="padding: 5px;">
+							<input type="hidden" name="videoNo" value="${videoVO.videoNo}">
+							<input type="hidden" name="videoCommentId" value="${mvo.id}">
+							<input type="submit" class="btn btn-lg" value="등록">
+							</td>
+						</tr>
+					</table>
+				</form>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 	
 	<!-- /.row -->

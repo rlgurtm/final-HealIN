@@ -53,4 +53,8 @@ public class AdminDAOImpl implements AdminDAO {
 		listVO.setLVO(template.selectList("admin.findByBoardForm"));
 		return listVO;
 	}
+	@Override
+	public void deleteBoard(int boardNo){
+		template.delete("admin.deleteBoard",boardNo);
+	}
 }
