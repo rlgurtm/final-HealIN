@@ -138,6 +138,37 @@ insert into physical_info(physical_no,height,weight,today,user_id)
 values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
 
+--matching
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','java1','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('spring','healthboy','Y','Y');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('java','swimmingguy','Y','N');
+insert into matching(user_id,trainer_id,apply_result,accept_result)
+values('user1','healthboy','N','Y');
+
+
+--mentoring
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java1','java','반가워요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','java1','잘부탁드립니다',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','안녕하세요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'java','healthboy','대답이 없네요?',sysdate);
+insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+values(mentoring_no_seq.nextval,'healthboy','java','이제 봣네요?',sysdate);
+
+
+
 select food_name from food where food_name='곰국'
 select distinct food_category from food
 delete from intake_member where user_id = 'user1' and intake_date = '2017-06-01'
