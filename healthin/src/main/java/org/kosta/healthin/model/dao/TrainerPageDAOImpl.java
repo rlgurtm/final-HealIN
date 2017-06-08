@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,5 +17,15 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	@Override
 	public List<VO> trainerPtList(String id){
 		return template.selectList("trainerpage.trainerPtList",id);
+	}
+
+	@Override
+	public int getFollowerTotalCount(String id) {
+		return template.selectOne("trainerpage.getFollowerTotalCount",id);
+	}
+
+	@Override
+	public List<VO> getFollowerList(Map<String, Object> map) {
+		return template.selectList("trainerpage.getFollowerList",map);
 	}
 }
