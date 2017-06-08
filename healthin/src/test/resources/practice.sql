@@ -192,3 +192,13 @@ select * from HEALTH_MEMBER
 select * from TRAINER
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
 
+	select p.*
+ 		from(select row_number() over(order by physical_no desc) as rnum,
+ 				physical_no,height,weight,to_char(today,'YYYY-MM-DD') as today,user_id
+ 				from physical_info
+ 				) p
+ 		where b.user_id = p.user_id and between 1 and 5
+ 		order by physical_no desc;
+ 		
+ 		select * from physical_info 
+ 		where user_id='user1'
