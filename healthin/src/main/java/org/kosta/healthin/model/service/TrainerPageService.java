@@ -11,5 +11,7 @@ public interface TrainerPageService {
 
 	ListVO getFollowerList(String pageNo, String id);
 
+	int getFollowerList(String id);
+
 
 }

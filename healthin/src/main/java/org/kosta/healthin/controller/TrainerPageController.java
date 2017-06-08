@@ -29,12 +29,18 @@ public class TrainerPageController {
 	public String followingList(Model model,String pageNo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
 			String id=mvo.getId();
+			int follower=service.getFollowerList(id);
+			model.addAttribute("follower",follower);
 			if(pageNo==null)
 				pageNo="1";
 			ListVO list=service.getFollowerList(pageNo,id);
 			model.addAttribute("list",list );
-		
+		}
+		else{
+			return "home.do";
+		}
 		return "trainer/followingList.tiles";
 	}
 }

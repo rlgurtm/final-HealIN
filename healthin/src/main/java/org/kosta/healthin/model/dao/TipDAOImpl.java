@@ -71,11 +71,19 @@ public class TipDAOImpl implements TipDAO {
 	}
 	@Override
 	public List<VO> getSearchtipAllList(Map<String, Object> map) {
-		return template.selectList("tipQna.getSearchtipAllList",map);
+		return template.selectList("searchTipQna.getSearchtipAllList",map);
 	}
 	@Override
 	public int getTotalTipCategorySearchCount(String searchWord) {
-		return template.selectOne("tipQna.getTotalTipCategorySearchCount",searchWord);
+		return template.selectOne("searchTipQna.getTotalTipCategorySearchCount",searchWord);
+	}
+	@Override
+	public int getTotalPtQnaSearchCategoryCount(String searchWord) {
+		return template.selectOne("searchTipQna.getTotalPtQnaSearchCategoryCount",searchWord);
+	}
+	@Override
+	public List<VO> getSearchQnaAllList(Map<String, Object> map) {
+		return template.selectList("searchTipQna.getSearchQnaAllList",map);
 	}
 
 }

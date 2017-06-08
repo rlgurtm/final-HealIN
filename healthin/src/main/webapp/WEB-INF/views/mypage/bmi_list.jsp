@@ -48,46 +48,69 @@ table, th, td {
 	text-align: center;
 }
 </style>
-<link rel="stylesheet"
+<style>
+	#sendBtn {
+		height: 30px;
+	}
+</style>
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-				[ 'Year', '체중(kg)', 'BMI지수' ], [ 'data', 30, 30 ],
-				[ '180', 50, 50 ], [ 'data', 70, 70 ], [ '180', 100, 100 ] ]);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', '체중', 'BMI지수'],
+          ['2014',  1000,      400],
+          ['2015',  1170,      460],
+          ['2016',  660,       1120],
+          ['2017',  1030,      540],
+          ['2018',  1030,      540]
+        ]);
 
-		var options = {
-			title : '체중&그래프 확인하기',
-			hAxis : {
-				title : '확인하기',
-				titleTextStyle : {
-					color : '#333'
-				}
-			},
-			vAxis : {
-				minValue : 0
-			}
-		};
+        var options = {
+          title: '기간 별 칼로리 섭취/소모량',
+          legend: { position: 'bottom' }
+        };
 
-		var chart = new google.visualization.AreaChart(document
-				.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+      }
 </script>
-
+<script>
+    $(function() {
+        $("#datepicker1, #datepicker2").datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
 <hr>
 <div class="container">
+<c:choose>
+			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
+				<ul class="nav nav-tabs">
+					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 칼로리 체크</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a></li>
+					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
+					<li class="menu"><a href="#">1:1 매칭 현황 </a></li>
+					<li class="menu"><a href="#">나의 PT 강사</a></li>
+				</ul>
+			</c:when>
+			<c:when test="${sessionScope.mvo.istrainer == 'trainer'}">
+				<ul class="nav nav-tabs">
+					<li class="menu active"><a href="#">팔로워 관리</a></li>
+					<li class="menu"><a href="#">1:1 매칭 관리</a></li>
+					<li class="menu"><a href="#">나의 PT 회원</a></li>
+				</ul>
+			</c:when>
+		</c:choose>
 	<form id="bmi"
 		action="${pageContext.request.contextPath }/insertUserPhysicalInfo.do">
 		<table class="table" align="center" width="100">
@@ -114,7 +137,6 @@ table, th, td {
 		</table>
 	</form>
 
-	<div id="chart_div" style="width: 100%; height: 500px;"></div>
 
 <hr>
 <div>
@@ -143,8 +165,8 @@ table, th, td {
 				</tr>
 			</c:forEach>
 		</table>
-		
 	</form>
+<div id="curve_chart" style="width: 100%; height: 500px;"></div>
 </div>
 <!-- Pagination -->
 	<div class="row text-center">
@@ -171,7 +193,6 @@ table, th, td {
 			</ul>
 		</div>
 	</div>
-	
 	<table class="table">
 			<tr>
 				<td align="center"><img

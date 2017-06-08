@@ -237,26 +237,19 @@ where rnum between 1 and 5
 
 
 
-select   a.* 
-from
-(select  row_number() over(order by
-board_no desc)  rnum, t.board_no as no,t.title,t.hits,t.content,
-to_char(t.posted_date,'YYYY.MM.DD') as
-postedDate,t.category,t.id,t.tipqna,m.name
-from tipandqna
-t,health_member m
-where t.id=m.id and t.tipqna='tip'
-) a
-where rnum between 1
-and 7
- and
-category like '%' || ' '||'%' or
-title like '%' || ' ' ||'%' or
-id like '%' || ' ' ||'%' or
-content  like '%' || '가'  ||'%' 
-
-
-select * from tipandqna
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum,t.board_no as
+		no,t.title,t.hits,t.content,
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+		(select count(*)from health_comment where board_no=t.board_no )as
+		commentCount
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='ptqna') a
+		where rnum between 1 and 2
+		and category like '%' || '다' ||'%' or
+		title like '%' ||  '다'  ||'%' or
+		id like '%' ||  '다'  ||'%' or
+		content like '%' ||  '다'  ||'%'
 
 
 

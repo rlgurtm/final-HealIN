@@ -39,4 +39,8 @@ public interface TipDAO {
 
 	int getTotalTipCategorySearchCount(String searchWord);
 
+	int getTotalPtQnaSearchCategoryCount(String searchWord);
+
+	List<VO> getSearchQnaAllList(Map<String, Object> map);
+
 }

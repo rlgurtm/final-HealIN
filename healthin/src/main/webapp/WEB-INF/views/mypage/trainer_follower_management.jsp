@@ -17,7 +17,7 @@
 				<ul class="nav nav-tabs">
 					<li class="menu active"><a href="${pageContext.request.contextPath}/mypage/user_calendar.do">캘린더</a></li>
 					<li class="menu"><a href="${pageContext.request.contextPath}/mypage/user_health_check.do">기간 별 건강 변화 체크</a></li>
-					<li class="menu"><a href="#">비만도 측정</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정</a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 동영상</a></li>
 					<li class="menu"><a href="#">PT 결제 현황</a></li>
