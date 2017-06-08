@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+	#searchType {
+		height: 22px;
+	}
+</style>
 <div align="right">
 	<c:choose>
 		<c:when test="${sessionScope.mvo == null}">
@@ -30,8 +35,8 @@
 		width="150" height="110"></a>
 	<c:forEach begin="1" end="130">&nbsp;</c:forEach>
 	<img src="${pageContext.request.contextPath}/resources/img/검색.png"
-		width="20" height="20">&nbsp; <select name="searchType">
-		<option>----</option>
+		width="20" height="20">&nbsp; <select name="searchType" id="searchType">
+		<option>---카테고리---</option>
 		<option value="qna">QnA</option>
 		<option value="tip">Tip</option>
 		<option value="vod">동영상</option>
@@ -54,7 +59,7 @@
 												var searchWord = $(
 														"#searchWord").val();
 												
-												if(choiceType == '----'){
+												if(choiceType == '---카테고리---'){
 													alert('검색 분류를 선택해주세요');
 													return false;
 												}
