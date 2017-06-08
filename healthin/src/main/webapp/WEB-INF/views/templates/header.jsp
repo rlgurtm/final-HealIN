@@ -5,8 +5,8 @@
 	<c:choose>
 	<c:when test="${sessionScope.mvo == null}">
 	<a href="${pageContext.request.contextPath}/member/register_step1.do" >회원가입</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/login_form.do" target="_blank">로그인</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/idSearchform.do" target="_blank">아이디 찾기</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/login_form.do" >로그인</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/idSearchform.do">아이디 찾기</a>&nbsp;&nbsp;
 	</c:when>
 	<c:when test="${sessionScope.mvo.istrainer=='admin'}">
 	관리자님 로그인 하셨습니다.&nbsp;&nbsp;
