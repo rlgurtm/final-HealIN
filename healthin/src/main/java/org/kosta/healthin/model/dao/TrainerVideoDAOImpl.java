@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVideoCommentVO;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -142,5 +143,10 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 		listVO.setLVO(template.selectList("trainervideo.findByTrainerIdVideoList",map));
 		//System.out.println(listVO);
 		return listVO;
+	}
+	
+	@Override
+	public List<TrainerVideoCommentVO> showVideoComment(int videoNo){
+		return template.selectList("trainervideo.showVideoComment",videoNo);
 	}
 }

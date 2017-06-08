@@ -155,7 +155,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where b.video_no(+)=a.videoNo and a.trainerId like '%' || #{trainerId} ||'%') a )
 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
  	</select>
- 	
+ 	<select id="showVideoComment" parameterType="int" resultType="trainerVideoCommentVO">
+ 		select video_comment_no as videoCommentNo,video_no as videoNo
+ 			,video_comment as videoComment,video_comment_date as videoCommentDate
+ 			,video_comment_id as videoCommentId
+ 		from video_comment
+ 		where video_no=#{value} order by video_comment_no desc
+ 	</select>
  	
  	
  	
