@@ -17,9 +17,13 @@
 					info+="<td>"+data.lvo[i].category+"</td><td>";
 						if(session==null||session=="" ){
 							info+=data.lvo[i].title;
+							if(data.lvo[i].commentCount!="0")
+							info+="("+data.lvo[i].commentCount+")";
 						}else{
 							info+="<a href='${pageContext.request.contextPath}/pt_qna/pt_qna_content.do?";
 							info+="no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a>";
+							if(data.lvo[i].commentCount!="0")
+							info+="("+data.lvo[i].commentCount+")";
 						} 
 					
 					info+="</td><td>"+data.lvo[i].memberVO.name+"</td>";

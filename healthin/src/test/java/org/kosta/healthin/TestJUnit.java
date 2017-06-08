@@ -9,6 +9,7 @@ import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -34,7 +35,10 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		System.out.println(tpdao.trainerPtList("healthboy"));
+		int totalContents=5;
+		int nowPage=1;
+		PagingBean pb=new PagingBean(totalContents, nowPage);
+		System.out.println(tipdao.getTipBoardList(pb));
 	}
 }
 
