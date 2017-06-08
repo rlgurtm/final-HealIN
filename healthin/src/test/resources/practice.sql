@@ -180,6 +180,21 @@ from(select p.physical_no, row_number() over(order by physical_no desc) rnum, p.
 where cm.user_id = hu.user_id and e.name = cm.name and cm.ex_date = '2017-06-06' and cm.user_id = 'user1' and pi.rnum = 1
 
 --select row_number() over(order by board_no desc) rnum
+-- 칼로리 섭취가 있는 날짜 출력
+select tmp.rnum, distinct to_number(to_char(im.intake_date, 'YYYYMMDD')) as intakeDate
+from(select im.intake_no, im.intake_date, row_number() over(order by intake_no desc) rnum from intake_member im, health_user hu where im.user_id = hu.user_id) tmp, food f, intake_member im, health_user hu
+where f.food_name = im.food_name and im.user_id = 'user1' 
+-- 해당 날짜에 총 섭취한 칼로리 양 출력
+select sum(f.calorie*im.count) as totalCalorie from food f, intake_member im, health_user hu
+where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = #{date} and im.user_id = #{id}
+-- 칼로리 소모가 있는 날짜 출력
+select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
+from exercise e, consumption_member cm, health_user hu
+where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = #{value}
+-- 해당 날짜에 총 소모한 칼로리 양 출력
+select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e, consumption_member cm, health_user hu, physical_info pi
+where cm.user_id = hu.user_id and hu.user_id = pi.user_id and e.name = cm.name and ex_date = #{date} and cm.user_id = #{id}
+
 
 select * from physical_info
 

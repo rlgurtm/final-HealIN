@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(document).ready(function() {
+		$(".menu").click(function(){
+        	$(".active").removeClass("active");
+        	$(this).addClass("active");
+        });
 		var mydate = "";
 		$("#typeSendBtn").click(function() {
 			if (document.getElementById("type").value == "") {
@@ -65,7 +69,7 @@
 			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
 					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
-					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 칼로리 체크</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/userHealthCheck.do">기간 별 칼로리 체크</a></li>
 					<li class="menu"><a href="#">비만도 측정(BMI)</a></li>
 					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
 					<li class="menu"><a href="#">1:1 매칭 현황 </a></li>
