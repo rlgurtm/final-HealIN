@@ -31,7 +31,7 @@
 		});//ajax
 		//alert("2");
 		$("#video_like").click(function() {
-			alert("클릭");
+			//alert("클릭");
 			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/updateVideoLikeState.do",
@@ -94,7 +94,6 @@
 		</div>
 	</div>
 	<hr>
-	${commentVO[0] }
 	<!-- 댓글 -->
 	<div class="well" style="width:80%; margin-left: auto; margin-right: auto; " >
 		<c:choose>
@@ -111,7 +110,7 @@
 					<th><i class="glyphicon glyphicon-user"></i>${cvo.videoCommentId}&nbsp;</th>
 						<td align="right">${cvo.videoCommentDate}&nbsp;&nbsp;
 						<c:if test="${cvo.videoCommentId==mvo.id}">
-							<a href="${pageContext.request.contextPath}/">삭제
+							<a href="${pageContext.request.contextPath}/deleteVideoComment.do?videoCommentNo=${cvo.videoCommentNo}&videoNo=${videoVO.videoNo}">삭제
 							<span class="glyphicon glyphicon-trash"></span></a>
 						</c:if>
 						</td>
@@ -134,14 +133,14 @@
 			</c:when>
 			<c:otherwise>
 				<div align="center">
-				<form action="${pageContext.request.contextPath}/" method="post">
+				<form action="${pageContext.request.contextPath}/registerVideoComment.do" method="post">
 					<table style="width:90%;">
 						<tr>
 							<td colspan="2"><label>댓글</label></td>
 						</tr>
 						<tr>
 							<td style="width:100%;">
-							<textarea class="form-control"  rows="2" name="comment" required="required"></textarea>
+							<textarea class="form-control"  rows="2" name="videoComment" required="required"></textarea>
 							</td>
 							<td align="left" style="padding: 5px;">
 							<input type="hidden" name="videoNo" value="${videoVO.videoNo}">

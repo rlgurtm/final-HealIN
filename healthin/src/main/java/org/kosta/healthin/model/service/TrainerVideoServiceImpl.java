@@ -121,4 +121,12 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public List<TrainerVideoCommentVO> showVideoComment(int videoNo){
 		return videoDAO.showVideoComment(videoNo);
 	}
+	@Override
+	public void registerVideoComment(TrainerVideoCommentVO cvo){
+		videoDAO.registerVideoComment(cvo);
+	}
+	@Override
+	public void deleteVideoComment(int videoCommentNo){
+		videoDAO.deleteVideoComment(videoCommentNo);
+	}
 }

@@ -60,4 +60,8 @@ public interface TrainerVideoDAO {
 
 	List<TrainerVideoCommentVO> showVideoComment(int videoNo);
 
+	void registerVideoComment(TrainerVideoCommentVO cvo);
+
+	void deleteVideoComment(int videoCommentNo);
+
 }

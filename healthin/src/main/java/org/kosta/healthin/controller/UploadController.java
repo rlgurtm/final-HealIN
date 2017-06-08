@@ -15,6 +15,7 @@ import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.TrainerVideoCommentVO;
 import org.kosta.healthin.model.vo.TrainerVideoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -318,6 +319,18 @@ public class UploadController {
 		return trainerNamelist;
 	}
 	
+	@RequestMapping("registerVideoComment.do")
+	public String registerVideoComment(TrainerVideoCommentVO cvo){
+		// System.out.println(cvo);
+		videoService.registerVideoComment(cvo);
+		return "redirect:trainerVideoShow.do?videoNo="+cvo.getVideoNo()+"#loca";
+	}
+	@RequestMapping("deleteVideoComment.do")
+	public String deleteVideoComment(TrainerVideoCommentVO cvo){
+		// System.out.println(cvo);
+		videoService.deleteVideoComment(cvo.getVideoCommentNo());
+		return "redirect:trainerVideoShow.do?videoNo="+cvo.getVideoNo()+"#loca";
+	}
 	
 	
 	

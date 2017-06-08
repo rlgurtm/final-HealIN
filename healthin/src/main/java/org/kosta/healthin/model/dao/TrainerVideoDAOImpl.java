@@ -149,4 +149,12 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	public List<TrainerVideoCommentVO> showVideoComment(int videoNo){
 		return template.selectList("trainervideo.showVideoComment",videoNo);
 	}
+	@Override
+	public void registerVideoComment(TrainerVideoCommentVO cvo){
+		template.insert("trainervideo.registerVideoComment",cvo);
+	}
+	@Override
+	public void deleteVideoComment(int videoCommentNo){
+		template.delete("trainervideo.deleteVideoComment",videoCommentNo);
+	}
 }
