@@ -18,9 +18,13 @@
 						info+="<td>"+data.lvo[i].category+"</td><td>";
 							if(session==null||session=="" ){
 								info+=data.lvo[i].title;
+								if(data.lvo[i].commentCount!="0")
+								info+="("+data.lvo[i].commentCount+")";
 							}else{
 								info+="<a href='${pageContext.request.contextPath}/tip/tip_content.do?";
 								info+="no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a>";
+								if(data.lvo[i].commentCount!="0")
+								info+="("+data.lvo[i].commentCount+")";
 							} 
 						
 						info+="</td><td>"+data.lvo[i].memberVO.name+"</td>";
@@ -68,7 +72,6 @@
     	});//click
     	
     });//ready
-  
 </script>
 
 <div class="container">
@@ -106,9 +109,11 @@
 								<c:when test="${mvo!=null }">
 									<a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${list.no}">
 									${list.title }</a>
+									<c:if test="${list.commentCount!=0 }">(${list.commentCount })</c:if>
 								</c:when>
 								<c:otherwise>
 									${list.title }
+									<c:if test="${list.commentCount!=0 }">(${list.commentCount })</c:if>
 								</c:otherwise>
 							</c:choose>
 						</td>

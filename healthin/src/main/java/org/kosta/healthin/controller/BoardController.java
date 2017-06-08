@@ -336,7 +336,6 @@ public class BoardController {
 	}
 	@RequestMapping("trainer/trainerLoc.do")
 	public String trainerLoc(Model model,String pageNo,String local){
-		System.out.println("trainerLoc : "+local);
 		if(pageNo==null)
 			pageNo="1";
 		ListVO list=trainerService.getTrainerLoc(pageNo,local);

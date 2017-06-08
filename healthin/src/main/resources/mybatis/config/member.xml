@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="trainerInfo" resultType="trainerVO">
 		select
-		trainer_id,career,location,trainer_photo as trainerPhoto
+		trainer_id,career,location,trainer_photo as trainerPhoto,rank
 		from trainer
 		where trainer_id=#{value}
 	</select>
