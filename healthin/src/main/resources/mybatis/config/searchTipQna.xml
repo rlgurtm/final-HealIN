@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchTipQna">
+	<resultMap type="tipBoardVO" id="tipBoardRM">
+		<result property="memberVO.id" column="id" />
+		<result property="memberVO.name" column="name" />
+		<result property="memberVO.nickname" column="nickname" />
+	</resultMap>
+	<resultMap type="commentVO" id="commentRM">
+		<result property="commentNo" column="comment_no" />
+		<result property="boardNo" column="board_no" />
+		<result property="comment" column="health_comment" />
+		<result property="date" column="posted_date" />
+	</resultMap>
+
+	<!-- Tip(List,TotalCount,write) -->
+	<select id="getSearchtipAllList" resultMap="tipBoardRM"
+		parameterType="map">
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum,t.board_no as
+		no,t.title,t.hits,t.content,
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+		(select count(*)from health_comment where board_no=t.board_no )as
+		commentCount
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='tip') a
+		where rnum between #{startRowNumber} and #{endRowNumber} and
+		category like '%' || #{category}||'%' or
+		title like '%' || #{category} ||'%' or
+		id like '%' || #{category} ||'%' or
+		content like '%' || #{category} ||'%'
+	</select>
+	<select id="getTotalTipCategorySearchCount" resultType="int">
+		select count(*) from tipandqna
+		where tipqna='tip' and category like '%' || #{value}||'%' or
+		title like '%' || #{value} ||'%' or
+		id like '%' || #{value} ||'%' or
+		content like '%' || #{value} ||'%'
+	</select>
+
+
+	<!-- PtQna(List,TotalCount,write) -->
+	<select id="getPtQnaList" resultMap="tipBoardRM" parameterType="map">
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum,t.board_no as
+		no,t.title,t.hits,t.content,
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+		(select count(*)from health_comment where board_no=t.board_no )as
+		commentCount
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='ptqna') a
+		where rnum between #{startRowNumber} and #{endRowNumber}
+	</select>
+	<select id="getTotalPtQnaCount" resultType="int">
+		select count(*) from tipandqna where tipqna='ptqna'
+	</select>
+	<select id="getSearchQnaAllList" resultMap="tipBoardRM" parameterType="map">
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum,t.board_no as
+		no,t.title,t.hits,t.content,
+		to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+		(select count(*)from health_comment where board_no=t.board_no )as
+		commentCount
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='ptqna') a
+		where rnum between #{startRowNumber} and #{endRowNumber}
+		and category like '%' || #{value}||'%' or
+		title like '%' || #{value} ||'%' or
+		id like '%' || #{value} ||'%' or
+		content like '%' || #{value} ||'%'
+	</select>
+
+	<select id="getTotalPtQnaSearchCategoryCount" resultType="int">
+		select count(*) from tipandqna where tipqna='ptqna' and category like '%' || #{value}||'%' or
+		title like '%' || #{value} ||'%' or
+		id like '%' || #{value} ||'%' or
+		content like '%' || #{value} ||'%'
+	</select>
+	<select id="getptQnaDetailContent" resultMap="tipBoardRM">
+		select t.board_no as no,t.title,t.content,t.attached_file as attachedFile,
+		t.hits,to_char(t.posted_date,'YYYY.MM.DD HH:MM:SS') as postedDate,
+		t.category,t.id,t.tipqna,m.name,m.nickname
+		from tipandqna t,health_member m
+		where t.id=m.id and t.tipqna='ptqna' and t.board_no=#{value}
+	</select>
+
+
+
+</mapper>

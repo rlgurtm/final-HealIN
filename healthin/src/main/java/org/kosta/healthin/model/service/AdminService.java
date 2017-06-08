@@ -20,4 +20,6 @@ public interface AdminService {
 
 	ListVO findByBoardForm();
 
+	void deleteBoard(int boardNo);
+
 }

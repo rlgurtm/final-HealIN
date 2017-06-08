@@ -2,21 +2,21 @@ package org.kosta.healthin.model.vo;
 
 public class MentoringVO implements VO {
 	private int mentoringNo;
-	private String userId;
-	private String trainerId;
+	private String sendId;
+	private String receiveId;
 	private String content;
-	private String date;
+	private String postedDate;
 	private int hits;
 	public MentoringVO() {
 		super();
 	}
-	public MentoringVO(int mentoringNo, String userId, String trainerId, String content, String date, int hits) {
+	public MentoringVO(int mentoringNo, String sendId, String receiveId, String content, String postedDate, int hits) {
 		super();
 		this.mentoringNo = mentoringNo;
-		this.userId = userId;
-		this.trainerId = trainerId;
+		this.sendId = sendId;
+		this.receiveId = receiveId;
 		this.content = content;
-		this.date = date;
+		this.postedDate = postedDate;
 		this.hits = hits;
 	}
 	public int getMentoringNo() {
@@ -25,17 +25,17 @@ public class MentoringVO implements VO {
 	public void setMentoringNo(int mentoringNo) {
 		this.mentoringNo = mentoringNo;
 	}
-	public String getUserId() {
-		return userId;
+	public String getSendId() {
+		return sendId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setSendId(String sendId) {
+		this.sendId = sendId;
 	}
-	public String getTrainerId() {
-		return trainerId;
+	public String getReceiveId() {
+		return receiveId;
 	}
-	public void setTrainerId(String trainerId) {
-		this.trainerId = trainerId;
+	public void setReceiveId(String receiveId) {
+		this.receiveId = receiveId;
 	}
 	public String getContent() {
 		return content;
@@ -43,11 +43,11 @@ public class MentoringVO implements VO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getDate() {
-		return date;
+	public String getPostedDate() {
+		return postedDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setPostedDate(String postedDate) {
+		this.postedDate = postedDate;
 	}
 	public int getHits() {
 		return hits;
@@ -57,8 +57,8 @@ public class MentoringVO implements VO {
 	}
 	@Override
 	public String toString() {
-		return "MentoringVO [mentoringNo=" + mentoringNo + ", userId=" + userId + ", trainerId=" + trainerId
-				+ ", content=" + content + ", date=" + date + ", hits=" + hits + "]";
+		return "MentoringVO [mentoringNo=" + mentoringNo + ", sendId=" + sendId + ", receiveId=" + receiveId
+				+ ", content=" + content + ", postedDate=" + postedDate + ", hits=" + hits + "]";
 	}
 	
 }

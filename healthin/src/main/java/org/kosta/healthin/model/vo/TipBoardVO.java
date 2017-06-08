@@ -10,6 +10,7 @@ public class TipBoardVO implements VO {
 	private String category;
 	private String tipqna;
 	private MemberVO memberVO;
+	private int commentCount;
 
 	public TipBoardVO() {
 		super();
@@ -38,6 +39,21 @@ public class TipBoardVO implements VO {
 		this.category = category;
 		this.tipqna = tipqna;
 		this.memberVO = memberVO;
+	}
+	
+	public TipBoardVO(int no, String title, String content, String attachedFile, int hits, String postedDate,
+			String category, String tipqna, MemberVO memberVO, int commentCount) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.attachedFile = attachedFile;
+		this.hits = hits;
+		this.postedDate = postedDate;
+		this.category = category;
+		this.tipqna = tipqna;
+		this.memberVO = memberVO;
+		this.commentCount = commentCount;
 	}
 
 	public int getNo() {
@@ -111,11 +127,23 @@ public class TipBoardVO implements VO {
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
 	}
+	
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 
 	@Override
 	public String toString() {
 		return "TipBoardVO [no=" + no + ", title=" + title + ", content=" + content + ", attachedFile=" + attachedFile
 				+ ", hits=" + hits + ", postedDate=" + postedDate + ", category=" + category + ", tipqna=" + tipqna
-				+ ", memberVO=" + memberVO + "]";
+				+ ", memberVO=" + memberVO + ", commentCount=" + commentCount + "]";
 	}
+
+	
+	
 }

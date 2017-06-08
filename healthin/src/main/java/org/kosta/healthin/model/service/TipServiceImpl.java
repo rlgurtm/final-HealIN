@@ -14,76 +14,116 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class TipServiceImpl implements TipService  {
+public class TipServiceImpl implements TipService {
 	@Resource
 	private TipDAO dao;
-	
+
 	@Override
-	public ListVO getTipBoardList(String nowpage){
-		int totalContents=dao.getTotalTipCount();
-		int nowPage=Integer.parseInt(nowpage);
-		PagingBean pb=new PagingBean(totalContents, nowPage);
-		ListVO listVO=new ListVO(dao.getTipBoardList(pb),pb);
+	public ListVO getTipBoardList(String nowpage) {
+		int totalContents = dao.getTotalTipCount();
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb = new PagingBean(totalContents, nowPage);
+		ListVO listVO = new ListVO(dao.getTipBoardList(pb), pb);
 		return listVO;
 	}
+
 	@Override
-	public ListVO tipBoardCategoryList(String category,String nowpage){
-		int totalContents=dao.getTotalTipCategoryCount(category);
-		int nowPage=Integer.parseInt(nowpage);
-		PagingBean pb=new PagingBean(totalContents, nowPage);
-			Map<String, Object> map=new HashMap<String,Object>();
-			map.put("category",category);
-			map.put("startRowNumber", pb.getStartRowNumber());
-			map.put("endRowNumber", pb.getEndRowNumber());
-		ListVO listVO=new ListVO(dao.getTipBoardCategoryList(map),pb);
-		
+	public ListVO tipBoardCategoryList(String category, String nowpage) {
+		int totalContents = dao.getTotalTipCategoryCount(category);
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb = new PagingBean(totalContents, nowPage);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO = new ListVO(dao.getTipBoardCategoryList(map), pb);
+
 		return listVO;
-		
+
 	}
+
 	@Override
-	public TipBoardVO getTipBoardDetailContent(String no){
-		int NO=Integer.parseInt(no);
+	public TipBoardVO getTipBoardDetailContent(String no) {
+		int NO = Integer.parseInt(no);
 		return dao.getTipBoardDetailContent(NO);
 	}
+
 	@Override
-	public void tipBoardDelete(String no,String id){
-		Map<String, Object> map=new HashMap<String, Object>();
+	public void tipBoardDelete(String no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("no", Integer.parseInt(no));
 		map.put("id", id);
 		dao.tipQnaBoardDelete(map);
 	}
+
 	@Override
-	public void tipBoardUpdate(TipBoardVO tvo){
+	public void tipBoardUpdate(TipBoardVO tvo) {
 		dao.tipQnaBoardUpdate(tvo);
 	}
+
 	@Override
-	public void tipWrite(TipBoardVO tvo){
+	public void tipWrite(TipBoardVO tvo) {
 		dao.tipWrite(tvo);
 	}
+
 	@Override
-	public void tipHitsCount(String no){
-		int NO=Integer.parseInt(no);
+	public void tipHitsCount(String no) {
+		int NO = Integer.parseInt(no);
 		dao.tipQnaBoardHitsCount(NO);
 	}
+
 	@Override
-	public ListVO getTipCommentList(String no,String nowpage){
-		int totalContents=dao.getTotalTipQnaCommentCount(Integer.parseInt(no));
-		int nowPage=Integer.parseInt(nowpage);
-		PagingBean pb=new PagingBean(totalContents, nowPage);
-			Map<String, Object> map=new HashMap<String,Object>();
-			map.put("no",Integer.parseInt(no));
-			map.put("startRowNumber", pb.getStartRowNumber());
-			map.put("endRowNumber", pb.getEndRowNumber());
-		ListVO listVO=new ListVO(dao.getTipQnaCommentList(map),pb);
+	public ListVO getTipCommentList(String no, String nowpage) {
+		int totalContents = dao.getTotalTipQnaCommentCount(Integer.parseInt(no));
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb = new PagingBean(totalContents, nowPage);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", Integer.parseInt(no));
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO = new ListVO(dao.getTipQnaCommentList(map), pb);
 		return listVO;
 	}
+
 	@Override
-	public void tipCommentWrite(CommentVO cvo){
+	public void tipCommentWrite(CommentVO cvo) {
 		dao.tipQnaCommentWrite(cvo);
 	}
+
 	@Override
-	public void tipCommentDelete(String no){
+	public void tipCommentDelete(String no) {
 		dao.tipQnaCommentDelete(Integer.parseInt(no));
+	}
+
+	@Override
+	public ListVO getSearchtipAllList(String nowpage, String searchWord) {
+		int totalContents = dao.getTotalTipCategorySearchCount(searchWord);
+
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb = new PagingBean(totalContents, nowPage);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", searchWord);
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO = new ListVO(dao.getSearchtipAllList(map), pb);
+
+		return listVO;
+	}
+
+	@Override
+	public ListVO getSearchQnaAllList(String nowpage, String searchWord) {
+		int totalContents = dao.getTotalPtQnaSearchCategoryCount(searchWord);
+
+		int nowPage = Integer.parseInt(nowpage);
+		PagingBean pb = new PagingBean(totalContents, nowPage);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", searchWord);
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());
+		ListVO listVO = new ListVO(dao.getSearchQnaAllList(map), pb);
+		System.out.println("listVO"+listVO);
+
+		return listVO;
 	}
 
 }

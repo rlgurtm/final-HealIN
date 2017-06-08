@@ -8,20 +8,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		insert into physical_info(physical_no,height,weight,today,user_id)
  		values(physical_no_seq.nextval,#{height},#{weight},sysdate,#{user_Id})
  	</insert>
- 	<select id="selectUserPhyicalInfo" resultType="physicalInfoVO" parameterType="memberVO">
- 		select height,weight,to_char(today,'YYYY.MM.DD') as today,user_id
- 		,round(weight/(height*height/10000),2) as bmiValue
- 		from physical_info
- 		where user_id=#{id}
- 		order by today desc
+ 	<select id="selectUserPhyicalInfo" resultType="physicalInfoVO" parameterType="map">
+ 	select * from (
+	 		select row_number() over(order by physical_no desc) as rnum
+	 		,physical_no,height,weight,to_char(today,'YYYY.MM.DD') as today,user_id as user_Id
+	 		,round(weight/(height*height/10000),2) as bmiValue
+	 		from physical_info
+	 		where user_id=#{user_id} )
+ 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
  	</select>
- 	<select id="graphContentCount" resultType="int">
+ 	<select id="graphContentCount" resultType="int" parameterType="string">
  		select count(*) 
  		from physical_info
- 		order by today desc
+ 		where user_id=#{value}
+ 		order by physical_no desc
  	</select>
- 	<select id="graphPagingBean" resultType="listVO" parameterType="pagingBean">
- 		<!-- where b.video_no(+)=a.videoNo and rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc -->
+ 	<resultMap type="physicalInfoVO" id="physicalMap" />
+ 	<select id="graphPagingBean" resultMap="physicalMap" parameterType="pagingBean">
+ 		select b.physical_no,b.height,b.weight,b.today,b.user_id
+ 		from(select row_number() over(order by physical_no desc) as rnum,
+ 				physical_no,height,weight,to_char(today,'YYYY-MM-DD') as today,user_id
+ 				from physical_info
+ 				)
+ 				b, physical_info p
+ 		where b.user_id = p.user_id and rnum between #{startRowNumber} and #{endRowNumber}
+ 		order by physical_no desc
  	</select>
 </mapper>
  

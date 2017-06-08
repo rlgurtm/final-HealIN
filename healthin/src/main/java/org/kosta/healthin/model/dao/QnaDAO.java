@@ -38,4 +38,6 @@ public interface QnaDAO {
 
 	String getIsTrainer(String id);
 
+	List<VO> getptQnaSearchList(Map<String, Object> map);
+
 }
