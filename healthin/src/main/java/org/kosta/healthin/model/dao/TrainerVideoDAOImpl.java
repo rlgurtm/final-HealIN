@@ -144,10 +144,15 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 		//System.out.println(listVO);
 		return listVO;
 	}
-	
 	@Override
-	public List<TrainerVideoCommentVO> showVideoComment(int videoNo){
-		return template.selectList("trainervideo.showVideoComment",videoNo);
+	public int commentTotalCount(int videoNo){
+		return template.selectOne("trainervideo.commentTotalCount",videoNo);
+	}
+	@Override
+	public ListVO showVideoComment(Map map){
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainervideo.showVideoComment",map));
+		return listVO;
 	}
 	@Override
 	public void registerVideoComment(TrainerVideoCommentVO cvo){

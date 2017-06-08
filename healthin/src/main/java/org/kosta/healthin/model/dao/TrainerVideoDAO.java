@@ -58,10 +58,12 @@ public interface TrainerVideoDAO {
 
 	ListVO findByTrainerIdVideoList(Map map);
 
-	List<TrainerVideoCommentVO> showVideoComment(int videoNo);
-
 	void registerVideoComment(TrainerVideoCommentVO cvo);
 
 	void deleteVideoComment(int videoCommentNo);
+
+	int commentTotalCount(int videoNo);
+
+	ListVO showVideoComment(Map map);
 
 }

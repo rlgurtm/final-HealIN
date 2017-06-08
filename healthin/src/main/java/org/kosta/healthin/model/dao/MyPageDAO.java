@@ -1,7 +1,9 @@
 package org.kosta.healthin.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.kosta.healthin.model.vo.ListVO;
-import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
 
@@ -10,10 +12,10 @@ public interface MyPageDAO {
 
 	void insertUserPhysicalInfo(PhysicalInfoVO pivo);
 
-	ListVO selectUserPhyicalInfo(MemberVO mvo);
+	List<PhysicalInfoVO> graphPagingBean(PagingBean pb);
 
-	PhysicalInfoVO graphPagingBean(PagingBean pb);
+	ListVO selectUserPhyicalInfo(Map map);
 
-	int graphContentCount();
+	int graphContentCount(String user_id);
 	
 }

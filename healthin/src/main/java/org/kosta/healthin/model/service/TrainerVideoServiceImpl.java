@@ -118,8 +118,12 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	}
 	
 	@Override
-	public List<TrainerVideoCommentVO> showVideoComment(int videoNo){
-		return videoDAO.showVideoComment(videoNo);
+	public int commentTotalCount(int videoNo){
+		return videoDAO.commentTotalCount(videoNo);
+	}
+	@Override
+	public ListVO showVideoComment(Map map){
+		return videoDAO.showVideoComment(map);
 	}
 	@Override
 	public void registerVideoComment(TrainerVideoCommentVO cvo){

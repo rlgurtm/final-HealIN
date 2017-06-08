@@ -85,5 +85,19 @@ public class TipServiceImpl implements TipService  {
 	public void tipCommentDelete(String no){
 		dao.tipQnaCommentDelete(Integer.parseInt(no));
 	}
+	@Override
+	public ListVO getSearchtipAllList(String nowpage,String searchWord){
+			int totalContents=dao.getTotalTipCategorySearchCount(searchWord);
+			
+			int nowPage=Integer.parseInt(nowpage);
+			PagingBean pb=new PagingBean(totalContents, nowPage);
+				Map<String, Object> map=new HashMap<String,Object>();
+				map.put("category",searchWord);
+				map.put("startRowNumber", pb.getStartRowNumber());
+				map.put("endRowNumber", pb.getEndRowNumber());
+			ListVO listVO=new ListVO(dao.getSearchtipAllList(map),pb);
+			
+			return listVO;
+	}
 
 }
