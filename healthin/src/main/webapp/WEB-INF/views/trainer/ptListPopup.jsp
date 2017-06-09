@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>ajax</td><td>신청중</td><td>결제대기</td><td><input type="button" value="수락"></td>
+				<td>ajax</td><td>신청중</td><td>입금대기</td><td><input type="button" value="수락"></td>
 			</tr>
 		</tbody>
 	</table>

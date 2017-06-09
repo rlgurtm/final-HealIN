@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <div class="container">
 
@@ -19,14 +20,14 @@
 		</li>
 		<li class="menu"><a href="#">following</a></li>
 	</ul>
-<table class="table table-bordered">
+	<table class="table table-bordered">
 		<tbody id="follower">
 			<c:if test="${!empty list.LVO }">
 				<tr>
 				<c:forEach items="${list.LVO }" var="list">	
 					<td><span class="followingidnick">${list.id} / ${list.nickname}&emsp;&emsp;</span>
 					<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>
-					${i}</td>
+					</td>
 				</c:forEach>
 				</tr>
 			</c:if>

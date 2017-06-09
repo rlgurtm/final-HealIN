@@ -7,10 +7,16 @@ import org.kosta.healthin.model.vo.VO;
 
 public interface TrainerPageDAO {
 
-	List<VO> trainerPtList(String id);
+	List<VO> trainerPtList(Map<String, Object> map);
 
 	int getFollowerTotalCount(String id);
 
 	List<VO> getFollowerList(Map<String, Object> map);
+
+	List<VO> trainerMatchingList(Map<String, Object> map);
+
+	int trainerPtListCount(String id);
+
+	int trainerMatchingListCount(String id);
 
 }
