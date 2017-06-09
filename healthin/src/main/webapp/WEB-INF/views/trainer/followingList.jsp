@@ -30,7 +30,8 @@
 					<td><span class="followingidnick">${list.id} / ${list.nickname}&emsp;&emsp;
 					</span></td>
 					<td>
-					<a href="updateAcceptState.do?userId=${list.id}">
+					<a href="#">
+					<%-- <a href="updateAcceptState.do?userId=${list.id}"> --%>
 					<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>
 					</a>
 					</td>

@@ -28,8 +28,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BoardController {
-	private String uploadPath;
-	
+	private String uploadPath
+	//송희
+	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	//지선
+	//="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	//지원
+	//="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	//기혁
+	="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	@Resource
 	private TipService tipService;
 	@Resource
@@ -90,12 +97,8 @@ public class BoardController {
 	@RequestMapping("tip/tipWrite.do")
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
-			//송희
-			//uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지선
-			uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지원
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			
+			
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
@@ -142,12 +145,6 @@ public class BoardController {
 	@RequestMapping("tipBoardUpdate.do")
 	public String tipBoardUpdate(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
-			//송희
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지선
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지원
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
@@ -248,12 +245,6 @@ public class BoardController {
 	@RequestMapping("pt_qna/ptQnaWrite.do")
 	public String ptQnaWrite(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
-			//송희
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지선
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지원
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
@@ -283,12 +274,6 @@ public class BoardController {
 	@RequestMapping("ptQnaUpdate.do")
 	public String ptQnaUpdate(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
-			//송희
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지선
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
-			//지원
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();

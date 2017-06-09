@@ -18,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class MemberController {
-	private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
+	private String uploadPath 
+	//지선
+	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	//기혁
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	@Resource
 	private MemberService memberService;
 
