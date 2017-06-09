@@ -102,7 +102,7 @@
 			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following List</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">PT List</a>
+			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">매칭 회원 관리</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring List</a>
@@ -127,7 +127,7 @@
 			                                <a href="#">팔로우 한 강사</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">1:1 매칭 현황</a>
+			                                <a href="#">매칭 한 강사</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring List</a>
