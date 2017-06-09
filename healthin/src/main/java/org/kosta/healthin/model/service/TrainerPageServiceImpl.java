@@ -39,6 +39,7 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		ListVO listVO=new ListVO(dao.trainerMatchingList(map),pb);
 		return listVO;
 	}
+	
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
 		int totalCount=dao.getFollowerTotalCount(id);
@@ -51,7 +52,6 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		ListVO listVO=new ListVO(dao.getFollowerList(map),pb);
 		return listVO;
 	}
-
 	@Override
 	public int getFollowerList(String id){
 		return dao.getFollowerTotalCount(id);
