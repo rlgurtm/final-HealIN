@@ -5,23 +5,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="calorieGraph">
 	<select id="getTotalIntakeCalorieOfDay" resultType="int" parameterType="map">
- 		select sum(f.calorie*im.count) as totalCalorie from food f, intake_member im, health_user hu
-		where im.user_id = hu.user_id and f.food_name = im.food_name and intake_date = #{date} and im.user_id = #{id}
- 	</select>
- 	<select id="getAllDateIntakeCalorie" resultType="string" parameterType="string">
- 		select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
+		select sum(f.calorie*im.count) as totalCalorie from food f, intake_member
+		im, health_user hu
+		where im.user_id = hu.user_id and f.food_name = im.food_name 
+		and intake_date = #{date} and im.user_id = #{id}
+	</select>
+	<select id="getAllDateIntakeCalorie" resultType="string" parameterType="string">
+		select distinct to_char(intake_date, 'YYYY-MM-DD') as intakeDate
 		from food f, intake_member im, health_user hu
 		where im.user_id = hu.user_id and f.food_name = im.food_name and im.user_id = #{value}
- 	</select>
- 	<select id="getTotalConsumptionCalorieOfDay" resultType="int" parameterType="map">
- 		select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e, consumption_member cm, health_user hu, physical_info pi
-		where cm.user_id = hu.user_id and hu.user_id = pi.user_id and e.name = cm.name and ex_date = #{date} and cm.user_id = #{id}
- 	</select>
- 	<select id="getAllDateConsumptionCalorie" resultType="string" parameterType="string">
- 		select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
+	</select>
+	<select id="getTotalConsumptionCalorieOfDay" resultType="int" parameterType="map">
+		select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e,
+		consumption_member cm, health_user hu, physical_info pi
+		where cm.user_id = hu.user_id and hu.user_id = pi.user_id 
+		and e.name = cm.name and ex_date = #{date} and cm.user_id = #{id}
+	</select>
+	<select id="getAllDateConsumptionCalorie" resultType="string" parameterType="string">
+		select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate
 		from exercise e, consumption_member cm, health_user hu
 		where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = #{value}
- 	</select>
+	</select>
 </mapper>
  
  

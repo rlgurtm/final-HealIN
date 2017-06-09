@@ -4,9 +4,31 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="trainerpage">
- 	<select id="trainerPtList"  resultType="memberVO" >
- 		select*from matching m,health_member h 
-		where m.user_id=h.id and trainer_id=#{value}
+ 	<select id="trainerPtList"  parameterType="map" resultType="memberVO" >
+ 	   select a.* from 
+       (select row_number() over(order by h.nickname desc) rnum,
+       m.user_id as id,h.nickname,h.name,h.address,h.e_mail as email,h.tel
+       from health_member h,matching m
+       where m.trainer_id=#{id} and m.user_id=h.id
+       and apply_result='Y' and accept_result='N') a 
+       where rnum between #{startRowNumber} and #{endRowNumber}
+ 	</select>
+ 	<select id="trainerPtListCount"  resultType="int" >
+		select count(*) from matching where trainer_id=#{value}
+		and apply_result='Y' and accept_result='N'
+ 	</select>
+ 	<select id="trainerMatchingList"  parameterType="map" resultType="memberVO" >
+ 		select a.* from 
+       (select row_number() over(order by h.nickname desc) rnum,
+       m.user_id as id,h.nickname,h.name,h.address,h.e_mail as email,h.tel
+       from health_member h,matching m
+       where m.trainer_id=#{id} and m.user_id=h.id
+       and apply_result='Y' and accept_result='Y') a 
+       where rnum between #{startRowNumber} and #{endRowNumber}
+ 	</select>
+ 	<select id="trainerMatchingListCount"  resultType="int">
+ 		select count(*) from matching where trainer_id=#{value}
+		and apply_result='Y' and accept_result='Y'
  	</select>
  	<select id="getFollowerTotalCount" resultType="int">
  	select count(*) 

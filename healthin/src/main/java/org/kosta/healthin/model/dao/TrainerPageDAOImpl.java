@@ -15,8 +15,22 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<VO> trainerPtList(String id){
-		return template.selectList("trainerpage.trainerPtList",id);
+	public List<VO> trainerPtList(Map<String, Object> map){
+		return template.selectList("trainerpage.trainerPtList",map);
+	}
+	
+	@Override
+	public List<VO> trainerMatchingList(Map<String, Object> map){
+		return template.selectList("trainerpage.trainerMatchingList",map);
+	}
+	
+	@Override
+	public int trainerPtListCount(String id){
+		return template.selectOne("trainerpage.trainerPtListCount",id);
+	}
+	@Override
+	public int trainerMatchingListCount(String id){
+		return template.selectOne("trainerpage.trainerMatchingListCount",id);
 	}
 
 	@Override
@@ -28,4 +42,5 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	public List<VO> getFollowerList(Map<String, Object> map) {
 		return template.selectList("trainerpage.getFollowerList",map);
 	}
+	
 }
