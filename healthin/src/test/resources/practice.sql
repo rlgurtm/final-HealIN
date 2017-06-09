@@ -291,3 +291,10 @@ values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트
 		from tipandqna t, health_member m
 		where t.id = m.id and t.tipqna = 'ptqna') a 
 		where rnum between 1 and 10
+		
+insert into health_member 
+values('healthman7','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N');
+insert into trainer  
+values('healthman7','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','트레이너2.jpg');
+
+update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
