@@ -105,7 +105,7 @@
 			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">PT List</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">나의 PT 회원</a>
+			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring List</a>
 			                            </li>
 			                        </ul>
 			                    </li>
@@ -130,7 +130,7 @@
 			                                <a href="#">1:1 매칭 현황</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">나의 PT 강사</a>
+			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring List</a>
 			                            </li>
 			                        </ul>
 			                    </li>
