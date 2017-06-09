@@ -17,12 +17,22 @@
 	<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 		<thead>
 			<tr>
-				<th>아이디</th><th>신청</th><th>결제</th><th>수락</th>
+				<th>아이디</th>
+				<th>신청날짜</th>
+				<th>기간</th>
+				<th>가격</th>
+				<th>결제</th>
+				<th>수락</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>ajax</td><td>신청중</td><td>입금대기</td><td><input type="button" value="수락"></td>
+				<td>${id }</td>
+				<td>2017-06-01</td>
+				<td>3개월</td>
+				<td>30000</td>
+				<td>입금대기</td>
+				<td><input type="button" value="수락"></td>
 			</tr>
 		</tbody>
 	</table>

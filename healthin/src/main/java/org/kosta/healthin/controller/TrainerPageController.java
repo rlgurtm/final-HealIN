@@ -27,8 +27,8 @@ public class TrainerPageController {
 		return "trainer/ptList.tiles";
 	}
 	@RequestMapping("trainer/ptListPopup.do")
-	public String ptListPopup(String id){
-		System.out.println("아이디 넘어옵니다"+id);
+	public String ptListPopup(String id,Model model){
+		model.addAttribute("id", id);
 		return "trainer/ptListPopup";
 	}
 	@RequestMapping("trainer/followingList.do")

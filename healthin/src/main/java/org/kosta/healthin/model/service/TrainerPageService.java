@@ -12,6 +12,10 @@ public interface TrainerPageService {
 	
 	int getFollowerList(String id);
 
+	int trainerPtListCount(String id);
+
+	int trainerMatchingListCount(String id);
+
 
 
 }
