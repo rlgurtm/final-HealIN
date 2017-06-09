@@ -226,7 +226,7 @@ where cm.user_id = hu.user_id and e.name = cm.name and cm.user_id = #{value}
 select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e, consumption_member cm, health_user hu, physical_info pi
 where cm.user_id = hu.user_id and hu.user_id = pi.user_id and e.name = cm.name and ex_date = #{date} and cm.user_id = #{id}
 
-
+select * from TRAINER
 select * from physical_info
 
 select im.intake_no as intakeNo, f.food_name as foodName, f.calorie, im.count, f.calorie*im.count as totalCalorie 

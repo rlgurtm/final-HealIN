@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header follo">
-				<small>팔로워 :  ${follower}  / 팔로잉 : 2</small> 
+				<small>팔로워 :  ${follower}  / 팔로잉 : 0</small> 
 			</h1>
 			
 		</div>

@@ -37,7 +37,7 @@
 									info+=data.lvo[i].commentNo+"&bno="+data.lvo[i].boardNo+"'>";
 									info+="<span class='glyphicon glyphicon-trash'></span></a>";
 								}
-									info+="</td></tr><tr><td colspan='2'><pre>";
+									info+="</td></tr><tr><td colspan='2'><pre style='white-space: pre-wrap;'>";
 									info+=data.lvo[i].comment+"</pre></td></tr></table>";
 								}  
 								$("#commentInfo").html(info);

@@ -20,6 +20,7 @@
         	$(".active").removeClass("active");
         	$(this).addClass("active");
         });
+    	//동영상 부분
   		$(".regular").slick({
 	        dots: true,
 	        infinite: true,
@@ -184,17 +185,22 @@
 	                <div class="slider-for">
 	                	<c:forEach items="${trainerList.LVO}" var="trainer">
 							<div class="trainerList" align="center">
-							<div>
-								<a href="#">
-									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="500" height="380">
+							<div style="width: 500px;height: 400px ">
+							<div class="row">
+							<div class="col-lg-8">
+								<a href="${pageContext.request.contextPath}/trainer/trainerDetail.do?trainerId=${trainer.membervo.id}">
+									<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="400px">
 									<%-- <video width="500" height="380">
 									<source
 										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
 											type="video/mp4">
 									</video> --%>
 								</a>
+							</div>
+							<div class="col-lg-4" align="center" style="background: #F2F2F2">
 								<!-- <div style="background:#F2F2F2"> -->
 								<h3>
+									<a>${trainer.membervo.id}</a><br>
 									<a>${trainer.membervo.name}</a>
 								</h3>
 								<%-- 작성자 : ${lvo.trainerId}<br>
@@ -206,20 +212,23 @@
 								<!-- </div> -->
 							</div>
 							</div>
+								
+							</div>
+							</div>
 						</c:forEach>
 	                </div><br>
 	                <div class="slider-nav">
 						<c:forEach items="${trainerList.LVO}" var="trainer">
 							<div class="trainerList" align="center">
-							<div>
-								<a href="#">
-									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="180" height="110">
+							<div style="width: 100px;height: 150px ">
+								
+									<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="100px">
 									<%-- <video width="200" height="130">
 									<source
 										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
 											type="video/mp4">
 									</video> --%>
-								</a>
+								
 								<!-- <div style="background:#F2F2F2"> -->
 								<h3>
 									<a>${trainer.membervo.name}</a>
@@ -277,7 +286,50 @@
         <!-- /.row -->
         
         <br><br><br>
-
+		<!-- 인기 동영상 section -->
+        <div class="row" >
+            <div class="col-lg-12">
+                <div class="col-lg-12" align="left">
+	                <h2 class="page-header">PT Trainer
+	                    <small>popular trainer</small>
+	                </h2>
+	            <div class="slider-for">
+	            	<c:forEach items="${trainerList.LVO}" var="trainer">
+	            	<div style="height: 410px" align="right">
+	            		<div class="col-lg-7">
+	            		<a href="${pageContext.request.contextPath}/trainer/trainerDetail.do?trainerId=${trainer.membervo.id}">
+	            		<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="400px">
+						</a>
+						</div>
+						<div class="col-lg-4" align="left">
+						<table class="table">
+						<tr>
+							<th>ID</th><td>${trainer.membervo.id}</td>
+						</tr>
+						<tr>
+							<th>이름</th><td>${trainer.membervo.name}</td>
+						</tr>
+						<tr>
+							<th>지역</th><td>${trainer.location}</td>
+						</tr>
+						<tr>
+							<th>경력</th><td>${trainer.career}</td>
+						</tr>
+						</table>
+						</div>
+	            	</div>
+					</c:forEach>
+	            </div>
+	            <div class="slider-nav" class="col-lg-12">
+	            	<c:forEach items="${trainerList.LVO}" var="trainer">
+	            	<div style="width: 100px; height: 100px">
+	            		<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="100px">
+	            	</div>
+					</c:forEach>
+	            </div>
+	            </div>
+            </div>
+        </div>
 	</div>
     <!-- /.container -->
 

@@ -235,7 +235,7 @@ drop table trainer_video
 create table trainer_video(
    video_no number primary key, 
    title varchar2(100) not null, 
-   content varchar2(100) not null, 
+   content clob not null, 
    video_file varchar2(100) not null, 
    posted_date date not null, 
    hits number default 0,

@@ -217,7 +217,7 @@ public class UploadController {
 		} else {
 			// System.out.println("삭제x");
 		}
-		return "redirect:trainerVideoList.do";
+		return "redirect:filterVideoList.do?filter=no";
 	}
 	
 	@RequestMapping("filterVideoList.do")

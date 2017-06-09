@@ -82,8 +82,7 @@
 		<td>${lvo.membervo.withdrawal}</td>
 		<td>${lvo.rank}</td>
 		<td>
-		<form action="#">
-		<!-- <form action="trainerRankDesignation.do"> -->
+		<form action="trainerRankDesignation.do">
 			<select name="trainerRank">
 				<option value="0">0</option>
 				<option value="1">1</option>
