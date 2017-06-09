@@ -17,12 +17,18 @@ public class TrainerPageController {
 	private TrainerPageService service;
 
 	@RequestMapping("ptList.do")
-	public String ptList(String id,Model model){
-		model.addAttribute("ptList", service.trainerPtList(id));
+	public String ptList(String id,String nowpage,String pageNo,Model model){
+		if(nowpage==null)
+			nowpage="1";
+		if(pageNo==null)
+			pageNo="1";
+		model.addAttribute("ptList",service.trainerPtList(id, nowpage));
+		model.addAttribute("mList",service.trainerMatchingList(id, pageNo));
 		return "trainer/ptList.tiles";
 	}
 	@RequestMapping("trainer/ptListPopup.do")
-	public String ptListPopup(){
+	public String ptListPopup(String id){
+		System.out.println("아이디 넘어옵니다"+id);
 		return "trainer/ptListPopup";
 	}
 	@RequestMapping("trainer/followingList.do")
