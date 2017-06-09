@@ -22,6 +22,10 @@ public class HomeServiceImpl implements HomeService {
 		allContentsList.put("trainerList", homeDAO.getTrainerInfoListOnMainpage());
 		allContentsList.put("tipBoardList", homeDAO.getTipBoardOnMainPage());
 		allContentsList.put("qnaBoardList", homeDAO.getQnABoardOnMainPage());
+<<<<<<< HEAD
+=======
+		//System.out.println(allContentsList.get("trainerList"));
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
 		return allContentsList;
 	}
 }
