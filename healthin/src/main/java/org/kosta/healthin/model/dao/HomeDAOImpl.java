@@ -15,15 +15,27 @@ public class HomeDAOImpl implements HomeDAO {
 	public ListVO getVideoListOnMainpage() {
 		ListVO listVO = new ListVO();
 		listVO.setLVO(template.selectList("home.getVideoListOnMainpage"));
-		//System.out.println(listVO);
 		return listVO;
 	}
 	
 	@Override
 	public  ListVO getTrainerInfoListOnMainpage() {
 		ListVO listVO = new ListVO();
-		listVO.setLVO(template.selectList("home.getTrainerInfoListByPopularity"));
-		//System.out.println(listVO);
+		listVO.setLVO(template.selectList("home.getTrainerInfoListOnMainpage"));
+		return listVO;
+	}
+
+	@Override
+	public ListVO getTipBoardOnMainPage() {
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("home.getTipBoardOnMainPage"));
+		return listVO;
+	}
+
+	@Override
+	public ListVO getQnABoardOnMainPage() {
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("home.getQnABoardOnMainPage"));
 		return listVO;
 	}
 }

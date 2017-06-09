@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+	/* 테이블에서 제목의 길이가 길어지는 경우 테이블 깨짐 방지 */
+	.title {	
+		width:100%;
+	    overflow: hidden; white-space: nowrap;
+	    text-overflow: ellipsis;
+	    -o-text-overflow: ellipsis;
+	    -ms-text-overflow: ellipsis;
+	}
+	#slider-for {
+		background-color: f5f5f5;
+	}
+</style>
 <script>
   	$(document).ready(function(){
     	$(".menu").click(function(){
@@ -14,10 +26,23 @@
 	        slidesToShow: 3,
 	        slidesToScroll: 3
 		});
+  		 //트레이너 부분
+  		$('.slider-for').slick({
+  		  slidesToShow: 1,
+  		  slidesToScroll: 1,
+  		  arrows: false,
+  		  fade: true,
+  		  asNavFor: '.slider-nav'
+  		});
+  		$('.slider-nav').slick({
+  		  slidesToShow: 5,
+  		  slidesToScroll: 1,
+  		  asNavFor: '.slider-for',
+  		  dots: true,
+  		  centerMode: true,
+  		  focusOnSelect: true
+  		});
     });
-  /* 	$(document).ready(function() {
-  	    $('.pgwSlider').pgwSlider();
-  	}); */
 </script>
 
     <!-- Header Carousel -->
@@ -59,15 +84,15 @@
 	<!-- Page Content -->
     <div class="container">
 		<!-- 메인화면에 출력될 부분 별칭 지정 -->
-		<c:set value="${requestScope.allContentList.tip}" var="tipList"/>
-		<c:set value="${requestScope.allContentList.qna}" var="qnaList"/>
+		<c:set value="${requestScope.allContentList.tipBoardList}" var="tipBoardList"/>
+		<c:set value="${requestScope.allContentList.qnaBoardList}" var="qnaBoardList"/>
 		<c:set value="${requestScope.allContentList.videoList}" var="videoList"/>
 		<c:set value="${requestScope.allContentList.trainerList}" var="trainerList"/>
     	<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">Tip and QnA Board
-                    <small>Ask Anything</small>
+                    <small>Ask Whatever</small>
                 </h2>
             </div>
         </div>
@@ -80,23 +105,28 @@
                         <h4><i class="fa fa-fw fa-check"></i> 나만의 Tip </h4>
                     </div>
                     <div class="panel-body">
-                    	<table class="table table-condensed">
-                    		<thead>
-	                    		<tr>
-	                    			<th>제목</th><th>작성자</th><th>작성일</th>
-	                    		</tr>
-                    		</thead>
-                    		<tbody>
-                    			<c:if test="${!empty tipList }">
-                    				<c:forEach items="${tipList}" var="tip" begin="0" end="9">
-                    					<tr>
-                    						<td>${tip.title}</td>
-                    						<td>${tip.memberVO.name}</td>
-                    						<td>${tip.postedDate}</td>
-                    					</tr>
-                    				</c:forEach>
-                    			</c:if>
-                    		</tbody>
+                    	<table class="table table-condensed" style="TABLE-layout:fixed">
+                    		<tr id="tableHead" style='font-weight:bold;' align="center">
+                    			<td style="width:70%;">제목</td>
+                    			<td style="width:10%;">작성자</td>
+                    			<td style="width:20%;">작성일</td>
+                    		</tr>
+                   			<c:if test="${!empty tipBoardList }">
+                   				<c:forEach items="${tipBoardList.LVO}" var="tip">
+                   					<tr>
+                   						<c:choose>
+											<c:when test="${sessionScope.mvo.id != null}">
+												<td class="title"><a href="${pageContext.request.contextPath}/tip/tip_content.do?no=${tip.no}">${tip.title}  [${tip.commentCount}]</a></td>
+		                    				</c:when>
+		                    				<c:otherwise>
+		                    					<td class="title">${tip.title} [${tip.commentCount}]</td>
+		                    				</c:otherwise>
+		                    			</c:choose>
+		                    			<td align="center">${tip.memberVO.name}</td>
+		                   				<td align="center">${tip.postedDate}</td>
+                   					</tr>
+                   				</c:forEach>
+                   			</c:if>
                     	</table>
                     	<div align="center">
                     		<a href="${pageContext.request.contextPath}/tip/tip.do" class="btn btn-default">View More</a>
@@ -110,23 +140,28 @@
                         <h4><i class="fa fa-fw fa-check"></i> PT 강사에게 묻는다!</h4>
                     </div>
                     <div class="panel-body">
-                       <table class="table table-condensed">
-                    		<thead>
-	                    		<tr>
-	                    			<th>제목</th><th>작성자</th><th>작성일</th>
-	                    		</tr>
-                    		</thead>
-                    		<tbody>
-                    			<c:if test="${!empty tipList }">
-                    				<c:forEach items="${tipList}" var="tip" begin="0" end="9">
-                    					<tr>
-                    						<td>${tip.title}</td>
-                    						<td>${tip.memberVO.name}</td>
-                    						<td>${tip.postedDate}</td>
-                    					</tr>
-                    				</c:forEach>
-                    			</c:if>
-                    		</tbody>
+                       <table class="table table-condensed" style="TABLE-layout:fixed">
+                    		<tr id="tableHead" style='font-weight:bold;' align="center">
+                    			<td style="width:70%;">제목</td>
+                    			<td style="width:10%;">작성자</td>
+                    			<td style="width:20%;">작성일</td>
+                    		</tr>
+                   			<c:if test="${!empty qnaBoardList }">
+                   				<c:forEach items="${qnaBoardList.LVO}" var="qna">
+                   					<tr>
+                   						<c:choose>
+                   							<c:when test="${sessionScope.mvo.id != null}">
+                   								<td class="title"><a href="${pageContext.request.contextPath}/pt_qna/pt_qna_content.do?no=${qna.no}">${qna.title}  [${qna.commentCount}]</a></td>
+                   							</c:when>
+                   							<c:otherwise>
+                   								<td  class="title">${qna.title} [${qna.commentCount}]</td>
+                   							</c:otherwise>
+                   						</c:choose>
+                   						<td align="center">${qna.memberVO.name}</td>
+                   						<td align="center">${qna.postedDate}</td>
+                   					</tr>
+                   				</c:forEach>
+                   			</c:if>
                     	</table>
                         <div align="center">
                     		<a href="${pageContext.request.contextPath}/pt_qna/qna.do" class="btn btn-default">View More</a>
@@ -146,68 +181,62 @@
 	                <h2 class="page-header">PT Trainer
 	                    <small>popular trainer</small>
 	                </h2>
-	                <section class="regular slider">
-	                	<c:forEach items="${videoList.LVO}" var="lvo">
-							<div class="videoList" align="center">
+	                <div class="slider-for">
+	                	<c:forEach items="${trainerList.LVO}" var="trainer">
+							<div class="trainerList" align="center">
 							<div>
-								<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
-								<video width="210" height="150">
+								<a href="#">
+									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="500" height="380">
+									<%-- <video width="500" height="380">
 									<source
 										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
 											type="video/mp4">
-									</video>
+									</video> --%>
 								</a>
 								<!-- <div style="background:#F2F2F2"> -->
 								<h3>
-									<a>${lvo.title}</a>
+									<a>${trainer.membervo.name}</a>
 								</h3>
-								작성자 : ${lvo.trainerId}<br>
+								<%-- 작성자 : ${lvo.trainerId}<br>
 								추천 : ${lvo.likeState}<br> 
 								분류 : ${lvo.category}<br>
 								조회수 : ${lvo.hits}<br> 
 								등록일 : ${lvo.postedDate}<br>
-								<%-- ${lvo.content}<br> --%>
+								${lvo.content}<br> --%>
 								<!-- </div> -->
 							</div>
 							</div>
 						</c:forEach>
-	                </section>
+	                </div><br>
+	                <div class="slider-nav">
+						<c:forEach items="${trainerList.LVO}" var="trainer">
+							<div class="trainerList" align="center">
+							<div>
+								<a href="#">
+									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="180" height="110">
+									<%-- <video width="200" height="130">
+									<source
+										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
+											type="video/mp4">
+									</video> --%>
+								</a>
+								<!-- <div style="background:#F2F2F2"> -->
+								<h3>
+									<a>${trainer.membervo.name}</a>
+								</h3>
+								<%-- 추천 : ${lvo.likeState}<br> 
+								분류 : ${lvo.category}<br> --%>
+								<!-- </div> -->
+							</div>
+							</div>
+						</c:forEach>
+					</div>
 	            </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/resources/img/트레이너1.jpg" alt="">
-                </a>
             </div>
         </div>
         <!-- /.row -->
         
-        <br><br><br>
+        <br><br><br><br><br><br>
         
         <!-- 인기 동영상 section -->
         <div class="row" >
@@ -221,7 +250,7 @@
 						<div class="videoList" align="center">
 						<div>
 							<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
-							<video width="270" height="200">
+							<video width="250" height="180">
 								<source
 									src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
 										type="video/mp4">
@@ -236,7 +265,7 @@
 							분류 : ${lvo.category}<br>
 							조회수 : ${lvo.hits}<br> 
 							등록일 : ${lvo.postedDate}<br>
-							${lvo.content}<br>
+							<%-- ${lvo.content} --%><br>
 							<!-- </div> -->
 						</div>
 						</div>

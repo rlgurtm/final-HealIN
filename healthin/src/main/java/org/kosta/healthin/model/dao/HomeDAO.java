@@ -5,4 +5,6 @@ import org.kosta.healthin.model.vo.ListVO;
 public interface HomeDAO {
 	ListVO getVideoListOnMainpage();
 	ListVO getTrainerInfoListOnMainpage();
+	ListVO getTipBoardOnMainPage();
+	ListVO getQnABoardOnMainPage();
 }

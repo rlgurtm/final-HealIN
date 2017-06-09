@@ -279,3 +279,15 @@ select p.*
  		
  		select * from physical_info 
  		where user_id='user1'
+
+ 		insert into tipandqna
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요??????????????????????????????????????????????????','다이어트는 어떻게 하나요?',null,0,sysdate,'운동','spring','ptqna');
+insert into tipandqna
+values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트는 어떻게 하나요?',null,0,sysdate,'운동','spring','ptqna');
+ select a.* from
+		(select row_number() over(order by board_no desc) rnum, t.board_no as no, t.title, t.hits,
+		to_char(t.posted_date, 'YYYY.MM.DD') as postedDate, t.category, t.id, t.tipqna, m.name,
+		(select count(*)from health_comment where board_no = t.board_no) as commentCount
+		from tipandqna t, health_member m
+		where t.id = m.id and t.tipqna = 'ptqna') a 
+		where rnum between 1 and 10
