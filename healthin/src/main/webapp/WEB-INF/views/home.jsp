@@ -80,15 +80,6 @@
                         <h4><i class="fa fa-fw fa-check"></i> 나만의 Tip </h4>
                     </div>
                     <div class="panel-body">
-                    	<!-- 
-                    			나중에 ajax로 처리 예정 
-                    	-->
-                    	<ul class="nav nav-tabs">
-							<li class="menu active"><a href="#">전체</a></li>
-							<li class="menu"><a href="#">운동</a></li>
-							<li class="menu"><a href="#">다이어트</a></li>
-							<li class="menu"><a href="#">식단</a></li>
-						</ul>
                     	<table class="table table-condensed">
                     		<thead>
 	                    		<tr>
@@ -108,7 +99,7 @@
                     		</tbody>
                     	</table>
                     	<div align="center">
-                    		<a href="#" class="btn btn-default">Go to board</a>
+                    		<a href="${pageContext.request.contextPath}/tip/tip.do" class="btn btn-default">View More</a>
                     	</div>
                     </div>
                 </div>
@@ -116,18 +107,9 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i> PT 강사에게 묻는다</h4>
+                        <h4><i class="fa fa-fw fa-check"></i> PT 강사에게 묻는다!</h4>
                     </div>
                     <div class="panel-body">
-                   		<!-- 
-                    			나중에 ajax로 처리 예정 
-                    	-->
-                    	<ul class="nav nav-tabs">
-							<li class="menu active"><a href="#">전체</a></li>
-							<li class="menu"><a href="#">운동</a></li>
-							<li class="menu"><a href="#">다이어트</a></li>
-							<li class="menu"><a href="#">식단</a></li>
-						</ul>
                        <table class="table table-condensed">
                     		<thead>
 	                    		<tr>
@@ -147,7 +129,7 @@
                     		</tbody>
                     	</table>
                         <div align="center">
-                    		<a href="#" class="btn btn-default">Go to board</a>
+                    		<a href="${pageContext.request.contextPath}/pt_qna/qna.do" class="btn btn-default">View More</a>
                     	</div>
                     </div>
                 </div>
@@ -164,6 +146,32 @@
 	                <h2 class="page-header">PT Trainer
 	                    <small>popular trainer</small>
 	                </h2>
+	                <section class="regular slider">
+	                	<c:forEach items="${videoList.LVO}" var="lvo">
+							<div class="videoList" align="center">
+							<div>
+								<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
+								<video width="210" height="150">
+									<source
+										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
+											type="video/mp4">
+									</video>
+								</a>
+								<!-- <div style="background:#F2F2F2"> -->
+								<h3>
+									<a>${lvo.title}</a>
+								</h3>
+								작성자 : ${lvo.trainerId}<br>
+								추천 : ${lvo.likeState}<br> 
+								분류 : ${lvo.category}<br>
+								조회수 : ${lvo.hits}<br> 
+								등록일 : ${lvo.postedDate}<br>
+								<%-- ${lvo.content}<br> --%>
+								<!-- </div> -->
+							</div>
+							</div>
+						</c:forEach>
+	                </section>
 	            </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -240,44 +248,7 @@
         <!-- /.row -->
         
         <br><br><br>
-		
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Modern Business Features</h2>
-            </div>
-            <div class="col-md-6">
-                <p>The Modern Business template by Start Bootstrap includes:</p>
-                <ul>
-                    <li><strong>Bootstrap v3.3.7</strong>
-                    </li>
-                    <li>jQuery v1.11.1</li>
-                    <li>Font Awesome v4.2.0</li>
-                    <li>Working PHP contact form with validation</li>
-                    <li>Unstyled page elements for easy customization</li>
-                    <li>17 HTML pages</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-            </div>
-            <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
-            </div>
-        </div>
-        <!-- /.row -->
 
-        <hr>
-
-        <!-- Call to Action Section -->
-        <div class="well">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
-                </div>
-            </div>
-        </div>
 	</div>
     <!-- /.container -->
 

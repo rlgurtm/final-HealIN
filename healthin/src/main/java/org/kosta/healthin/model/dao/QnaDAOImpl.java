@@ -75,5 +75,9 @@ public class QnaDAOImpl implements QnaDAO {
 	public String getIsTrainer(String id){
 		return template.selectOne("tipQna.getIsTrainer",id);
 	}
+	@Override
+	public List<VO> getptQnaSearchList(Map<String, Object> map){
+		return template.selectList("tipQna.getPtQnaSearchList",map);
+	}
 
 }

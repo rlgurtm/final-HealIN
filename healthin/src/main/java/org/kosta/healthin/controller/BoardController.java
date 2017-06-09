@@ -47,6 +47,18 @@ public class BoardController {
 		model.addAttribute("list",list );
 		return "tip/tip.tiles";
 	}
+	
+	@RequestMapping("tip/search_tip.do")
+	public String getSearchtipAllList(Model model,String nowpage,String searchWord){
+		System.out.println("헤더 검색어>>>"+searchWord);
+		if(nowpage==null)
+			nowpage="1";
+		ListVO list=tipService.getSearchtipAllList(nowpage,searchWord);
+		model.addAttribute("list",list );
+		System.out.println("나만의 팁 검색 결과"+list);
+		return "tip/search_tip.tiles";
+	}
+	
 	@RequestMapping("tipcategory.do")
 	@ResponseBody
 	public Object tipBoardCategoryList(String category,String nowpage){
@@ -79,9 +91,9 @@ public class BoardController {
 	public String tipWrite(TipBoardVO tvo,MultipartFile uploadFile){
 		if(!uploadFile.isEmpty()){
 			//송희
-			uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			//uploadPath = "C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			//지선
-			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+			uploadPath="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			//지원
 			//uploadPath="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 			MultipartFile file = uploadFile;
@@ -192,6 +204,20 @@ public class BoardController {
 		return "pt_qna/qna.tiles";
 	}
 	
+	@RequestMapping("pt_qna/search_qna.do")
+	public String getSearchQnaAllList(Model model,String nowpage,String searchWord){
+		System.out.println("헤더 검색어>>>"+searchWord);
+		if(nowpage==null)
+			nowpage="1";
+		
+		ListVO list=tipService.getSearchQnaAllList(nowpage,searchWord);
+		
+		System.out.println("리스트"+list);
+		model.addAttribute("list",list );
+		System.out.println("나만의 팁 검색 결과"+list);
+		return "tip/search_qna.tiles";
+	}
+	
 	@RequestMapping("ptQnaList.do")
 	@ResponseBody
 	public ListVO getTipBoardList(String nowpage,String category){
@@ -203,6 +229,7 @@ public class BoardController {
 			return qnaService.getptQnaCategoryList(category.trim(), nowpage);
 		}
 	}
+	
 	@RequestMapping("pt_qna/pt_qna_content.do")
 	public String ptQnaContent(String no,Model model){
 		qnaService.ptQnaHitsCount(no);

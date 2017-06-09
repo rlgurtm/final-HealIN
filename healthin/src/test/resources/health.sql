@@ -115,14 +115,14 @@ create sequence mentoring_no_seq;
 drop table mentoring;
 create table mentoring(
 	mentoring_no number not null,
-	user_id varchar2(100) not null,
-	trainer_id varchar2(100) not null,
+	send_id varchar2(100) not null,
+	receive_id varchar2(100) not null,
 	content clob not null,
 	posted_date date not null,
 	hits number default 0,
-	primary key(mentoring_no,user_id,trainer_id),
-	constraint user_id_fk_mentoring foreign key(user_id) references health_user(user_id),
-	constraint trainer_id_fk_mentoring foreign key(trainer_id) references trainer(trainer_id)
+	primary key(mentoring_no),
+	constraint send_id_fk_mentoring foreign key(send_id) references health_member(id),
+	constraint receive_id_fk_mentoring foreign key(receive_id) references health_member(id)
 )
 
 -- 운동 테이블

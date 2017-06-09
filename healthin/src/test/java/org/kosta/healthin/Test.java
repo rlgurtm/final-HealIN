@@ -1,11 +1,12 @@
 package org.kosta.healthin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
-
 import org.junit.runner.RunWith;
-import org.kosta.healthin.model.dao.MemberDAO;
-import org.kosta.healthin.model.service.MemberService;
+import org.kosta.healthin.model.dao.TipDAO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,10 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //(locations={"file:src/main/webapp/WEB-INF/spring-*.xml"})
 public class Test {
 	@Resource
-	private MemberDAO memberDAO;
-	private MemberVO vo = 
-			new MemberVO("gogo", "1234", "spring여신", "spring여신님", "19250103", "female", "서울시 종로구 통인동 69 1202호",
-					"01099991234", "spring@lycos.co.kr", "user", "N");
+//	private MemberDAO memberDAO;
+	private TipDAO dao;
 /*	private MemberVO tvo = 
 //			new MemberVO("podo", "1234", "spring여신", "spring여신님", "19810614", "female", "서울시 종로구 통인동 69 1202호",
 //					"01099991234", "spring@lycos.co.kr", "user", "N","성동구 사회복지관 어르신 스트레칭 교육 4년",0,"성동구","podo1.png");
@@ -39,9 +38,15 @@ public class Test {
 //		memberDAO.registerStep3(tvo);
 //		System.out.println("일반회원가입 OKAY");
 		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("startRowNumber", 1);
+		map.put("endRowNumber", 2);
+		map.put("category", "라");
+		
 		System.out.println("아이디 중복확인 OKAY");
-		String id = memberDAO.idSearchByMailResult("자바", "javaking@nate.com");
-		System.out.println("당신의 아이디는 요"+id);
+		System.out.println("당신의 아이디는 요");
+		System.out.println("당신의 아이디는 요"+dao.getSearchQnaAllList(map));
+		
 		
 	}
 

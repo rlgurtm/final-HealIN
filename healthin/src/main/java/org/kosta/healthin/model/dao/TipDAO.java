@@ -15,6 +15,7 @@ public interface TipDAO {
 	int getTotalTipCount();
 
 	List<VO> getTipBoardCategoryList(Map<String, Object> map);
+	List<VO> getSearchtipAllList(Map<String, Object> map);
 
 	int getTotalTipCategoryCount(String category);
 
@@ -36,5 +37,10 @@ public interface TipDAO {
 
 	void tipQnaBoardUpdate(TipBoardVO tvo);
 
+	int getTotalTipCategorySearchCount(String searchWord);
+
+	int getTotalPtQnaSearchCategoryCount(String searchWord);
+
+	List<VO> getSearchQnaAllList(Map<String, Object> map);
 
 }

@@ -9,7 +9,9 @@ public interface TrainerPageService {
 	ListVO trainerMatchingList(String id, String pageNo);
 
 	ListVO trainerPtList(String id, String pageNo);
-
 	
+	int getFollowerList(String id);
+
+
 
 }

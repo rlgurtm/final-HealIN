@@ -52,5 +52,10 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		return listVO;
 	}
 
+	@Override
+	public int getFollowerList(String id){
+		return dao.getFollowerTotalCount(id);
+		
+	}
 	
 }

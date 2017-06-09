@@ -7502,3 +7502,14 @@ span.followingidnick {
     float: left;
     padding: 16px;
 }
+
+.follow {
+    width: 50%;
+    margin: auto;
+}
+
+.follo{
+	width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+}
