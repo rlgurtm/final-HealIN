@@ -26,10 +26,19 @@ public class TrainerPageController {
 		model.addAttribute("mList",service.trainerMatchingList(id, pageNo));
 		return "trainer/ptList.tiles";
 	}
-	@RequestMapping("trainer/ptListPopup.do")
-	public String ptListPopup(String id){
-		System.out.println("아이디 넘어옵니다"+id);
-		return "trainer/ptListPopup";
+	@RequestMapping("trainer/userInfoPopup.do")
+	public String ptListPopup(String id,Model model){
+		model.addAttribute("id", id);
+		return "trainer/userInfoPopup";
+	}
+	@RequestMapping("trainerMatching.do")
+	public String matching(String userId,String trainerId){
+		service.trainerMatchingUpdate(userId, trainerId);
+		return "redirect:/ptList.do?id="+trainerId;
+	}
+	@RequestMapping("trainer/matchingPopup.do")
+	public String matchinsg(){
+		return "trainer/matching";
 	}
 	@RequestMapping("trainer/followingList.do")
 	public String followingList(Model model,String pageNo,HttpServletRequest request){

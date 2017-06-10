@@ -272,7 +272,7 @@
 									.submit(
 											function() {
 												var choiceRadio = $(":input:radio[name=contactType]:checked").val();
-												alert(choiceRadio);
+												//alert(choiceRadio);
 												if (!submitted) {
 													submitted = true;
 													var contactType = $(

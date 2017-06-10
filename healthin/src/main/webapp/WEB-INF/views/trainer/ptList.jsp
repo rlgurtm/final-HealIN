@@ -4,17 +4,20 @@
 
 <script>
 function popupOpen(id){
-	alert(id);
-	var popUrl = "${pageContext.request.contextPath}/trainer/ptListPopup.do?id="+id;	
+	var popUrl = "${pageContext.request.contextPath}/trainer/userInfoPopup.do?id="+id;	
+	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	window.open(popUrl,"popupname",popOption);
 
-	var popOption = "width=500, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
-
-		window.open(popUrl,"popupname",popOption);
+	}
+function matching(){
+	var popUrl = "${pageContext.request.contextPath}/trainer/matchingPopup.do";	
+	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	window.open(popUrl,"matchingPopup",popOption);
 
 	}
 </script>
 <div class="container">
-	<h1 class="page-header">강사 매칭 신청</h1>
+	<h1 class="page-header">매칭 신청</h1>
 	<c:choose>
 		<c:when test="${!empty ptList.LVO }">
 			<table class="table table-bordered">
@@ -67,7 +70,7 @@ function popupOpen(id){
 		</c:otherwise> 
 	</c:choose>
 	<br><br>
-	<h1 class="page-header">강사 매칭 수락</h1>
+	<h1 class="page-header">매칭 수락</h1>
 	<c:choose>
 		<c:when test="${!empty ptList.LVO }">
 			<table class="table table-bordered">
@@ -84,7 +87,7 @@ function popupOpen(id){
 					<c:forEach items="${mList.LVO }" var="list">
 						<tr>
 							<td>${list.id}</td><td>${list.name }</td><td>${list.nickname }</td>
-							<td>${list.address }</td><td><a href="javascript:popupOpen();">현황보기</a></td>
+							<td>${list.address }</td><td><a href="#">현황보기</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -119,5 +122,5 @@ function popupOpen(id){
 		매칭 정보가 없습니다
 		</c:otherwise> 
 	</c:choose>
-	
+	<a href="javascript:matching();">매칭신청</a>
 </div>

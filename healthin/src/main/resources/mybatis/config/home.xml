@@ -4,6 +4,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home">
+	<resultMap type="trainerVO" id="trainerRM">
+		<result property="membervo.id" column="id" />
+		<result property="membervo.name" column="name" />
+		<result property="membervo.email" column="e_mail" />
+		<result property="membervo.tel" column="tel" />
+		<result property="trainerPhoto" column="trainer_photo"/>
+	</resultMap>
+	<resultMap type="tipBoardVO" id="tipBoardRM">
+	   <result property="memberVO.id" column="id" />
+	   <result property="memberVO.name" column="name" />
+	   <result property="memberVO.nickname" column="nickname" />
+	</resultMap>
  	<select id="getVideoListOnMainpage" resultType="trainerVideoVO">
  		select * 
 		from (select row_number() over (order by likeState desc) as rnum,a.* 
@@ -19,12 +31,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				where b.video_no(+)=a.videoNo) a )
 		where rnum between 1 and 9 order by rnum asc
  	</select>
- 	<!-- <select id="trainerVideoShow" resultType="trainerVideoVO">
- 		select video_no as videoNo,title,content,video_file as videoFile
- 		,posted_date as postedDate,hits,category,trainer_id as trainerId,openrank
- 		from trainer_video
- 		where video_no=#{value}
- 	</select> -->
+ 	<select id="getTrainerInfoListOnMainpage" resultMap="trainerRM">
+ 		select a.* from 
+       (select row_number() over(order by rank desc) rnum,
+       id, name, location, career, rank, trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id = m.id) a 
+       where rnum between 1 and 8
+ 	</select>
+ 	<select id="getTipBoardOnMainPage" resultMap="tipBoardRM">
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum, t.board_no as no, t.title, t.hits,
+		to_char(t.posted_date, 'YYYY.MM.DD') as postedDate, t.category, t.id, t.tipqna, m.name,
+		(select count(*)from health_comment where board_no = t.board_no) as commentCount
+		from tipandqna t, health_member m
+		where t.id = m.id and t.tipqna = 'tip') a 
+		where rnum between 1 and 10
+ 	</select>
+ 	<select id="getQnABoardOnMainPage" resultMap="tipBoardRM">
+		select a.* from
+		(select row_number() over(order by board_no desc) rnum, t.board_no as no, t.title, t.hits,
+		to_char(t.posted_date, 'YYYY.MM.DD') as postedDate, t.category, t.id, t.tipqna, m.name,
+		(select count(*)from health_comment where board_no = t.board_no) as commentCount
+		from tipandqna t, health_member m
+		where t.id = m.id and t.tipqna = 'ptqna') a 
+		where rnum between 1 and 10
+ 	</select>
 </mapper>
  <!-- 
  		getVideoListByPopularity

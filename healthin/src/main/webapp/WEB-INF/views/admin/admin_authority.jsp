@@ -82,7 +82,7 @@
 		<td>${lvo.membervo.withdrawal}</td>
 		<td>${lvo.rank}</td>
 		<td>
-		<form action="trainerRankDesignation.do?">
+		<form action="trainerRankDesignation.do">
 			<select name="trainerRank">
 				<option value="0">0</option>
 				<option value="1">1</option>
@@ -127,10 +127,12 @@
 		<td>${lvo.email}</td>
 		<td>${lvo.istrainer}</td>
 		<td>${lvo.withdrawal}</td>
-		<td><a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/memberSecession.do?id=${lvo.id}&state=정지">
 		정지</a></td>
-		<td><a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/memberSecession.do?id=${lvo.id}&state=사용">
 		사용</a></td>
 	</tr>
@@ -163,10 +165,12 @@
 		<td>${lvo.category}</td>
 		<td>${lvo.trainerId}</td>
 		<td>${lvo.openrank}</td>
-		<td><a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteTrainerVideo.do?videoNo=${lvo.videoNo}&state=정지">
 		정지</a></td>
-		<td><a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteTrainerVideo.do?videoNo=${lvo.videoNo}&state=사용">
 		사용</a></td>
 	</tr>
@@ -198,7 +202,8 @@
 		<td>${lvo.category}</td>
 		<td>${lvo.memberVO.id}</td>
 		<td>${lvo.tipqna}</td>
-		<td><a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=삭제">
 		삭제</a></td>
 	</tr>

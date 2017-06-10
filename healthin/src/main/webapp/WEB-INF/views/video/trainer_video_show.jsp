@@ -146,7 +146,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><pre>${cvo.videoComment}</pre></td>
+						<td colspan="2"><pre style="white-space: pre-wrap;">${cvo.videoComment}</pre></td>
 					</tr>
 				</c:forEach>
 				</table>

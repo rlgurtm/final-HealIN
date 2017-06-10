@@ -55,7 +55,7 @@
                                 <a href="${pageContext.request.contextPath}/trainer/trainerList.do">PT 강사진</a>
                             </li>
                             <li>
-                                <a href="portfolio-3-col.html">PT 강사 추천 받기</a>
+                                <a href="#">PT 강사 추천 받기</a>
                             </li>
                         </ul>
                     </li>
@@ -65,19 +65,8 @@
                     <li>
                         <a href="${pageContext.request.contextPath}/pt_qna/qna.do">PT 강사에게 묻는다!</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="member/login_form.do">이용안내_로그인(임시)</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/board/faq.do">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="#">QnA</a>
-                            </li>
-                        </ul>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/board/faq.do">FAQ</a>
                     </li>
                     <!-- 	세션이 없는 경우 My Page는 나타나지 않음
                     		일반 회원인 경우와 PT 강사의 경우 My Page가 다르게 나타남
@@ -86,7 +75,7 @@
                     	<c:choose>
                     		<c:when test="${sessionScope.mvo.istrainer == 'admin' }">
 	                    		<li class="dropdown">
-		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자 Page <b class="caret"></b></a>
+		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 		                            <li>
 		                                <a href="${pageContext.request.contextPath}/adminAuthority.do">관리자페이지</a>
@@ -96,23 +85,23 @@
                     		</c:when>
                     		<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
                     			<li class="dropdown">
-			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following List</a>
+			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">PT List</a>
+			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">Matching</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">나의 PT 회원</a>
+			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
 			                        </ul>
 			                    </li>
                     		</c:when>
                     		<c:when test="${sessionScope.mvo.istrainer == 'user' }">
                     			<li class="dropdown">
-			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Page <b class="caret"></b></a>
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a>
@@ -124,13 +113,13 @@
 			                                <a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">팔로우 한 강사</a>
+			                                <a href="#">Following</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">1:1 매칭 현황</a>
+			                                <a href="#">Matching</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">나의 PT 강사</a>
+			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
 			                        </ul>
 			                    </li>

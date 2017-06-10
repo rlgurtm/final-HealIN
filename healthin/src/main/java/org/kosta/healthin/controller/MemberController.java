@@ -18,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class MemberController {
-	private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-
+	private String uploadPath 
+	//지선
+	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	//기혁
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	@Resource
 	private MemberService memberService;
 
@@ -110,7 +113,7 @@ public class MemberController {
 		String otherMail = req.getParameter("otherMail");
 		HttpSession session = req.getSession();
 		MemberVO mvo = null;
-		System.out.println(hiddenAuthType);
+		//System.out.println(hiddenAuthType);
 		switch (hiddenAuthType) {
 		case "smsNum":
 			mvo = memberService.findPasswordByPhone(name,smsNum);
@@ -172,15 +175,15 @@ public class MemberController {
 		
 		String otherName = req.getParameter("otherMailName");
 		String otherMail = req.getParameter("otherMail");
-		System.out.println(hiddenAuthType);
+		//System.out.println(hiddenAuthType);
 		
-		System.out.println(smsName);
-		System.out.println(smsNum);
-		System.out.println(otherName);
-		System.out.println(otherMail);
+		//System.out.println(smsName);
+		//System.out.println(smsNum);
+		//System.out.println(otherName);
+		//System.out.println(otherMail);
 		
-		System.out.println("이름"+otherName);
-		System.out.println("메일"+otherMail);
+		//System.out.println("이름"+otherName);
+		//System.out.println("메일"+otherMail);
 		
 		String id="";
 		
@@ -254,8 +257,9 @@ public class MemberController {
 
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
-		memberService.trainerInfo(vo.getId());
-		System.out.println("xml 작업 후");
+		//System.out.println(vo);
+		//memberService.trainerInfo(vo.getId());
+		//System.out.println("xml 작업 후");
 
 		String id = vo.getId();
 		String password = req.getParameter("password1");
@@ -265,38 +269,35 @@ public class MemberController {
 		vo.setTel(tel);
 
 		memberService.modify(vo);
-		HttpSession session = req.getSession();
-		session.setAttribute("mvo", vo);
-		
-		System.out.println("트레이너 냐?? 유저냐??"+vo.getIstrainer());
-
+		//System.out.println("트레이너 냐?? 유저냐??"+vo.getIstrainer());
 		if (vo.getIstrainer().equals("user")) {
-			System.out.println("유저정보"+vo);
-			
-			memberService.modify(vo);
-			
-			System.out.println("user 기본 정보 저장 후"+vo);
+			//System.out.println("유저정보"+vo);
+			//memberService.modify(vo);
+			//System.out.println("user 기본 정보 저장 후"+vo);
 		} else {
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 
-//			String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
-//
-//			String originalPath = tvo.getTrainerPhoto();
-//			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
+			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
 			
 			if (file.isEmpty() == false) {
-				tvo.setTrainerPhoto(uuid.toString() + "_" + uploadFile.getOriginalFilename());
-				System.out.println("트레이너 파일 저장..낫 엠티"+uuid.toString() + "_" + uploadFile.getOriginalFilename());
+				try {
+					file.transferTo(new File(uploadPath + trainerPicFile));
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				tvo.setTrainerPhoto(trainerPicFile);
+				//System.out.println("트레이너 파일 저장..낫 엠티"+uuid.toString() + "_" + uploadFile.getOriginalFilename());
 			} else {
 				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
-				System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
+				//System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
 			}
 
 			memberService.modifyTrainer(tvo);
-			System.out.println("트레이너modifyTrainer xml 작업 후"+tvo);
+			//System.out.println("트레이너modifyTrainer xml 작업 후"+tvo);
 		}
-
+		HttpSession session = req.getSession();
+		session.setAttribute("mvo", vo);
 		return "redirect:home.do";
 	}
 

@@ -39,6 +39,21 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		ListVO listVO=new ListVO(dao.trainerMatchingList(map),pb);
 		return listVO;
 	}
+	@Override
+	public int trainerPtListCount(String id){
+		return dao.trainerPtListCount(id);
+	}
+	@Override
+	public int trainerMatchingListCount(String id){
+		return dao.trainerMatchingListCount(id);
+	}
+	@Override
+	public void trainerMatchingUpdate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.trainerMatcingUpdate(map);
+	}
 	
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {

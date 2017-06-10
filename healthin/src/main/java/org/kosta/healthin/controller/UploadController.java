@@ -25,8 +25,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-	//private String uploadPath = "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
-	private String uploadPath = "C:\\Users\\kosta\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	private String uploadPath 
+	//기혁
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	//송희
+	//= "C:\\Users\\kosta\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 
 	@Resource
 	private TrainerVideoService videoService;
@@ -55,7 +58,7 @@ public class UploadController {
 	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = null;
-		if (session != null) {
+		if (session.getAttribute("mvo") != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
 		}
 		
@@ -214,7 +217,7 @@ public class UploadController {
 		} else {
 			// System.out.println("삭제x");
 		}
-		return "redirect:trainerVideoList.do";
+		return "redirect:filterVideoList.do?filter=no";
 	}
 	
 	@RequestMapping("filterVideoList.do")

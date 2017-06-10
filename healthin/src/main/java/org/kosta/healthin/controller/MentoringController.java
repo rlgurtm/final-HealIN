@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.healthin.model.service.MentoringService;
+import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +21,15 @@ public class MentoringController {
 		HttpSession session = request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:home.do";
-		}
-		MemberVO mvo = (MemberVO) request.getAttribute("mvo");
-		if(mvo.getIstrainer().equals("trainer")){
-			
-		} else if(mvo.getIstrainer().equals("user")){
-			
+		} else {
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			ListVO listVO = new ListVO();
+			if(mvo.getIstrainer().equals("trainer")){
+				listVO = mentoringService.findByTrainerMatchingMemberList(mvo.getId());
+			} else if(mvo.getIstrainer().equals("user")){
+				listVO = mentoringService.findByUserMatchingMemberList(mvo.getId());
+			}
+			model.addAttribute("listVO",listVO);
 		}
 		return "mentoring/mentoring_list.tiles";
 	}
