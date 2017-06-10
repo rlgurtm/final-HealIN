@@ -180,7 +180,11 @@ public class BoardController {
 	}
 		
 	@RequestMapping("trainer/trainerDetail.do")
-	public String trainerDetail(Model model,String trainerId){
+	public String trainerDetail(Model model,String trainerId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo==null)
+			return "redirect:/home.do";
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);

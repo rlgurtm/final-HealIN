@@ -72,7 +72,7 @@ $(document).ready(function(){
 			<td id="imgtd"></td>
 			</tr>
 			<tr>
-			<th colspan="2">팔로워 :  ${tvo.count}</th><th></tr>
+			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			
 		</table>
 			

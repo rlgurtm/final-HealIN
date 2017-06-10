@@ -44,6 +44,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        and apply_result='Y' and accept_result='N') a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
  	</select>
+ 	
+ 	<select id="selectAcceptState" parameterType="map" resultType="String">
+ 	select accept_result
+ 	from following
+ 	where user_id=#{USERID} and trainer_id=#{TRAINERID}
+ 	</select>
+ 	
+ 	<update id="updateAcceptState" parameterType="map">
+ 	update
+ 	</update>
 </mapper>
  
  

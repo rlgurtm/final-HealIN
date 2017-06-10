@@ -43,4 +43,16 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		return template.selectList("trainerpage.getFollowerList",map);
 	}
 	
+	@Override
+	public String selectAcceptState(Map<String, String> map) {
+		return template.selectOne("trainerpage.selectAcceptState",map);
+	}
+	
+	@Override
+	public void updateAcceptState(Map<String, String> map) {
+		template.update("trainerpage.updateAcceptState",map);
+	}
+
+	
+	
 }
