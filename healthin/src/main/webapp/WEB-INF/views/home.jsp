@@ -10,7 +10,7 @@
 	    -o-text-overflow: ellipsis;
 	    -ms-text-overflow: ellipsis;
 	}
-	#slider-for {
+	#test {
 		background-color: f5f5f5;
 	}
 </style>
@@ -20,14 +20,15 @@
         	$(".active").removeClass("active");
         	$(this).addClass("active");
         });
+    	//동영상 부분
   		$(".regular").slick({
 	        dots: true,
 	        infinite: true,
-	        slidesToShow: 3,
+	        slidesToShow: 4,
 	        slidesToScroll: 3
 		});
   		 //트레이너 부분
-  		$('.slider-for').slick({
+  		/* $('.slider-for').slick({
   		  slidesToShow: 1,
   		  slidesToScroll: 1,
   		  arrows: false,
@@ -41,7 +42,7 @@
   		  dots: true,
   		  centerMode: true,
   		  focusOnSelect: true
-  		});
+  		}); */
     });
 </script>
 
@@ -173,70 +174,54 @@
         <!-- /.row -->
         
         <br><br><br>
-
-        <!-- 강사진 보기 Section -->
-        <div class="row">
+        
+<!-- 강사진 보기 section -->
+        <div class="row" >
             <div class="col-lg-12">
-            	<div class="col-lg-12">
+                <div class="col-lg-12" align="left">
 	                <h2 class="page-header">PT Trainer
 	                    <small>popular trainer</small>
 	                </h2>
-	                <div class="slider-for">
-	                	<c:forEach items="${trainerList.LVO}" var="trainer">
-							<div class="trainerList" align="center">
-							<div>
-								<a href="#">
-									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="500" height="380">
-									<%-- <video width="500" height="380">
-									<source
-										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
-											type="video/mp4">
-									</video> --%>
-								</a>
-								<!-- <div style="background:#F2F2F2"> -->
-								<h3>
-									<a>${trainer.membervo.name}</a>
-								</h3>
-								<%-- 작성자 : ${lvo.trainerId}<br>
-								추천 : ${lvo.likeState}<br> 
-								분류 : ${lvo.category}<br>
-								조회수 : ${lvo.hits}<br> 
-								등록일 : ${lvo.postedDate}<br>
-								${lvo.content}<br> --%>
-								<!-- </div> -->
-							</div>
-							</div>
-						</c:forEach>
-	                </div><br>
-	                <div class="slider-nav">
-						<c:forEach items="${trainerList.LVO}" var="trainer">
-							<div class="trainerList" align="center">
-							<div>
-								<a href="#">
-									<img src="${pageContext.request.contextPath}/resources/img/${trainer.trainerPhoto}" width="180" height="110">
-									<%-- <video width="200" height="130">
-									<source
-										src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
-											type="video/mp4">
-									</video> --%>
-								</a>
-								<!-- <div style="background:#F2F2F2"> -->
-								<h3>
-									<a>${trainer.membervo.name}</a>
-								</h3>
-								<%-- 추천 : ${lvo.likeState}<br> 
-								분류 : ${lvo.category}<br> --%>
-								<!-- </div> -->
-							</div>
-							</div>
-						</c:forEach>
-					</div>
+	            <div class="slider-for">
+	            	<c:forEach items="${trainerList.LVO}" var="trainer">
+	            	<div style="height: 410px" align="right">
+	            		<div class="col-lg-7">
+	            		<a href="${pageContext.request.contextPath}/trainer/trainerDetail.do?trainerId=${trainer.membervo.id}">
+	            		<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="400px">
+						</a>
+						</div>
+						<div class="col-lg-4" align="left">
+						<table class="table">
+						<tr>
+							<th>ID</th><td>${trainer.membervo.id}</td>
+						</tr>
+						<tr>
+							<th>이름</th><td>${trainer.membervo.name}</td>
+						</tr>
+						<tr>
+							<th>지역</th><td>${trainer.location}</td>
+						</tr>
+						<tr>
+							<th>경력</th><td>${trainer.career}</td>
+						</tr>
+						</table>
+						</div>
+	            	</div>
+					</c:forEach>
+	            </div>
+	            <div class="slider-nav" class="col-lg-12">
+	            	<c:forEach items="${trainerList.LVO}" var="trainer">
+	            	<div style="width: 100px; height: 100px">
+	            		<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="100px">
+	            	</div>
+					</c:forEach>
+	            </div>
 	            </div>
             </div>
         </div>
         <!-- /.row -->
         
-        <br><br><br><br><br><br>
+        <br><br><br>
         
         <!-- 인기 동영상 section -->
         <div class="row" >
@@ -277,7 +262,7 @@
         <!-- /.row -->
         
         <br><br><br>
-
+		
 	</div>
     <!-- /.container -->
 

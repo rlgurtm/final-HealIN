@@ -27,7 +27,7 @@
 								info+="("+data.lvo[i].commentCount+")";
 							} 
 						
-						info+="</td><td>"+data.lvo[i].memberVO.name+"</td>";
+						info+="</td><td>"+data.lvo[i].memberVO.nickname+"</td>";
 						info+="<td>"+data.lvo[i].postedDate+"</td>";
 						info+="<td>"+data.lvo[i].hits+"</td></tr>";
 					} 
@@ -117,7 +117,7 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>${list.memberVO.name }</td>
+						<td>${list.memberVO.nickname }</td>
 						<td>${list.postedDate }</td>
 						<td>${list.hits}</td>
 					</tr>

@@ -29,7 +29,7 @@
 							mobile : {
 								required : "휴대폰 번호를 입력해 주세요.",
 								rangelength : "조금 더! 휴대폰 번호는 무조건 11자리입니다.",
-								startNumber : "휴대폰 번호는 시작번호가 010이죠?이렇게 적으세요.",
+								startNumber : "휴대폰번호 확인해주세요",
 								onlyNumber : "숫자가 아닌것은 아예 넣지 마세요."
 							},
 							required : "내용을 입력해 주세요.",

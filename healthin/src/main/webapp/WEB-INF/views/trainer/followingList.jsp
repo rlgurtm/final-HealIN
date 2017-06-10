@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header follo">
-				<small>팔로워 :  ${follower}  / 팔로잉 : 2</small> 
+				<small>팔로워 :  ${follower}  / 팔로잉 : 0</small> 
 			</h1>
 			
 		</div>
@@ -30,7 +30,8 @@
 					<td><span class="followingidnick">${list.id} / ${list.nickname}&emsp;&emsp;
 					</span></td>
 					<td>
-					<a href="updateAcceptState.do?userId=${list.id}">
+					<a href="#">
+					<%-- <a href="updateAcceptState.do?userId=${list.id}"> --%>
 					<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>
 					</a>
 					</td>
