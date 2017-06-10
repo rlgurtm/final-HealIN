@@ -118,9 +118,6 @@
 					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
 					<li class="menu"><a href="${pageContext.request.contextPath}/userHealthCheck.do">기간 별 칼로리 체크</a></li>
 					<li class="menu"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a></li>
-					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
-					<li class="menu"><a href="#">1:1 매칭 현황 </a></li>
-					<li class="menu"><a href="#">나의 PT 강사</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${sessionScope.mvo.istrainer == 'trainer'}">
