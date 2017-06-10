@@ -10,7 +10,7 @@
 	    -o-text-overflow: ellipsis;
 	    -ms-text-overflow: ellipsis;
 	}
-	#slider-for {
+	#test {
 		background-color: f5f5f5;
 	}
 </style>
@@ -24,11 +24,11 @@
   		$(".regular").slick({
 	        dots: true,
 	        infinite: true,
-	        slidesToShow: 3,
+	        slidesToShow: 4,
 	        slidesToScroll: 3
 		});
   		 //트레이너 부분
-  		$('.slider-for').slick({
+  		/* $('.slider-for').slick({
   		  slidesToShow: 1,
   		  slidesToScroll: 1,
   		  arrows: false,
@@ -42,7 +42,7 @@
   		  dots: true,
   		  centerMode: true,
   		  focusOnSelect: true
-  		});
+  		}); */
     });
 </script>
 
@@ -174,6 +174,7 @@
         <!-- /.row -->
         
         <br><br><br>
+        
 <!-- 강사진 보기 section -->
         <div class="row" >
             <div class="col-lg-12">
@@ -220,7 +221,7 @@
         </div>
         <!-- /.row -->
         
-        <br><br><br><br><br><br>
+        <br><br><br>
         
         <!-- 인기 동영상 section -->
         <div class="row" >

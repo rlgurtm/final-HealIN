@@ -22,7 +22,6 @@ public class HomeServiceImpl implements HomeService {
 		allContentsList.put("trainerList", homeDAO.getTrainerInfoListOnMainpage());
 		allContentsList.put("tipBoardList", homeDAO.getTipBoardOnMainPage());
 		allContentsList.put("qnaBoardList", homeDAO.getQnABoardOnMainPage());
-		//System.out.println(allContentsList.get("trainerList"));
 		return allContentsList;
 	}
 }

@@ -292,8 +292,7 @@ values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트
 		where t.id = m.id and t.tipqna = 'ptqna') a 
 		where rnum between 1 and 10
 		
-		
-		
+
 		
 select pi.rnum, cm.consumption_no as consumptionNo, e.name as exName,
 		e.calorie, cm.ex_hour as exHour, (e.calorie*cm.ex_hour*pi.weight) as totalCalorie
@@ -308,3 +307,11 @@ select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
 		rnum from physical_info p, health_user hu where p.user_id = hu.user_id)
 		pi where e.name = cm.name and pi.rnum = 1
 		and ex_date = '2017-06-10' and cm.user_id = 'lim1'
+
+insert into health_member 
+values('healthman7','1234','헬스맨','포스짱','19790902','male','서울시 은평구 통인동 65 201호','01098900000','healthma@naver.com','trainer','N');
+insert into trainer  
+values('healthman7','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','트레이너2.jpg');
+
+update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
+
