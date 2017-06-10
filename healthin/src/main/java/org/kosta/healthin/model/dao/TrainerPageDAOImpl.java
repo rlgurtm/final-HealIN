@@ -32,6 +32,10 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	public int trainerMatchingListCount(String id){
 		return template.selectOne("trainerpage.trainerMatchingListCount",id);
 	}
+	@Override
+	public void trainerMatcingUpdate(Map<String,Object> map){
+		template.update("trainerpage.trainerMatcingUpdate",map);
+	}
 
 	@Override
 	public int getFollowerTotalCount(String id) {

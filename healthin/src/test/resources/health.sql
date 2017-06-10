@@ -104,6 +104,7 @@ create table matching(
 	trainer_id varchar2(100) not null,
 	apply_result char(1) default('N'),
 	accept_result char(1) default('N'),
+	matching_date date,
 	primary key(user_id,trainer_id),
 	constraint user_id_fk_matching foreign key(user_id) references health_user(user_id),
 	constraint trainer_id_fk_matching foreign key(trainer_id) references trainer(trainer_id)

@@ -16,6 +16,8 @@ public interface TrainerPageService {
 
 	int trainerMatchingListCount(String id);
 
+	void trainerMatchingUpdate(String userId, String trainerId);
+
 
 
 }

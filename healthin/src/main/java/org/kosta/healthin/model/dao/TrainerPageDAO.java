@@ -19,4 +19,6 @@ public interface TrainerPageDAO {
 
 	int trainerMatchingListCount(String id);
 
+	void trainerMatcingUpdate(Map<String, Object> map);
+
 }

@@ -72,10 +72,39 @@ $(document).ready(function(){
 			<td id="imgtd"></td>
 			</tr>
 			<tr>
-			<th colspan="2">팔로워 :  ${tvo.count}</th><th></tr>
-			
-		</table>
-			
+			<th colspan="2">팔로워 :  ${tvo.count}</th><th>
+			</tr>
+		</table><br>
+			<div class="container">
+				<table  class="table table-bordered">
+					<thead>
+						<tr>
+							<th>기간</th>
+							<th>가격</th>
+							<th>강사명</th>
+							<th>수락</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+							<select>
+								<option value="">기간</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+							</td>
+							<td>월 만원</td>
+							<td>healthboy</td>
+							<td>
+								<input type="submit" value="신청">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 <input type="hidden" id="trainerId" value="${tvo.membervo.id}">
