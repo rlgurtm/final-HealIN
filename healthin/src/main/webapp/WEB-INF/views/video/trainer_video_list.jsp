@@ -63,7 +63,6 @@
 		});
 	});
 </script>
-<a href="">멘토링</a>
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
@@ -153,22 +152,21 @@
 			<div class="col-md-3 img-portfolio">
 				<div class="videoList">
 					<a href="${pageContext.request.contextPath}/trainerVideoShow.do?videoNo=${lvo.videoNo}#loca">
-						<video width="270" height="200">
+						<video class="video-js" width="270" height="200" preload="metadata" >
 							<source
 								src="${pageContext.request.contextPath}/resources/video/${lvo.videoFile}"
 								type="video/mp4">
 						</video>
 					</a>
 					<!-- <div style="background:#F2F2F2"> -->
-					<h3>
+					<h4>
 						<a>${lvo.title}</a>
-					</h3>
+					</h4>
 					작성자 : ${lvo.trainerId}<br>
 					추천 : ${lvo.likeState}<br> 
 					분류 : ${lvo.category}<br>
 					조회수 : ${lvo.hits}<br> 
 					등록일 : ${lvo.postedDate}<br>
-					${lvo.content}<br>
 					<!-- </div> -->
 				</div>
 			</div>

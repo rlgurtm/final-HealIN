@@ -1,5 +1,8 @@
 package org.kosta.healthin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -41,6 +44,11 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("TRAINERID", "healthboy");
+		map.put("USERID","java");
+		String state=pdao.selectAcceptState(map);
+		System.out.println(state);
 	}
 }
 

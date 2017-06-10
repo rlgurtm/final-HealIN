@@ -26,10 +26,19 @@ public class TrainerPageController {
 		model.addAttribute("mList",service.trainerMatchingList(id, pageNo));
 		return "trainer/ptList.tiles";
 	}
-	@RequestMapping("trainer/ptListPopup.do")
+	@RequestMapping("trainer/userInfoPopup.do")
 	public String ptListPopup(String id,Model model){
 		model.addAttribute("id", id);
-		return "trainer/ptListPopup";
+		return "trainer/userInfoPopup";
+	}
+	@RequestMapping("trainerMatching.do")
+	public String matching(String userId,String trainerId){
+		service.trainerMatchingUpdate(userId, trainerId);
+		return "redirect:/ptList.do?id="+trainerId;
+	}
+	@RequestMapping("trainer/matchingPopup.do")
+	public String matchinsg(){
+		return "trainer/matching";
 	}
 	@RequestMapping("trainer/followingList.do")
 	public String followingList(Model model,String pageNo,HttpServletRequest request){
@@ -48,5 +57,16 @@ public class TrainerPageController {
 			return "home.do";
 		}
 		return "trainer/followingList.tiles";
+	}
+	
+	@RequestMapping("updateAcceptState.do")
+	public String updateAcceptState(Model model,String userId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String trainerId=mvo.getId();
+			service.updateAcceptState(trainerId,userId);
+		}
+		return "redirect:trainer/followingList.do";
 	}
 }

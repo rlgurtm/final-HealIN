@@ -30,6 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select count(*) from matching where trainer_id=#{value}
 		and apply_result='Y' and accept_result='Y'
  	</select>
+ 	<update id="trainerMatcingUpdate" parameterType="map">
+ 		update matching set accept_result='Y',matching_date=sysdate
+ 		where trainer_id=#{trainerId} and user_id=#{userId}
+ 	</update>
  	<select id="getFollowerTotalCount" resultType="int">
  	select count(*) 
 	from following 
@@ -44,6 +48,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        and apply_result='Y' and accept_result='N') a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
  	</select>
+ 	
+ 	<select id="selectAcceptState" parameterType="map" resultType="String">
+ 	select accept_result
+ 	from following
+ 	where user_id=#{USERID} and trainer_id=#{TRAINERID}
+ 	</select>
+ 	
+ 	<update id="updateAcceptState" parameterType="map">
+ 	update
+ 	</update>
 </mapper>
  
  

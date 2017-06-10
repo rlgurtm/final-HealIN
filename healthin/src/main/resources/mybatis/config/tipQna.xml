@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select a.* from
       (select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,
       to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
-      (select count(*)from health_comment where board_no=t.board_no )as commentCount
+      (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
       from tipandqna t,health_member m
       where t.id=m.id and t.tipqna='tip') a 
         where rnum between #{startRowNumber} and #{endRowNumber}
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select a.* from
       (select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,
       to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
-      (select count(*)from health_comment where board_no=t.board_no )as commentCount
+      (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
       from tipandqna t,health_member m
       where t.id=m.id and t.tipqna='tip' and t.category=#{category}) a 
         where rnum between #{startRowNumber} and #{endRowNumber}
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select a.* from
       (select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,
       to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
-      (select count(*)from health_comment where board_no=t.board_no )as commentCount
+      (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
       from tipandqna t,health_member m
       where t.id=m.id and t.tipqna='ptqna') a 
         where rnum between #{startRowNumber} and #{endRowNumber}
@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select a.* from
       (select row_number() over(order by board_no desc) rnum,t.board_no as no,t.title,t.hits,
       to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
-      (select count(*)from health_comment where board_no=t.board_no )as commentCount
+      (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
       from tipandqna t,health_member m
       where t.id=m.id and t.tipqna='ptqna' and t.category=#{category}) a 
         where rnum between #{startRowNumber} and #{endRowNumber}

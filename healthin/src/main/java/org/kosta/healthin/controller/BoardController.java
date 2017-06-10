@@ -57,12 +57,12 @@ public class BoardController {
 	
 	@RequestMapping("tip/search_tip.do")
 	public String getSearchtipAllList(Model model,String nowpage,String searchWord){
-		System.out.println("헤더 검색어>>>"+searchWord);
+		//System.out.println("헤더 검색어>>>"+searchWord);
 		if(nowpage==null)
 			nowpage="1";
 		ListVO list=tipService.getSearchtipAllList(nowpage,searchWord);
 		model.addAttribute("list",list );
-		System.out.println("나만의 팁 검색 결과"+list);
+		//System.out.println("나만의 팁 검색 결과"+list);
 		return "tip/search_tip.tiles";
 	}
 	
@@ -177,7 +177,11 @@ public class BoardController {
 	}
 		
 	@RequestMapping("trainer/trainerDetail.do")
-	public String trainerDetail(Model model,String trainerId){
+	public String trainerDetail(Model model,String trainerId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo==null)
+			return "redirect:/home.do";
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);

@@ -47,6 +47,13 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 	public int trainerMatchingListCount(String id){
 		return dao.trainerMatchingListCount(id);
 	}
+	@Override
+	public void trainerMatchingUpdate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.trainerMatcingUpdate(map);
+	}
 	
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
@@ -64,6 +71,16 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 	public int getFollowerList(String id){
 		return dao.getFollowerTotalCount(id);
 		
+	}
+	@Override
+	public void updateAcceptState(String trainerId, String userId) {
+		
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("TRAINERID", trainerId);
+		map.put("USERID",userId);
+		String state=dao.selectAcceptState(map);
+		map.put("STATE", state);
+		dao.updateAcceptState(map);
 	}
 	
 }

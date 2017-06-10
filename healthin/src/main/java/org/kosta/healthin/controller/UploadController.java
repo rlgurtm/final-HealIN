@@ -58,7 +58,7 @@ public class UploadController {
 	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = null;
-		if (session != null) {
+		if (session.getAttribute("mvo") != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
 		}
 		
@@ -217,7 +217,7 @@ public class UploadController {
 		} else {
 			// System.out.println("삭제x");
 		}
-		return "redirect:trainerVideoList.do";
+		return "redirect:filterVideoList.do?filter=no";
 	}
 	
 	@RequestMapping("filterVideoList.do")

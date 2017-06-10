@@ -35,7 +35,11 @@ public class MyPageController {
 	@RequestMapping("bmi_list.do")
 	public String selectUserPhyicalInfo(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		MemberVO mvo = null;
+		ListVO listVO = null;
+		if(session.getAttribute("mvo")!=null){
+		mvo = (MemberVO) session.getAttribute("mvo");
+		}
 		int nowPage;
 		PagingBean pb;
 		int valueTotalCount; 
@@ -44,15 +48,17 @@ public class MyPageController {
 		} else {
 			nowPage = 1;
 		}
-		valueTotalCount=myPageService.graphContentCount(mvo.getId());
-		System.out.println(valueTotalCount);
-		pb=new PagingBean(valueTotalCount,nowPage);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("pb", pb);
-		map.put("user_id",mvo.getId());
-		ListVO listVO = myPageService.selectUserPhysicalInfo(map);
-		listVO.setPb(pb);
-		System.out.println(listVO);
+		if(mvo!=null){
+			valueTotalCount=myPageService.graphContentCount(mvo.getId());
+			//System.out.println(valueTotalCount);
+			pb=new PagingBean(valueTotalCount,nowPage);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("pb", pb);
+			map.put("user_id",mvo.getId());
+			listVO = myPageService.selectUserPhysicalInfo(map);
+			listVO.setPb(pb);
+			//System.out.println(listVO);
+		}
 		model.addAttribute("listVO", listVO);
 		return "mypage/bmi_list.tiles";
 	}
