@@ -10,6 +10,7 @@
     	$("#sendBtn").click(function() {
     		var startDate = document.getElementById("datepicker1").value;
     		var endDate = document.getElementById("datepicker2").value;
+    		calDateRange(startDate, endDate);
     		startDate = startDate.replace(/\-/g,''); 	//특정문자 제거
     		endDate = endDate.replace(/\-/g,'');
     		startDate = Number(startDate);
@@ -35,6 +36,47 @@
 			});
     	});
     });
+</script>
+<script>
+	function calDateRange(date1, date2) {
+	    var format = "-";
+	
+	    // FORMAT을 포함한 길이 체크
+	    if (date1.length != 10 || date2.length != 10)
+	        return null;
+	
+	    // FORMAT이 있는지 체크
+	    if (date1.indexOf(format) < 0 || date2.indexOf(format) < 0)
+	        return null;
+	
+	    // 년도, 월, 일로 분리
+	    var date1_arr = date1.split(format);
+	    var date2_arr = date2.split(format);
+	    
+	    var start_date = new Date(date1_arr[0], date1_arr[1], date1_arr[2]);
+	    var end_date = new Date(date2_arr[0], date2_arr[1], date2_arr[2]);
+	    var day_gap = end_date - start_date;
+	    
+	    //if (date1%4 == 0 && ( year%100!=0 || year%400==0 ) 
+	    var day = 1000 * 60 * 60 * 24;		// 밀리세컨 * 세컨 * 분 * 시간
+	    var month = day * 30;
+	    var year = month * 12;
+	    
+	    alert("start_dt : " + start_dt);
+	    alert("end_dt : " + end_dt);
+	
+	    /* // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
+	    // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
+	    start_dt[1] = (Number(start_dt[1]) - 1) + "";
+	    end_dt[1] = (Number(end_dt[1]) - 1) + "";
+	    var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
+	    var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
+	    
+	    alert("from_dt : " + from_dt);
+	    alert("to_dt : " + to_dt);
+	
+	    return (to_dt.getTime() - from_dt.getTime()) / 1000 / 60 / 60 / 24; */
+	}
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">

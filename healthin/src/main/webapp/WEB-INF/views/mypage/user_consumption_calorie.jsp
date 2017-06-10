@@ -187,12 +187,12 @@
 				<c:choose>
 					<c:when test="${requestScope.exList == null}">
 						<tr>
-							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : 0 Kcal</td>
+							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 소모 칼로리 : 0 Kcal</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 섭취 칼로리 : ${requestScope.totalCalorie} Kcal</td>
+							<td colspan="5" align="right" style='font-weight:bold; font-size: 20px;'>총 소모 칼로리 : ${requestScope.totalCalorie} Kcal</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>

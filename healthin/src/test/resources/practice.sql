@@ -298,3 +298,38 @@ insert into trainer
 values('healthman7','은평구 생활체육센터 헬쓰트레이너 3년',0,'은평구','트레이너2.jpg');
 
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
+
+select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from exercise e,
+		consumption_member cm, (select p.weight, row_number() over(order by physical_no desc) rnum from physical_info p, health_user hu where p.user_id = hu.user_id) pi
+		where e.name = cm.name  and pi.rnum = 1
+		and ex_date = '2017-06-10' and cm.user_id ='user1'
+		
+		
+select pi.rnum, cm.consumption_no as consumptionNo, e.name as exName,
+		e.calorie, cm.ex_hour as exHour, (e.calorie*cm.ex_hour*pi.weight) as totalCalorie
+		from(select p.physical_no, row_number() over(order by physical_no desc) rnum,
+		p.weight from physical_info p, health_user h where p.user_id = h.user_id) pi, 
+		exercise e, consumption_member cm, health_user hu
+		where cm.user_id = hu.user_id and e.name = cm.name and cm.ex_date = '2017-06-10'
+		and cm.user_id = 'user1' and pi.rnum = 1
+		
+select e.calorie,cm.ex_hour,pi.weight as totalCalorie from exercise e,
+		consumption_member cm, physical_info pi
+		where e.name = cm.name and pi.user_id = cm.user_id
+		and ex_date = '2017-06-11' and cm.user_id = 'user1'
+		
+select cme.ex_hour,cme.calorie,p.weight
+from
+   (select cm.consumption_no,cm.name,cm.ex_hour,cm.ex_date,cm.user_id
+      ,e.calorie 
+   from (select consumption_no,name,ex_hour,ex_date,user_id 
+   from consumption_member) cm,
+   (select calorie, name from exercise) e
+   where cm.name=e.name and ex_date='2017-06-10') cme, 
+
+   (select a.* from
+   (select row_number() over(order by physical_no desc) rnum,weight,user_id,today
+   from physical_info
+   where today = '2017-06-10') a
+   where rnum=1 ) p
+where cme.user_id=p.user_id and p.user_id = 'user1'
