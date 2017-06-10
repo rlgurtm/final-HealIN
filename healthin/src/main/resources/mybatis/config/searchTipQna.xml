@@ -30,15 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rnum between #{startRowNumber} and #{endRowNumber} and
 		category like '%' || #{category}||'%' or
 		title like '%' || #{category} ||'%' or
-		id like '%' || #{category} ||'%' or
-		content like '%' || #{category} ||'%'
+		id like '%' || #{category} ||'%'
 	</select>
 	<select id="getTotalTipCategorySearchCount" resultType="int">
 		select count(*) from tipandqna
 		where tipqna='tip' and category like '%' || #{value}||'%' or
 		title like '%' || #{value} ||'%' or
-		id like '%' || #{value} ||'%' or
-		content like '%' || #{value} ||'%'
+		id like '%' || #{value} ||'%'
 	</select>
 
 

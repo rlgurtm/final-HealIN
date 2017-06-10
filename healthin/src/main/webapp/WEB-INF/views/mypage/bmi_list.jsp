@@ -75,7 +75,7 @@ table, th, td {
         ]);
 
         var options = {
-          title: '기간 별 칼로리 섭취/소모량',
+          title: '기간 별 BMI & 체중 LIST',
           legend: { position: 'bottom' }
         };
 
@@ -92,15 +92,20 @@ table, th, td {
 </script>
 <hr>
 <div class="container">
-<c:choose>
+	<!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">My Page
+                    <small>BMI</small>
+                </h1>
+            </div>
+        </div>
+	<c:choose>
 			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
-					<li class="menu active"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
 					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 칼로리 체크</a></li>
-					<li class="menu"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a></li>
-					<li class="menu"><a href="#">팔로우 한 강사 </a></li>
-					<li class="menu"><a href="#">1:1 매칭 현황 </a></li>
-					<li class="menu"><a href="#">나의 PT 강사</a></li>
+					<li class="menu active"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${sessionScope.mvo.istrainer == 'trainer'}">
@@ -136,8 +141,6 @@ table, th, td {
 			</tbody>
 		</table>
 	</form>
-
-
 <hr>
 <div>
 	<form id="graphPb"
@@ -166,7 +169,7 @@ table, th, td {
 			</c:forEach>
 		</table>
 	</form>
-<div id="curve_chart" style="width: 100%; height: 500px;"></div>
+
 </div>
 <!-- Pagination -->
 	<div class="row text-center">
@@ -193,6 +196,7 @@ table, th, td {
 			</ul>
 		</div>
 	</div>
+	<!-- <div id="curve_chart" style="width: 100%; height: 500px;"></div> -->
 	<table class="table">
 			<tr>
 				<td align="center"><img

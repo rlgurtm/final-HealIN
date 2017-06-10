@@ -113,13 +113,13 @@
 			                                <a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">팔로우 한 강사</a>
+			                                <a href="#">Following</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">매칭 한 강사</a>
+			                                <a href="#">Matching</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring List</a>
+			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
 			                        </ul>
 			                    </li>

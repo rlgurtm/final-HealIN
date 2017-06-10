@@ -58,7 +58,7 @@ public class UploadController {
 	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = null;
-		if (session != null) {
+		if (session.getAttribute("mvo") != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
 		}
 		

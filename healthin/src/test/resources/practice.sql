@@ -291,3 +291,20 @@ values(board_no_seq.nextval,'다이어트는 어떻게 하나요?','다이어트
 		from tipandqna t, health_member m
 		where t.id = m.id and t.tipqna = 'ptqna') a 
 		where rnum between 1 and 10
+		
+		
+		
+		
+select pi.rnum, cm.consumption_no as consumptionNo, e.name as exName,
+		e.calorie, cm.ex_hour as exHour, (e.calorie*cm.ex_hour*pi.weight) as totalCalorie
+		from(select p.physical_no, row_number() over(order by physical_no desc) rnum,
+		p.weight from physical_info p, health_user h where p.user_id = h.user_id) pi, 
+		exercise e, consumption_member cm, health_user hu
+		where cm.user_id = hu.user_id and e.name = cm.name and cm.ex_date = '2017-06-10'
+		and cm.user_id = 'lim1' and pi.rnum = 1
+		
+select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
+		exercise e, consumption_member cm, (select p.weight, row_number() over(order by physical_no desc)
+		rnum from physical_info p, health_user hu where p.user_id = hu.user_id)
+		pi where e.name = cm.name and pi.rnum = 1
+		and ex_date = '2017-06-10' and cm.user_id = 'lim1'

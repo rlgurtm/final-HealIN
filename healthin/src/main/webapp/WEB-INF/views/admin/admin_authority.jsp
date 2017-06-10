@@ -127,18 +127,14 @@
 		<td>${lvo.email}</td>
 		<td>${lvo.istrainer}</td>
 		<td>${lvo.withdrawal}</td>
-		<td><a class="btn"
-		href="#">
-		정지</a>
-		<%-- <a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/memberSecession.do?id=${lvo.id}&state=정지">
-		정지</a> --%></td>
-		<td><a class="btn"
-		href="#">
-		사용</a>
-		<%-- <a class="btn"
+		정지</a></td>
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/memberSecession.do?id=${lvo.id}&state=사용">
-		사용</a> --%></td>
+		사용</a></td>
 	</tr>
 	</tbody>
 	</c:forEach>
@@ -169,18 +165,14 @@
 		<td>${lvo.category}</td>
 		<td>${lvo.trainerId}</td>
 		<td>${lvo.openrank}</td>
-		<td><a class="btn"
-		href="#">
-		정지</a>
-		<%-- <a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteTrainerVideo.do?videoNo=${lvo.videoNo}&state=정지">
-		정지</a> --%></td>
-		<td><a class="btn"
-		href="#">
-		사용</a>
-		<%-- <a class="btn"
+		정지</a></td>
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteTrainerVideo.do?videoNo=${lvo.videoNo}&state=사용">
-		사용</a> --%></td>
+		사용</a></td>
 	</tr>
 	</tbody>
 	</c:forEach>
@@ -210,12 +202,10 @@
 		<td>${lvo.category}</td>
 		<td>${lvo.memberVO.id}</td>
 		<td>${lvo.tipqna}</td>
-		<td><a class="btn"
-		href="#">
-		삭제</a>
-		<%-- <a class="btn"
+		<td>
+		<a class="btn"
 		href="${pageContext.request.contextPath}/deleteBoard.do?boardNo=${lvo.no}&state=삭제">
-		삭제</a> --%></td>
+		삭제</a></td>
 	</tr>
 	</tbody>
 	</c:forEach>
