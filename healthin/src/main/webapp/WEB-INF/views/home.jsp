@@ -28,7 +28,7 @@
 	        slidesToScroll: 3
 		});
   		 //트레이너 부분
-  		/* $('.slider-for').slick({
+   		$('.slider-for').slick({
   		  slidesToShow: 1,
   		  slidesToScroll: 1,
   		  arrows: false,
@@ -42,7 +42,7 @@
   		  dots: true,
   		  centerMode: true,
   		  focusOnSelect: true
-  		}); */
+  		});
     });
 </script>
 
