@@ -11,6 +11,16 @@
 		margin-top: 10%;
 	}
 </style>
+<script type="text/javascript">
+	function matching(){
+		if(confirm("수락하시겠습니까?")){
+			opener.location.href="${pageContext.request.contextPath}/trainerMatching.do?trainerId=${mvo.id}&userId=${id}";
+			window.close();
+		}else{
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <div class="container">
@@ -32,7 +42,7 @@
 				<td>3개월</td>
 				<td>30000</td>
 				<td>입금대기</td>
-				<td><input type="button" value="수락"></td>
+				<td><input type="button" value="수락" onclick="matching()"></td>
 			</tr>
 		</tbody>
 	</table>

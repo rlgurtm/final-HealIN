@@ -17,9 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalConsumptionCalorieOfDay" resultType="int" parameterType="map">
 		select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
 		exercise e, consumption_member cm, (select p.weight, row_number() over(order by physical_no desc)
-		rnum from physical_info p, health_user hu where p.user_id = hu.user_id)
-		pi where e.name = cm.name and pi.rnum = 1
-		and ex_date = #{date} and cm.user_id = #{id}
+		rnum from physical_info p, health_user hu where p.user_id = hu.user_id) pi
+		where e.name = cm.name and pi.rnum = 1 and ex_date = #{date} and cm.user_id = #{id}
 	</select>
 	<select id="getAllDateConsumptionCalorie" resultType="string" parameterType="string">
 		select distinct to_char(ex_date, 'YYYY-MM-DD') as exerciseDate

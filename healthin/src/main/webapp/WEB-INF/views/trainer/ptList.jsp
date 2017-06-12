@@ -4,11 +4,15 @@
 
 <script>
 function popupOpen(id){
-	var popUrl = "${pageContext.request.contextPath}/trainer/ptListPopup.do?id="+id;	
-
+	var popUrl = "${pageContext.request.contextPath}/trainer/userInfoPopup.do?id="+id;	
 	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	window.open(popUrl,"popupname",popOption);
 
-		window.open(popUrl,"popupname",popOption);
+	}
+function matching(){
+	var popUrl = "${pageContext.request.contextPath}/trainer/matchingPopup.do";	
+	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	window.open(popUrl,"matchingPopup",popOption);
 
 	}
 </script>
@@ -118,5 +122,5 @@ function popupOpen(id){
 		매칭 정보가 없습니다
 		</c:otherwise> 
 	</c:choose>
-	
+	<a href="javascript:matching();">매칭신청</a>
 </div>
