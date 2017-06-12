@@ -58,4 +58,15 @@ public class TrainerPageController {
 		}
 		return "trainer/followingList.tiles";
 	}
+	
+	@RequestMapping("updateAcceptState.do")
+	public String updateAcceptState(Model model,String userId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String trainerId=mvo.getId();
+			service.updateAcceptState(trainerId,userId);
+		}
+		return "redirect:trainer/followingList.do";
+	}
 }

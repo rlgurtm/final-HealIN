@@ -19,6 +19,10 @@ public interface TrainerPageDAO {
 
 	int trainerMatchingListCount(String id);
 
-	void trainerMatcingUpdate(Map<String, Object> map);
+	void updateAcceptState(Map<String, String> map);
 
+	String selectAcceptState(Map<String, String> map);
+
+	void trainerMatcingUpdate(Map<String, Object> map);
+	
 }

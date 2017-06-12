@@ -72,5 +72,15 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		return dao.getFollowerTotalCount(id);
 		
 	}
+	@Override
+	public void updateAcceptState(String trainerId, String userId) {
+		
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("TRAINERID", trainerId);
+		map.put("USERID",userId);
+		String state=dao.selectAcceptState(map);
+		map.put("STATE", state);
+		dao.updateAcceptState(map);
+	}
 	
 }

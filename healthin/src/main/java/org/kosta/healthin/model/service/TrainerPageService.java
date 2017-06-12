@@ -12,6 +12,8 @@ public interface TrainerPageService {
 	
 	int getFollowerList(String id);
 
+	void updateAcceptState(String trainerId, String userId);
+
 	int trainerPtListCount(String id);
 
 	int trainerMatchingListCount(String id);
