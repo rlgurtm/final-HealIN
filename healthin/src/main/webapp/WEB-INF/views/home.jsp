@@ -24,11 +24,11 @@
   		$(".regular").slick({
 	        dots: true,
 	        infinite: true,
-	        slidesToShow: 4,
+	        slidesToShow: 3,
 	        slidesToScroll: 3
 		});
   		 //트레이너 부분
-  		/* $('.slider-for').slick({
+  		$('.slider-for').slick({
   		  slidesToShow: 1,
   		  slidesToScroll: 1,
   		  arrows: false,
@@ -42,7 +42,7 @@
   		  dots: true,
   		  centerMode: true,
   		  focusOnSelect: true
-  		}); */
+  		});
     });
 </script>
 
