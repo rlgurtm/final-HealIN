@@ -16,9 +16,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/searchTipQna.xml"/>
 		<mapper resource="mybatis/config/member.xml"/>
 		<mapper resource="mybatis/config/trainervideo.xml"/>
+		<!-- <mapper resource="mybatis/config/searchtrainervideo.xml"/> -->
 		<mapper resource="mybatis/config/home.xml"/>
 		<mapper resource="mybatis/config/trainer.xml"/>
 		<mapper resource="mybatis/config/trainerpage.xml"/>
+		<mapper resource="mybatis/config/searchTrainer.xml"/>
 		<mapper resource="mybatis/config/calendar.xml"/>
 		<mapper resource="mybatis/config/mypage.xml"/>
 		<mapper resource="mybatis/config/admin.xml"/>

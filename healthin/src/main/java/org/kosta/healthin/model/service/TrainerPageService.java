@@ -20,6 +20,9 @@ public interface TrainerPageService {
 
 	void trainerMatchingUpdate(String userId, String trainerId);
 
+	ListVO trainerSearchList(String nowpage, String searchWord);
+
+
 	Object getBothFollowList(String pageNo, String trainerid);
 
 

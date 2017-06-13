@@ -32,6 +32,11 @@ public interface TrainerDAO {
 	int getTrainerLocTotalCount(String local);
 
 	List<VO> getTrainerLoc(Map<String, Object> map);
+	
+	int getTrainerSearchTotalCount(String searchWord);
+
+	List<VO> getSearchTrainer(Map<String, Object> map);
+
 
 
 

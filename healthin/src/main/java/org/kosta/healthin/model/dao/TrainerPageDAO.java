@@ -25,6 +25,8 @@ public interface TrainerPageDAO {
 
 	void trainerMatcingUpdate(Map<String, Object> map);
 
+	List<VO> trainerSearchList(Map<String, Object> map);
+	
 	int getFollowerCount(String id);
 
 	int getBothFollowTotalCount(String trainerid);
