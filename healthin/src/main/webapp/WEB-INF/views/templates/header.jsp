@@ -72,10 +72,10 @@
 													location.href = '${pageContext.request.contextPath}/tip/search_tip.do?searchWord='+searchWord;
 													break;
 												case "vod":
-													location.href = '${pageContext.request.contextPath}/filterVideoList.do?filter=no?searchWord='+searchWord;
+													location.href = '${pageContext.request.contextPath}/searchVideoList.do?searchWord='+searchWord;
 													break;
 												case "tutor":
-													location.href = '${pageContext.request.contextPath}/trainer/trainerList.do?searchWord='+searchWord;
+													location.href = '${pageContext.request.contextPath}/trainer/trainerSearchList.do?searchWord='+searchWord;
 													break;
 												}
 											});

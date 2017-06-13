@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
+import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,5 +42,30 @@ public class MyPageDAOImpl implements MyPageDAO {
 	@Override
 		public void bmiListDelete(String physical_no){
 		template.delete("mypage.bmiListDelete",physical_no);
+	}
+
+	@Override
+	public int getFollowingTotalCount(String userid) {
+		return template.selectOne("mypage.getFollowingTotalCount",userid);
+	}
+
+	@Override
+	public List<VO> getFollowingList(Map<String, Object> map) {
+		return template.selectList("mypage.getFollowingList",map);
+	}
+
+	@Override
+	public void unfollow(Map<String, String> map) {
+		template.update("mypage.unfollow",map);
+	}
+
+	@Override
+	public int getmypageBothFollowTotalCount(String userId) {
+		return template.selectOne("mypage.getmypageBothFollowTotalCount",userId);
+	}
+
+	@Override
+	public List<VO> getmypageBothFollowList(Map<String, Object> map) {
+		return template.selectList("mypage.getmypageBothFollowList",map);
 	}
 }

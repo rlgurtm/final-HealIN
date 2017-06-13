@@ -207,6 +207,7 @@ create table pay(
 	pay_state varchar2(100) not null,
 	user_id varchar2(100) not null,
 	trainer_id varchar2(100) not null,
+	period number not null,
 	constraint fk_pay_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_pay_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );

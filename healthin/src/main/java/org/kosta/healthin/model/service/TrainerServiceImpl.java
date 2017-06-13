@@ -104,4 +104,17 @@ public class TrainerServiceImpl implements TrainerService {
 		return listVO;
 	}
 
+	@Override
+	public ListVO getSearchTrainer(String pageNo, String searchWord) {
+		int totalCount=dao.getTrainerLocTotalCount(searchWord);
+		int pageNum=Integer.parseInt(pageNo);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("STARTROWNUM", pb.getStartRowNumber());
+		map.put("ENDROWNUM", pb.getEndRowNumber());	
+		map.put("WORD", searchWord);
+		ListVO listVO=new ListVO(dao.getSearchTrainer(map),pb);
+		return listVO;
+	}
+
 }

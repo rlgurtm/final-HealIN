@@ -77,7 +77,7 @@ public class QnaDAOImpl implements QnaDAO {
 	}
 	@Override
 	public List<VO> getptQnaSearchList(Map<String, Object> map){
-		return template.selectList("tipQna.getPtQnaSearchList",map);
+		return template.selectList("searchTipQna.getPtQnaSearchList",map);
 	}
 
 }

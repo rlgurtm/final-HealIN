@@ -38,5 +38,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		delete from physical_info
  		where physical_no=#{physical_no}
  	</delete>
+ 	
+ 	<select id="getFollowingTotalCount" resultType="int">
+ 		select count(*) 
+		from following 
+		where apply_result='Y' and user_id=#{value}
+ 	</select>
+ 	<select id="getFollowingList" parameterType="map" resultType="memberVO">
+ 		select a.* from 
+       (select row_number() over(order by nickname desc) rnum,
+       f.trainer_id as id,m.name
+       from health_member m,following f
+       where f.user_id=#{USERID} and f.trainer_id=m.id
+       and apply_result='Y') a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+ 	</select>
+ 	<update id="unfollow" parameterType="map">
+ 	update following set apply_result='N'
+ 	where user_id=#{USERID} and trainer_id=#{TRAINERID}
+ 	</update>
+ 	<select id="getmypageBothFollowTotalCount" resultType="int">
+ 	select count(*) 
+	from following 
+	where apply_result='Y' and accept_result='Y' and user_id=#{value}
+ 	</select>
+ 	<select id="getmypageBothFollowList" parameterType="map" resultType="memberVO">
+ 	select a.* from 
+       (select row_number() over(order by nickname desc) rnum,
+       f.trainer_id as id,m.name
+       from health_member m,following f
+       where f.user_id=#{USERID} and f.trainer_id=m.id
+       and apply_result='Y' and accept_result='Y') a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+ 	</select>
 </mapper>
  
