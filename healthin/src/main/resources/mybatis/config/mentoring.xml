@@ -4,20 +4,60 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mentoring">
- 	<select id="findByTrainerMatchingMemberList" parameterType="string" resultType="memberVO">
- 	select id,nickname,birthdate,gender,address
- 	from health_member h,
- 		(select user_id from matching 
- 		where trainer_id=#{value} and apply_result='Y' and accept_result='Y') m
- 	where h.id=m.user_id
+	<resultMap type="mentoringVO" id="mentoringRM">
+		<result property="sendMember.id" column="id" />
+		<result property="sendMember.nickname" column="nickname" />
+		<result property="sendMember.birthdate" column="birthdate" />
+		<result property="sendMember.gender" column="gender" />
+		<result property="sendMember.address" column="address" />
+	</resultMap>
+ 	<select id="findByTrainerMatchingMemberList" parameterType="string" resultMap="mentoringRM">
+ 	select a.id,a.nickname,a.birthdate,a.gender,a.address,b.hits
+	from (select id,nickname,birthdate,gender,address
+	 	from health_member h,
+	 		(select user_id from matching 
+	 		where trainer_id=#{value} and apply_result='Y' and accept_result='Y') m
+	 	where h.id=m.user_id) a,
+	 	(select hits,sendId
+		from (select count(hits) as hits,receive_id,send_id as sendId
+		 	from mentoring
+		 	where hits=0
+		 	group by send_id) a
+		where a.receive_id=#{value}) b
+	where b.sendId(+)=a.id
  	</select>
- 	<select id="findByUserMatchingMemberList" parameterType="string" resultType="memberVO">
- 	select id,nickname,birthdate,gender,address
- 	from health_member h,
- 		(select trainer_id from matching 
- 		where user_id=#{value} and apply_result='Y' and accept_result='Y') m
- 	where h.id=m.trainer_id
+ 	<select id="findByUserMatchingMemberList" parameterType="string" resultMap="mentoringRM">
+ 	select a.id,a.nickname,a.birthdate,a.gender,a.address,b.hits
+	from (select id,nickname,birthdate,gender,address
+	 	from health_member h,
+	 		(select trainer_id from matching 
+	 		where user_id=#{value} and apply_result='Y' and accept_result='Y') m
+	 	where h.id=m.trainer_id) a,
+	 	(select hits,sendId
+		from (select count(hits) as hits,receive_id,send_id as sendId
+		 	from mentoring
+		 	where hits=0
+		 	group by send_id) a
+		where a.receive_id=#{value}) b
+	where b.sendId(+)=a.id
  	</select>
+ 	<update id="mentoringDetailHits" parameterType="mentoringVO">
+ 		update mentoring set hits=1 where send_id=#{sendId} and receive_id=#{receiveId}
+ 	</update>
+ 	<select id="mentoringDetail" parameterType="mentoringVO" resultType="mentoringVO">
+ 		select mentoring_no as mentoringNo,send_id as sendId
+ 			,receive_id as receiveId,content,posted_date as postedDate,hits
+ 		from mentoring
+ 		where receive_id=#{receiveId} and send_id=#{sendId}
+ 			or receive_id=#{sendId} and send_id=#{receiveId}
+ 		order by posted_date desc
+ 	</select>
+ 	<insert id="insertMentoring" parameterType="mentoringVO">
+ 		insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
+ 		values(mentoring_no_seq.nextval,#{sendId},#{receiveId},#{content},sysdate)
+ 	</insert>
+ 	
+ 	
 </mapper>
  
  

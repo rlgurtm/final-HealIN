@@ -7,10 +7,12 @@ public class MentoringVO implements VO {
 	private String content;
 	private String postedDate;
 	private int hits;
+	private MemberVO sendMember;
 	public MentoringVO() {
 		super();
 	}
-	public MentoringVO(int mentoringNo, String sendId, String receiveId, String content, String postedDate, int hits) {
+	public MentoringVO(int mentoringNo, String sendId, String receiveId, String content, String postedDate, int hits,
+			MemberVO sendMember) {
 		super();
 		this.mentoringNo = mentoringNo;
 		this.sendId = sendId;
@@ -18,6 +20,7 @@ public class MentoringVO implements VO {
 		this.content = content;
 		this.postedDate = postedDate;
 		this.hits = hits;
+		this.sendMember = sendMember;
 	}
 	public int getMentoringNo() {
 		return mentoringNo;
@@ -55,10 +58,18 @@ public class MentoringVO implements VO {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
+	public MemberVO getSendMember() {
+		return sendMember;
+	}
+	public void setSendMember(MemberVO sendMember) {
+		this.sendMember = sendMember;
+	}
 	@Override
 	public String toString() {
 		return "MentoringVO [mentoringNo=" + mentoringNo + ", sendId=" + sendId + ", receiveId=" + receiveId
-				+ ", content=" + content + ", postedDate=" + postedDate + ", hits=" + hits + "]";
+				+ ", content=" + content + ", postedDate=" + postedDate + ", hits=" + hits + ", sendMember="
+				+ sendMember + "]";
 	}
+	
 	
 }

@@ -352,7 +352,7 @@ public class BoardController {
 			state=trainerService.selectfollowState(memId,trainerId);
 			return state;
 		} else {
-			return "home.do";
+			return "redirect:home.do";
 		}
 	}
 	@RequestMapping("trainerLoc.do")

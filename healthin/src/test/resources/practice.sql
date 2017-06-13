@@ -348,7 +348,14 @@ from
    from physical_info
    where today = '2017-06-10') a
    where rnum=1 ) p
+<<<<<<< HEAD
 where cme.user_id=p.user_id and p.user_id = 'user1'
+=======
+where cme.user_id=p.user_id and p.user_id = 'user1'
+update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
+
+
+>>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
 
 
