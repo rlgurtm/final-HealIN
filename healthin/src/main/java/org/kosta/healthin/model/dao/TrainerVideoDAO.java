@@ -66,4 +66,6 @@ public interface TrainerVideoDAO {
 
 	ListVO showVideoComment(Map map);
 
+	ListVO findBysearchWordVideoList(Map map);
+
 }

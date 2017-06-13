@@ -20,5 +20,6 @@ public interface TrainerService {
 	void insertfollowtrainer(String memId, String trainerId);
 
 	ListVO getTrainerLoc(String pageNo, String local);
+	ListVO getSearchTrainer(String pageNo, String searchWord);
 
 }

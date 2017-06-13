@@ -15,6 +15,7 @@ import org.kosta.healthin.model.vo.PhysicalInfoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -74,4 +75,49 @@ public class MyPageController {
 	public ModelAndView graphPagingBean(String pageNo) {	
 		return new ModelAndView("mypage/bmi_list.tiles","lvo",myPageService.graphContentCount(pageNo));
 	}*/
+	@RequestMapping("userfollowingList.do")
+	public String userfollowingList(Model model,String pageNo,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String userid=mvo.getId();
+			int following=myPageService.getFollowingTotalCount(userid);
+			model.addAttribute("following",following);
+			if(pageNo==null)
+				pageNo="1";
+			ListVO list=myPageService.getFollowingList(pageNo,userid);
+			System.out.println(list);
+			model.addAttribute("list",list);
+		}
+		else{
+			return "redirect:home.do";
+		}
+		return "mypage/followingList.tiles";
+	}
+	
+	@RequestMapping("unfollow.do")
+	public String updateAcceptState(Model model,String trainerId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String userId=mvo.getId();
+			myPageService.unfollow(trainerId,userId);
+		}
+		return "redirect:userfollowingList.do";
+	}
+	@RequestMapping("mypageBothfollow.do")
+	@ResponseBody
+	public Object trainerfollowing(Model model,String pageNo,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String userId=mvo.getId();
+			if(pageNo==null)
+				pageNo="1";
+			return myPageService.getmypageBothFollowList(pageNo,userId);
+		}
+		else{
+			return "redirect:home.do";
+		}
+	}
 }

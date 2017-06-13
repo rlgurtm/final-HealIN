@@ -10,7 +10,7 @@ public interface TrainerPageService {
 
 	ListVO trainerPtList(String id, String pageNo);
 	
-	int getFollowerList(String id);
+	int getFollowerCount(String id);
 
 	void updateAcceptState(String trainerId, String userId);
 
@@ -20,6 +20,10 @@ public interface TrainerPageService {
 
 	void trainerMatchingUpdate(String userId, String trainerId);
 
+	ListVO trainerSearchList(String nowpage, String searchWord);
+
+
+	Object getBothFollowList(String pageNo, String trainerid);
 
 
 }

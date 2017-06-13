@@ -52,7 +52,7 @@
                                 <a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no">PT 강사 동영상</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/trainer/trainerList.do">PT 강사진</a>
+                                <a href="${pageContext.request.contextPath}/trainerList.do">PT 강사진</a>
                             </li>
                             <li>
                                 <a href="#">PT 강사 추천 받기</a>
@@ -88,7 +88,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following</a>
+			                                <a href="${pageContext.request.contextPath}/followerList.do">Following</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">Matching</a>
@@ -113,7 +113,7 @@
 			                                <a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">Following</a>
+			                                <a href="${pageContext.request.contextPath}/userfollowingList.do">Following</a>
 			                            </li>
 			                            <li>
 			                                <a href="#">Matching</a>

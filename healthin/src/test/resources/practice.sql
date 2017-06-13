@@ -350,3 +350,22 @@ from
    where rnum=1 ) p
 where cme.user_id=p.user_id and p.user_id = 'user1'
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
+
+
+       select a.* from 
+       (select row_number() over(order by rank desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=m.id) a 
+              where rnum between 1 and 10
+              and id like '%' ||'s' ||'%'
+              or name like '%' ||'수' ||'%'
+              or location like '%' ||'용' ||'%'
+              
+              
+       select a.* from 
+       (select row_number() over(order by name desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=m.id) a 
+       where id like '%' ||'s' ||'%'

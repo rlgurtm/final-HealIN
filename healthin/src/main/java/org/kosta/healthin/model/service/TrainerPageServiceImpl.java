@@ -68,19 +68,50 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		return listVO;
 	}
 	@Override
-	public int getFollowerList(String id){
-		return dao.getFollowerTotalCount(id);
+	public int getFollowerCount(String id){
+		return dao.getFollowerCount(id);
 		
 	}
 	@Override
 	public void updateAcceptState(String trainerId, String userId) {
-		
 		Map<String, String> map=new HashMap<String,String>();
 		map.put("TRAINERID", trainerId);
 		map.put("USERID",userId);
 		String state=dao.selectAcceptState(map);
+		if(state.equals("N"))
+			state="Y";
+		else
+			state="N";
 		map.put("STATE", state);
 		dao.updateAcceptState(map);
+	}
+	@Override
+	public ListVO trainerSearchList(String nowpage, String searchWord) {
+		//검색 결과 카운트 해라....
+		int totalCount=dao.trainerPtListCount(searchWord);
+		int pageNum=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());	
+		map.put("searchWord", searchWord);  //trainerPtList
+		ListVO listVO=new ListVO(dao.trainerSearchList(map),pb);
+		System.out.println("listVO"+listVO);
+		return listVO;
+	}
+	public Object getBothFollowList(String pageNo, String trainerid) {
+		int totalCount=dao.getBothFollowTotalCount(trainerid);
+		int pageNum=Integer.parseInt(pageNo);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("STARTROWNUM", pb.getStartRowNumber());
+		map.put("ENDROWNUM", pb.getEndRowNumber());	
+		map.put("TRAINERID", trainerid);
+		ListVO listVO=new ListVO(dao.getBothFollowList(map),pb);
+		return listVO;
+		
 	}
 	
 }
