@@ -74,7 +74,6 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 	}
 	@Override
 	public void updateAcceptState(String trainerId, String userId) {
-		
 		Map<String, String> map=new HashMap<String,String>();
 		map.put("TRAINERID", trainerId);
 		map.put("USERID",userId);

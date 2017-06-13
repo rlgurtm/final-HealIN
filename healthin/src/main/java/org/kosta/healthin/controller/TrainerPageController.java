@@ -41,8 +41,8 @@ public class TrainerPageController {
 	public String matchinsg(){
 		return "redirect:trainerDetail.do";
 	}
-	@RequestMapping("followingList.do")
-	public String followingList(Model model,String pageNo,HttpServletRequest request){
+	@RequestMapping("followerList.do")
+	public String followerList(Model model,String pageNo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if(mvo!=null){
@@ -57,7 +57,7 @@ public class TrainerPageController {
 		else{
 			return "home.do";
 		}
-		return "trainer/followingList.tiles";
+		return "trainer/followerList.tiles";
 	}
 	
 	@RequestMapping("updateAcceptState.do")
@@ -68,9 +68,9 @@ public class TrainerPageController {
 			String trainerId=mvo.getId();
 			service.updateAcceptState(trainerId,userId);
 		}
-		return "redirect:followingList.do";
+		return "redirect:followerList.do";
 	}
-	@RequestMapping("trainerfollowing")
+	@RequestMapping("trainerfollowing.do")
 	@ResponseBody
 	public Object trainerfollowing(Model model,String pageNo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
