@@ -25,7 +25,7 @@ public class MentoringController {
 			return "redirect:home.do";
 		} else {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			ListVO listVO = new ListVO();
+			ListVO listVO = null;
 			if(mvo.getIstrainer().equals("trainer")){
 				listVO = mentoringService.findByTrainerMatchingMemberList(mvo.getId());
 			} else if(mvo.getIstrainer().equals("user")){
