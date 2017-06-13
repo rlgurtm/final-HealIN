@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	var info="";	
 	info+="<h2>Matching 신청</h2>";
-	info+="<form action='${pageContext.request.contextPath}/matching.do' method='post'>";
+	info+="<form action='${pageContext.request.contextPath}/userMatching.do' method='post'>";
 	info+="<table  class='table table-bordered' style='width:30%;'>";
 	info+="<thead><tr><th>기간(개월)</th><th>수락</th></tr></thead>";
 	info+="<tbody><tr><td><select name='period'>";
@@ -19,6 +20,7 @@ $(document).ready(function(){
 	info+="<input type='hidden' name='trainerId' value="+$("#trainerId").val()+"></td>";
 	info+="</tr></tbody></table></form>";
 	info+="	&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다";
+	
 	$.ajax({
 		type:"get",
 		url:"${pageContext.request.contextPath}/selectfollowstate.do",
@@ -26,10 +28,18 @@ $(document).ready(function(){
 		success:function(data){
 			if(data=='Y'){
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-				$("#matchingInfo").html(info);			
+				$.ajax({
+					type:"get",
+					url:"${pageContext.request.contextPath}/countExistMatching.do",
+					data:"userId=${mvo.id}&trainerId="+$("#trainerId").val(),
+					success:function(data){
+						if(data==0)
+						$("#matchingInfo").html(info);		
+					}
+				});
+					
 			}else
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
-	
 		}
 	}); //ajax
 	$("#imgtd").click(function(){
@@ -40,9 +50,20 @@ $(document).ready(function(){
 				success:function(data){
 					if(data=='Y'){
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-						$("#matchingInfo").html(info);	
-					}else
+						$.ajax({
+							type:"get",
+							url:"${pageContext.request.contextPath}/countExistMatching.do",
+							data:"userId=${mvo.id}&trainerId="+$("#trainerId").val(),
+							success:function(data){
+								if(data==0)
+								$("#matchingInfo").html(info);		
+							}
+						});
+					}else{
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+						$("#matchingInfo").html("");	
+					}
+						
 				}//function
 			});//ajax
 		});//click
@@ -92,7 +113,8 @@ $(document).ready(function(){
 			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			
 		</table><br>
-		<c:if test="${sessionScope.mvo.istrainer == 'user' }"><div id="matchingInfo"></div></c:if>
+		<c:if test="${sessionScope.mvo.istrainer == 'user' }">
+		<div id="matchingInfo"></div></c:if>
 		</div>
 	</div>
 <input type="hidden" id="trainerId" value="${tvo.membervo.id}">

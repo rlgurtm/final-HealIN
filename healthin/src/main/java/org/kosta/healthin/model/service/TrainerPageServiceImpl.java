@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.PayVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -81,6 +82,27 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("id", id);
 		ListVO listVO=new ListVO(dao.userPtList(map),pb);
 		return listVO;
+	}
+	@Override
+	public PayVO userTrainerPay(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.userTrainerPay(map);
+	}
+	@Override
+	public void userDepositUpate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.userDepositUpate(map);
+	}
+	@Override
+	public int countExistMatching(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.countExistMatching(map);
 	}
 	
 	@Override

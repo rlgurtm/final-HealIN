@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.PayVO;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -53,8 +54,20 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		return template.selectOne("trainerpage.userPtListCount",id);
 	}
 	@Override
+	public PayVO userTrainerPay(Map<String, Object> map){
+		return template.selectOne("trainerpage.userTrainerPay",map);
+	}
+	@Override
+	public void userDepositUpate(Map<String, Object> map){
+		template.update("trainerpage.userDepositUpate",map);
+	}
+	@Override
 	public int getFollowerTotalCount(String id) {
 		return template.selectOne("trainerpage.getFollowerTotalCount",id);
+	}
+	@Override
+	public int countExistMatching(Map<String, Object> map){
+		return template.selectOne("trainerpage.countExistMatching",map);
 	}
 	
 	@Override

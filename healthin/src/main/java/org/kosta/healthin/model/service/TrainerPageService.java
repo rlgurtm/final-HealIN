@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.service;
 
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.PayVO;
 
 public interface TrainerPageService {
 
@@ -27,6 +28,12 @@ public interface TrainerPageService {
 	ListVO userPtList(String id, String nowpage);
 
 	Object getBothFollowList(String pageNo, String trainerid);
+
+	PayVO userTrainerPay(String userId, String trainerId);
+
+	void userDepositUpate(String userId, String trainerId);
+
+	int countExistMatching(String userId, String trainerId);
 
 
 }

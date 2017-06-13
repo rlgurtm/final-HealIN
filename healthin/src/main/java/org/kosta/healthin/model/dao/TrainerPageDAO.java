@@ -3,6 +3,7 @@ package org.kosta.healthin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.kosta.healthin.model.vo.PayVO;
 import org.kosta.healthin.model.vo.VO;
 
 public interface TrainerPageDAO {
@@ -38,5 +39,11 @@ public interface TrainerPageDAO {
 	int getBothFollowTotalCount(String trainerid);
 
 	List<VO> getBothFollowList(Map<String, Object> map);
+
+	PayVO userTrainerPay(Map<String, Object> map);
+
+	void userDepositUpate(Map<String, Object> map);
+
+	int countExistMatching(Map<String, Object> map);
 	
 }
