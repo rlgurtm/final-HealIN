@@ -13,17 +13,12 @@
 	}
 </style>
 <script type="text/javascript">
-	function matching(){
-		if("${pvo.payState }"=="입금대기"){
-			alert("입금이 되지 않아 수락할 수 없습니다");
-			window.close();
-			return false;			
-		}
-		
-		if(confirm("수락하시겠습니까?")){
-			opener.location.href="${pageContext.request.contextPath}/trainerMatching.do?trainerId=${mvo.id}&userId=${pvo.userId }";
+	function deposit(){
+		if(confirm("입금하셨습니까?")){
+			opener.location.href="${pageContext.request.contextPath}/userDeposit.do?trainerId=${pvo.trainerId }&userId=${mvo.id}";
 			window.close();
 		}else{
+			window.close();
 			return false;
 		}
 	}
@@ -34,26 +29,27 @@
 	<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 		<thead>
 			<tr>
-				<th>회원아이디</th>
+				<th>강사아이디</th>
 				<th>신청날짜</th>
 				<th>기간</th>
 				<th>가격</th>
-				<th>결제</th>
-				<c:if test="${result!='result' }">
-					<th>수락</th>
+				<th>결제상태</th>
+				<c:if test="${pvo.payState!='입금완료' }">
+					<th>입금확인</th>
 				</c:if>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>${pvo.userId }</td>
+				<td>${pvo.trainerId }</td>
 				<td>${pvo.payDate }</td>
 				<td>${pvo.period }</td>
 				<td>${pvo.price }</td>
 				<td>${pvo.payState }</td>
-				<c:if test="${result!='result' }">
-					<td><input type="button" value="수락" onclick="matching()"></td>
+				<c:if test="${pvo.payState!='입금완료' }">
+					<td><input type="button" value="입금완료" onclick="deposit()"></td>
 				</c:if>
+				
 			</tr>
 		</tbody>
 	</table>
