@@ -20,88 +20,14 @@ $(document).ready(function(){
 			});//on	
 });
 	
-	function trainerListOrder(page){
-		 $.ajax({
- 			type:"get",
- 			url:"${pageContext.request.contextPath}/order.do",
- 			data:"order="+order+"&pageNo="+page,
- 			dataType:"json",
- 			success:function(data){
- 				  	var info="";
-				for(var i=0;i<data.lvo.length;i++){
-					info+="<div class='row'><div class='col-sm-3 text-center'>";
-					info+="<img class='img-responsive' src='${pageContext.request.contextPath}/resources/trainerPic/";
-					info+=data.lvo[i].trainerPhoto+"' ";
-					info+=" width='750'  height='450'></div><div class='col-md-9'>";
- 					info+="<h3>이름 : "+data.lvo[i].membervo.name+"</h3>";
- 					info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
- 					info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
- 					info+="<c:choose><c:when test='${mvo.id!=null}'>";
- 					info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
- 					info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
- 	               	info+="<input type='submit' value='강사정보 더보기'></form>";
- 	               	info+="</c:when><c:otherwise>";
- 	               	info+="<input type='button' value='강사정보 더보기' class='more'>";
- 		            info+="</c:otherwise></c:choose></div></div><hr>";
- 				}
-				$("#trainerArea").html(info);
-				var pre=data.pb.startPageOfPageGroup-1;
-				 var next=data.pb.endPageOfPageGroup+1; 
-				 var paging="";
-				 if(data.pb.previousPageGroup)
-					 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
-				for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
-				 if(data.pb.nowPage==k){
-					paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
-				 }else{
-					paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
-					 }
-				 }
-				 if(data.pb.nextPageGroup)
-					 paging+="<li class='next' value="+next+"><a>next</a><li>";
-				 $(".pagination").html(paging);
- 			}//success
-		});//ajax
-	}//function
 </script>
 <div class="container">
-	<h4>지역별 코치 찾기</h4>
-	<div class="well" style="background-color: lightgray;">
-		<div class="coachloc">
-		<form action="${pageContext.request.contextPath}/trainer/trainerLoc.do" method="get">
-		서울 > &emsp;
-		<input type="radio" value="강남구" name="local">강남구&nbsp; 
-		<input type="radio" value="노원구" name="local">노원구&nbsp;
-		<input type="radio" value="서초구" name="local">서초구&nbsp;
-		<input type="radio" value="용산구" name="local">용산구&nbsp;
-		<input type="radio" value="은평구" name="local">은평구
-		<br>
-		경기 > &emsp;
-		<input type="radio" value="성남시" name="local">성남시&nbsp;
-		<input type="radio" value="안양시" name="local">안양시&nbsp;
-		<input type="radio" value="양평군" name="local">양평군&nbsp;
-		<input type="radio" value="용인시" name="local">용인시&nbsp;
-		<input type="radio" value="의정부시" name="local">의정부시
-		<input type="submit" class="btn btn-default" value="검색" style="float: right">
-		</form>
-		</div>
-	</div>
+	<h4> 코치 찾기</h4>
 
     <!-- Page Content -->
 
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
-       
-            <div class="col-lg-12">
-                <h1> Health人 코치진 소개</h1>
-            <select name="job" class="sbox" id="order">
-           	 	<option value="">정렬선택</option>
-          		<option value="name">이름순</option>
-   				<option value="following">인기순</option>
-			</select>
-             
-            </div>
-          
         </div>
   <hr>
   <div id="trainerArea">

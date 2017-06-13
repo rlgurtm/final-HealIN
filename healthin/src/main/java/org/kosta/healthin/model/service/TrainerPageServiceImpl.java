@@ -82,5 +82,21 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("STATE", state);
 		dao.updateAcceptState(map);
 	}
+	@Override
+	public ListVO trainerSearchList(String nowpage, String searchWord) {
+		//검색 결과 카운트 해라....
+		int totalCount=dao.trainerPtListCount(searchWord);
+		int pageNum=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());	
+		map.put("searchWord", searchWord);  //trainerPtList
+		ListVO listVO=new ListVO(dao.trainerSearchList(map),pb);
+		System.out.println("listVO"+listVO);
+		return listVO;
+	}
 	
 }

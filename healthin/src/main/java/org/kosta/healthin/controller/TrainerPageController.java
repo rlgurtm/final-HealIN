@@ -26,6 +26,8 @@ public class TrainerPageController {
 		model.addAttribute("mList",service.trainerMatchingList(id, pageNo));
 		return "trainer/ptList.tiles";
 	}
+	
+	
 	@RequestMapping("trainer/userInfoPopup.do")
 	public String ptListPopup(String id,Model model){
 		model.addAttribute("id", id);

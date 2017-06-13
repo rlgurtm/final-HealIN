@@ -30,9 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardController {
 	private String uploadPath
 	//송희
-	="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//지선
-	//="C:\\Users\\Administrator\\git\\final-HealIN2017\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	="C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//지원
 	//="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//기혁
@@ -168,6 +168,16 @@ public class BoardController {
 		model.addAttribute("list",list);
 		return "trainer/trainerList.tiles";
 	}
+	@RequestMapping("trainer/trainerSearchList.do")
+	public String gettrainerSearchList(Model model,String pageNo,String searchWord){
+		if(pageNo==null)
+			pageNo="1";
+
+		ListVO list=trainerService.getSearchTrainer(pageNo,searchWord);
+		
+		model.addAttribute("list",list);
+		return "trainer/trainerSearchList.tiles";
+	}
 	@RequestMapping("order.do")
 	@ResponseBody
 	public Object trainerListOrder(String order,String pageNo){
@@ -207,16 +217,13 @@ public class BoardController {
 	
 	@RequestMapping("pt_qna/search_qna.do")
 	public String getSearchQnaAllList(Model model,String nowpage,String searchWord){
-		System.out.println("헤더 검색어>>>"+searchWord);
 		if(nowpage==null)
 			nowpage="1";
 		
 		ListVO list=tipService.getSearchQnaAllList(nowpage,searchWord);
 		
-		System.out.println("리스트"+list);
-		model.addAttribute("list",list );
-		System.out.println("나만의 팁 검색 결과"+list);
-		return "tip/search_qna.tiles";
+		model.addAttribute("qnalist",list );
+		return "pt_qna/search_qna.tiles";
 	}
 	
 	@RequestMapping("ptQnaList.do")

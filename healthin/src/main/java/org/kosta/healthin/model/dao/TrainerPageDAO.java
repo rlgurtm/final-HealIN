@@ -24,5 +24,7 @@ public interface TrainerPageDAO {
 	String selectAcceptState(Map<String, String> map);
 
 	void trainerMatcingUpdate(Map<String, Object> map);
+
+	List<VO> trainerSearchList(Map<String, Object> map);
 	
 }

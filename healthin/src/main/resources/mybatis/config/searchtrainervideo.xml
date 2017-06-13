@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchtrainervideo">
+	<select id="totalCountVideo" resultType="int">
+		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9
+	</select>
+ 	<select id="findBysearchWordVideoList" resultType="trainerVideoVO" parameterType="map">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9 ) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ </select>
+ 	<update id="trainerVideoShowHits" parameterType="int">
+ 		update trainer_video set hits=hits+1 where video_no=#{value}
+ 	</update>
+ 	<select id="trainerVideoShow" resultType="trainerVideoVO" parameterType="int">
+ 		select a.video_no as videoNo,a.title,a.content,a.video_file as videoFile
+ 		,a.posted_date as postedDate,a.hits,a.category,a.trainer_id as trainerId,a.openrank
+ 		,b.likeState from trainer_video a
+ 		,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+ 		where b.video_no(+)=a.video_no and a.video_no=#{value}
+ 	</select>
+ 	<insert id="trainerVideoWrite" parameterType="trainerVideoVO">
+		<selectKey keyProperty="videoNo" order="BEFORE" resultType="int">
+			select video_no_seq.nextval from dual
+		</selectKey>
+		insert into trainer_video(video_no,title,content,video_file,posted_date,category,trainer_id,openrank)
+		values(#{videoNo},#{title},#{content},#{videoFile},sysdate,#{category},#{trainerId},#{openrank})
+	</insert>
+	<update id="trainerVideoUpdateNewFile" parameterType="trainerVideoVO">
+		update trainer_video 
+		set title=#{title},content=#{content},video_file=#{videoFile}
+			,category=#{category},openrank=#{openrank}
+		where video_no=#{videoNo} and trainer_id=#{trainerId}
+	</update>
+	<update id="trainerVideoUpdate" parameterType="trainerVideoVO">
+		update trainer_video 
+		set title=#{title},content=#{content},category=#{category}
+		,openrank=#{openrank}
+		where video_no=#{videoNo} and trainer_id=#{trainerId}
+	</update>
+ 	<update id="trainerVideoDelete" parameterType="int">
+ 		update trainer_video
+ 		set openrank=9
+ 		where video_no=#{value}
+ 	</update>
+ 	
+ 	<select id="trainerVideoSelectMember" parameterType="string" resultType="int">
+ 		select count(*) from health_member where id=#{value}
+ 	</select>
+ 	<select id="trainerVideoSelectFollowing" parameterType="java.util.Map" resultType="int">
+ 		select count(*) from following where user_id=#{userId} and trainer_id=#{trainerId}
+ 	</select>
+ 	<select id="trainerVideoSelectMatching" parameterType="java.util.Map" resultType="int">
+ 		select count(*) from matching where user_id=#{userId} and trainer_id=#{trainerId}
+ 	</select>
+	<select id="filterHitsTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select a.* from
+			(select row_number() over(order by hits desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterLikeStateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select * 
+		from (select row_number() over (order by likeState desc) as rnum,a.* 
+			from (select a.*,nvl(likeState,0) as likeState
+				from (
+					select video_no as videoNo,title,content,video_file as videoFile
+						,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+						,trainer_id as trainerId,openrank 
+					from trainer_video 
+					where openrank<![CDATA[ < ]]>9) a
+					,(select video_no,sum(like_state) as likeState 
+					from video_like group by video_no) b
+				where b.video_no(+)=a.videoNo) a )
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterPostedDateTrainerVideoList" resultType="trainerVideoVO" parameterType="pagingBean">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,posted_date as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="filterOpenrankTotalCountVideo" resultType="int" parameterType="int">
+		select count(*) from trainer_video where openrank=#{value}
+	</select>
+	<select id="filterOpenrankTrainerVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank=#{openrank}) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ 	</select>
+	<select id="filterCategoryTotalCountVideo" resultType="int" parameterType="string">
+		select count(*) from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{value}
+	</select>
+	<select id="filterCategoryTrainerVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
+ 		select a.* from
+			(select row_number() over(order by postedDate desc) as rnum,a.*,b.likeState from 
+		 		(select video_no as videoNo,title,content,video_file as videoFile
+				,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+				,trainer_id as trainerId,openrank 
+				from trainer_video where openrank<![CDATA[ < ]]>9 and category=#{category}) a
+				,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+			where b.video_no(+)=a.videoNo) a
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="selectVideoLikeState" resultType="int" parameterType="java.util.Map">
+		select like_state from video_like where video_no=#{videoNo} and id=#{userId}
+	</select>
+ 	<insert id="insertVideoLikeState" parameterType="java.util.Map">
+ 		insert into video_like(id,video_no,like_state) values(#{userId},#{videoNo},1)
+ 	</insert>
+ 	<delete id="deleteVideoLikeState" parameterType="java.util.Map">
+ 		delete from video_like where id=#{userId}
+ 	</delete>
+ 	<select id="trainerNameKeywordSelect" resultType="string" parameterType="string">
+ 		select trainer_id from trainer where trainer_id like '%' || #{value} ||'%'
+ 	</select>
+ 	<select id="findByTotalCount" resultType="int" parameterType="string">
+ 		select count(*) from trainer_video where trainer_id like '%' || #{value} ||'%'
+ 	</select>
+ 	<select id="findByTrainerIdVideoList" resultType="trainerVideoVO" parameterType="java.util.Map">
+ 		select * 
+		from (select row_number() over (order by videoNo desc) as rnum,a.* 
+			from (select a.*,nvl(likeState,0) as likeState
+				from (
+					select video_no as videoNo,title,content,video_file as videoFile
+						,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+						,trainer_id as trainerId,openrank 
+					from trainer_video 
+					where openrank<![CDATA[ < ]]>9) a
+					,(select video_no,sum(like_state) as likeState 
+					from video_like group by video_no) b
+				where b.video_no(+)=a.videoNo and a.trainerId like '%' || #{trainerId} ||'%') a )
+		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber} order by rnum asc
+ 	</select>
+ 	<select id="commentTotalCount" parameterType="int" resultType="int">
+ 		select count(*) from video_comment where video_no=#{value}
+ 	</select>
+ 	<select id="showVideoComment" parameterType="java.util.Map" resultType="trainerVideoCommentVO">
+ 		select *
+ 		from (
+	 		select row_number() over(order by video_comment_no desc) as rnum
+	 			,video_comment_no as videoCommentNo,video_no as videoNo
+	 			,video_comment as videoComment,video_comment_date as videoCommentDate
+	 			,video_comment_id as videoCommentId
+	 		from video_comment
+	 		where video_no=#{videoNo}) a
+ 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
+ 	</select>
+ 	<insert id="registerVideoComment" parameterType="trainerVideoCommentVO">
+ 		<selectKey keyProperty="videoCommentNo" order="BEFORE" resultType="int">
+			select video_comment_no_seq.nextval from dual
+		</selectKey>
+ 		insert into video_comment(video_comment_no,video_no,video_comment
+ 			,video_comment_date,video_comment_id)
+ 		values(#{videoCommentNo},#{videoNo},#{videoComment}
+ 			,sysdate,#{videoCommentId})
+ 	</insert>
+ 	<delete id="deleteVideoComment" parameterType="int">
+ 		delete from video_comment where video_comment_no=#{value}
+ 	</delete>
+ 	
+ 	
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

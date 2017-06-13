@@ -39,7 +39,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		id like '%' || #{value} ||'%'
 	</select>
 
-
 	<!-- PtQna(List,TotalCount,write) -->
 	<select id="getPtQnaList" resultMap="tipBoardRM" parameterType="map">
 		select a.* from
@@ -65,10 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tipandqna t,health_member m
 		where t.id=m.id and t.tipqna='ptqna') a
 		where rnum between #{startRowNumber} and #{endRowNumber}
-		and category like '%' || #{value}||'%' or
-		title like '%' || #{value} ||'%' or
-		id like '%' || #{value} ||'%' or
-		content like '%' || #{value} ||'%'
+		and category like '%' || #{category}||'%' or
+		title like '%' || #{category} ||'%' or
+		id like '%' || #{category} ||'%' or
+		content like '%' || #{category} ||'%'
 	</select>
 
 	<select id="getTotalPtQnaSearchCategoryCount" resultType="int">
