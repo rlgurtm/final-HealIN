@@ -72,7 +72,7 @@ public class MentoringController {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			sendId = mvo.getId();
 			mentoring.setSendId(sendId);
-			System.out.println(mentoring);
+			//System.out.println(mentoring);
 			mentoringService.insertMentoring(mentoring);
 		}
 		return "redirect:mentoringDetail.do?sendId="+mentoring.getReceiveId();
