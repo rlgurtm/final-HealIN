@@ -44,11 +44,10 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		Map<String, String> map=new HashMap<String,String>();
-		map.put("TRAINERID", "healthboy");
-		map.put("USERID","java");
-		String state=pdao.selectAcceptState(map);
-		System.out.println(state);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", "java10");
+		map.put("trainerId", "healthboy");
+		System.out.println(pdao.countExistMatching(map));
 	}
 }
 

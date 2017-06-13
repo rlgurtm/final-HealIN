@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="trainerSearchvideo">
+	<select id="selectedCountVideo" resultType="int">
+		select count(*) from
+		trainer_video where title like '%' || #{value} ||'%'
+	</select>
+	<select id="trainerSearchVideoList" resultType="trainerVideoVO"
+		parameterType="map">
+		select a.*,b.likeState from
+		(select row_number() over(order by video_no desc) as rnum
+		,video_no as videoNo,title,content,video_file as videoFile
+		,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+		,trainer_id as trainerId,openrank from trainer_video where title like
+		'%' || #{searchWord} ||'%'
+		or content like '%' || #{searchWord} ||'%') a
+		,(select video_no,sum(like_state) as likeState from video_like group by
+		video_no) b
+		where b.video_no(+)=a.videoNo and rnum between 1 and 10
+		order by rnum asc
+	</select>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

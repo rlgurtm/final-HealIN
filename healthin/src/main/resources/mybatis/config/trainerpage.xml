@@ -34,10 +34,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		update matching set accept_result='Y',matching_date=sysdate
  		where trainer_id=#{trainerId} and user_id=#{userId}
  	</update>
+ 	<insert id="userMatchingInsert" parameterType="map">
+ 		insert into matching
+ 		values(#{userId},#{trainerId},'Y','N',sysdate)
+ 	</insert>
+ 	<insert id="payInsert" parameterType="map">
+ 	 <selectKey keyProperty="no" resultType="int" order="BEFORE">
+         select pay_no_seq.nextval from dual
+      </selectKey> 
+ 	insert into pay
+ 	values(#{no},#{price},sysdate,'입금대기',#{userId},#{trainerId},#{period})
+ 	</insert>
+ 	<select id="userPtList"  parameterType="map" resultType="memberVO" >
+ 	   select a.* from 
+       (select row_number() over(order by h.nickname desc) rnum,
+       m.trainer_id as id,h.nickname,h.name,h.address,h.e_mail as email,h.tel
+       from health_member h,matching m
+       where m.user_id=#{id} and m.trainer_id=h.id
+       and apply_result='Y' and accept_result='N') a 
+       where rnum between #{startRowNumber} and #{endRowNumber}
+ 	</select>
+ 	<select id="userPtListCount"  resultType="int" >
+		select count(*) from matching where user_id=#{value}
+		and apply_result='Y' and accept_result='N'
+ 	</select>
+ 	<select id="userTrainerPay" parameterType="map" resultType="payVO">
+		select pay_no as payNo,price,to_char(pay_date,'YY-MM-DD HH:MM' )as payDate,
+		pay_state as payState,user_id as userId,trainer_id as trainerId,period
+		from pay where user_id=#{userId} and trainer_id=#{trainerId} 	
+ 	</select>
+ 	<update id="userDepositUpate" parameterType="map">
+ 		update pay set pay_state='입금완료',pay_date=sysdate where user_id=#{userId} and trainer_id=#{trainerId}
+ 	</update>
+ 	<select id="countExistMatching" parameterType="map" resultType="int">
+ 		select count(*)from matching where trainer_id=#{trainerId} and user_id=#{userId}
+		and apply_result='Y' and accept_result='Y'
+ 	</select>
  	<select id="getFollowerTotalCount" resultType="int">
  	select count(*) 
 	from following 
 	where apply_result='Y' and accept_result='N' and trainer_id=#{value}
+ 	</select>
+ 	<select id="getFollowerCount" resultType="int">
+ 	select count(*) 
+	from following 
+	where apply_result='Y' and trainer_id=#{value}
  	</select>
  	<select id="getFollowerList" parameterType="map" resultType="memberVO">
  	select a.* from 
@@ -56,8 +97,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<update id="updateAcceptState" parameterType="map">
- 	update
+ 	update following set accept_result=#{STATE}
+ 	where user_id=#{USERID} and trainer_id=#{TRAINERID}
  	</update>
+ 	
+ 	<select id="getBothFollowTotalCount" resultType="int">
+ 	select count(*) 
+	from following 
+	where apply_result='Y' and accept_result='Y' and trainer_id=#{value}
+ 	</select>
+ 	<select id="getBothFollowList" parameterType="map" resultType="memberVO">
+ 	select a.* from 
+       (select row_number() over(order by nickname desc) rnum,
+       f.user_id as id,m.nickname
+       from health_member m,following f
+       where f.trainer_id=#{TRAINERID} and f.user_id=m.id
+       and apply_result='Y' and accept_result='Y') a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+ 	</select>
 </mapper>
  
  

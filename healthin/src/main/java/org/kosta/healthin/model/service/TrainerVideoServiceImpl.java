@@ -133,4 +133,16 @@ public class TrainerVideoServiceImpl implements TrainerVideoService{
 	public void deleteVideoComment(int videoCommentNo){
 		videoDAO.deleteVideoComment(videoCommentNo);
 	}
+	@Override
+	public ListVO findBysearchWordVideoList(Map map) {
+		return videoDAO.findBysearchWordVideoList(map);
+	}
+	@Override
+	public ListVO trainerSearchVideoList(Map<String, Object> map) {
+		return videoDAO.trainerSearchVideoList(map);
+	}
+	@Override
+	public int selectedCountVideo(String searchWord) {
+		return videoDAO.selectedCountVideo(searchWord);
+	}
 }

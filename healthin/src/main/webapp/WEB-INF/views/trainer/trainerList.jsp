@@ -37,7 +37,7 @@ $(document).ready(function(){
  					info+="<h4>지역 : "+data.lvo[i].location+"</h4>";
  					info+="<p>경력사항 : "+data.lvo[i].career+"</p>";
  					info+="<c:choose><c:when test='${mvo.id!=null}'>";
- 					info+="<form action='${pageContext.request.contextPath}/trainer/trainerDetail.do' method='post'>";
+ 					info+="<form action='${pageContext.request.contextPath}/trainerDetail.do' method='post'>";
  					info+="<input type='hidden' value='"+data.lvo[i].membervo.id+"' name='trainerId'>";
  	               	info+="<input type='submit' value='강사정보 더보기'></form>";
  	               	info+="</c:when><c:otherwise>";
@@ -68,7 +68,7 @@ $(document).ready(function(){
 	<h4>지역별 코치 찾기</h4>
 	<div class="well" style="background-color: lightgray;">
 		<div class="coachloc">
-		<form action="${pageContext.request.contextPath}/trainer/trainerLoc.do" method="get">
+		<form action="${pageContext.request.contextPath}/trainerLoc.do" method="get">
 		서울 > &emsp;
 		<input type="radio" value="강남구" name="local">강남구&nbsp; 
 		<input type="radio" value="노원구" name="local">노원구&nbsp;
@@ -117,7 +117,7 @@ $(document).ready(function(){
                 <p>경력사항 : ${t.career}</p>
                 <c:choose>
                 <c:when test="${mvo.id!=null}">
-                <form action="${pageContext.request.contextPath}/trainer/trainerDetail.do" method="post">
+                <form action="${pageContext.request.contextPath}/trainerDetail.do" method="post">
                 	<input type="hidden" value="${t.membervo.id}" name="trainerId">
                 	<input type="submit" value="강사정보 더보기">
                 </form>
@@ -135,14 +135,14 @@ $(document).ready(function(){
 		<ul class="pagination">
 			<c:set var="pb" value="${list.pb}"></c:set>
 				<c:if test="${pb.previousPageGroup}">
-					<li class="previous"><a href="${pageContext.request.contextPath}/trainer/trainerList.do?pageNo=${pb.startPageOfPageGroup-1}"> 
+					<li class="previous"><a href="${pageContext.request.contextPath}/trainerList.do?pageNo=${pb.startPageOfPageGroup-1}"> 
 					 previous</a></li>	
 				</c:if>
 		
 				<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 					<c:choose>
 						<c:when test="${pb.nowPage!=i}">
-							<li><a href="${pageContext.request.contextPath}/trainer/trainerList.do?pageNo=${i}">${i}</a></li>
+							<li><a href="${pageContext.request.contextPath}/trainerList.do?pageNo=${i}">${i}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="active"><a>${i}</a></li>
@@ -151,7 +151,7 @@ $(document).ready(function(){
 				</c:forEach>	    
 		
 				<c:if test="${pb.nextPageGroup}">
-					<li class="next"><a href="${pageContext.request.contextPath}/trainer/trainerList.do?pageNo=${pb.endPageOfPageGroup+1}">
+					<li class="next"><a href="${pageContext.request.contextPath}/trainerList.do?pageNo=${pb.endPageOfPageGroup+1}">
 					next</a></li>
 				</c:if>
 		</ul>

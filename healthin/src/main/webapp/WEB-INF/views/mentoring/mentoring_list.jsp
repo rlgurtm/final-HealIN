@@ -28,20 +28,23 @@
 			<c:forEach items="${listVO.LVO}" var="lvo">
 			<tbody>
 			<tr>
-				<td>${lvo.id}</td>
-				<td>${lvo.nickname}</td>
-				<td>${lvo.birthdate}</td>
-				<td>${lvo.gender}</td>
-				<td>${lvo.address}</td>
+				<td>${lvo.sendMember.id}</td>
+				<td>${lvo.sendMember.nickname}</td>
+				<td>${lvo.sendMember.birthdate}</td>
+				<td>${lvo.sendMember.gender}</td>
+				<td>${lvo.sendMember.address}</td>
 				<td>
 				<a class="btn"
-				href="#">
+				href="${pageContext.request.contextPath}/mentoringDetail.do?sendId=${lvo.sendMember.id}">
 				Mentoring</a>
+				<c:if test="${lvo.hits>0}">
+				<img style="width: 35px; height: 20px" src="${pageContext.request.contextPath}/resources/img/newMentoring.gif">
+				</c:if>
 				</td>
 			</tr>
 			</tbody>
 			</c:forEach>
-		</table>
+			</table>
 		</div>
 	</div>
 

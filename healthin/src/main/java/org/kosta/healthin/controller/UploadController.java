@@ -27,10 +27,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 	private String uploadPath 
 	//기혁
-	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 	//송희
 	//= "C:\\Users\\kosta\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
-
+    //wpfajswjrkftkfka
+	= "C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\video\\";
+	
 	@Resource
 	private TrainerVideoService videoService;
 	
@@ -293,6 +295,34 @@ public class UploadController {
 		model.addAttribute("listVO",listVO);
 		return "video/trainer_video_list.tiles";
 	}
+	
+	@RequestMapping("searchVideoList.do")
+	public String searchVideoList(Model model,String searchWord){
+		int nowPage;
+		PagingBean pb;
+		int filterTotalCount; 
+		ListVO listVO = new ListVO();
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		String filter = "no";
+		
+		
+		nowPage = 1;
+		
+		if(filter.equals("no")){
+			filterTotalCount = videoService.selectedCountVideo(searchWord);
+			pb = new PagingBean(filterTotalCount,nowPage);
+			map.put("pb", pb);
+			map.put("searchWord", searchWord);
+			listVO = videoService.trainerSearchVideoList(map);
+			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
+		}
+
+		model.addAttribute("listVO",listVO);
+		return "video/selected_trainer_video_list.tiles";
+	}
+	
 	
 	@RequestMapping("selectVideoLikeState.do")
 	@ResponseBody
