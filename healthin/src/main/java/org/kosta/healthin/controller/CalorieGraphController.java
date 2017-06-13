@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.healthin.model.service.CalorieGraphService;
+import org.kosta.healthin.model.vo.CalorieInfoVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +26,11 @@ public class CalorieGraphController {
 	
 	@RequestMapping("ajaxGraphData.do")
 	@ResponseBody
-	public ArrayList<HashMap<String, Object>> initGraphData(HttpServletRequest request) {
+	public ArrayList<CalorieInfoVO> initGraphData(HttpServletRequest request) {
 		int startDate = Integer.parseInt(request.getParameter("startDate").replaceAll("-", ""));
 		int endDate = Integer.parseInt(request.getParameter("endDate").replaceAll("-", ""));
 		String id = request.getParameter("id");
 		System.out.println(id + " " + startDate + " " + endDate);
-		ArrayList<HashMap<String, Object>> jsonData = new ArrayList<HashMap<String, Object>>();
 		List<String> consumptionDateList = calorieGraphService.getAllDateConsumptionCalorie(id);
 		List<String> intakeDateList = calorieGraphService.getAllDateIntakeCalorie(id);
 		ArrayList<Integer> tmpConsumption = new ArrayList<Integer>();	// 기간별 데이터를 조회하기 위함
@@ -62,30 +62,31 @@ public class CalorieGraphController {
 				intakePeriod.add(tmpString.toString());
 			}
 		}
-		
+		ArrayList<CalorieInfoVO> calorieInfoList = new ArrayList<CalorieInfoVO>();
 		for (int i=0; i<consumptionPeriod.size(); i++) {
 			HashMap<String, String> tmpConsumptionCalorieMap = new HashMap<String, String>();
 			tmpConsumptionCalorieMap.put("date", consumptionPeriod.get(i));
 			tmpConsumptionCalorieMap.put("id", id);
 			int totalConsumptionCalorie = calorieGraphService.getTotalConsumptionCalorieOfDay(tmpConsumptionCalorieMap);
-			HashMap<String, Object> consumptionCalorieOfEachDay = new HashMap<String, Object>();
-			consumptionCalorieOfEachDay.put("consumptionDate", consumptionPeriod.get(i));
-			consumptionCalorieOfEachDay.put("totalConsumptionCalorie", totalConsumptionCalorie);
-			consumptionCalorieOfEachDay.put("totalConsumptionDate", consumptionPeriod.size());
-			jsonData.add(consumptionCalorieOfEachDay);
+			CalorieInfoVO calorieInfo = new CalorieInfoVO(consumptionPeriod.get(i), totalConsumptionCalorie, true);
+			calorieInfoList.add(calorieInfo);
 		}
 		for (int i=0; i<intakePeriod.size(); i++) {
 			HashMap<String, String> tmpIntakeCalorieMap = new HashMap<String, String>();
 			tmpIntakeCalorieMap.put("date", intakePeriod.get(i));
 			tmpIntakeCalorieMap.put("id", id);
 			int totalIntakeCalorie = calorieGraphService.getTotalIntakeCalorieOfDay(tmpIntakeCalorieMap);
-			HashMap<String, Object> intakeCalorieOfEachDay = new HashMap<String, Object>();
-			intakeCalorieOfEachDay.put("intakeDate", intakePeriod.get(i));
-			intakeCalorieOfEachDay.put("totalIntakeCalorie", totalIntakeCalorie);
-			intakeCalorieOfEachDay.put("totalIntakeDate", intakePeriod.size());
-			jsonData.add(intakeCalorieOfEachDay);
+			for (int j=0; j<calorieInfoList.size();) {
+				if (calorieInfoList.get(i).getDate().equals(intakePeriod.get(i)))	 {	// 같은 날짜가 있는 경우
+					calorieInfoList.get(i).setTotalIntakeCalorie(totalIntakeCalorie);
+					break;
+				} else {	// 같은 날짜가 없는 경우
+					CalorieInfoVO calorieInfo = new CalorieInfoVO(intakePeriod.get(i), totalIntakeCalorie, false);
+					calorieInfoList.add(calorieInfo);
+					break;
+				}
+			}
 		}
-		System.out.println(jsonData);
-		return jsonData;
+		return calorieInfoList;
 	}
 }
