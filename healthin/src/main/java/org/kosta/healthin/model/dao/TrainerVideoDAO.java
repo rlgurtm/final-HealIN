@@ -68,4 +68,9 @@ public interface TrainerVideoDAO {
 
 	ListVO findBysearchWordVideoList(Map map);
 
+	int selectedCountVideo(String searchWord);
+
+	ListVO trainerSearchVideoList(Map<String, Object> map);
+
+
 }

@@ -351,21 +351,11 @@ from
 where cme.user_id=p.user_id and p.user_id = 'user1'
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
 
-
-       select a.* from 
-       (select row_number() over(order by rank desc) rnum,
-       id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m
-       where t.trainer_id=m.id) a 
-              where rnum between 1 and 10
-              and id like '%' ||'s' ||'%'
-              or name like '%' ||'수' ||'%'
-              or location like '%' ||'용' ||'%'
-              
-              
-       select a.* from 
-       (select row_number() over(order by name desc) rnum,
-       id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m
-       where t.trainer_id=m.id) a 
-       where id like '%' ||'s' ||'%'
+ 		select a.*,b.likeState from 
+	 		(select row_number() over(order by video_no desc) as rnum
+	 		,video_no as videoNo,title,content,video_file as videoFile
+			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
+			,trainer_id as trainerId,openrank from trainer_video where title like '%운%' or content like '%신%') a
+			,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
+		where b.video_no(+)=a.videoNo and rnum between 1 and 10
+		order by rnum asc

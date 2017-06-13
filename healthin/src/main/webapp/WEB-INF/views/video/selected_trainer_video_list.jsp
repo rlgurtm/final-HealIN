@@ -17,13 +17,11 @@
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 	<h2>
-	Trainer Video</h2><br>
+	Trainer Video 검색 결과</h2><br>
 	<br>
 	</div>
 	<!-- /.row -->
 	<%-- ${listVO} --%>
-${list}
-${listVO}
 	<!-- Projects Row -->
 	<div class="row">
 		<c:forEach items="${listVO.LVO}" var="lvo">
@@ -52,13 +50,6 @@ ${listVO}
 	</div>
 
 	<hr>
-	<div class="col-lg-12" align="right">
-		<form class="pure-form" method="post" action="${pageContext.request.contextPath}/filterVideoList.do?filter=findByTrainerId">
-			<h4>PT 강사별 조회</h4>
-			<input name="trainerId" id="trainerNameKeyword" type="text" class="pure-input-rounded">
-			<button type="submit" class="pure-button">Search</button>
-		</form>
-	</div>
 
 	<!-- Pagination -->
 	<div class="row text-center">

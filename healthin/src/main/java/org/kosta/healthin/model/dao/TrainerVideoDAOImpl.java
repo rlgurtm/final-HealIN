@@ -168,4 +168,14 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 		listVO.setLVO(template.selectList("searchtrainervideo.findBysearchWordVideoList",map));
 		return listVO;
 	}
+	@Override
+	public int selectedCountVideo(String searchWord) {
+		return template.selectOne("trainerSearchvideo.selectedCountVideo",searchWord);
+	}
+	@Override
+	public ListVO trainerSearchVideoList(Map<String, Object> map) {
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("trainerSearchvideo.trainerSearchVideoList",map));
+		return listVO;
+	}
 }
