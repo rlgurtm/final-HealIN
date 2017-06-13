@@ -90,7 +90,7 @@ public class MyPageController {
 			model.addAttribute("list",list);
 		}
 		else{
-			return "home.do";
+			return "redirect:home.do";
 		}
 		return "mypage/followingList.tiles";
 	}
@@ -117,7 +117,7 @@ public class MyPageController {
 			return myPageService.getmypageBothFollowList(pageNo,userId);
 		}
 		else{
-			return "home.do";
+			return "redirect:home.do";
 		}
 	}
 }

@@ -75,7 +75,7 @@ $(".pagination .active").removeClass("active");
 </div>
 <ul class="nav nav-tabs follow">
 	<li class="menu active">
-		<a href="${pageContext.request.contextPath}/followingList.do">팔로우</a>
+		<a href="${pageContext.request.contextPath}/followerList.do">팔로우</a>
 	</li>
 	<li class="menu"><a href="#">맞팔</a></li>
 </ul>

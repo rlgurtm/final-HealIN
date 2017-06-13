@@ -55,7 +55,7 @@ public class TrainerPageController {
 			model.addAttribute("list",list );
 		}
 		else{
-			return "home.do";
+			return "redirect:home.do";
 		}
 		return "trainer/followerList.tiles";
 	}
@@ -82,7 +82,7 @@ public class TrainerPageController {
 			return service.getBothFollowList(pageNo,trainerid);
 		}
 		else{
-			return "home.do";
+			return "redirect:home.do";
 		}
 	}
 }
