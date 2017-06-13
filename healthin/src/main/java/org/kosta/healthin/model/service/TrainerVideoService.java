@@ -57,6 +57,7 @@ public interface TrainerVideoService {
 	int findByTotalCount(String trainerId);
 
 	ListVO findByTrainerIdVideoList(Map map);
+	ListVO findBysearchWordVideoList(Map map);
 
 	void registerVideoComment(TrainerVideoCommentVO cvo);
 

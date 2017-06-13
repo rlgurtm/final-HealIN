@@ -162,4 +162,10 @@ public class TrainerVideoDAOImpl implements TrainerVideoDAO {
 	public void deleteVideoComment(int videoCommentNo){
 		template.delete("trainervideo.deleteVideoComment",videoCommentNo);
 	}
+	@Override
+	public ListVO findBysearchWordVideoList(Map map) {
+		ListVO listVO = new ListVO();
+		listVO.setLVO(template.selectList("searchtrainervideo.findBysearchWordVideoList",map));
+		return listVO;
+	}
 }

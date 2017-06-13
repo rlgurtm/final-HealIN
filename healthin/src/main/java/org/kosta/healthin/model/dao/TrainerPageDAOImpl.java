@@ -90,6 +90,12 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.update("trainerpage.updateAcceptState",map);
 	}
 
+	@Override   //trainerPtList  
+	public List<VO> trainerSearchList(Map<String, Object> map) {
+		return template.selectList("searchTrainer.trainerSearchList",map);
+	}
+
+	
 	@Override
 	public int getBothFollowTotalCount(String trainerid) {
 		return template.selectOne("trainerpage.getBothFollowTotalCount",trainerid);

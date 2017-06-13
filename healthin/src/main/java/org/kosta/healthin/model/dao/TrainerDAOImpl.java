@@ -75,5 +75,17 @@ public class TrainerDAOImpl implements TrainerDAO {
 	public List<VO> getTrainerLoc(Map<String, Object> map) {
 		return template.selectList("trainer.getTrainerLoc",map);
 	}
+	
+	@Override
+	public int getTrainerSearchTotalCount(String searchWord) {
+		return template.selectOne("searchTrainer.getTrainerSearchTotalCount",searchWord);
+	}
+
+	@Override   //getTrainerList
+	public List<VO> getSearchTrainer(Map<String, Object> map) {
+		return template.selectList("searchTrainer.getSearchTrainer",map);
+	}
+	
+
 
 }

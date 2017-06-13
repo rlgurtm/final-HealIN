@@ -88,7 +88,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/followingList.do">Following</a>
+			                                <a href="${pageContext.request.contextPath}/followerList.do">Following</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/trainerPtList.do">Matching</a>
@@ -113,7 +113,7 @@
 			                                <a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">Following</a>
+			                                <a href="${pageContext.request.contextPath}/userfollowingList.do">Following</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/userPtList.do">Matching</a>
