@@ -186,7 +186,7 @@
 	            	<c:forEach items="${trainerList.LVO}" var="trainer">
 	            	<div style="height: 410px" align="right">
 	            		<div class="col-lg-7">
-	            		<a href="${pageContext.request.contextPath}/trainer/trainerDetail.do?trainerId=${trainer.membervo.id}">
+	            		<a href="${pageContext.request.contextPath}/trainerDetail.do?trainerId=${trainer.membervo.id}">
 	            		<img src="${pageContext.request.contextPath}/resources/trainerPic/${trainer.trainerPhoto}" height="400px">
 						</a>
 						</div>

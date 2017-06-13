@@ -39,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from following 
 	where apply_result='Y' and accept_result='N' and trainer_id=#{value}
  	</select>
+ 	<select id="getFollowerCount" resultType="int">
+ 	select count(*) 
+	from following 
+	where apply_result='Y' and trainer_id=#{value}
+ 	</select>
  	<select id="getFollowerList" parameterType="map" resultType="memberVO">
  	select a.* from 
        (select row_number() over(order by nickname desc) rnum,
@@ -56,8 +61,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<update id="updateAcceptState" parameterType="map">
- 	update
+ 	update following set accept_result=#{STATE}
+ 	where user_id=#{USERID} and trainer_id=#{TRAINERID}
  	</update>
+ 	
+ 	<select id="getBothFollowTotalCount" resultType="int">
+ 	select count(*) 
+	from following 
+	where apply_result='Y' and accept_result='Y' and trainer_id=#{value}
+ 	</select>
+ 	<select id="getBothFollowList" parameterType="map" resultType="memberVO">
+ 	select a.* from 
+       (select row_number() over(order by nickname desc) rnum,
+       f.user_id as id,m.nickname
+       from health_member m,following f
+       where f.trainer_id=#{TRAINERID} and f.user_id=m.id
+       and apply_result='Y' and accept_result='Y') a 
+       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+ 	</select>
 </mapper>
  
  
