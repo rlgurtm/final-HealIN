@@ -16,15 +16,21 @@ public class TrainerPageController {
 	@Resource
 	private TrainerPageService service;
 
-	@RequestMapping("ptList.do")
-	public String ptList(String id,String nowpage,String pageNo,Model model){
+	@RequestMapping("trainerPtList.do")
+	public String ptList(String id,String nowpage,String pageNo,Model model,HttpServletRequest request){
 		if(nowpage==null)
 			nowpage="1";
 		if(pageNo==null)
 			pageNo="1";
-		model.addAttribute("ptList",service.trainerPtList(id, nowpage));
-		model.addAttribute("mList",service.trainerMatchingList(id, pageNo));
-		return "trainer/ptList.tiles";
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			model.addAttribute("ptList",service.trainerPtList(mvo.getId(), nowpage));
+			model.addAttribute("mList",service.trainerMatchingList(mvo.getId(), pageNo));
+			return "trainer/trainerPtList.tiles";
+		}else{
+			return "home.do";
+		}
 	}
 	@RequestMapping("trainer/userInfoPopup.do")
 	public String ptListPopup(String id,Model model){
@@ -37,8 +43,26 @@ public class TrainerPageController {
 		return "redirect:/ptList.do?id="+trainerId;
 	}
 	@RequestMapping("matching.do")
-	public String matchinsg(){
-		return "redirect:/trainer/trainerDetail.do";
+	public String matchinsg(String trainerId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			service.payInsert(mvo.getId(), trainerId, request.getParameter("period"));
+			service.userMatchingInsert(mvo.getId(), trainerId);
+			return "redirect:/trainer/trainerDetail.do?trainerId="+trainerId;
+		}else{
+			return "home.do";
+		}
+	}
+	@RequestMapping("userPtList.do")
+	public String matchingList(String id,String nowpage,Model model,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			if(nowpage==null)
+				nowpage="1";
+			model.addAttribute("list",service.userPtList(mvo.getId(), nowpage));
+			return "trainer/userPtList.tiles";
+		
 	}
 	@RequestMapping("trainer/followingList.do")
 	public String followingList(Model model,String pageNo,HttpServletRequest request){

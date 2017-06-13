@@ -91,7 +91,7 @@
 			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/ptList.do?id=${mvo.id}">Matching</a>
+			                                <a href="${pageContext.request.contextPath}/trainerPtList.do">Matching</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
@@ -116,7 +116,7 @@
 			                                <a href="#">Following</a>
 			                            </li>
 			                            <li>
-			                                <a href="#">Matching</a>
+			                                <a href="${pageContext.request.contextPath}/userPtList.do">Matching</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>

@@ -24,5 +24,13 @@ public interface TrainerPageDAO {
 	String selectAcceptState(Map<String, String> map);
 
 	void trainerMatcingUpdate(Map<String, Object> map);
+
+	void userMatchingInsert(Map<String, Object> map);
+
+	void payInsert(Map<String, Object> map);
+
+	List<VO> userPtList(Map<String, Object> map);
+
+	int userPtListCount(String id);
 	
 }

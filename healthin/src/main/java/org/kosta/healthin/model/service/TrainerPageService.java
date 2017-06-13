@@ -20,6 +20,12 @@ public interface TrainerPageService {
 
 	void trainerMatchingUpdate(String userId, String trainerId);
 
+	void userMatchingInsert(String userId, String trainerId);
+
+	void payInsert(String userId, String trainerId, String period);
+
+	ListVO userPtList(String id, String nowpage);
+
 
 
 }

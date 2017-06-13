@@ -3,14 +3,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 $(document).ready(function(){
+	var info="";	
+	info+="<h2>Matching 신청</h2>";
+	info+="<form action='${pageContext.request.contextPath}/matching.do' method='post'>";
+	info+="<table  class='table table-bordered' style='width:30%;'>";
+	info+="<thead><tr><th>기간(개월)</th><th>수락</th></tr></thead>";
+	info+="<tbody><tr><td><select name='period'>";
+	info+="<option value='1'>1</option>";
+	info+="<option value='2'>2</option>";
+	info+="<option value='3'>3</option>";
+	info+="<option value='4'>4</option>";
+	info+="<option value='5'>5</option>";
+	info+="<option value='6'>6</option></select></td>";
+	info+="<td><input type='submit' value='신청'>";
+	info+="<input type='hidden' name='trainerId' value="+$("#trainerId").val()+"></td>";
+	info+="</tr></tbody></table></form>";
+	info+="	&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다";
 	$.ajax({
 		type:"get",
 		url:"${pageContext.request.contextPath}/selectfollowstate.do",
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
-			if(data=='Y')
+			if(data=='Y'){
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-			else
+				$("#matchingInfo").html(info);			
+			}else
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 	
 		}
@@ -21,9 +38,10 @@ $(document).ready(function(){
 				url:"${pageContext.request.contextPath}/updatefollowState.do",
 				data: "trainerId="+$("#trainerId").val(),
 				success:function(data){
-					if(data=='Y')
+					if(data=='Y'){
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-					else
+						$("#matchingInfo").html(info);	
+					}else
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 				}//function
 			});//ajax
@@ -74,36 +92,7 @@ $(document).ready(function(){
 			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			
 		</table><br>
-				<h2>Matching 신청</h2>
-				<form action="${pageContext.request.contextPath}/matching.do" method="post">
-				<table  class="table table-bordered" style="width:30%;">
-					<thead>
-						<tr>
-							<th>기간(개월)</th>
-							<th>수락</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-							<select>
-								<option value="">기간</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-							</select>
-							</td>
-							<td>
-								<input type="submit" value="신청">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				</form>
-				&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다
+		<c:if test="${sessionScope.mvo.istrainer == 'user' }"><div id="matchingInfo"></div></c:if>
 		</div>
 	</div>
 <input type="hidden" id="trainerId" value="${tvo.membervo.id}">

@@ -36,7 +36,22 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	public void trainerMatcingUpdate(Map<String,Object> map){
 		template.update("trainerpage.trainerMatcingUpdate",map);
 	}
-
+	@Override
+	public void userMatchingInsert(Map<String, Object> map){
+		template.insert("trainerpage.userMatchingInsert",map);
+	}
+	@Override
+	public void payInsert(Map<String, Object> map){
+		template.insert("trainerpage.payInsert",map);
+	}
+	@Override
+	public List<VO> userPtList(Map<String, Object> map){
+		return template.selectList("trainerpage.userPtList",map);
+	}
+	@Override
+	public int userPtListCount(String id){
+		return template.selectOne("trainerpage.userPtListCount",id);
+	}
 	@Override
 	public int getFollowerTotalCount(String id) {
 		return template.selectOne("trainerpage.getFollowerTotalCount",id);

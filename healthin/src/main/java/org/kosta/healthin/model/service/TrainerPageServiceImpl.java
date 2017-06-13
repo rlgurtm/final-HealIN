@@ -54,6 +54,34 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("trainerId", trainerId);
 		dao.trainerMatcingUpdate(map);
 	}
+	@Override
+	public void userMatchingInsert(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.userMatchingInsert(map);
+	}
+	@Override
+	public void payInsert(String userId,String trainerId,String period){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		map.put("period", Integer.parseInt(period));
+		map.put("price", Integer.parseInt(period)*10000);
+		dao.payInsert(map);
+	}
+	@Override
+	public ListVO userPtList(String id, String nowpage) {
+		int totalCount=dao.userPtListCount(id);
+		int pageNum=Integer.parseInt(nowpage);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());	
+		map.put("id", id);
+		ListVO listVO=new ListVO(dao.userPtList(map),pb);
+		return listVO;
+	}
 	
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
@@ -82,5 +110,6 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("STATE", state);
 		dao.updateAcceptState(map);
 	}
+	
 	
 }

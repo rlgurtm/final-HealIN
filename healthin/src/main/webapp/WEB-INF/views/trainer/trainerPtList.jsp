@@ -122,5 +122,4 @@ function matching(){
 		매칭 정보가 없습니다
 		</c:otherwise> 
 	</c:choose>
-	<a href="javascript:matching();">매칭신청</a>
 </div>
