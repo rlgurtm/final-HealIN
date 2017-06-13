@@ -69,7 +69,10 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	public int countExistMatching(Map<String, Object> map){
 		return template.selectOne("trainerpage.countExistMatching",map);
 	}
-	
+	@Override
+	public int countExistMatching1(Map<String, Object> map){
+		return template.selectOne("trainerpage.countExistMatching1",map);
+	}
 	@Override
 	public int getFollowerCount(String id) {
 		return template.selectOne("trainerpage.getFollowerCount",id);

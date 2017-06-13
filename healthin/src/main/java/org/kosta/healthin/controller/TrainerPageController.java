@@ -103,7 +103,11 @@ public class TrainerPageController {
 	@RequestMapping("countExistMatching.do")
 	@ResponseBody
 	public int countExistMatching(String userId,String trainerId){
-		return service.countExistMatching(userId, trainerId);
+		if(service.countExistMatching1(userId, trainerId)==0&&
+		   service.countExistMatching(userId, trainerId)==0){
+			return 0;
+		}
+		return 1;
 	}
 	@RequestMapping("followerList.do")
 	public String followerList(Model model,String pageNo,HttpServletRequest request){
