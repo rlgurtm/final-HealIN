@@ -158,7 +158,7 @@ public class BoardController {
 		}
 		return "redirect:/tip/NO_Hits_tip_content.do?no="+tvo.getNo();
 	}
-	@RequestMapping("trainer/trainerList.do")
+	@RequestMapping("trainerList.do")
 	public String gettrainerList(Model model,String pageNo){
 		if(pageNo==null)
 			pageNo="1";
@@ -184,12 +184,12 @@ public class BoardController {
 		return trainerService.trainerListOrder(order, pageNo);
 	}
 		
-	@RequestMapping("trainer/trainerDetail.do")
+	@RequestMapping("trainerDetail.do")
 	public String trainerDetail(Model model,String trainerId,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if(mvo==null)
-			return "redirect:/home.do";
+			return "redirect:home.do";
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
@@ -355,7 +355,7 @@ public class BoardController {
 			return "home.do";
 		}
 	}
-	@RequestMapping("trainer/trainerLoc.do")
+	@RequestMapping("trainerLoc.do")
 	public String trainerLoc(Model model,String pageNo,String local){
 		if(pageNo==null)
 			pageNo="1";
