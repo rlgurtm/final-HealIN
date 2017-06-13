@@ -348,26 +348,9 @@ from
    from physical_info
    where today = '2017-06-10') a
    where rnum=1 ) p
-<<<<<<< HEAD
-where cme.user_id=p.user_id and p.user_id = 'user1'
-=======
-where cme.user_id=p.user_id and p.user_id = 'user1'
-update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
-
-
->>>>>>> branch 'master' of https://github.com/rlgurtm/final-HealIN.git
-update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
-
-
-       select a.* from 
-       (select row_number() over(order by rank desc) rnum,
-       id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m
-       where t.trainer_id=m.id) a 
-              where rnum between 1 and 10
-              and id like '%' ||'s' ||'%'
-              or name like '%' ||'수' ||'%'
-              or location like '%' ||'용' ||'%'
+   where cme.user_id=p.user_id and p.user_id = 'user1'
+   
+    update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
               
               
        select a.* from 
