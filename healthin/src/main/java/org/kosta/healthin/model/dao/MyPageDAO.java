@@ -17,5 +17,7 @@ public interface MyPageDAO {
 	ListVO selectUserPhyicalInfo(Map map);
 
 	int graphContentCount(String user_id);
+
+	void bmiListDelete(String physical_no);
 	
 }

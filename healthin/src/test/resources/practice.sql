@@ -351,3 +351,4 @@ from
 where cme.user_id=p.user_id and p.user_id = 'user1'
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
 
+

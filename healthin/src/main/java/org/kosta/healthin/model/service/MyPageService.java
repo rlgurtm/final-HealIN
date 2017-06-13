@@ -14,6 +14,7 @@ public interface MyPageService {
 
 	int graphContentCount(String user_id);
 
+	void bmiListDelete(String physical_no);
 
 
 }

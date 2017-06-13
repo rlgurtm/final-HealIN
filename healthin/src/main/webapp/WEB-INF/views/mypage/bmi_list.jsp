@@ -65,23 +65,76 @@ table, th, td {
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Date', '체중', 'BMI지수'],
-          ['2014',  1000,      400],
-          ['2015',  1170,      460],
-          ['2016',  660,       1120],
-          ['2017',  1030,      540],
-          ['2018',  1030,      540]
+      var data = google.visualization.arrayToDataTable([
+          ['Date', '측정일자'],
+          ['2017-06-05',  0],
+          ['2017-06-08',  18.6],
+          ['2017-06-10',  22.9],
+          ['2017-06-11',  24.9],
+          ['2017-06-13',  44]
+          
+        /*   ['Date', '측정일자','BMI'],
+          ['2017-06-05',  22.9,   0 ],
+          ['2017-06-08',  1170,    0],
+          ['2017-06-10',  660,     0],
+          ['2017-06-11',  1030,   0],
+          ['2017-06-13',  1030,    0] */
+       
         ]);
 
         var options = {
-          title: '기간 별 BMI & 체중 LIST',
+          title: '측정일자 & BMI LIST',
           legend: { position: 'bottom' }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
         chart.draw(data, options);
       }
+      /* var startDate = document.getElementById("datepicker1").value;
+		var endDate = document.getElementById("datepicker2").value;
+		var jsonData = $.ajax({
+          url: "${pageContext.request.contextPath}/ajaxGraphData.do",
+          dataType: "json",
+          data: "startDate=" + startDate + "&endDate=" + endDate + "&id=${sessionScope.mvo.id}",
+          async: false,
+          success: function(jsonData) {
+          	//alert(jsonData[1].consumptionDate);
+          	var data = new google.visualization.DataTable();
+      		data.addColumn('string', 'Date'); 
+      		data.addColumn('number', '섭취량', '');
+      		data.addColumn('number', '소모량', '');
+      		data.addRows(7);
+      		//alert(jsonData[5].totalIntakeDate);
+      		data.setCell(0, 0, '2017-06-01');
+      		data.setCell(0, 1, 2000);
+      		data.setCell(0, 2, 500);
+      		data.setCell(1, 0, '2017-06-03');
+      		data.setCell(1, 1, 3000);
+      		data.setCell(1, 2, 2500);
+      		data.setCell(2, 0, '2017-06-05');
+      		data.setCell(2, 1, 1000);
+      		data.setCell(2, 2, 3000);
+      		data.setCell(3, 0, '2017-06-07');
+      		data.setCell(3, 1, 1000);
+      		data.setCell(3, 2, 3000);
+      		data.setCell(4, 0, '2017-06-08');
+      		data.setCell(4, 1, 1000);
+      		data.setCell(4, 2, 3000);
+      		data.setCell(5, 0, '2017-06-09');
+      		data.setCell(5, 1, 1000);
+      		data.setCell(5, 2, 3000);
+      		data.setCell(6, 0, '2017-06-10');
+      		data.setCell(6, 1, 1000);
+      		data.setCell(6, 2, 3000);
+              var options = {
+                title: '기간 별 칼로리 섭취/소모량',
+                legend: { position: 'bottom' }
+              };
+              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+              chart.draw(data, options);
+          }
+		});
+	} */
 </script>
 <script>
     $(function() {
@@ -154,8 +207,8 @@ table, th, td {
 				<th>측정일자</th>
 				<th>신장</th>
 				<th>체중</th>
-				<th>사용자 ID</th>
 				<th>측정지수</th>
+				<th>  </th>
 			</tr>
 			<c:forEach items="${listVO.LVO}" var="bmiList">
 				<tr>
@@ -163,8 +216,10 @@ table, th, td {
 					<td align="center">${bmiList.today}</td>
 					<td align="center">${bmiList.height}</td>
 					<td align="center">${bmiList.weight}</td>
-					<td align="center">${bmiList.user_Id}</td>
 					<td align="center">${bmiList.bmiValue}</td>
+					<td align="center">
+					<button type="button" onclick="location.href='bmiListDelete.do?physical_no=${bmiList.physical_no}'">삭제하기</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -196,10 +251,11 @@ table, th, td {
 			</ul>
 		</div>
 	</div>
-	<!-- <div id="curve_chart" style="width: 100%; height: 500px;"></div> -->
+	<div id="curve_chart"></div><br>
+	<br>
 	<table class="table">
 			<tr>
-				<td align="center"><img
+				<td align="center"><br><img
 					src="${pageContext.request.contextPath}/resources/img/bmi.png"
 					width="500" height="200"></td>
 			</tr>

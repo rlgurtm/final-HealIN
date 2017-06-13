@@ -28,16 +28,9 @@ public class MyPageServcieImpl implements MyPageService {
 	public int graphContentCount(String user_id) {
 		return  mydao.graphContentCount(user_id);
 	}
-	/*@Override
-	public PhysicalInfoVcO graphContentCount(String pageNo) {
-		int totalCount = mydao.graphContentCount();
-		PagingBean pb = null;
-		if (pageNo == null){
-			pb = new PagingBean(totalCount);
-		}else{
-			pb = new PagingBean(totalCount,Integer.parseInt(pageNo));
-		}
-		return new PhysicalInfoVO(mydao.graphPagingBean(pb),pb);
-	}*/
-
+	@Override
+	public void bmiListDelete(String physical_no){
+		mydao.bmiListDelete(physical_no);
+	}
+	
 }
