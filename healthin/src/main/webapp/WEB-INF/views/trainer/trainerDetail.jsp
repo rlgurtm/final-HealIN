@@ -66,7 +66,6 @@ $(document).ready(function(){
 			<tr>
 			<td><h4>경력사항 : </h4></td><td><h4>${tvo.career}</h4></td>
 			</tr>
-			
 			<tr>
 			<th>팔로잉</th>
 			<td id="imgtd"></td>
@@ -75,13 +74,12 @@ $(document).ready(function(){
 			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			
 		</table><br>
-			<div class="container">
-				<table  class="table table-bordered">
+				<h2>Matching 신청</h2>
+				<form action="${pageContext.request.contextPath}/matching.do" method="post">
+				<table  class="table table-bordered" style="width:30%;">
 					<thead>
 						<tr>
-							<th>기간</th>
-							<th>가격</th>
-							<th>강사명</th>
+							<th>기간(개월)</th>
 							<th>수락</th>
 						</tr>
 					</thead>
@@ -94,17 +92,18 @@ $(document).ready(function(){
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
 							</select>
 							</td>
-							<td>월 만원</td>
-							<td>healthboy</td>
 							<td>
 								<input type="submit" value="신청">
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
+				</form>
+				&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다
 		</div>
 	</div>
 <input type="hidden" id="trainerId" value="${tvo.membervo.id}">

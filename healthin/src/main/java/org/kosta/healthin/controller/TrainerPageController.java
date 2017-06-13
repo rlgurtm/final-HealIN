@@ -36,9 +36,9 @@ public class TrainerPageController {
 		service.trainerMatchingUpdate(userId, trainerId);
 		return "redirect:/ptList.do?id="+trainerId;
 	}
-	@RequestMapping("trainer/matchingPopup.do")
+	@RequestMapping("matching.do")
 	public String matchinsg(){
-		return "trainer/matching";
+		return "redirect:/trainer/trainerDetail.do";
 	}
 	@RequestMapping("trainer/followingList.do")
 	public String followingList(Model model,String pageNo,HttpServletRequest request){
