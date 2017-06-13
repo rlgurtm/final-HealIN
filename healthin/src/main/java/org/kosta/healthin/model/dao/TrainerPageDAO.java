@@ -32,5 +32,11 @@ public interface TrainerPageDAO {
 	List<VO> userPtList(Map<String, Object> map);
 
 	int userPtListCount(String id);
+
+	int getFollowerCount(String id);
+
+	int getBothFollowTotalCount(String trainerid);
+
+	List<VO> getBothFollowList(Map<String, Object> map);
 	
 }

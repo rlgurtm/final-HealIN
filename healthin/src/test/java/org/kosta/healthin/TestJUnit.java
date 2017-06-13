@@ -13,6 +13,7 @@ import org.kosta.healthin.model.dao.TrainerPageDAO;
 import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerPageService;
 import org.kosta.healthin.model.service.TrainerService;
+import org.kosta.healthin.model.vo.ListVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -44,11 +45,7 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		Map<String, String> map=new HashMap<String,String>();
-		map.put("TRAINERID", "healthboy");
-		map.put("USERID","java");
-		String state=pdao.selectAcceptState(map);
-		System.out.println(state);
+		pservice.updateAcceptState("thdgml","java");
 	}
 }
 

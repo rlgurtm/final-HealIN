@@ -52,7 +52,7 @@
                                 <a href="${pageContext.request.contextPath}/filterVideoList.do?filter=no">PT 강사 동영상</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/trainer/trainerList.do">PT 강사진</a>
+                                <a href="${pageContext.request.contextPath}/trainerList.do">PT 강사진</a>
                             </li>
                             <li>
                                 <a href="#">PT 강사 추천 받기</a>
@@ -88,7 +88,7 @@
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/trainer/followingList.do">Following</a>
+			                                <a href="${pageContext.request.contextPath}/followingList.do">Following</a>
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/trainerPtList.do">Matching</a>

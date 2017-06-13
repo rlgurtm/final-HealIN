@@ -10,6 +10,7 @@ import org.kosta.healthin.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TrainerPageController {
@@ -49,7 +50,7 @@ public class TrainerPageController {
 		if(mvo!=null){
 			service.payInsert(mvo.getId(), trainerId, request.getParameter("period"));
 			service.userMatchingInsert(mvo.getId(), trainerId);
-			return "redirect:/trainer/trainerDetail.do?trainerId="+trainerId;
+			return "redirect:trainerDetail.do?trainerId="+trainerId;
 		}else{
 			return "home.do";
 		}
@@ -62,15 +63,15 @@ public class TrainerPageController {
 				nowpage="1";
 			model.addAttribute("list",service.userPtList(mvo.getId(), nowpage));
 			return "trainer/userPtList.tiles";
-		
+
 	}
-	@RequestMapping("trainer/followingList.do")
+	@RequestMapping("followingList.do")
 	public String followingList(Model model,String pageNo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if(mvo!=null){
 			String id=mvo.getId();
-			int follower=service.getFollowerList(id);
+			int follower=service.getFollowerCount(id);
 			model.addAttribute("follower",follower);
 			if(pageNo==null)
 				pageNo="1";
@@ -91,6 +92,21 @@ public class TrainerPageController {
 			String trainerId=mvo.getId();
 			service.updateAcceptState(trainerId,userId);
 		}
-		return "redirect:trainer/followingList.do";
+		return "redirect:followingList.do";
+	}
+	@RequestMapping("trainerfollowing")
+	@ResponseBody
+	public Object trainerfollowing(Model model,String pageNo,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo!=null){
+			String trainerid=mvo.getId();
+			if(pageNo==null)
+				pageNo="1";
+			return service.getBothFollowList(pageNo,trainerid);
+		}
+		else{
+			return "home.do";
+		}
 	}
 }

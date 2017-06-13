@@ -56,6 +56,11 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	public int getFollowerTotalCount(String id) {
 		return template.selectOne("trainerpage.getFollowerTotalCount",id);
 	}
+	
+	@Override
+	public int getFollowerCount(String id) {
+		return template.selectOne("trainerpage.getFollowerCount",id);
+	}
 
 	@Override
 	public List<VO> getFollowerList(Map<String, Object> map) {
@@ -72,6 +77,14 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.update("trainerpage.updateAcceptState",map);
 	}
 
-	
-	
+	@Override
+	public int getBothFollowTotalCount(String trainerid) {
+		return template.selectOne("trainerpage.getBothFollowTotalCount",trainerid);
+	}
+
+	@Override
+	public List<VO> getBothFollowList(Map<String, Object> map) {
+		return template.selectList("trainerpage.getBothFollowList",map);
+	}
+
 }
