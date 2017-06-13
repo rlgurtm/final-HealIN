@@ -140,9 +140,9 @@ values(physical_no_seq.nextval,'185','100',sysdate,'spring');
 
 --matching
 insert into matching(user_id,trainer_id,apply_result,accept_result)
-values('java','java1','Y','Y');
+values('rlgurtm','lovhealth','Y','Y');
 insert into matching(user_id,trainer_id,apply_result,accept_result)
-values('spring','java1','Y','Y');
+values('lim1','lovhealth','Y','Y');
 insert into matching(user_id,trainer_id,apply_result,accept_result)
 values('java','healthboy','Y','Y');
 insert into matching(user_id,trainer_id,apply_result,accept_result)
@@ -155,13 +155,13 @@ values('user1','healthboy','N','Y');
 
 --mentoring
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
-values(mentoring_no_seq.nextval,'java','java1','안녕하세요?',sysdate);
+values(mentoring_no_seq.nextval,'rlgurtm','lovhealth','안녕하세요?',sysdate);
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
-values(mentoring_no_seq.nextval,'java1','java','반가워요?',sysdate);
+values(mentoring_no_seq.nextval,'rlgurtm','lovhealth','반가워요?',sysdate);
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
-values(mentoring_no_seq.nextval,'java','java1','잘부탁드립니다',sysdate);
+values(mentoring_no_seq.nextval,'lovhealth','rlgurtm','잘부탁드립니다',sysdate);
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
-values(mentoring_no_seq.nextval,'java','healthboy','안녕하세요?',sysdate);
+values(mentoring_no_seq.nextval,'lovhealth','rlgurtm','안녕하세요?',sysdate);
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
 values(mentoring_no_seq.nextval,'java','healthboy','대답이 없네요?',sysdate);
 insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)
@@ -351,11 +351,21 @@ from
 where cme.user_id=p.user_id and p.user_id = 'user1'
 update trainer set trainer_photo = '트레이너2.jpg' where trainer_id = 'healthboy'
 
- 		select a.*,b.likeState from 
-	 		(select row_number() over(order by video_no desc) as rnum
-	 		,video_no as videoNo,title,content,video_file as videoFile
-			,to_char(posted_date,'YYYY.MM.DD') as postedDate,hits,category
-			,trainer_id as trainerId,openrank from trainer_video where title like '%운%' or content like '%신%') a
-			,(select video_no,sum(like_state) as likeState from video_like group by video_no) b
-		where b.video_no(+)=a.videoNo and rnum between 1 and 10
-		order by rnum asc
+
+       select a.* from 
+       (select row_number() over(order by rank desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=m.id) a 
+              where rnum between 1 and 10
+              and id like '%' ||'s' ||'%'
+              or name like '%' ||'수' ||'%'
+              or location like '%' ||'용' ||'%'
+              
+              
+       select a.* from 
+       (select row_number() over(order by name desc) rnum,
+       id,name,location,career,rank,trainer_photo
+       from trainer t,health_member m
+       where t.trainer_id=m.id) a 
+       where id like '%' ||'s' ||'%'
