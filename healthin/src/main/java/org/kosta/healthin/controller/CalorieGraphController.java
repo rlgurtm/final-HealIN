@@ -70,9 +70,7 @@ public class CalorieGraphController {
 		else
 			cnt = inLength;
 		ArrayList<CalorieInfoVO> calorieInfoList = new ArrayList<CalorieInfoVO>();
-		for (int i=0; i<cnt; i++) {
-			if (i >= consumptionPeriod.size())
-				break;
+		for (int i=0; i<consumptionPeriod.size(); i++) {
 			HashMap<String, String> tmpConsumptionCalorieMap = new HashMap<String, String>();
 			tmpConsumptionCalorieMap.put("date", consumptionPeriod.get(i));
 			tmpConsumptionCalorieMap.put("id", id);
@@ -80,9 +78,7 @@ public class CalorieGraphController {
 			CalorieInfoVO calorieInfo = new CalorieInfoVO(consumptionPeriod.get(i), totalConsumptionCalorie, true);
 			calorieInfoList.add(calorieInfo);
 		}
-		for (int i=0; i<cnt; i++) {
-			if (i >= intakePeriod.size())
-				break;
+		for (int i=0; i<intakePeriod.size(); i++) {
 			HashMap<String, String> tmpIntakeCalorieMap = new HashMap<String, String>();
 			tmpIntakeCalorieMap.put("date", intakePeriod.get(i));
 			tmpIntakeCalorieMap.put("id", id);
