@@ -17,6 +17,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select count(*) from pay p, health_user hu 
  		where p.user_id = hu.user_id and hu.user_id = #{value}
  	</select>
+ 	<update id="updateUserPayStatus" parameterType="map">
+ 		update pay set pay_state = '입금완료', pay_date = sysdate 
+ 		where user_id = #{userId} and trainer_id = #{trainerId}
+ 	</update>
+ 	<insert id="rating" parameterType="map">
+ 		insert into trainer_rate 
+		values(#{userId}, #{trainerId}, #{rate}, #{content}, sysdate)
+ 	</insert>
+ 	<!-- <select id="isExistRating" resultType="string" parameterType="map">
+ 		select trainer_id as trainerId from trainer_rate tr, health_user hu 
+ 		where tr.user_id = hu.user_id and tr.user_id = #{userId} and tr.trainer_id = #{trainerId}
+ 	</select> -->
  	
  	<!-- <insert id="payInsert" parameterType="map">
  	 <selectKey keyProperty="no" resultType="int" order="BEFORE">

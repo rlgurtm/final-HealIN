@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,5 +31,20 @@ public class PaymentStatusServiceImpl implements PaymentStatusService {
 		map.put("endRowNumber", pagingBean.getEndRowNumber());
 		ListVO listVO = new ListVO(paymentStatusDAO.getPaymentList(map), pagingBean);
 		return listVO;
+	}
+
+	@Override
+	public void updateUserPayStatus(Map<String, Object> map) {
+		paymentStatusDAO.updateUserPayStatus(map);
+	}
+
+	@Override
+	public void rating(Map<String, Object> map) {
+		paymentStatusDAO.rating(map);
+	}
+
+	@Override
+	public List<String> isExistRating(Map<String, Object> map) {
+		return paymentStatusDAO.isExistRating(map);
 	}
 }

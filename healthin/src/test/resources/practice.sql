@@ -380,8 +380,19 @@ select count(*) from pay p, health_user hu where p.user_id=hu.user_id and hu.use
 
 select r.* from(
 	select row_number() over(order by pay_no desc) rnum, 
-	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
-	from pay p, health_user hu, trainer t
-	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, add_months(sysdate, period) as period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t, matching m
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and m.user_id = p.user_id and m.trainer_id = p.trainer_id and hu.user_id = 'user1'
 ) r
 where rnum between 1 and 6 order by rnum asc
+
+insert into trainer_rate 
+values('user1', 'healthman6', 10, '졸라 못가르치네요 ㄷㄷ', sysdate)
+
+select tr.trainer_id from trainer_rate tr, health_user hu 
+where tr.user_id = hu.user_id and tr.user_id = 'user1' and tr.trainer_id = 'healthman6'
+
+select * from pay
+
+update pay set pay_state = '입금대기', pay_date = sysdate 
+where user_id = 'user1' and trainer_id = 'swimmingguy2'
