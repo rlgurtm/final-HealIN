@@ -62,6 +62,13 @@ public class CalorieGraphController {
 				intakePeriod.add(tmpString.toString());
 			}
 		}
+		int conLength = consumptionPeriod.size();
+		int inLength = intakePeriod.size();
+		int cnt = 0;
+		if (conLength > inLength)
+			cnt = conLength;
+		else
+			cnt = inLength;
 		ArrayList<CalorieInfoVO> calorieInfoList = new ArrayList<CalorieInfoVO>();
 		for (int i=0; i<consumptionPeriod.size(); i++) {
 			HashMap<String, String> tmpConsumptionCalorieMap = new HashMap<String, String>();
@@ -87,6 +94,7 @@ public class CalorieGraphController {
 				}
 			}
 		}
+		System.out.println(calorieInfoList);
 		return calorieInfoList;
 	}
 }

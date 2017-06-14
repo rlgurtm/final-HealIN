@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="trainerPhoto" column="trainer_photo"/>
 	</resultMap>
 
- 	<select id="getTrainerTotalCount" resultType="int" >
- 		select count(*) from trainer
+ 	<select id="getTrainerTotalCount" resultType="int">
+ 		select count(*) from trainer where rank<![CDATA[>]]>0
  	</select>
 
 	<select id="getTrainerList" resultMap="trainerRM" parameterType="pagingBean">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        (select row_number() over(order by rank desc) rnum,
        id,name,location,career,rank,trainer_photo
        from trainer t,health_member m
-       where t.trainer_id=m.id) a 
+       where t.trainer_id=m.id and t.rank<![CDATA[ > ]]>0) a 
        where rnum between #{startRowNumber} and #{endRowNumber}
     </select>
     <select id="trainerOrderName" resultMap="trainerRM" parameterType="map">
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        (select row_number() over(order by name asc) rnum,
        id,name,location,career,rank,trainer_photo
        from trainer t,health_member m
-       where t.trainer_id=m.id) a 
+       where t.trainer_id=m.id and rank<![CDATA[ > ]]>0) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
     <select id="trainerOrderFollowing" resultMap="trainerRM" parameterType="map">
@@ -71,14 +71,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	 group by f.trainer_id)
     </select>
     <select id="getTrainerLocTotalCount" resultType="int">
- 	   select count(*) from trainer where location=#{value}
+ 	   select count(*) from trainer where location=#{value} and rank<![CDATA[ > ]]>0
     </select>
     <select id="getTrainerLoc" resultMap="trainerRM" parameterType="map">
     	select a.* from 
        (select row_number() over(order by name desc) rnum,
        id,name,location,career,rank,trainer_photo
        from trainer t,health_member m
-       where t.trainer_id=m.id and location=#{LOC}) a 
+       where t.trainer_id=m.id and location=#{LOC} and rank<![CDATA[ > ]]>0) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
 </mapper>

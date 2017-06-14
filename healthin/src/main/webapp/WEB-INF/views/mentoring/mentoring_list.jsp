@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				MENTORING LIST
+				MENTORING MEMBER LIST
 				<small>
 				<c:choose>
 					<c:when test="${mvo.istrainer=='trainer'}">사용자목록</c:when>

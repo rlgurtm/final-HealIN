@@ -1,5 +1,8 @@
 package org.kosta.healthin.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,7 @@ import org.kosta.healthin.model.service.MentoringService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.MentoringVO;
+import org.kosta.healthin.model.vo.PagingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -46,6 +50,14 @@ public class MentoringController {
 			return "redirect:home.do";
 		} else {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			int nowPage;
+			PagingBean pb;
+			int mentoringTotalCount; 
+			if(request.getParameter("nowPage")!=null){
+				nowPage = Integer.parseInt(request.getParameter("nowPage"));
+			} else {
+				nowPage = 1;
+			}
 			String sendId = request.getParameter("sendId");
 			//System.out.println(sendId);
 			String receiveId = mvo.getId();
@@ -53,8 +65,14 @@ public class MentoringController {
 			mentoring.setSendId(sendId);
 			mentoring.setReceiveId(receiveId);
 			//System.out.println(mentoring);
+			mentoringTotalCount = mentoringService.mentoringTotalCount(mentoring);
+			pb = new PagingBean(mentoringTotalCount,nowPage);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("pb", pb);
+			map.put("mentoring", mentoring);
 			mentoringService.mentoringDetailHits(mentoring);
-			listVO = mentoringService.mentoringDetail(mentoring);
+			listVO = mentoringService.mentoringDetail(map);
+			listVO.setPb(pb);
 			model.addAttribute("mentoringId",sendId);
 		}
 		model.addAttribute("listVO",listVO);

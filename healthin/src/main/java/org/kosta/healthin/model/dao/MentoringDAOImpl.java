@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.dao;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.ListVO;
@@ -29,9 +31,13 @@ public class MentoringDAOImpl implements MentoringDAO{
 		template.update("mentoring.mentoringDetailHits",mentoring);
 	}
 	@Override
-	public ListVO mentoringDetail(MentoringVO mentoring){
+	public int mentoringTotalCount(MentoringVO mentoring){
+		return template.selectOne("mentoring.mentoringTotalCount",mentoring);
+	}
+	@Override
+	public ListVO mentoringDetail(Map map){
 		ListVO listVO = new ListVO();
-		listVO.setLVO(template.selectList("mentoring.mentoringDetail",mentoring));
+		listVO.setLVO(template.selectList("mentoring.mentoringDetail",map));
 		return listVO;
 	}
 	@Override

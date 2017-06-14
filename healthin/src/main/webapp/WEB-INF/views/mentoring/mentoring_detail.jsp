@@ -122,7 +122,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				MENTORING DETAIL
+				MENTORING
 				<small>
 				상대 ID : ${mentoringId}
 				</small>
@@ -130,7 +130,7 @@
 		</div>
 		<div class="col-lg-12" align="center">
 		<form action="insertMentoring.do" method="post">
-			<textarea class="ta5" rows="2" name="content"></textarea><br>
+			<textarea class="ta5" rows="2" name="content" required="required"></textarea><br>
 			<button type="submit" class="myButton btn">메시지 전송</button>
 			<input type="hidden" name="receiveId" value="${mentoringId}">
 		</form>
@@ -154,10 +154,32 @@
 				</c:choose>
 			</c:forEach>
 			</ul>
-			
 			</div>
-
-
+		</div>
+	</div>
+	
+	<!-- Pagination -->
+	<div class="row text-center">
+		<div class="col-lg-12">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${listVO.pb.previousPageGroup}">
+						<li><a
+							href="${ pageContext.request.contextPath }/mentoringDetail.do?sendId=${mentoringId}&nowPage=${listVO.pb.startPageOfPageGroup-1}">&laquo;</a></li>
+					</c:when>
+				</c:choose>
+				<li class="active">
+				<c:forEach var="pg" begin="${listVO.pb.startPageOfPageGroup}"
+					end="${listVO.pb.endPageOfPageGroup}">
+					<li><a href="${ pageContext.request.contextPath }/mentoringDetail.do?sendId=${mentoringId}&nowPage=${ pg }">${ pg }</a></li>
+					</c:forEach>
+				<li class="active">
+				<c:choose>
+					<c:when test="${listVO.pb.nextPageGroup}">
+						<li><a href="${ pageContext.request.contextPath }/mentoringDetail.do?sendId=${mentoringId}&nowPage=${listVO.pb.endPageOfPageGroup+1}">&raquo;</a></li>
+					</c:when>
+				</c:choose>
+			</ul>
 		</div>
 	</div>
 </div>

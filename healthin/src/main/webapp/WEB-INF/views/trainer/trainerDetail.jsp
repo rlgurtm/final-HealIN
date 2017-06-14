@@ -106,10 +106,12 @@ $(document).ready(function(){
 			<tr>
 			<td><h4>경력사항 : </h4></td><td><h4>${tvo.career}</h4></td>
 			</tr>
+			<c:if test="${mvo.istrainer.equals('user')}">
 			<tr>
 			<th>팔로잉</th>
 			<td id="imgtd"></td>
 			</tr>
+			</c:if>
 			<tr>
 			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			
