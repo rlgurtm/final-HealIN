@@ -16,6 +16,7 @@
 		<c:when test="${sessionScope.mvo.istrainer=='admin'}">
 	관리자님 로그인 하셨습니다.&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+	<a href="${pageContext.request.contextPath}/withdraw_form.do">탈퇴</a>
 		</c:when>
 		<c:otherwise>
 	${sessionScope.mvo.id}
