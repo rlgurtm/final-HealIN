@@ -300,5 +300,13 @@ public class MemberController {
 		session.setAttribute("mvo", vo);
 		return "redirect:home.do";
 	}
+	
+	
+	@RequestMapping("withdraw_form.do")
+	public String withdraw_form() {
+		return "member/withdraw_form";
+	}
+
+	
 
 }
