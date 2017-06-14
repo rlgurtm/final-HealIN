@@ -359,3 +359,8 @@ from
        from trainer t,health_member m
        where t.trainer_id=m.id) a 
        where id like '%' ||'s' ||'%'
+       
+       
+       select physical_no,height,weight,today,user_id as user_Id
+	 		from physical_info
+	 		where today like '%' || to_date('2017-06-13') ||'%'

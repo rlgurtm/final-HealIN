@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +20,21 @@ public class MyPageServcieImpl implements MyPageService {
 
 	@Override
 	public void insertUserPhysicalInfo(PhysicalInfoVO pivo) {
-		mydao.insertUserPhysicalInfo(pivo);
+		 Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("systoday", sdf.format(d));
+		map.put("id", pivo.getUser_Id());
+		PhysicalInfoVO pvo = mydao.selectListToday(map);
+		//System.out.println(pvo);
+		if(pvo!=null){
+			pivo.setPhysical_no(pvo.getPhysical_no());
+			mydao.bmiListUpdate(pivo);
+			//System.out.println("업데이트밸류:" + pivo);
+		}else{
+			mydao.insertUserPhysicalInfo(pivo);
+			//System.out.println("인설트밸류:" + pivo);
+		}
 	}
 
 	@Override
