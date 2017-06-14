@@ -59,13 +59,9 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slick.min.js"></script>
 
-<%-- <!-- rating -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.rating.css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rating/jquery.form.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rating/jquery.MetaData.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rating/jquery.rating.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rating/jquery.rating.pack.js"></script>
- --%>
+<!-- rating -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/rating.css"/>
+
 
 </head>
 <body>

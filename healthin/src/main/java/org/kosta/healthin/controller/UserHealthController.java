@@ -11,8 +11,8 @@ public class UserHealthController {
 //	@Resource
 //	private CalendarService calendarService;
 	
-	@RequestMapping("user_health_check.do")
+	/*@RequestMapping("user_health_check.do")
 	public String userCalendar(Model model, HttpServletRequest request) {
 		return "mypage/user_health_check.tiles";
-	}
+	}*/
 }

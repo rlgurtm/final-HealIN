@@ -48,7 +48,7 @@
 			<tr>
 				<td>${pvo.userId }</td>
 				<td>${pvo.payDate }</td>
-				<td>${pvo.period }</td>
+				<td>${pvo.period }개월</td>
 				<td>${pvo.price }</td>
 				<td>${pvo.payState }</td>
 				<c:if test="${result!='result' }">
