@@ -41,5 +41,9 @@ public interface TrainerPageService {
 
 	int countExistFollowing(String userId, String trainerId);
 
+	void trainerPayUpdate(String userId, String trainerId);
+
+	ListVO userPtMatchingList(String id, String pageNo);
+
 
 }

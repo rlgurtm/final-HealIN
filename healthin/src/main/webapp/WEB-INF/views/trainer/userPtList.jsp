@@ -20,7 +20,7 @@ function popupOpen(id){
 						<th style="width:10%;">이름</th>
 						<th style="width:15%;">닉네임</th>
 						<th>주소</th>
-						<th>pt현황</th>
+						<th style="width:15%;">pt현황</th>
 					</tr>
 				</thead>
 				<tbody id="tipBoardInfo">
@@ -60,6 +60,59 @@ function popupOpen(id){
 		</c:when>
 		<c:otherwise>
 		매칭 정보가 없습니다
+		</c:otherwise> 
+	</c:choose>
+	<br><br>
+	<h1 class="page-header">진행 PT</h1>
+	<c:choose>
+		<c:when test="${!empty mList.LVO }">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th style="width:10%;">아이디</th>
+						<th style="width:10%;">이름</th>
+						<th style="width:15%;">닉네임</th>
+						<th>주소</th>
+						<th style="width:15%;">pt현황</th>
+					</tr>
+				</thead>
+				<tbody id="tipBoardInfo">
+					<c:forEach items="${mList.LVO }" var="list">
+						<tr>
+							<td>${list.id}</td><td>${list.name }</td><td>${list.nickname }</td>
+							<td>${list.address }</td><td><a href="javascript:popupOpen('${list.id }','result');">현황보기</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+				<div align="center">
+		<ul class="pagination">
+			<c:set var="pb" value="${mList.pb}"></c:set>
+				<c:if test="${pb.previousPageGroup}">
+					<li class="previous"><a href="${pageContext.request.contextPath}/userPtList.do?id=${mvo.id }&pageNo=${pb.startPageOfPageGroup-1}"> 
+					 previous</a></li>	
+				</c:if>
+		
+				<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+					<c:choose>
+						<c:when test="${pb.nowPage!=i}">
+							<li><a href="${pageContext.request.contextPath}/userPtList.do?id=${mvo.id }&pageNo=${i}">${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="active"><a>${i}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>	    
+		
+				<c:if test="${pb.nextPageGroup}">
+					<li class="next"><a href="${pageContext.request.contextPath}/userPtList.do?id=${mvo.id }&pageNo=${pb.endPageOfPageGroup+1}">
+					next</a></li>
+				</c:if>
+		</ul>
+	</div>
+		</c:when>
+		<c:otherwise>
+		진행중인 PT가 없습니다
 		</c:otherwise> 
 	</c:choose>
 	</div>

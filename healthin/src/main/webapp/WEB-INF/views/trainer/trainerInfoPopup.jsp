@@ -35,7 +35,9 @@
 				<th>가격</th>
 				<th>결제상태</th>
 				<c:if test="${pvo.payState!='입금완료' }">
+					<c:if test="${pvo.payState!='PT중' }">
 					<th>입금확인</th>
+					</c:if>
 				</c:if>
 			</tr>
 		</thead>
@@ -46,8 +48,10 @@
 				<td>${pvo.period }</td>
 				<td>${pvo.price }</td>
 				<td>${pvo.payState }</td>
-				<c:if test="${pvo.payState!='입금완료' }">
+				<c:if test="${pvo.payState!='입금완료'}">
+					<c:if test="${pvo.payState!='PT중' }">
 					<td><input type="button" value="입금완료" onclick="deposit()"></td>
+					</c:if>
 				</c:if>
 				
 			</tr>

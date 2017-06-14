@@ -84,6 +84,18 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		return listVO;
 	}
 	@Override
+	public ListVO userPtMatchingList(String id, String pageNo) {
+		int totalCount=dao.userPtMatchingListCount(id);
+		int pageNum=Integer.parseInt(pageNo);
+		PagingBean pb=new PagingBean(totalCount, pageNum);
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("startRowNumber", pb.getStartRowNumber());
+		map.put("endRowNumber", pb.getEndRowNumber());	
+		map.put("id", id);
+		ListVO listVO=new ListVO(dao.userPtMatchingList(map),pb);
+		return listVO;
+	}
+	@Override
 	public PayVO userTrainerPay(String userId,String trainerId){
 		Map<String, Object> map=new HashMap<String,Object>();
 		map.put("userId", userId);
@@ -117,6 +129,13 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("userId", userId);
 		map.put("trainerId", trainerId);
 		return dao.countExistFollowing(map);
+	}
+	@Override
+	public void trainerPayUpdate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.trainerPayUpdate(map);
 	}
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {

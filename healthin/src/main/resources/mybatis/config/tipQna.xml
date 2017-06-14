@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <select id="getTipBoardDetailContent" resultMap="tipBoardRM">
        select t.board_no as no,t.title,t.content,t.attached_file as attachedFile,
-       t.hits,to_char(t.posted_date,'YYYY.MM.DD HH:MM:SS') as postedDate,
+       t.hits,to_char(t.posted_date,'YYYY.MM.DD HH:MI:SS') as postedDate,
        t.category,t.id,t.tipqna,m.name,m.nickname
       from tipandqna t,health_member m
       where t.id=m.id and t.tipqna='tip' and t.board_no=#{value}
@@ -112,7 +112,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="getTipQnaCommentList" parameterType="map" resultMap="commentRM">
       select h.comment_no,h.board_no,h.health_comment,h.posted_date,h.id
       from (select row_number() over(order by comment_no asc) rnum,comment_no,board_no,
-      health_comment,to_char(posted_date,'YYYY-MM-DD HH:MM')as posted_date,id from health_comment where board_no=#{no} ) h 
+      health_comment,to_char(posted_date,'YYYY-MM-DD HH:MI')as posted_date,id from health_comment where board_no=#{no} ) h 
       where rnum between #{startRowNumber} and #{endRowNumber}
    </select>
    <select id="getTotalTipQnaCommentCount" parameterType="int" resultType="int">
