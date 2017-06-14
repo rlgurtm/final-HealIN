@@ -229,7 +229,7 @@ public class MemberController {
 			vo.setIstrainer("admin");
 			session.setAttribute("mvo", vo);
 			//System.out.println(session.getAttribute("mvo"));
-			return "redirect:home.do";
+			return "redirect:adminAuthority.do";
 		} else if (memberService.login(id, password)==null) {
 			return "member/login_fail";
 		} else {

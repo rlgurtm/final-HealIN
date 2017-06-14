@@ -28,7 +28,7 @@ public class MyPageController {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		pivo.setUser_Id(mvo.getId());
-		// System.out.println(pivo);
+		//System.out.println(pivo);
 		myPageService.insertUserPhysicalInfo(pivo);
 		return "redirect:bmi_list.do";
 	}

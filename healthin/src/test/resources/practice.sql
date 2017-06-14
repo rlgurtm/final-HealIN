@@ -359,6 +359,39 @@ from
        from trainer t,health_member m
        where t.trainer_id=m.id) a 
        where id like '%' ||'s' ||'%'
+<<<<<<< HEAD
+       
+       
+       select r.* from(
+	select row_number() over(order by pay_no desc) rnum, p.pay_no, hu.user_id
+	from pay p, health_user hu, trainer t
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+) r
+where rnum between 1 and 5 order by rnum asc
+
+select a.* from
+  (select row_number() over(order by pay_no desc) rnum,t.board_no as no,t.title,t.hits,
+  to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+  (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
+  from tipandqna t,health_member m
+  where t.id=m.id and t.tipqna='tip') a 
+where rnum between #{startRowNumber} and #{endRowNumber}
+
+select count(*) from pay p, health_user hu where p.user_id=hu.user_id and hu.user_id ='user1'
+
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, 
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+) r
+where rnum between 1 and 6 order by rnum asc
+       
+       
+       select physical_no,height,weight,today,user_id as user_Id
+	 		from physical_info
+	 		where today like '%' || to_date('2017-06-13') ||'%'
+
 
        
 select r.* from(
