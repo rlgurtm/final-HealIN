@@ -8,7 +8,6 @@ function existcheckMatching(userId,trainerId){
 		url:"${pageContext.request.contextPath}/countExistMatching.do",
 		data:"userId="+userId+"&trainerId="+trainerId,
 		success:function(data){
-			alert(data);
 			if(data==0){
 				var info="";	
 				info+="<h2>Matching 신청</h2>";
