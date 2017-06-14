@@ -47,5 +47,7 @@ public interface TrainerPageDAO {
 	void userDepositUpate(Map<String, Object> map);
 
 	int countExistMatching(Map<String, Object> map);
+
+	int countExistMatching1(Map<String, Object> map);
 	
 }

@@ -37,5 +37,7 @@ public interface TrainerPageService {
 
 	int countExistMatching(String userId, String trainerId);
 
+	int countExistMatching1(String userId, String trainerId);
+
 
 }

@@ -56,7 +56,7 @@ $(document).ready(function(){
 							data:"userId=${mvo.id}&trainerId="+$("#trainerId").val(),
 							success:function(data){
 								if(data==0)
-								$("#matchingInfo").html(info);		
+								$("#matchingInfo").html(info);	
 							}
 						});
 					}else{
