@@ -8,21 +8,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		insert into physical_info(physical_no,height,weight,today,user_id)
  		values(physical_no_seq.nextval,#{height},#{weight},sysdate,#{user_Id})
  	</insert>
+ 	
  	<select id="selectUserPhyicalInfo" resultType="physicalInfoVO" parameterType="map">
  	select * from (
 	 		select row_number() over(order by physical_no desc) as rnum
-	 		,physical_no,height,weight,to_char(today,'YYYY.MM.DD') as today,user_id as user_Id
+	 		,physical_no,height,weight,to_char(today,'YYYY-MM-DD') as today,user_id as user_Id
 	 		,round(weight/(height*height/10000),2) as bmiValue
 	 		from physical_info
 	 		where user_id=#{user_id} )
  		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
  	</select>
+ 	
  	<select id="graphContentCount" resultType="int" parameterType="string">
  		select count(*) 
  		from physical_info
  		where user_id=#{value}
  		order by physical_no desc
  	</select>
+ 	
  	<resultMap type="physicalInfoVO" id="physicalMap" />
  	<select id="graphPagingBean" resultMap="physicalMap" parameterType="pagingBean">
  		select b.physical_no,b.height,b.weight,b.today,b.user_id
@@ -34,16 +37,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where b.user_id = p.user_id and rnum between #{startRowNumber} and #{endRowNumber}
  		order by physical_no desc
  	</select>
+ 	
  	<delete id="bmiListDelete" parameterType="string">
  		delete from physical_info
  		where physical_no=#{physical_no}
  	</delete>
+ 	
+ 	<select id="selectListToday" resultType="physicalInfoVO" parameterType="map">
+	 		select physical_no,height,weight,today,user_id as user_Id
+	 		from physical_info
+	 		where today like '%' || to_date(#{systoday}) ||'%' and user_id=#{id}
+ 	</select>
+ 	
+ 	<update id="bmiListUpdate" parameterType="physicalInfoVO">
+ 		update physical_info
+ 		set height=#{height}, weight=#{weight}, today=sysdate
+ 		where physical_no=#{physical_no}
+ 	</update>
  	
  	<select id="getFollowingTotalCount" resultType="int">
  		select count(*) 
 		from following 
 		where apply_result='Y' and user_id=#{value}
  	</select>
+ 	
  	<select id="getFollowingList" parameterType="map" resultType="memberVO">
  		select a.* from 
        (select row_number() over(order by nickname desc) rnum,
@@ -53,15 +70,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        and apply_result='Y') a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
  	</select>
+ 	
  	<update id="unfollow" parameterType="map">
  	update following set apply_result='N'
  	where user_id=#{USERID} and trainer_id=#{TRAINERID}
  	</update>
+ 	
  	<select id="getmypageBothFollowTotalCount" resultType="int">
  	select count(*) 
 	from following 
 	where apply_result='Y' and accept_result='Y' and user_id=#{value}
  	</select>
+ 	
  	<select id="getmypageBothFollowList" parameterType="map" resultType="memberVO">
  	select a.* from 
        (select row_number() over(order by nickname desc) rnum,

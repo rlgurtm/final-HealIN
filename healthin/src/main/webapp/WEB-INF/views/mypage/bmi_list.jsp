@@ -53,6 +53,17 @@ table, th, td {
 		height: 30px;
 	}
 </style>
+<style>
+	.btn {
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    font-size: 12px;
+    cursor: pointer;
+	}
+	.info {background-color: #2196F3;} /* Blue */
+	.info:hover {background: #0b7dda;}
+</style>
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -143,6 +154,11 @@ table, th, td {
         });
     });
 </script>
+<script type="text/javascript">
+function Test(){
+alert("측정되었습니다!");
+}
+</script>
 <hr>
 <div class="container">
 	<!-- Page Heading/Breadcrumbs -->
@@ -189,7 +205,7 @@ table, th, td {
 				<!-- <tr class="info">
 		</tr> -->
 				<tr class="">
-					<td><input type="submit" id="bmi_Test" value="측정하기"></td>
+					<td><input type="submit" class="btn info" id="bmi_Test"  value="측정하기" onclick="Test()"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -199,7 +215,10 @@ table, th, td {
 	<form id="graphPb"
 		action="${pageContext.request.contextPath }/graphPagingBean.do">
 		<table class="bmiTable">
-			<caption>BMI측정지수</caption>
+			<caption>BMI측정지수( * BMI측정지수는 1일 지수만 기록되고 보여지며 이후 추가로 측정 할 경우 
+					최종 측정한 값으로 수정되어 보여집니다.)</caption> 
+			<caption align="right"> 
+		</caption>
 			<%-- <c:choose> --%>
 			<%-- <c:when test="${empty sessionScope.listVO }==false"> --%>
 			<tr align="center">
@@ -218,7 +237,7 @@ table, th, td {
 					<td align="center">${bmiList.weight}</td>
 					<td align="center">${bmiList.bmiValue}</td>
 					<td align="center">
-					<button type="button" onclick="location.href='bmiListDelete.do?physical_no=${bmiList.physical_no}'">삭제하기</button>
+					<button type="button" class="btn info"  onclick="location.href='bmiListDelete.do?physical_no=${bmiList.physical_no}'">삭제하기</button>
 					</td>
 				</tr>
 			</c:forEach>

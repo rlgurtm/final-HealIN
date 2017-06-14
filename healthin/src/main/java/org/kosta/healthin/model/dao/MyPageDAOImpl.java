@@ -18,7 +18,18 @@ public class MyPageDAOImpl implements MyPageDAO {
 	private SqlSessionTemplate template;
 
 	@Override
+	public PhysicalInfoVO selectListToday(Map map){
+		return template.selectOne("mypage.selectListToday",map);
+	}
+	
+	@Override
+	public void bmiListUpdate(PhysicalInfoVO pivo){
+		template.update("mypage.bmiListUpdate",pivo);
+	}
+	
+	@Override
 	public void insertUserPhysicalInfo(PhysicalInfoVO pivo) {
+		
 		template.insert("mypage.insertUserPhysicalInfo", pivo);
 	}
 
