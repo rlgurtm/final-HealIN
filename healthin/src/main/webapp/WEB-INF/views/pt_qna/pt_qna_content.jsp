@@ -26,6 +26,8 @@ color: black;
 						dataType:"json", 
 						success:function(data){
 								var info="";
+								if(data.lvo.length==0)
+									info+="<div align='center'>댓글이 없습니다</div>";
 								  for(var i=0;i<data.lvo.length;i++){
 									info+="<table style='width:90%;margin:20px;'>";
 									info+="<tr><th><i class='glyphicon glyphicon-user'></i>&nbsp;";
@@ -134,6 +136,7 @@ color: black;
 		<div class="well" style="width:60%; margin-left: auto; margin-right: auto; " >
 			<div id="commentInfo"></div>
 			<div align="center"><ul class="pagination"></ul></div><hr>
+			<c:if test="${tvo.rank!=0 }">
 			<form action="${pageContext.request.contextPath}/ptQnaCommentWrite.do" method="post">
 				<table style="width:100%;">
 					<tr>
@@ -151,5 +154,6 @@ color: black;
 					</tr>
 				</table>
 			</form>
+			</c:if>
 		</div>
 		<br><br>

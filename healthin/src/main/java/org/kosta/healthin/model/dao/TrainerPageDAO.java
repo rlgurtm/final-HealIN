@@ -49,5 +49,7 @@ public interface TrainerPageDAO {
 	int countExistMatching(Map<String, Object> map);
 
 	int countExistMatching1(Map<String, Object> map);
+
+	int countExistFollowing(Map<String, Object> map);
 	
 }

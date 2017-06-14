@@ -60,7 +60,7 @@ public class TrainerPageController {
 			if((service.countExistMatching(mvo.getId(), trainerId))==0){
 				service.payInsert(mvo.getId(), trainerId, request.getParameter("period"));
 				service.userMatchingInsert(mvo.getId(), trainerId);
-				return "redirect:trainerDetail.do?trainerId="+trainerId;
+				return "redirect:userPtList.do?id="+mvo.getId();
 			}
 		}
 		return "redirect:home.do";
@@ -103,8 +103,9 @@ public class TrainerPageController {
 	@RequestMapping("countExistMatching.do")
 	@ResponseBody
 	public int countExistMatching(String userId,String trainerId){
-		if(service.countExistMatching1(userId, trainerId)==0&&
-		   service.countExistMatching(userId, trainerId)==0){
+		if(service.countExistMatching(userId, trainerId)==0&&
+		   service.countExistMatching1(userId, trainerId)==0&&
+		   service.countExistFollowing(userId, trainerId)==1){
 			return 0;
 		}
 		return 1;

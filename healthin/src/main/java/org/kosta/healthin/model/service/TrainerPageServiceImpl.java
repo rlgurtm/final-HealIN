@@ -111,7 +111,13 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("trainerId", trainerId);
 		return dao.countExistMatching1(map);
 	}
-	
+	@Override
+	public int countExistFollowing(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.countExistFollowing(map);
+	}
 	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
 		int totalCount=dao.getFollowerTotalCount(id);

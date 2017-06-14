@@ -74,6 +74,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select count(*)from matching where trainer_id=#{trainerId} and user_id=#{userId}
 		and apply_result='Y' and accept_result='N'
  	</select>
+ 	<select id="countExistFollowing" parameterType="map" resultType="int">
+ 		select count(*)from following
+ 		where apply_result='Y' and accept_result='Y' 
+ 		and trainer_id=#{trainerId} and user_id=#{userId}
+ 	</select>
  	<select id="getFollowerTotalCount" resultType="int">
  	select count(*) 
 	from following 
