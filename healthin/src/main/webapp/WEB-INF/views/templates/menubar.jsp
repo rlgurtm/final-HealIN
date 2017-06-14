@@ -73,7 +73,7 @@
                      -->
                     <c:if test="${sessionScope.mvo != null }">
                     	<c:choose>
-                    		<c:when test="${sessionScope.mvo.istrainer == 'admin' }">
+                    		<%-- <c:when test="${sessionScope.mvo.istrainer == 'admin' }">
 	                    		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -82,7 +82,7 @@
 		                            </li>
 		                        </ul>
 		                    	</li>
-                    		</c:when>
+                    		</c:when> --%>
                     		<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
                     			<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
