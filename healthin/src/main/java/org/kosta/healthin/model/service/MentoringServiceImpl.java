@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.service;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.dao.MentoringDAO;
@@ -25,8 +27,12 @@ public class MentoringServiceImpl implements MentoringService {
 		mentoringDAO.mentoringDetailHits(mentoring);
 	}
 	@Override
-	public ListVO mentoringDetail(MentoringVO mentoring){
-		return mentoringDAO.mentoringDetail(mentoring);
+	public int mentoringTotalCount(MentoringVO mentoring){
+		return mentoringDAO.mentoringTotalCount(mentoring);
+	}
+	@Override
+	public ListVO mentoringDetail(Map map){
+		return mentoringDAO.mentoringDetail(map);
 	}
 	@Override
 	public void insertMentoring(MentoringVO mentoring){

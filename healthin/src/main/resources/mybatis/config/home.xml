@@ -35,7 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select a.* from 
        (select row_number() over(order by rank desc) rnum,
        id, name, location, career, rank, trainer_photo
-       from trainer t,health_member m
+       from (select * from trainer where rank<![CDATA[ > ]]>0) t
+       ,health_member m
        where t.trainer_id = m.id) a 
        where rnum between 1 and 8
  	</select>

@@ -225,6 +225,5 @@
 	</div>
 </div>
 <br>
-${tvo.rank}
 
 

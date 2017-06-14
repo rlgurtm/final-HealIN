@@ -22,5 +22,6 @@ public interface MemberDAO {
 	void modifyPassword(String id, String newPassword);
 	String idSearchByNumResult(String smsName, String smsNum);
 	String idSearchByMailResult(String otherName, String otherMail);
+	void withdraw(String id);
 
 }

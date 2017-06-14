@@ -44,13 +44,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<update id="mentoringDetailHits" parameterType="mentoringVO">
  		update mentoring set hits=1 where send_id=#{sendId} and receive_id=#{receiveId}
  	</update>
- 	<select id="mentoringDetail" parameterType="mentoringVO" resultType="mentoringVO">
- 		select mentoring_no as mentoringNo,send_id as sendId
- 			,receive_id as receiveId,content,posted_date as postedDate,hits
+ 	<select id="mentoringTotalCount" parameterType="mentoringVO" resultType="int">
+ 		select count(*) 
  		from mentoring
  		where receive_id=#{receiveId} and send_id=#{sendId}
  			or receive_id=#{sendId} and send_id=#{receiveId}
- 		order by posted_date desc
+ 	</select>
+ 	<select id="mentoringDetail" parameterType="map" resultType="mentoringVO">
+ 		select a.* 
+ 		from (select row_number() over(order by posted_date desc) as rnum
+	 			,mentoring_no as mentoringNo,send_id as sendId
+	 			,receive_id as receiveId,content,posted_date as postedDate,hits
+	 		from mentoring
+	 		where receive_id=#{mentoring.receiveId} and send_id=#{mentoring.sendId}
+	 			or receive_id=#{mentoring.sendId} and send_id=#{mentoring.receiveId}) a
+ 		where rnum between #{pb.startRowNumber} and #{pb.endRowNumber}
+ 		order by rnum asc
  	</select>
  	<insert id="insertMentoring" parameterType="mentoringVO">
  		insert into mentoring(mentoring_no,send_id,receive_id,content,posted_date)

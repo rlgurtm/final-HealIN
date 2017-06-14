@@ -129,6 +129,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return id;
 	}
 
+	@Override
+	public void withdraw(String id) {
+	    sqlSessionTemplate.update("member.withdraw", id);
+	}
+
 
 	
 }
