@@ -19,7 +19,6 @@ public class TrainerPageController {
 
 	@RequestMapping("trainerPtList.do")
 	public String ptList(String nowpage,String pageNo,Model model,HttpServletRequest request){
-		
 		HttpSession session = request.getSession(false);
 		if(session!=null){
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
@@ -50,6 +49,7 @@ public class TrainerPageController {
 	@RequestMapping("trainerMatching.do")
 	public String matching(String userId,String trainerId){
 		service.trainerMatchingUpdate(userId, trainerId);
+		service.trainerPayUpdate(userId, trainerId);
 		return "redirect:trainerPtList.do";
 	}
 	@RequestMapping("userMatching.do")
@@ -60,24 +60,26 @@ public class TrainerPageController {
 			if((service.countExistMatching(mvo.getId(), trainerId))==0){
 				service.payInsert(mvo.getId(), trainerId, request.getParameter("period"));
 				service.userMatchingInsert(mvo.getId(), trainerId);
-				return "redirect:trainerDetail.do?trainerId="+trainerId;
+				return "redirect:userPtList.do?id="+mvo.getId();
 			}
 		}
 		return "redirect:home.do";
 	}
 	@RequestMapping("userPtList.do")
-	public String matchingList(String id,String nowpage,Model model,HttpServletRequest request){
+	public String matchingList(String id,String pageNo,String nowpage,Model model,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		if(session!=null){
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			if(nowpage==null)
 				nowpage="1";
+			if(pageNo==null)
+				pageNo="1";
 			model.addAttribute("list",service.userPtList(mvo.getId(), nowpage));
+			model.addAttribute("mList",service.userPtMatchingList(mvo.getId(), pageNo));
 			return "trainer/userPtList.tiles";
 		}else{
 			return "redirect:home.do";
 		}
-		
 	}
 	@RequestMapping("trainerInfoPopup.do")
 	public String trainerInfoPopup(String id,Model model,HttpServletRequest request){
@@ -103,8 +105,9 @@ public class TrainerPageController {
 	@RequestMapping("countExistMatching.do")
 	@ResponseBody
 	public int countExistMatching(String userId,String trainerId){
-		if(service.countExistMatching1(userId, trainerId)==0&&
-		   service.countExistMatching(userId, trainerId)==0){
+		if(service.countExistMatching(userId, trainerId)==0&&
+		   service.countExistMatching1(userId, trainerId)==0&&
+		   service.countExistFollowing(userId, trainerId)==1){
 			return 0;
 		}
 		return 1;

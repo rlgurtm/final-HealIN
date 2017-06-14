@@ -30,9 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardController {
 	private String uploadPath
 	//송희
-	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//지선
-	="C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
+	//="C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//지원
 	//="C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\tipFile\\";
 	//기혁
@@ -102,7 +102,6 @@ public class BoardController {
 			String File = uuid.toString()+"_"+uploadFile.getOriginalFilename();
 			try {
 					file.transferTo(new File(uploadPath+File));
-					System.out.println("파일이 업로드되고 있습니다");
 					tvo.setattachedFile(File);
 					tipService.tipWrite(tvo);
 				} catch (IllegalStateException | IOException e) {

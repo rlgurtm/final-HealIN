@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class PayVO {
+public class PayVO implements VO {
 	private int payNo;
 	private int price;
 	private String payDate;
@@ -69,7 +69,4 @@ public class PayVO {
 		return "PayVO [payNo=" + payNo + ", price=" + price + ", payDate=" + payDate + ", payState=" + payState
 				+ ", userId=" + userId + ", trainerId=" + trainerId + ", period=" + period + "]";
 	}
-	
-	
-
 }

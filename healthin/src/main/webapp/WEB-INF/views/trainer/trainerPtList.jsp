@@ -22,7 +22,7 @@ function popupOpen(id,st){
 						<th style="width:10%;">이름</th>
 						<th style="width:15%;">닉네임</th>
 						<th>주소</th>
-						<th>pt현황</th>
+						<th style="width:15%;">pt현황</th>
 					</tr>
 				</thead>
 				<tbody id="tipBoardInfo">
@@ -75,7 +75,7 @@ function popupOpen(id,st){
 						<th style="width:10%;">이름</th>
 						<th style="width:15%;">닉네임</th>
 						<th>주소</th>
-						<th>pt현황</th>
+						<th style="width:15%;">pt현황</th>
 					</tr>
 				</thead>
 				<tbody id="tipBoardInfo">

@@ -101,4 +101,9 @@ public class MemberServiceImpl implements MemberService {
 		return id;
 	}
 
+	@Override
+	public void withdraw(String id) {
+		memberDAO.withdraw(id);
+	}
+
 }
