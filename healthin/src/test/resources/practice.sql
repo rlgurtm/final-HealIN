@@ -359,3 +359,7 @@ from
        from trainer t,health_member m
        where t.trainer_id=m.id) a 
        where id like '%' ||'s' ||'%'
+       
+       select * from HEALTH_MEMBER
+
+       update HEALTH_MEMBER set withdrawal='N' where id='java'

@@ -309,6 +309,27 @@ public class MemberController {
 	public String withdraw_form() {
 		return "member/withdraw_form";
 	}
+	
+	@RequestMapping("withdraw_step2.do")
+	public String withdraw_step2() {
+		return "member/withdraw_step2";
+	}
+	
+	
+	@RequestMapping("withdraw_result.do")
+	public String withdraw(String id,String reconfirmPassword,HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		System.out.println("id"+id);
+		System.out.println("reconfirmPassword"+reconfirmPassword);
+		
+		MemberVO vo = memberService.login(id, reconfirmPassword);
+		if (vo != null) {
+			memberService.withdraw(id);
+			session.invalidate();
+		}
+
+		return "redirect:home.do";
+	}
 
 	
 
