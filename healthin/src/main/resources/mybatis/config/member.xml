@@ -24,30 +24,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="findById" parameterType="string"  resultType="string">
 		SELECT id from health_member 
-		where id=#{id} 
+		where id=#{id} and withdrawal='N'
 	</select>
 	<select id="idSearchByNumResult" parameterType="map"  resultType="string">
 		SELECT id,name,tel from health_member 
-		where name=#{smsName} and tel=#{smsNum}
+		where name=#{smsName} and tel=#{smsNum} and withdrawal='N'
 	</select>
 	<select id="idSearchByMailResult" parameterType="map"  resultType="string">
 		SELECT id,name,e_mail  from health_member 
-		where name=#{otherName} and e_mail=#{otherMail}
+		where name=#{otherName} and e_mail=#{otherMail} and withdrawal='N'
 	</select>
 	
 	<select id="findByNickname" parameterType="string"  resultType="string">
 		SELECT nickname from health_member 
-		where nickname=#{nickname} 
+		where nickname=#{nickname} and withdrawal='N'
 	</select>
 	<select id="findPasswordByPhone" parameterType="map"  resultType="memberVO">
 		SELECT id,password,nickname,name,tel,e_mail as email
 		from health_member 
-		where name=#{name} and tel=#{smsNum}
+		where name=#{name} and tel=#{smsNum} and withdrawal='N'
 	</select>
 	<select id="findPasswordByMail" parameterType="map"  resultType="memberVO">
 		SELECT id,password,nickname,name,tel,e_mail as email
 		from health_member 
-		where name=#{otherMailName} and e_mail=#{otherMail}
+		where name=#{otherMailName} and e_mail=#{otherMail} and withdrawal='N'
 	</select>  
 	<update id="modifyPassword" parameterType="map">
 	update  HEALTH_MEMBER set password=#{newPassword}  where id=#{id}
@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		e_mail as
 		email,is_trainer as istrainer,withdrawal
 		from health_member where
-		id=#{id} and password=#{password}
+		id=#{id} and password=#{password} and withdrawal='N'
 	</select>
 	<select id="trainerInfo" resultType="trainerVO">
 		select
@@ -88,6 +88,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		trainer_photo=#{trainerPhoto}
 		where
 		trainer_id=#{id}
+	</update>
+    <update id="withdraw">
+	update HEALTH_MEMBER set withdrawal='Y' where id=#{value}
 	</update>
 </mapper>
 

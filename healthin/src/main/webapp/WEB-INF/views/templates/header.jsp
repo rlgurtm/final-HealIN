@@ -16,14 +16,13 @@
 		<c:when test="${sessionScope.mvo.istrainer=='admin'}">
 	관리자님 로그인 하셨습니다.&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-	<a href="${pageContext.request.contextPath}/withdraw_form.do">탈퇴</a>
 		</c:when>
 		<c:otherwise>
 	${sessionScope.mvo.id}
 	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
-	<a
-				href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+	<a href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>&nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/withdraw_form.do">Health人 회원탈퇴</a>
 		</c:otherwise>
 	</c:choose>
 	<c:forEach begin="1" end="10">&nbsp;</c:forEach>
