@@ -75,6 +75,11 @@ public class MyPageController {
 	public ModelAndView graphPagingBean(String pageNo) {	
 		return new ModelAndView("mypage/bmi_list.tiles","lvo",myPageService.graphContentCount(pageNo));
 	}*/
+	@RequestMapping("bmiListDelete.do")
+	public String bmiListDelete(String physical_no){
+		myPageService.bmiListDelete(physical_no);
+		return "redirect:bmi_list.do";
+	}
 	@RequestMapping("userfollowingList.do")
 	public String userfollowingList(Model model,String pageNo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);

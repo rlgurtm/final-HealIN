@@ -7,7 +7,7 @@
         	$(".active").removeClass("active");
         	$(this).addClass("active");
         });
-		var mydate = "";
+		var mydate = ""; 
 		$("#typeSendBtn").click(function() {
 			if (document.getElementById("type").value == "") {
 				alert("타입을 선택하세요!");

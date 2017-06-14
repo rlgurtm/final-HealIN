@@ -13,6 +13,7 @@ public interface MyPageService {
 
 	int graphContentCount(String user_id);
 
+	void bmiListDelete(String physical_no);
 	int getFollowingTotalCount(String userid);
 
 	ListVO getFollowingList(String pageNo, String userid);

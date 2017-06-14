@@ -297,31 +297,30 @@ public class UploadController {
 	}
 	
 	@RequestMapping("searchVideoList.do")
-	public String searchVideoList(Model model,HttpServletRequest request,String searchWord){
+	public String searchVideoList(Model model,String searchWord){
 		int nowPage;
 		PagingBean pb;
 		int filterTotalCount; 
 		ListVO listVO = new ListVO();
-		String filter = request.getParameter("filter");
-		if(request.getParameter("nowPage")!=null){
-			nowPage = Integer.parseInt(request.getParameter("nowPage"));
-		} else {
-			nowPage = 1;
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		String filter = "no";
+		
+		
+		nowPage = 1;
+		
+		if(filter.equals("no")){
+			filterTotalCount = videoService.selectedCountVideo(searchWord);
+			pb = new PagingBean(filterTotalCount,nowPage);
+			map.put("pb", pb);
+			map.put("searchWord", searchWord);
+			listVO = videoService.trainerSearchVideoList(map);
+			listVO.setPb(pb);
+			model.addAttribute("filter",filter);
 		}
-		
-	
-		filterTotalCount = videoService.findByTotalCount(searchWord);
-		pb = new PagingBean(filterTotalCount,nowPage);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("pb", pb);
-		map.put("searchWord", searchWord);
-		System.out.println("비디오 찾기>>"+map);
-		listVO = videoService.findBysearchWordVideoList(map);
-		listVO.setPb(pb);
-		model.addAttribute("filter",filter+"&searchWord="+searchWord);
-		
+
 		model.addAttribute("listVO",listVO);
-		return "video/selected_trainer_video_list";
+		return "video/selected_trainer_video_list.tiles";
 	}
 	
 	

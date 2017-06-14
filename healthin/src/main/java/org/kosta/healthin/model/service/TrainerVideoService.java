@@ -66,5 +66,9 @@ public interface TrainerVideoService {
 	int commentTotalCount(int videoNo);
 
 	ListVO showVideoComment(Map map);
+	
+	int selectedCountVideo(String searchWord);
+
+	ListVO trainerSearchVideoList(Map<String, Object> map);
 
 }

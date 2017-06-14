@@ -37,10 +37,12 @@ public class MyPageDAOImpl implements MyPageDAO {
 	@Override
 		public List<PhysicalInfoVO> graphPagingBean(PagingBean pb){
 		return  template.selectList("mypage.graphPagingBean",pb);
-			/*PhysicalInfoVO pivo=new PhysicalInfoVO();
-			pivo.setLvo((ListVO) template.selectList("mypage.totalCountList",pb));
-			return pivo;*/
 				}
+	
+	@Override
+		public void bmiListDelete(String physical_no){
+		template.delete("mypage.bmiListDelete",physical_no);
+	}
 
 	@Override
 	public int getFollowingTotalCount(String userid) {

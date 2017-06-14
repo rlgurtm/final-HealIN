@@ -19,6 +19,7 @@ public interface MyPageDAO {
 
 	int graphContentCount(String user_id);
 
+	void bmiListDelete(String physical_no);
 	int getFollowingTotalCount(String userid);
 
 	List<VO> getFollowingList(Map<String, Object> map);

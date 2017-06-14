@@ -30,6 +30,11 @@ public class MyPageServcieImpl implements MyPageService {
 	public int graphContentCount(String user_id) {
 		return  mydao.graphContentCount(user_id);
 	}
+	@Override
+	public void bmiListDelete(String physical_no){
+		mydao.bmiListDelete(physical_no);
+	}
+	
 	/*@Override
 	public PhysicalInfoVcO graphContentCount(String pageNo) {
 		int totalCount = mydao.graphContentCount();

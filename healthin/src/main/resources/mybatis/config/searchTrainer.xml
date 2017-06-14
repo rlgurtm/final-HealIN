@@ -11,24 +11,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="membervo.tel" column="tel" />
 		<result property="trainerPhoto" column="trainer_photo" />
 	</resultMap>
+	<select id="selectedCountVideo" resultType="int">
+		select count(*) from trainer where
+		name like '%' || #{WORD} ||'%' or
+		location like '%' || #{WORD} ||'%' or
+		career like '%' || #{WORD} ||'%'
+	</select>
 	<select id="getTrainerSearchTotalCount" resultType="int">
- 	   select count(*) from trainer where 
- 	   name like '%' || #{WORD} ||'%' or
- 	   location like '%' || #{WORD}  ||'%' or
- 	   career like '%' || #{WORD} ||'%'
-    </select>
-    <select id="getSearchTrainer" resultMap="trainerRM" parameterType="map">
-    	select a.* from 
-       (select row_number() over(order by name desc) rnum,
-       id,name,location,career,rank,trainer_photo
-       from trainer t,health_member m
-       where t.trainer_id=m.id) a 
-       where rnum between #{STARTROWNUM} and #{ENDROWNUM}
-       or name like '%' || #{WORD} ||'%'
-       or location like '%' || #{WORD} ||'%'
-       or career like '%' || #{WORD} ||'%'
-    </select>
-    
+		select count(*) from trainer where
+		name like '%' || #{WORD} ||'%' or
+		location like '%' || #{WORD} ||'%' or
+		career like '%' || #{WORD} ||'%'
+	</select>
+	<select id="getSearchTrainer" resultMap="trainerRM"
+		parameterType="map">
+		select a.* from
+		(select row_number() over(order by name desc) rnum,
+		id,name,location,career,rank,trainer_photo
+		from trainer t,health_member m
+		where t.trainer_id=m.id) a
+		where rnum between #{STARTROWNUM} and #{ENDROWNUM}
+		or name like '%' || #{WORD} ||'%'
+		or location like '%' || #{WORD} ||'%'
+		or career like '%' || #{WORD} ||'%'
+	</select>
+
 </mapper>
  
  
