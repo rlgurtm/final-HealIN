@@ -2,24 +2,37 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
-
+function existcheckMatching(userId,trainerId){
+	$.ajax({
+		type:"get",
+		url:"${pageContext.request.contextPath}/countExistMatching.do",
+		data:"userId="+userId+"&trainerId="+trainerId,
+		success:function(data){
+			if(data==0){
+				var info="";	
+				info+="<h2>Matching 신청</h2>";
+				info+="<form action='${pageContext.request.contextPath}/userMatching.do' method='post'>";
+				info+="<table  class='table table-bordered' style='width:30%;'>";
+				info+="<thead><tr><th>기간(개월)</th><th>수락</th></tr></thead>";
+				info+="<tbody><tr><td><select name='period'>";
+				info+="<option value='1'>1</option>";
+				info+="<option value='2'>2</option>";
+				info+="<option value='3'>3</option>";
+				info+="<option value='4'>4</option>";
+				info+="<option value='5'>5</option>";
+				info+="<option value='6'>6</option></select></td>";
+				info+="<td><input type='submit' value='신청'>";
+				info+="<input type='hidden' name='trainerId' value="+$("#trainerId").val()+"></td>";
+				info+="</tr></tbody></table></form>";
+				info+="	&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다";
+				
+				$("#matchingInfo").html(info);		
+			}
+			
+		}
+	});
+}
 $(document).ready(function(){
-	var info="";	
-	info+="<h2>Matching 신청</h2>";
-	info+="<form action='${pageContext.request.contextPath}/userMatching.do' method='post'>";
-	info+="<table  class='table table-bordered' style='width:30%;'>";
-	info+="<thead><tr><th>기간(개월)</th><th>수락</th></tr></thead>";
-	info+="<tbody><tr><td><select name='period'>";
-	info+="<option value='1'>1</option>";
-	info+="<option value='2'>2</option>";
-	info+="<option value='3'>3</option>";
-	info+="<option value='4'>4</option>";
-	info+="<option value='5'>5</option>";
-	info+="<option value='6'>6</option></select></td>";
-	info+="<td><input type='submit' value='신청'>";
-	info+="<input type='hidden' name='trainerId' value="+$("#trainerId").val()+"></td>";
-	info+="</tr></tbody></table></form>";
-	info+="	&nbsp;※ 모든 온라인 Pt 비용은 월 만원입니다";
 	
 	$.ajax({
 		type:"get",
@@ -28,19 +41,14 @@ $(document).ready(function(){
 		success:function(data){
 			if(data=='Y'){
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-				$.ajax({
-					type:"get",
-					url:"${pageContext.request.contextPath}/countExistMatching.do",
-					data:"userId=${mvo.id}&trainerId="+$("#trainerId").val(),
-					success:function(data){
-						if(data==0)
-						$("#matchingInfo").html(info);		
-					}
-				});
+				existcheckMatching("${mvo.id}",$("#trainerId").val());
 					
-			}else
+			}else{
 				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
-		}
+				$("#matchingInfo").html("");
+			}
+				
+		}//success
 	}); //ajax
 	$("#imgtd").click(function(){
 			$.ajax({
@@ -50,15 +58,7 @@ $(document).ready(function(){
 				success:function(data){
 					if(data=='Y'){
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-						$.ajax({
-							type:"get",
-							url:"${pageContext.request.contextPath}/countExistMatching.do",
-							data:"userId=${mvo.id}&trainerId="+$("#trainerId").val(),
-							success:function(data){
-								if(data==0)
-								$("#matchingInfo").html(info);	
-							}
-						});
+						existcheckMatching("${mvo.id}",$("#trainerId").val());
 					}else{
 						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 						$("#matchingInfo").html("");	
@@ -105,10 +105,12 @@ $(document).ready(function(){
 			<tr>
 			<td><h4>경력사항 : </h4></td><td><h4>${tvo.career}</h4></td>
 			</tr>
+			<c:if test="${mvo.istrainer.equals('user')}">
 			<tr>
 			<th>팔로잉</th>
 			<td id="imgtd"></td>
 			</tr>
+			</c:if>
 			<tr>
 			<th colspan="2">팔로워 :  ${tvo.count}</th></tr>
 			

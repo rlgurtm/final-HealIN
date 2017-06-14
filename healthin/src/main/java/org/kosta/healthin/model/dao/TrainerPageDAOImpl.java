@@ -62,6 +62,10 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.update("trainerpage.userDepositUpate",map);
 	}
 	@Override
+	public int countExistFollowing(Map<String, Object> map){
+		return template.selectOne("trainerpage.countExistFollowing",map);
+	}
+	@Override
 	public int getFollowerTotalCount(String id) {
 		return template.selectOne("trainerpage.getFollowerTotalCount",id);
 	}
