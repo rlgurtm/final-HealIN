@@ -58,8 +58,10 @@
 				<c:if test="${result!='result' }">
 					<th>수락</th>
 				</c:if>
-				<c:if test="${ex!=0 }">
-				<th>PT종료</th>
+				<c:if test="${pvo.payState=='PT중' }">
+					<c:if test="${ex!=0 }">
+						<th>PT종료</th>
+					</c:if>
 				</c:if>
 			</tr>
 		</thead>
@@ -81,8 +83,10 @@
 				<c:if test="${result!='result' }">
 					<td><input type="button" value="수락" onclick="matching()"></td>
 				</c:if>
-				<c:if test="${ex!=0 }">
-					<td><input type="button" value="종료" onclick="matchingDelete()"></td>
+				<c:if test="${pvo.payState=='PT중' }">
+					<c:if test="${ex!=0 }">
+						<td><input type="button" value="종료" onclick="matchingDelete()"></td>
+					</c:if>
 				</c:if>
 			</tr>
 		</tbody>
