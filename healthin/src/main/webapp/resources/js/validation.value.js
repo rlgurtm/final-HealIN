@@ -8,36 +8,30 @@ $(document)
 									{
 										inputEvent : "keydown focus",
 										validationEvent : "blur",
-//										id : {
-//											rules : {
-//												uniqueid : function() {
-//													return {
-//														id : "#id"
-//													}
-//												},
-//												required : true,
-//												idinvalid : true,
-//												rangelength : [ 4, 15 ],
-//												onlydigits : true,
-//												notUpperCase : true,
-//												onlydigits : true
-//											},
-//											inputListener : function(input) {
-//												formInput(input);
-//											},
-//											errorListener : function(input,
-//													result) {
-//												var extra = result.extra;
-//												formError(input, result);
-//											}
-//										},
+										id : {
+											rules : {
+												required : true,
+												onlydigits : true,
+												escape : true,
+												rangelength : [ 4, 15 ]
+											},
+											inputListener : function(input) {
+												formInput(input);
+											},
+											errorListener : function(input,
+													result) {
+												var extra = result.extra;
+												formError(input, result);
+											}
+										},
 										nickname : {
 											rules : {
 												required : true,
-												rangelength : [ 2, 15 ],
 												onlydigits : true,
+												nicknameescape : true,
 												nicknameenglishnamelength : true,
-												nicknamekoreannamelength : true
+												nicknamekoreannamelength : true,
+												rangelength : [ 2, 15 ]
 											},
 											inputListener : function(input) {
 												formInput(input);
@@ -69,10 +63,9 @@ $(document)
 										birthdate : {
 											rules : {
 												required : true,
-												strTrim : true,
-												birthdate : true,
-												dateISO : true,
-												onlyNumber : true
+												mustdigits : true,
+												rangelength : [ 8, 8 ],
+												birthdate : true
 											}
 										},
 										mobile : {
@@ -292,8 +285,6 @@ $(document)
 											errorCnt++;
 										}
 										if (errorCnt == 0) {
-											$("#submitBtn").attr("disabled",
-													true);
 											return true;
 										}
 										return false;
@@ -308,7 +299,12 @@ $(document)
 														activeElement).attr(
 														'type') == 'submit')) {
 											$(activeElement).blur();
-											$("form").submit();
+											if (errorCnt == 0) {
+												$("form").submit();
+											}else{
+												$("#submitBtn").attr("disabled",true);
+												alert('오류있다');
+											}
 										}
 									});
 
@@ -440,65 +436,6 @@ $(document)
 										}
 									});
 
-					$("#certBtn")
-							.click(
-									function() {
-
-										if ($("#certBtn").hasClass("disabled")) {
-											return false;
-										}
-										hideTypingBox($("#inpCertCode"));
-
-										var val = $.fn.methods.certcodePolicy(
-												$("#inpPhone").val(), "",
-												NumberInfo);
-
-										if (confirm($(
-												"#mobileInternationalFormat")
-												.val()
-												+ " 입력하신 번호로 인증번호를 발송합니다.\n번호가 정확한지 확인해 주세요.")) {
-											setInputReset($("#inpCertCode"));
-											setCertCodeBtnDisable("confirmBtn",
-													true);
-											$("#inpCertCode").val("").attr(
-													"disabled", true);
-											$("#matchedCertCodeText").hide();
-											isAuthenticated = false;
-											isSendCode = false;
-
-											$
-													.post(
-															"https://member.daum.net/api/auth/send.do?v=2",
-															{
-																PAGEID : "9bcb",
-																serviceType : "join",
-																authType : "phone",
-																mobile : $(
-																		"#inpPhone")
-																		.val(),
-																countryCode : $(
-																		"#mobileNationalCode")
-																		.val(),
-																countryNo : $(
-																		"#mobileNational")
-																		.val()
-
-															},
-															function(data) {
-																if (data.code == "200") {
-																	if (data.message == "OK") {
-																		sendCertCodeOK();
-																	} else {
-																		sendCertCodeFail(data.result.message);
-																	}
-																} else if (data.code == "500") {
-																	sendCertCodeFail($.fn.messages.failSendCertCode);
-																} else {
-																	sendCertCodeFail(data.result.message);
-																}
-															});
-										}
-									});
 
 
 					function showErrorBox(input) {
@@ -533,10 +470,6 @@ $(document)
 								"wrap_valid").addClass("wrap_typing");
 					}
 
-					function showTypingBoxForAuth(input) {
-						$(input).parent().removeClass("info_error").addClass(
-								"wrap_typing");
-					}
 
 					function showSuccessBox(input) {
 						$(input).parent().removeClass("info_error").addClass(

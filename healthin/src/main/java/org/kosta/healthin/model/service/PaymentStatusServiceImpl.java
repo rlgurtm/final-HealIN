@@ -44,8 +44,8 @@ public class PaymentStatusServiceImpl implements PaymentStatusService {
 	}
 
 	@Override
-	public List<String> isExistRating(Map<String, Object> map) {
-		return paymentStatusDAO.isExistRating(map);
+	public List<String> isExistRating(String id) {
+		return paymentStatusDAO.isExistRating(id);
 	}
 
 	@Override

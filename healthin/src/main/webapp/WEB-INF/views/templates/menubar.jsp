@@ -54,9 +54,11 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/trainerList.do">PT 강사진</a>
                             </li>
+                            <c:if test="${sessionScope.mvo!=null&&mvo.istrainer=='user'}">
                             <li>
                                 <a href="#">PT 강사 추천 받기</a>
                             </li>
+                            </c:if>
                         </ul>
                     </li>
                     <li>

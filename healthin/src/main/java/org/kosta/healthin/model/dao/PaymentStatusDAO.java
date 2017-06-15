@@ -11,6 +11,6 @@ public interface PaymentStatusDAO {
 	public int getTotalCountOfContent(String id);				// user가 사용
 	public int getTotalCountOfUsersContent(String id);		// trainer가 사용
 	public void updateUserPayStatus(Map<String, Object> map);
-	public List<String> isExistRating(Map<String, Object> map);
+	public List<String> isExistRating(String id);
 	public void rating(Map<String, Object> map);	// 평가
 }

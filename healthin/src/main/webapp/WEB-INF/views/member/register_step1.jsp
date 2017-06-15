@@ -475,6 +475,7 @@
 							<p>본 약관은 2017년 5월 7일부터 적용됩니다. 단, 본 약관의 공지 시점으로부터 적용일 전일까지 기간
 								동안에 가입한 신규회원에 대해서는 회원 가입시부터 본 약관이 적용됩니다.</p>
 						</div>
+						
 						<div class="wrap_check">
 							<input id="termsAgree" name="termsAgree" type="checkbox"
 								class="input_check"> <label for="termsAgree"
@@ -510,17 +511,17 @@
 
 					<div class="wrap_btn">
 						<button type="button" class="link_back">
-							<span class="ico_join_pre"><img
-								src="${pageContext.request.contextPath}/resources/img/pre.png"></span>이전으로
+							<span class="ico_join_pre">
+							<img src="${pageContext.request.contextPath}/resources/img/pre.png"></span>이전으로
 						</button>
 						<button type="submit" id="nextBtn" class="btn_comm btn_type1 disabled">동의하기</button>
 						<!-- 전체 동의 체크 후 .disabled 제거 -->
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=n"
-							 id="userBtn" class="btn_comm btn_type2">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="userBtn" class="btn_comm btn_type2 disabled">일반 사용자 계정으로 가입하기<span class="ico_join"></span></a>
 						<a
 							href="${pageContext.request.contextPath}/member/register_step2.do?type=y"
-							 id="trainerBtn" class="btn_comm btn_type2">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
+							 id="trainerBtn" class="btn_comm btn_type2 disabled">Trainer 계정으로 가입하기<span class="ico_join"></span></a>
 					</div>
 				</fieldset>
 		</div>

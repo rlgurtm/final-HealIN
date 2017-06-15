@@ -1,6 +1,7 @@
 package org.kosta.healthin.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +26,13 @@ public class PaymentStatusController {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			String id = mvo.getId();
 			String nowPage = request.getParameter("pageNo");
-			
-			//paymentStatusService.isExistRating(map);
+			List<String> ratedTrainerList = paymentStatusService.isExistRating(id);
 			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
+			for (int i=0; i<paymentList.getLVO().size(); i++) {
+				System.out.println(paymentList.getLVO().get(i));
+			}
 			model.addAttribute("paymentList", paymentList);
+			model.addAttribute("ratedTrainerList", ratedTrainerList);
 			return "payment/user_payment_list.tiles";
 		} else {
 			return "redirect:home.do"; 

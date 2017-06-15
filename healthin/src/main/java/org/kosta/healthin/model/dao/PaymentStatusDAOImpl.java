@@ -35,8 +35,8 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	}
 
 	@Override
-	public List<String> isExistRating(Map<String, Object> map) {
-		return template.selectList("paymentStatus.isExistRating", map);
+	public List<String> isExistRating(String id) {
+		return template.selectList("paymentStatus.isExistRating", id);
 	}
 
 	@Override

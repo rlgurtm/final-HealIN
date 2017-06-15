@@ -4,12 +4,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="paymentStatus">
- 	<select id="getPaymentList" resultType="payVO" parameterType="map">
+	<resultMap type="payVO" id="payRM">
+		<result property="trainerId.membervo.id" column="id" />
+		<result property="trainerId.membervo.nickname" column="nickname" />
+	</resultMap>
+ 	<select id="getPaymentList" resultMap="payRM" parameterType="map">
  	   select r.* from(
 			select row_number() over(order by pay_no desc) rnum, 
-			p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
-			from pay p, health_user hu, trainer t
-			where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = #{id}
+			p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, hm.id, hm.nickname
+			from pay p, health_user hu, trainer t, health_member hm
+			where p.user_id = hu.user_id and hm.id = t.trainer_id
+			and p.trainer_id = t.trainer_id and hu.user_id = #{id}
 		) r
 		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
  	</select>
@@ -38,10 +43,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		insert into trainer_rate 
 		values(#{userId}, #{trainerId}, #{rate}, #{content}, sysdate)
  	</insert>
- 	<!-- <select id="isExistRating" resultType="string" parameterType="map">
+ 	<select id="isExistRating" resultType="string" parameterType="map">
  		select trainer_id as trainerId from trainer_rate tr, health_user hu 
- 		where tr.user_id = hu.user_id and tr.user_id = #{userId} and tr.trainer_id = #{trainerId}
- 	</select> -->
+ 		where tr.user_id = hu.user_id and tr.user_id = #{userId}
+ 	</select>
+ 	<update id="updateRatingStatus">
+ 	
+ 	</update>
  	
  	<!-- <insert id="payInsert" parameterType="map">
  	 <selectKey keyProperty="no" resultType="int" order="BEFORE">

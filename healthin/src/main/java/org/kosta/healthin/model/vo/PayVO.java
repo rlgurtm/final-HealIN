@@ -6,13 +6,15 @@ public class PayVO implements VO {
 	private String payDate;
 	private String payState;
 	private String userId;
-	private String trainerId;
+	private TrainerVO trainerId;
 	private int period;
+	private RateVO rateVO;
 	public PayVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PayVO(int payNo, int price, String payDate, String payState, String userId, String trainerId, int period) {
+	public PayVO(int payNo, int price, String payDate, String payState, String userId, TrainerVO trainerId, int period,
+			RateVO rateVO) {
 		super();
 		this.payNo = payNo;
 		this.price = price;
@@ -21,6 +23,7 @@ public class PayVO implements VO {
 		this.userId = userId;
 		this.trainerId = trainerId;
 		this.period = period;
+		this.rateVO = rateVO;
 	}
 	public int getPayNo() {
 		return payNo;
@@ -52,10 +55,10 @@ public class PayVO implements VO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getTrainerId() {
+	public TrainerVO getTrainerId() {
 		return trainerId;
 	}
-	public void setTrainerId(String trainerId) {
+	public void setTrainerId(TrainerVO trainerId) {
 		this.trainerId = trainerId;
 	}
 	public int getPeriod() {
@@ -64,9 +67,15 @@ public class PayVO implements VO {
 	public void setPeriod(int period) {
 		this.period = period;
 	}
+	public RateVO getRateVO() {
+		return rateVO;
+	}
+	public void setRateVO(RateVO rateVO) {
+		this.rateVO = rateVO;
+	}
 	@Override
 	public String toString() {
 		return "PayVO [payNo=" + payNo + ", price=" + price + ", payDate=" + payDate + ", payState=" + payState
-				+ ", userId=" + userId + ", trainerId=" + trainerId + ", period=" + period + "]";
+				+ ", userId=" + userId + ", trainerId=" + trainerId + ", period=" + period + ", rateVO=" + rateVO + "]";
 	}
 }

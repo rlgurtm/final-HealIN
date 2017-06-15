@@ -53,7 +53,15 @@
 			});//ajax
 
 		});
+		
+		window.onerror=function(){
+			 alert('An error has occurred!')
+			 return true;
+			}
+		
+		
 		$("#nickname").keydown(function() {
+			alert('닉네임 입없다');
 			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/findByNickname.do",
@@ -67,7 +75,7 @@
 						console.log(nickdata);
 						
 						$("#nickname_msg").html(
-								"중복nickname입니다.다른 아이디를 입력해주세요.").show();
+						  "중복nickname입니다.다른 아이디를 입력해주세요.").show();
 					}else{
 						console.log(nickdata);
 						console.log('OOOO');
@@ -146,7 +154,7 @@
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="nickname" name="nickname"
 											class="inp_info" value="" autocomplete="off" maxlength="15"
-											placeholder="한글,영어 소문자/대문자, 특수문자 허용" required="required"> <span
+											placeholder="한글,영어,숫자 조합허용" required="required"> <span
 											class="txt_fix txt_domain"></span> <span class="mark_valid"
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
@@ -386,7 +394,7 @@
 				class="link_info">서비스 약관</a><span class="txt_bar">|</span> <a
 				href="${pageContext.request.contextPath}/member/info_protection"
 				target="_blank" class="link_info">개인정보처리방침</a><span class="txt_bar">|</span>
-			<a href="${pageContext.request.contextPath}/member/8034.html"
+			<a href="${pageContext.request.contextPath}/member/#"
 				target="_blank" class="link_info">회원가입 도움말</a>
 			<div class="txt_copyright">
 				© <a href="${pageContext.request.contextPath}/home.do"
