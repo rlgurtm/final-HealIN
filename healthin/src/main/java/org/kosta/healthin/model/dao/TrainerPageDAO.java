@@ -57,5 +57,13 @@ public interface TrainerPageDAO {
 	int userPtMatchingListCount(String id);
 
 	List<VO> userPtMatchingList(Map<String, Object> map);
+
+	List<String> findFieldCategory();
+
+	void insertTrainerField(Map map);
+
+	void deleteTrainerField(String mvoId);
+
+	void trainerRankUp(String trainerId);
 	
 }

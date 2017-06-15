@@ -275,16 +275,16 @@ CREATE TABLE video_comment (
 -- 분류카데고리
 drop table field_category
 CREATE TABLE field_category(
-filed_name  VARCHAR2(50) primary key
+field_name  VARCHAR2(50) primary key
 );
 
 -- 분류
 drop table field
 CREATE TABLE field(
-filed_name VARCHAR2(50)   NOT NULL,
+field_name VARCHAR2(50)   NOT NULL,
 id  VARCHAR2(50) NOT NULL,
 field_state  VARCHAR2(50) NOT NULL,
- CONSTRAINT field_pk primary key(filed_name, id),
- CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
+ CONSTRAINT field_pk primary key(field_name, id),
+ CONSTRAINT fk_field_name   FOREIGN KEY (field_name)  REFERENCES field_category(field_name),
+ CONSTRAINT fk_field_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 );

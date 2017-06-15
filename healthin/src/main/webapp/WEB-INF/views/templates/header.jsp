@@ -6,24 +6,61 @@
 		height: 22px;
 	}
 </style>
+<script>
+$(document).ready(function(){
+	//alert("${tvo.rank==0}");
+	if(${tvo!=null}&&${tvo.rank==0}){
+		alert("강사등급이 0입니다. tip게시판만 사용가능합니다.");
+	}
+	$("#trainerRankImg0").click(function(){
+		var insertField = confirm("전문분야를 선택하셔야 등업 가능합니다.");
+		//alert(insertField);
+		if(insertField){
+			window.open("${pageContext.request.contextPath}/insertTrainerFieldForm.do?id=${mvo.id}&istrainer=${mvo.istrainer}","insertTrainerField","width=400,height=500");
+		}
+	});
+});
+</script>
 <div align="right">
-${sessionScope.tvo.rank}
 	<c:choose>
 		<c:when test="${sessionScope.mvo == null}">
 			<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/login_form.do">로그인</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/idSearchform.do">아이디 찾기</a>&nbsp;&nbsp;
-	</c:when>
+			<a href="${pageContext.request.contextPath}/login_form.do">로그인</a>&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/idSearchform.do">아이디 찾기</a>&nbsp;&nbsp;
+		</c:when>
 		<c:when test="${sessionScope.mvo.istrainer=='admin'}">
-	관리자님 로그인 하셨습니다.&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+			관리자님 로그인 하셨습니다.&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
 		</c:when>
 		<c:otherwise>
-	${sessionScope.mvo.id}
-	${sessionScope.mvo.nickname}님 로그인 하셨습니다.&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/withdraw_form.do">Health人 회원탈퇴</a>
+		<c:if test="${mvo.istrainer=='trainer'}">
+			<c:choose>
+				<c:when test="${tvo.rank=='0'}">
+					<img id="trainerRankImg0" src="${pageContext.request.contextPath}/resources/img/trainerRank/0.gif">
+				</c:when>	
+				<c:when test="${tvo.rank=='1'}">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/1.gif">
+				</c:when>	
+				<c:when test="${tvo.rank=='2'}">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/2.gif">
+				</c:when>	
+				<c:when test="${tvo.rank=='3'}">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/3.gif">
+				</c:when>	
+				<c:when test="${tvo.rank=='4'}">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/4.gif">
+				</c:when>	
+				<c:when test="${tvo.rank=='5'}">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/5.gif">
+				</c:when>			
+			
+			</c:choose>
+		</c:if>
+			${sessionScope.mvo.id}
+			${sessionScope.mvo.nickname}님&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/member/modify_form.do?id=${sessionScope.mvo.id}">회원정보수정</a>&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/withdraw_form.do">Health人 회원탈퇴</a>
 		</c:otherwise>
 	</c:choose>
 	<c:forEach begin="1" end="10">&nbsp;</c:forEach>

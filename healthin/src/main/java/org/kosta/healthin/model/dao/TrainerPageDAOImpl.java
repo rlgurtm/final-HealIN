@@ -127,4 +127,20 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		return template.selectList("trainerpage.userPtMatchingList",map);
 	}
 
+	@Override
+	public List<String> findFieldCategory(){
+		return template.selectList("trainerpage.findFieldCategory");
+	}
+	@Override
+	public void deleteTrainerField(String mvoId){
+		template.delete("trainerpage.deleteTrainerField",mvoId);
+	}
+	@Override
+	public void insertTrainerField(Map map){
+		template.insert("trainerpage.insertTrainerField",map);
+	}
+	@Override
+	public void trainerRankUp(String trainerId){
+		template.update("trainerpage.trainerRankUp",trainerId);
+	}
 }
