@@ -8,10 +8,12 @@
 </style>
 <script>
 $(document).ready(function(){
-	//alert("${tvo.rank==0}");
-	if(${tvo!=null}&&${tvo.rank==0}){
+	//alert("${tvo.rank==0}");	
+	/* if(${tvo!=null}){
+		if(${tvo.rank=='0'}){
 		alert("강사등급이 0입니다. tip게시판만 사용가능합니다.");
-	}
+		}
+	} */
 	$("#trainerRankImg").click(function(){
 		var insertField = confirm("전문분야를 선택하시겠습니까?");
 		//alert(insertField);
