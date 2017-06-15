@@ -219,12 +219,14 @@ create sequence pay_no_seq;
 --강사 평가 테이블 
 drop table trainer_rate;
 create table trainer_rate(
+	rate_no number not null,
 	user_id varchar2(100),
 	trainer_id varchar2(100),
 	rate number default 0,
 	content clob not null,
 	rate_date date not null,
-	primary key(user_id,trainer_id),
+	primary key(rate_no, user_id,trainer_id),
+	constraint fk_rate_rate_no foreign key(rate_no) references pay(pay_no),
 	constraint fk_rate_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_rate_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );

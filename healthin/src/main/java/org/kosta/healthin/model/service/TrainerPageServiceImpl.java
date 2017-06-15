@@ -139,6 +139,35 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		dao.trainerPayUpdate(map);
 	}
 	@Override
+	public String getOneMatchingInfo(String userId,String trainerId) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.getOneMatchingInfo(map);
+	}
+	@Override
+	public int ExpiredMatching(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.ExpiredMatching(map);
+	}
+	@Override
+	public void ExpiredPayUpate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.ExpiredPayUpate(map);
+	}
+	@Override
+	public void MatchingDelete(String userId, String trainerId) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.MatchingDelete(map);
+	}
+	
+	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
 		int totalCount=dao.getFollowerTotalCount(id);
 		int pageNum=Integer.parseInt(pageNo);

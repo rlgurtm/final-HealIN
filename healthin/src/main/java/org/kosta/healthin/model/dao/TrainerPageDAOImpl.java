@@ -82,6 +82,22 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.update("trainerpage.trainerPayUpdate",map);
 	}
 	@Override
+	public int ExpiredMatching(Map<String, Object> map){
+		return template.selectOne("trainerpage.ExpiredMatching",map);
+	}
+	@Override
+	public void ExpiredPayUpate(Map<String, Object> map){
+		template.update("trainerpage.ExpiredPayUpate",map);
+	}
+	@Override
+	public String getOneMatchingInfo(Map<String, Object> map){
+		return template.selectOne("trainerpage.getOneMatchingInfo",map);
+	}
+	@Override
+	public void MatchingDelete(Map<String, Object> map) {
+		template.delete("trainerpage.MatchingDelete",map);
+	}
+	@Override
 	public int getFollowerCount(String id) {
 		return template.selectOne("trainerpage.getFollowerCount",id);
 	}

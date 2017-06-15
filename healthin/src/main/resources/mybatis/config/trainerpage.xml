@@ -79,10 +79,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from matching where user_id=#{value}
 		and apply_result='Y' and accept_result='Y'
  	</select>
- 	<select id="userTrainerPay" parameterType="map" resultType="payVO">
+ 	<resultMap type="payVO" id="payRM">
+ 		<result property="trainerId.membervo.id" column="trainer_id"/>
+ 	</resultMap>
+ 	<select id="userTrainerPay" parameterType="map" resultMap="payRM">
 		select *
 		from(select pay_no as payNo,price,to_char(pay_date,'YY-MM-DD HH:MI' )as payDate,
-		pay_state as payState,user_id as userId,trainer_id as trainerId,period,row_number() over
+		pay_state as payState,user_id as userId,trainer_id,period,row_number() over
 		(order by pay_date desc) rnum from pay
 		where user_id=#{userId} and trainer_id=#{trainerId}) 
 		where rnum=1	
@@ -103,6 +106,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where apply_result='Y' and accept_result='Y' 
  		and trainer_id=#{trainerId} and user_id=#{userId}
  	</select>
+ 	<select id="getOneMatchingInfo" parameterType="map" resultType="String">
+ 		select to_char(matching_date,'YY-MM-DD HH:MI') from matching 
+ 		where trainer_id=#{trainerId} and user_id=#{userId}
+ 	</select>
+ 	<select id="ExpiredMatching" parameterType="map" resultType="int">
+ 		select count(*) from matching where user_id=#{userId} 
+ 		and trainer_id=#{trainerId} and sysdate > matching_date 
+ 	</select>
+ 	<update id="ExpiredPayUpate" parameterType="map">
+ 		update pay set pay_state='PT종료'where user_id=#{userId} and trainer_id=#{trainerId}
+ 	</update>
+ 	<delete id="MatchingDelete" parameterType="map">
+ 		delete matching where trainer_id=#{trainerId} and user_id=#{userId} 
+ 	</delete>
  	<select id="getFollowerTotalCount" resultType="int">
  	select count(*) 
 	from following 
