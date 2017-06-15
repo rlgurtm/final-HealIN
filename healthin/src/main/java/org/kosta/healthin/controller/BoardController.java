@@ -193,7 +193,9 @@ public class BoardController {
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
 		model.addAttribute("tvo",vo);
-		
+		String ratePageNo = "1";
+		ListVO rateList = trainerService.getTrainerRate(trainerId, ratePageNo);
+		model.addAttribute("rateList", rateList);
 		
 		int nowPage=1;
 		PagingBean pb;

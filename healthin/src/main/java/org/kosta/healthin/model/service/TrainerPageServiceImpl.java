@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -138,6 +139,35 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		dao.trainerPayUpdate(map);
 	}
 	@Override
+	public String getOneMatchingInfo(String userId,String trainerId) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.getOneMatchingInfo(map);
+	}
+	@Override
+	public int ExpiredMatching(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		return dao.ExpiredMatching(map);
+	}
+	@Override
+	public void ExpiredPayUpate(String userId,String trainerId){
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.ExpiredPayUpate(map);
+	}
+	@Override
+	public void MatchingDelete(String userId, String trainerId) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("trainerId", trainerId);
+		dao.MatchingDelete(map);
+	}
+	
+	@Override
 	public ListVO getFollowerList(String pageNo, String id) {
 		int totalCount=dao.getFollowerTotalCount(id);
 		int pageNum=Integer.parseInt(pageNo);
@@ -196,5 +226,21 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		
 	}
 	
+	@Override
+	public List<String> findFieldCategory(){
+		return dao.findFieldCategory();
+	}
+	@Override
+	public void deleteTrainerField(String mvoId){
+		dao.deleteTrainerField(mvoId);
+	}
+	@Override
+	public void insertTrainerField(Map map){
+		dao.insertTrainerField(map);
+	}
+	@Override
+	public void trainerRankUp(String trainerId){
+		dao.trainerRankUp(trainerId);
+	}
 	
 }

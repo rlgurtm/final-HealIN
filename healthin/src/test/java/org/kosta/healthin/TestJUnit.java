@@ -1,8 +1,5 @@
 package org.kosta.healthin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -44,10 +41,6 @@ public class TestJUnit {
 
 	@Test
 	public void test(){
-		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("userId", "java4");
-		map.put("trainerId", "healthma");
-		System.out.println(pdao.countExistFollowing(map));
 	}
 }
 

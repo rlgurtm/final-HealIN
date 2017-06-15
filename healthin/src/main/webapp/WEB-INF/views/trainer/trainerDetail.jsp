@@ -155,5 +155,10 @@ $(document).ready(function(){
 			</div>
 		</div>
 		</c:forEach>
+		
+		<div>
+		dddddd
+			${requestScope.rateList.LVO}
+		</div>
 	</div>
 </div>
