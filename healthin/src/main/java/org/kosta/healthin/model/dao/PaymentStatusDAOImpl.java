@@ -23,4 +23,29 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	public int getTotalCountOfContent(String id) {
 		return template.selectOne("paymentStatus.getTotalCountOfContent", id);
 	}
+
+	@Override
+	public void updateUserPayStatus(Map<String, Object> map) {
+		template.update("paymentStatus.updateUserPayStatus", map);
+	}
+
+	@Override
+	public void rating(Map<String, Object> map) {
+		template.insert("paymentStatus.rating", map);
+	}
+
+	@Override
+	public List<String> isExistRating(String id) {
+		return template.selectList("paymentStatus.isExistRating", id);
+	}
+
+	@Override
+	public List<VO> getUsersPaymentList(Map<String, Object> map) {
+		return template.selectList("paymentStatus.getUsersPaymentList", map);
+	}
+
+	@Override
+	public int getTotalCountOfUsersContent(String id) {
+		return template.selectOne("paymentStatus.getTotalCountOfUsersContent", id);
+	}
 }

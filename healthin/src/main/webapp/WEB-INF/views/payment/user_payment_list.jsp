@@ -32,13 +32,38 @@
 <script>
 	$(document).ready(function() {
 		$(".rateFormBtn").click(function() {
+			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
+			document.getElementById("trainerId").value = trainerId;
+			/* $.ajax({ 
+				type: "post",		// 넘겨주는 방식
+				url: "${pageContext.request.contextPath}/ajaxForRating.do",	// 보낼 url
+				data: "consumptionNo=" + targetExerciseConsumptionNo,	// 넘길 데이타 값
+				success: function(exercise) {	// 성공했을 때 결과
+					document.getElementById("updateExerciseConsumptionNo").value = exercise.consumptionNo;
+					document.getElementById("updateExerciseExName").value = exercise.exName;
+					document.getElementById("updateExerciseExHour").value = exercise.exHour;
+					document.getElementById("updateExerciseCalorie").value = exercise.calorie; 
+					$("#updateModal").modal("show");
+				}
+			}); */
   			$("#rateModal").modal("show");
   		});
+		$("#rateBtn").click(function() {
+			if (document.getElementById("rateContent").value == "") {
+				alert("내용을 입력하세요!");
+				//$('#type').prop('selectedIndex', 0);
+				$("#rateContent").focus();
+				return;
+			}
+			$("#ratingForm").submit();
+		});
 		$(".payStatus").change(function() {
+			alert('${paymentList.LVO[0].trainerId}');
 			var status = $(this).val();
+			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
 			if (status == '입금대기') {
 				if (confirm("강사 계좌로 입금하셨습니까?")) {
-					location.href = "";
+					location.href = "${pageContext.request.contextPath}/updateUserPayStatus.do?userId=${sessionScope.mvo.id}&trainerId=" + trainerId;
 				}
 			} else if (status == '결제취소') {
 				if (confirm("강사 계좌로 입금하셨습니까?")) {
@@ -109,27 +134,24 @@
 								<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
 							</c:if>
 						</td>
-						<%-- <td>${list.memberVO.nickname}</td>
-						<td>${list.postedDate}</td>
-						<td>${list.hits}</td> --%>
 					</tr>
 				</c:forEach>
 			</c:if>
 		</tbody>
 	</table>
- 	
+ 	<div align="right" style='font-weight:bold;'>※ 매칭 완료 후 7일 이내에 결제하지 않으면 결제가 취소됩니다.</div>
 	<div align="center">
 		<ul class="pagination">
 			<c:set var="pb" value="${requestScope.paymentList.pb}"></c:set>
 				<c:if test="${pb.previousPageGroup}">
-					<li class="previous"><a href="${pageContext.request.contextPath}/paymentList.do?npageNo=${pb.startPageOfPageGroup-1}"> 
+					<li class="previous"><a href="${pageContext.request.contextPath}/userPaymentList.do?npageNo=${pb.startPageOfPageGroup-1}"> 
 					 previous</a></li>	
 				</c:if>
 		
 				<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 					<c:choose>
 						<c:when test="${pb.nowPage != i}">
-							<li><a href="${pageContext.request.contextPath}/paymentList.do?pageNo=${i}">${i}</a></li>
+							<li><a href="${pageContext.request.contextPath}/userPaymentList.do?pageNo=${i}">${i}</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="active"><a>${i}</a></li>
@@ -138,11 +160,12 @@
 				</c:forEach>	    
 		
 				<c:if test="${pb.nextPageGroup}">
-					<li class="next"><a href="${pageContext.request.contextPath}/paymentList.do?pageNo=${pb.endPageOfPageGroup+1}">
+					<li class="next"><a href="${pageContext.request.contextPath}/userPaymentList.do?pageNo=${pb.endPageOfPageGroup+1}">
 					next</a></li>
 				</c:if>
 		</ul>
 	</div>
+	
 	
 	<!-- Modal -->
 	<div class="modal fade" id="rateModal" role="dialog">
@@ -154,27 +177,27 @@
 					<h4 class="modal-title">PT 강사 평가</h4>
 				</div>
 				<div class="modal-body" align="left">
-					<form id="inputTypeForm" action="${pageContext.request.contextPath}/calorieType.do">
-						<input type="hidden" id="userId" name="userId" value="${list.userId}">
-						<input type="hidden" id="trainerId" name="trainerId" value="${list.trainerId}">
-						<input type="hidden" id="rate" name="mydate" value="">
+					<form id="ratingForm" action="${pageContext.request.contextPath}/rating.do">
+						<input type="hidden" id="userId" name="userId" value="${sessionScope.mvo.id}">
+						<input type="hidden" id="trainerId" name="trainerId" value="">
+						<!-- <input type="hidden" id="rate" name="mydate" value=""> -->
 						<span class="star-input">
 						  <span class="input">
-						    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
-						    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
-						    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
-						    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
-						    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
-						    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
-						    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
-						    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
-						    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
-						    <input type="radio" name="star-input" id="p10" value="10" checked="checked"><label for="p10">10</label>
+						    <input type="radio" name="rate" id="p1" value="1"><label for="p1">1</label>
+						    <input type="radio" name="rate" id="p2" value="2"><label for="p2">2</label>
+						    <input type="radio" name="rate" id="p3" value="3"><label for="p3">3</label>
+						    <input type="radio" name="rate" id="p4" value="4"><label for="p4">4</label>
+						    <input type="radio" name="rate" id="p5" value="5"><label for="p5">5</label>
+						    <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
+						    <input type="radio" name="rate" id="p7" value="7"><label for="p7">7</label>
+						    <input type="radio" name="rate" id="p8" value="8"><label for="p8">8</label>
+						    <input type="radio" name="rate" id="p9" value="9"><label for="p9">9</label>
+						    <input type="radio" name="rate" id="p10" value="10" checked="checked"><label for="p10">10</label>
 						  </span>
 						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
 						</span><br>
-						<textarea rows="3" cols="81" name="content"></textarea>
-						<h5 align="right">(80자 이내 작성)</h5>
+						<textarea id="rateContent" rows="3" cols="81" name="content"></textarea>
+						<h5 align="right">(100자 이내 작성)</h5>
 					</form>
 				</div>
 				<div class="modal-footer">
