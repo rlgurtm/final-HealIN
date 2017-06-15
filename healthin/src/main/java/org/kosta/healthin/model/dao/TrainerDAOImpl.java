@@ -88,6 +88,7 @@ public class TrainerDAOImpl implements TrainerDAO {
 
 	@Override
 	public List<VO> getTrainerRate(Map<String, Object> map) {
+		System.out.println(map);
 		return template.selectList("trainer.getTrainerRate", map);
 	}
 

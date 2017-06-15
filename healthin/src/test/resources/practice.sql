@@ -473,3 +473,13 @@ select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content,
 
 SELECT * FROM field
 
+
+select a.id,a.name,a.address,b.pushCount
+from HEALTH_MEMBER a,
+	(select count(b.field_name) as pushCount,b.id
+	from (select field_name from field where id='rlgurtm') a,
+		(select field_name,id from field where field_state='trainer') b
+	where b.field_name = a.field_name
+	group by b.id) b 
+where a.id=b.id
+order by b.pushCount desc

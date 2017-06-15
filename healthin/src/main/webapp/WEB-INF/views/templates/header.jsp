@@ -12,8 +12,8 @@ $(document).ready(function(){
 	if(${tvo!=null}&&${tvo.rank==0}){
 		alert("강사등급이 0입니다. tip게시판만 사용가능합니다.");
 	}
-	$("#trainerRankImg0").click(function(){
-		var insertField = confirm("전문분야를 선택하셔야 등업 가능합니다.");
+	$("#trainerRankImg").click(function(){
+		var insertField = confirm("전문분야를 선택하시겠습니까?");
 		//alert(insertField);
 		if(insertField){
 			window.open("${pageContext.request.contextPath}/insertTrainerFieldForm.do?id=${mvo.id}&istrainer=${mvo.istrainer}","insertTrainerField","width=400,height=500");
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		<c:if test="${mvo.istrainer=='trainer'}">
 			<c:choose>
 				<c:when test="${tvo.rank=='0'}">
-					<img id="trainerRankImg0" src="${pageContext.request.contextPath}/resources/img/trainerRank/0.gif">
+					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/0.gif">
 				</c:when>	
 				<c:when test="${tvo.rank=='1'}">
 					<img id="trainerRankImg" src="${pageContext.request.contextPath}/resources/img/trainerRank/1.gif">
