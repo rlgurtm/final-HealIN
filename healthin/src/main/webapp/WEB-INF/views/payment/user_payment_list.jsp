@@ -58,6 +58,7 @@
 			$("#ratingForm").submit();
 		});
 		$(".payStatus").change(function() {
+			alert('${paymentList.LVO[0].trainerId}');
 			var status = $(this).val();
 			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
 			if (status == '입금대기') {
