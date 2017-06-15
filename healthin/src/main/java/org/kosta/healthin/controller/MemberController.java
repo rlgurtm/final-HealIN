@@ -235,13 +235,14 @@ public class MemberController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", memberService.login(id, password));
+			//System.out.println(memberService.login(id, password));
 
 			MemberVO vo = memberService.login(id, password);
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
+				//System.out.println(tvo);
 			}
-			
 			
 			return "redirect:home.do";
 		}
