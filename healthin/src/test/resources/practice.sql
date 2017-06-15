@@ -427,10 +427,38 @@ where rnum between 1 and 6 order by rnum asc
 insert into trainer_rate 
 values('user1', 'healthman6', 10, '졸라 못가르치네요 ㄷㄷ', sysdate)
 
-select * from trainer_rate tr, health_user hu 
+
+SELECT 
+      date_format(DATE_COLUMN, '%Y%m%d') as date,
+      count(*) 
+      FROM TABLE_NAME 
+           GROUP BY date_format(DATE_COLUMN, '%Y%m%d') 
+           ORDER BY date ASC;
+
+select to_number(to_char(rate_date, 'YYYYMMDD')) as tmpDate, tr.user_id as userId, tr.trainer_id as trainerId 
+from trainer_rate tr, health_user hu 
 where tr.user_id = hu.user_id and tr.user_id = 'user1' and tr.trainer_id = 'healthman6'
+
+select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content, to_char(tr.rate_date, 'YYYY-MM-DD') as rate_date from(
+select to_number(to_char(rate_date, 'YYYYMMDD')) as date1, user_id, trainer_id, content, rate, rate_date from trainer_rate
+order by date1 desc
+) tr, health_user hu
+where tr.user_id = hu.user_id and tr.trainer_id = 'healthman6'
+
+select count(*) from trainer_rate tr, trainer t
+where tr.trainer_id = t.trainer_id and tr.trainer_id = 'healthman6'
 
 select * from pay where trainer_id = 'healthman6'
 
 update pay set pay_state = '입금대기', pay_date = sysdate 
 where user_id = 'user1' and trainer_id = 'swimmingguy2'
+
+select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content, 
+    		to_char(tr.rate_date, 'YYYY-MM-DD') as rateDate from(
+			select to_number(to_char(rate_date, 'YYYYMMDD')) as date1, 
+			user_id, trainer_id, content, rate, rate_date from trainer_rate order by date1 desc
+			) tr, health_user hu
+		where tr.user_id = hu.user_id and tr.trainer_id = #{trainerId}
+		
+		
+		

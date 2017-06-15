@@ -5,18 +5,18 @@ public class RateVO implements VO {
 	private String trainerId;
 	private String content;
 	private Double rate;
-	private String date;
+	private String rateDate;
 	public RateVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RateVO(String userId, String trainerId, String content, Double rate, String date) {
+	public RateVO(String userId, String trainerId, String content, Double rate, String rateDate) {
 		super();
 		this.userId = userId;
 		this.trainerId = trainerId;
 		this.content = content;
 		this.rate = rate;
-		this.date = date;
+		this.rateDate = rateDate;
 	}
 	public String getUserId() {
 		return userId;
@@ -42,16 +42,15 @@ public class RateVO implements VO {
 	public void setRate(Double rate) {
 		this.rate = rate;
 	}
-	public String getDate() {
-		return date;
+	public String getRateDate() {
+		return rateDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setRateDate(String rateDate) {
+		this.rateDate = rateDate;
 	}
 	@Override
 	public String toString() {
 		return "RateVO [userId=" + userId + ", trainerId=" + trainerId + ", content=" + content + ", rate=" + rate
-				+ ", date=" + date + "]";
+				+ ", rateDate=" + rateDate + "]";
 	}
-	
 }
