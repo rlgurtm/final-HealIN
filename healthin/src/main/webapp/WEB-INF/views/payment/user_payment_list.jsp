@@ -58,7 +58,7 @@
 			$("#ratingForm").submit();
 		});
 		$(".payStatus").change(function() {
-			alert('${paymentList.LVO[0].trainerId}');
+			/* alert('${paymentList.LVO[0].trainerId}'); */
 			var status = $(this).val();
 			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
 			if (status == '입금대기') {
@@ -101,7 +101,8 @@
 		<tbody id="paymentStatusInfo" align="center">
 			<tr><!-- style='font-weight:bold;' -->
 				<td class="headTitle" style="width:10%;">결제번호</td>
-				<td class="headTitle" style="width:15%;">강사ID</td>
+				<td class="headTitle" style="width:15%;">강사 ID</td>
+				<td class="headTitle" style="width:15%;">강사 닉네임</td>
 				<!-- <th style="width:15%;">닉네임</th> -->
 				<td class="headTitle" style="width:20%;">수강기간</td>
 				<td class="headTitle" style="width:10%;">가격(원)</td>
@@ -112,7 +113,8 @@
 				<c:forEach items="${paymentList}" var="list">
 					<tr>
 						<td>${list.payNo}</td>
-						<td>${list.trainerId}</td>
+						<td>${list.trainerId.membervo.id}</td>
+						<td>${list.trainerId.membervo.nickname}</td>
 						<td>${list.period}개월</td>
 						<td>${list.price}</td>
 						<c:choose>

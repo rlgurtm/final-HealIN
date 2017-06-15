@@ -81,4 +81,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where t.trainer_id=m.id and location=#{LOC} and rank<![CDATA[ > ]]>0) a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
     </select>
+    <select id="getTrainerRate" resultType="rateVO" parameterType="map">
+    	select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content, 
+    		to_char(tr.rate_date, 'YYYY-MM-DD') as rateDate from(
+			select to_number(to_char(rate_date, 'YYYYMMDD')) as date1, 
+			user_id, trainer_id, content, rate, rate_date from trainer_rate order by date1 desc
+			) tr, health_user hu
+		where tr.user_id = hu.user_id and tr.trainer_id = #{trainerId}
+		and 
+    </select>
+    <select id="getTotalRatingCount" resultType="int" parameterType="string">
+    	select count(*) from trainer_rate tr, trainer t
+		where tr.trainer_id = t.trainer_id and tr.trainer_id = #{id}
+    </select>
 </mapper>

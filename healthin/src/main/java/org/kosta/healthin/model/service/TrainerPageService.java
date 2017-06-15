@@ -1,5 +1,8 @@
 package org.kosta.healthin.model.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PayVO;
 
@@ -44,6 +47,22 @@ public interface TrainerPageService {
 	void trainerPayUpdate(String userId, String trainerId);
 
 	ListVO userPtMatchingList(String id, String pageNo);
+
+	String getOneMatchingInfo(String id, String id2);
+
+	int ExpiredMatching(String userId, String trainerId);
+
+	void MatchingDelete(String userId, String trainerId);
+
+	void ExpiredPayUpate(String userId, String trainerId);
+
+	List<String> findFieldCategory();
+
+	void insertTrainerField(Map map);
+
+	void deleteTrainerField(String mvoId);
+
+	void trainerRankUp(String trainerId);
 
 
 }

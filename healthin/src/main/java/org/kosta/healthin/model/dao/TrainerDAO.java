@@ -37,7 +37,9 @@ public interface TrainerDAO {
 
 	List<VO> getSearchTrainer(Map<String, Object> map);
 
-
+	List<VO> getTrainerRate(Map<String, Object> map);
+	
+	int getTotalRatingCount(String id);
 
 
 }

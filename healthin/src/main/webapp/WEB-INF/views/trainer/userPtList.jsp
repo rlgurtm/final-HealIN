@@ -4,7 +4,7 @@
 <script>
 function popupOpen(id){
 	var popUrl = "${pageContext.request.contextPath}/trainerInfoPopup.do?id="+id;	
-	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	var popOption = "width=800, height=200, top=200 ,left=300, resizable=no, scrollbars=no, status=no;";   
 	window.open(popUrl,"popupname",popOption);
 
 	}

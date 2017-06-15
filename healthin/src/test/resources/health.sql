@@ -219,12 +219,14 @@ create sequence pay_no_seq;
 --강사 평가 테이블 
 drop table trainer_rate;
 create table trainer_rate(
+	rate_no number not null,
 	user_id varchar2(100),
 	trainer_id varchar2(100),
 	rate number default 0,
 	content clob not null,
 	rate_date date not null,
-	primary key(user_id,trainer_id),
+	primary key(rate_no, user_id,trainer_id),
+	constraint fk_rate_rate_no foreign key(rate_no) references pay(pay_no),
 	constraint fk_rate_user_id foreign key(user_id) references health_user(user_id),
 	constraint fk_rate_trainer_id foreign key(trainer_id) references trainer(trainer_id)
 );
@@ -275,16 +277,16 @@ CREATE TABLE video_comment (
 -- 분류카데고리
 drop table field_category
 CREATE TABLE field_category(
-filed_name  VARCHAR2(50) primary key
+field_name  VARCHAR2(50) primary key
 );
 
 -- 분류
 drop table field
 CREATE TABLE field(
-filed_name VARCHAR2(50)   NOT NULL,
+field_name VARCHAR2(50)   NOT NULL,
 id  VARCHAR2(50) NOT NULL,
 field_state  VARCHAR2(50) NOT NULL,
- CONSTRAINT field_pk primary key(filed_name, id),
- CONSTRAINT fk_filed_name   FOREIGN KEY (filed_name)  REFERENCES field_category(filed_name),
- CONSTRAINT fk_filed_id   FOREIGN KEY (id)  REFERENCES health_member(id)
+ CONSTRAINT field_pk primary key(field_name, id),
+ CONSTRAINT fk_field_name   FOREIGN KEY (field_name)  REFERENCES field_category(field_name),
+ CONSTRAINT fk_field_id   FOREIGN KEY (id)  REFERENCES health_member(id)
 );
