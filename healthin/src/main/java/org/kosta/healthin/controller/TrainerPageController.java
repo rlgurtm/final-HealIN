@@ -40,6 +40,8 @@ public class TrainerPageController {
 			MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 			model.addAttribute("result", result);
 			model.addAttribute("pvo", service.userTrainerPay(id, mvo.getId()));
+			model.addAttribute("info", service.getOneMatchingInfo(id, mvo.getId()));
+			model.addAttribute("ex", service.ExpiredMatching(id, mvo.getId()));
 			return "trainer/userInfoPopup";
 		}else{
 			return "redirect:home.do";
@@ -87,6 +89,8 @@ public class TrainerPageController {
 		if(session!=null){
 			MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 			model.addAttribute("pvo", service.userTrainerPay(mvo.getId(),id));
+			model.addAttribute("info", service.getOneMatchingInfo(mvo.getId(),id));
+			model.addAttribute("ex", service.ExpiredMatching(mvo.getId(),id));
 			return "trainer/trainerInfoPopup";
 		}else{
 			return "redirect:home.do";
@@ -98,6 +102,17 @@ public class TrainerPageController {
 		if(session!=null){
 			service.userDepositUpate(userId, trainerId);
 			return "redirect:userPtList.do";
+		}else{
+			return "redirect:home.do";
+		}
+	}
+	@RequestMapping("MatchingDelete.do")
+	public String MatchingDelete(String userId,String trainerId,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if(session!=null){
+			service.MatchingDelete(userId,trainerId);
+			service.ExpiredPayUpate(userId, trainerId);
+			return "redirect:trainerPtList.do";
 		}else{
 			return "redirect:home.do";
 		}

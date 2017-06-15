@@ -45,5 +45,13 @@ public interface TrainerPageService {
 
 	ListVO userPtMatchingList(String id, String pageNo);
 
+	String getOneMatchingInfo(String id, String id2);
+
+	int ExpiredMatching(String userId, String trainerId);
+
+	void MatchingDelete(String userId, String trainerId);
+
+	void ExpiredPayUpate(String userId, String trainerId);
+
 
 }

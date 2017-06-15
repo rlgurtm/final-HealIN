@@ -45,9 +45,11 @@ public class TestJUnit {
 	@Test
 	public void test(){
 		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("userId", "java4");
-		map.put("trainerId", "healthma");
-		System.out.println(pdao.countExistFollowing(map));
+		map.put("userId", "java");
+		map.put("trainerId", "healthboy");
+		System.out.println(pdao.getOneMatchingInfo(map));
+		System.out.println(pdao.ExpiredMatching(map));
+		
 	}
 }
 
