@@ -219,7 +219,7 @@ create sequence pay_no_seq;
 --강사 평가 테이블 
 drop table trainer_rate;
 create table trainer_rate(
-	rate_no number,
+	rate_no number not null,
 	user_id varchar2(100),
 	trainer_id varchar2(100),
 	rate number default 0,
