@@ -97,7 +97,15 @@ public class TrainerDAOImpl implements TrainerDAO {
 		System.out.println(id);
 		return template.selectOne("trainer.getTotalRatingCount", id);
 	}
-	
 
+	@Override
+	public double getSumOfRating(String id) {
+		return template.selectOne("trainer.getSumOfRating", id);
+	}
+
+	@Override
+	public void updateRate(Map<String, Object> map) {
+		template.update("trainer.updateRate", map);
+	}
 
 }

@@ -2,92 +2,34 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <script>
-	function getRatingList(page) {
-		$.ajax({
-			type:"post",
-			url:"${pageContext.request.contextPath}/getTrainerRating.do",
-			data:"trainerId=${requestScope.trainerId}&pageNo="+page,
-			dataType:"json",
-			success:function(data){
-				alert(data);
-				var session="${mvo.id}";
-		 	  	var info="";
-				for(var i=0;i<data.lvo.length;i++){
-					info+="<tr><td>"+data.lvo[i].no+"</td>";
-					info+="<td>"+data.lvo[i].category+"</td><td>";
-						if(session==null||session=="" ){
-							info+=data.lvo[i].title;
-							if(data.lvo[i].commentCount!="0")
-							info+="("+data.lvo[i].commentCount+")";
-						}else{
-							info+="<a href='${pageContext.request.contextPath}/pt_qna/pt_qna_content.do?";
-							info+="no="+data.lvo[i].no+"'>"+data.lvo[i].title+"</a>";
-							if(data.lvo[i].commentCount!="0")
-							info+="("+data.lvo[i].commentCount+")";
-						} 
-					
-					info+="</td><td>"+data.lvo[i].memberVO.nickname+"</td>";
-					info+="<td>"+data.lvo[i].postedDate+"</td>";
-					info+="<td>"+data.lvo[i].hits+"</td></tr>";
-				} 
-				
-				 $("#qnaBoardInfo").html(info); 
-				 var pre=data.pb.startPageOfPageGroup-1;
-				 var next=data.pb.endPageOfPageGroup+1; 
-		 		 var paging="";
-		 		 if(data.pb.previousPageGroup)
-					 paging+="<li class='previous' value="+pre+"><a>previous</a><li>";
-				 for(var k=data.pb.startPageOfPageGroup;k<=data.pb.endPageOfPageGroup;k++){
-					 if(data.pb.nowPage==k){
-						paging+="<li value="+k+" class='active'><a href='#'>"+k+"</a></li>";
-					 }else{
-						paging+="<li value="+k+"><a href='#'>"+k+"</a></li>";
-					 }
-				 }
-				 if(data.pb.nextPageGroup)
-					 paging+="<li class='next' value="+next+"><a>next</a><li>";
-				 $(".pagination").html(paging);
-				/* $("#reviewList").html("");
-				if(data.list.length==0)
-					$("#notExistReview").css("display","");
-				$("#reviewList").append("<ul>");
-				for(var i=0;i<data.list.length;i++){
-					var innerHtml = "";
-					innerHtml += "<div class='row'><div class='3u 12u(medium)'><br>";
-					for(var j=0;j<data.list[i].star;j++)
-						innerHtml += "<img style='width:30px' src='${pageContext.request.contextPath}/images/staron.png'> ";
-					for(var j=data.list[i].star;j<5;j++)
-						innerHtml += "<img style='width:30px' src='${pageContext.request.contextPath}/images/staroff.png'> ";
-					innerHtml += "</div><div class='8u 12u(medium)'><ul><li>";
-					innerHtml += "<a href=${pageContext.request.contextPath}/DispatcherServlet?command=mypage&id="+data.list[i].id+">"
-					innerHtml += data.list[i].id+"</a> <br></li><li>"; // to do
-					innerHtml += data.list[i].rvcontent+"<br></li><li>";
-					innerHtml += data.list[i].rvdate+"</li><br></ul>";
-					if(data.list[i].id == "${mvo.id}"){
-						innerHtml += "</div><div id='deleteReview' style='float:right'><img style='width:20px;padding-top:20px;'"
-						+" src='${pageContext.request.contextPath}/images/x.png'</div></div></li>";
-					}
-					$("#reviewList").append(innerHtml);					
+<script>
+	//star rating
+	var starRating = function() {
+		var $star = $(".star-input"), $result = $star.find("output>b");
+		$(document).on("focusin", ".star-input>.input", function() {
+			$(this).addClass("focus");
+		}).on("focusout", ".star-input>.input", function() {
+			var $this = $(this);
+			setTimeout(function() {
+				if ($this.find(":focus").length === 0) {
+					$this.removeClass("focus");
 				}
-				$("#reviewList").append("</ul>");
-				$("#reviewPaging").html("");
-				var pb = data.pagingBean;
-				if(pb.previousPageGroup ==true){
-					$("#reviewPaging").append("<li><a class='pageMove' style='display: none;'>"
-					+(pb.startPageOfPageGroup-1)+"</a><a class='movePage' href=#>◀</a></li>");
-				}
-				for(var i=pb.startPageOfPageGroup;i<=pb.endPageOfPageGroup;i++){
-					$("#reviewPaging").append("<li><a class='movePage pageMove' href=#>"+i+"</a></li>");
-				}
-				if(pb.nextPageGroup ==true){
-					$("#reviewPaging").append("<li><a class='pageMove' style='display: none;'>"
-					+(pb.endPageOfPageGroup+1)+"</a><a class='movePage' href=#>▶</a></li>");
-				} */
+			}, 100);
+		}).on("change", ".star-input :radio", function() {
+			$result.text($(this).next().text());
+		}).on("mouseover", ".star-input label", function() {
+			$result.text($(this).text());
+		}).on("mouseleave", ".star-input>.input", function() {
+			var $checked = $star.find(":checked");
+			if ($checked.length === 0) {
+				$result.text("0");
+			} else {
+				$result.text($checked.next().text());
 			}
 		});
-	}
-</script> -->
+	};
+	starRating();
+</script>
 <script type="text/javascript">
 function existcheckMatching(userId,trainerId){
 	$.ajax({
@@ -120,7 +62,6 @@ function existcheckMatching(userId,trainerId){
 	});
 }
 $(document).ready(function(){
-	getRatingList("1");
 	$.ajax({
 		type:"get",
 		url:"${pageContext.request.contextPath}/selectfollowstate.do",
@@ -137,6 +78,32 @@ $(document).ready(function(){
 				
 		}//success
 	}); //ajax
+	$(".rateFormBtn").click(function() {
+		var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
+		document.getElementById("trainerId").value = trainerId;
+		/* $.ajax({ 
+			type: "post",		// 넘겨주는 방식
+			url: "${pageContext.request.contextPath}/ajaxForRating.do",	// 보낼 url
+			data: "consumptionNo=" + targetExerciseConsumptionNo,	// 넘길 데이타 값
+			success: function(exercise) {	// 성공했을 때 결과
+				document.getElementById("updateExerciseConsumptionNo").value = exercise.consumptionNo;
+				document.getElementById("updateExerciseExName").value = exercise.exName;
+				document.getElementById("updateExerciseExHour").value = exercise.exHour;
+				document.getElementById("updateExerciseCalorie").value = exercise.calorie; 
+				$("#updateModal").modal("show");
+			}
+		}); */
+			$("#rateModal").modal("show");
+		});
+	$("#rateBtn").click(function() {
+		if (document.getElementById("rateContent").value == "") {
+			alert("내용을 입력하세요!");
+			//$('#type').prop('selectedIndex', 0);
+			$("#rateContent").focus();
+			return;
+		}
+		$("#ratingForm").submit();
+	});
 	$("#imgtd").click(function(){
 			$.ajax({
 				type:"post",
@@ -160,6 +127,12 @@ $(document).ready(function(){
 <style>
 	.headTitle {
 		font-weight:bold;
+	}
+	#staroffImgAvg {
+		margin-left: -6px
+	}
+	#staroffImg {
+		margin-left: -4px
 	}
 </style>
 <div class="container">
@@ -252,7 +225,28 @@ $(document).ready(function(){
 		<div class="col-lg-12">
 			<h2 class="page-header">강사 후기</h2>
 		</div>
-		<div><h3 align="right">전체 평점 (5/10)</h3></div>
+		<c:forEach begin="1" end="8">
+			<br>
+		</c:forEach>
+		<div>
+			<h3 align="right">
+				<c:set value="${avgRate / 2}" var="shares"/>
+				<c:set value="${avgRate % 2}" var="rest"/>
+				<c:set value="${(10 - avgRate) / 2}" var="staroff"/>
+				<c:forEach begin="1" end="${shares}">
+					<img src="${pageContext.request.contextPath}/resources/img/staron.png" width="20px" height="20px">
+				</c:forEach>
+				<c:if test="${rest != 0}">
+					<img src="${pageContext.request.contextPath}/resources/img/staron(half).png" width="10px" height="20px">
+					<img id="staroffImgAvg" src="${pageContext.request.contextPath}/resources/img/staroff(half).png" width="10px" height="20px">
+				</c:if>
+				<c:forEach begin="1" end="${staroff}">
+					<img src="${pageContext.request.contextPath}/resources/img/staroff.png" width="20px" height="20px">
+				</c:forEach>
+				전체 평점 (${avgRate} / 10.0)
+			</h3>
+		</div>
+		<br>
 		<div>
 			<c:set value="${requestScope.rateList.LVO}" var="rateList"/>
 			<c:set value="${requestScope.rateList.LVO}" var="rateList"/>
@@ -260,35 +254,36 @@ $(document).ready(function(){
 				<tbody id="" align="center">
 					<tr><!-- style='font-weight:bold;' -->
 						<td class="headTitle" style="width:15%;">평점</td>
-						<td class="headTitle" style="width:15%;">회원 ID</td>
-						<td class="headTitle" style="width:30%;">내용</td>
-						<!-- <th style="width:15%;">닉네임</th> -->
-						<td class="headTitle" style="width:20%;">평가일</td>
-						<!-- <td class="headTitle" style="width:10%;">가격(원)</td>
-						<td class="headTitle" style="width:10%;">결제상태</td>
-						<td class="headTitle" style="width:10%;">강사평가</td> -->
-						<td></td>
+						<td class="headTitle" style="width:10%;">회원 ID</td>
+						<td class="headTitle" style="width:40%;">내용</td>
+						<td class="headTitle" style="width:15%;">평가일</td>
+						<td style="width:12%;"></td>
 					</tr>
 					<c:if test="${!empty rateList}">
 						<c:forEach items="${rateList}" var="list">
 							<tr>
-								<td>
+								<td align="left">
 									<c:set value="${list.rate / 2}" var="shares"/>
 									<c:set value="${list.rate % 2}" var="rest"/>
+									<c:set value="${(10 - list.rate) / 2}" var="staroff"/>
 									<c:forEach begin="1" end="${shares}">
 										<img src="${pageContext.request.contextPath}/resources/img/staron.png" width="20px" height="20px">
 									</c:forEach>
 									<c:if test="${rest != 0}">
-										<img src="${pageContext.request.contextPath}/resources/img/staron(half).png" width="12px" height="20px">
+										<img src="${pageContext.request.contextPath}/resources/img/staron(half).png" width="10px" height="20px">
+										<img id="staroffImg" src="${pageContext.request.contextPath}/resources/img/staroff(half).png" width="10px" height="20px">
 									</c:if>
+									<c:forEach begin="1" end="${staroff}">
+										<img src="${pageContext.request.contextPath}/resources/img/staroff.png" width="20px" height="20px">
+									</c:forEach>
 									&nbsp;(${list.rate})
 								</td>
 								<td>${list.userId}</td>
 								<td>${list.content}</td>
 								<td>${list.rateDate}</td>
 								<td>
-									<a href="#">수정</a>&nbsp;
-									<a href="#">삭제</a>
+									<a class="rateFormBtn" href="${pageContext.request.contextPath}/updateRate.do?rateNo=${list.rateNo}">수정</a>&nbsp;
+									<a href="${pageContext.request.contextPath}/deleteRate.do?rateNo=${list.rateNo}">삭제</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -296,31 +291,6 @@ $(document).ready(function(){
 				</tbody>
 			</table>
 		</div>
-		<%-- <div align="center">
-			<ul class="pagination">
-				<c:set var="pb" value="${requestScope.rateList.pb}"></c:set>
-					<c:if test="${pb.previousPageGroup}">
-						<li class="previous"><a href="${pageContext.request.contextPath}/trainerDetail.do?pageNo=${pb.startPageOfPageGroup-1}"> 
-						 previous</a></li>	
-					</c:if>
-			
-					<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
-						<c:choose>
-							<c:when test="${pb.nowPage != i}">
-								<li><a href="${pageContext.request.contextPath}/trainerDetail.do?pageNo=${i}&trainerId=">${i}</a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="active"><a>${i}</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>	    
-			
-					<c:if test="${pb.nextPageGroup}">
-						<li class="next"><a href="${pageContext.request.contextPath}/trainerDetail.do?pageNo=${pb.endPageOfPageGroup+1}">
-						next</a></li>
-					</c:if>
-			</ul>
-		</div> --%>
 		<div align="center">
 			<ul class="pagination">
 				<c:set var="pb" value="${requestScope.rateList.pb}"></c:set>
@@ -332,7 +302,7 @@ $(document).ready(function(){
 					<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 						<c:choose>
 							<c:when test="${pb.nowPage != i}">
-								<li><a href="#" data-page="${i}">${i}</a></li>
+								<li><a href="${pageContext.request.contextPath}/trainerDetail.do?pageNo=${i}&trainerId=${requestScope.trainerId}">${i}</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="active"><a>${i}</a></li>
@@ -347,4 +317,45 @@ $(document).ready(function(){
 			</ul>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="rateModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">PT 강사 평가</h4>
+				</div>
+				<div class="modal-body" align="left">
+					<form id="ratingForm" action="${pageContext.request.contextPath}/rating.do">
+						<input type="hidden" id="userId" name="userId" value="${sessionScope.mvo.id}">
+						<input type="hidden" id="trainerId" name="trainerId" value="">
+						<!-- <input type="hidden" id="rate" name="mydate" value=""> -->
+						<span class="star-input">
+						  <span class="input">
+						    <input type="radio" name="rate" id="p1" value="1"><label for="p1">1</label>
+						    <input type="radio" name="rate" id="p2" value="2"><label for="p2">2</label>
+						    <input type="radio" name="rate" id="p3" value="3"><label for="p3">3</label>
+						    <input type="radio" name="rate" id="p4" value="4"><label for="p4">4</label>
+						    <input type="radio" name="rate" id="p5" value="5" checked="checked"><label for="p5">5</label>
+						    <!-- <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
+						    <input type="radio" name="rate" id="p7" value="7"><label for="p7">7</label>
+						    <input type="radio" name="rate" id="p8" value="8"><label for="p8">8</label>
+						    <input type="radio" name="rate" id="p9" value="9"><label for="p9">9</label>
+						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label> -->
+						  </span>
+						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
+						</span><br>
+						<textarea id="rateContent" rows="3" cols="81" name="content"></textarea>
+						<h5 align="right">(100자 이내 작성)</h5>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="rateBtn">OK</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div> <!-- Modal -->
 </div>
