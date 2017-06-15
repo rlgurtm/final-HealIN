@@ -23,13 +23,33 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
+                	<div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">회원정보 수정은 어떻게 하나요?</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">회원탈퇴는 어떻게 하나요?</a>
                             </h4>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                "로그인 후 우측상단의 Health 人 회원탈퇴를 이용"<br>
+                                                                ※ 탈퇴 후 아이디 재사용이나 복구가 불가능합니다.<br>
+                                탈퇴가 되더라도 게시물은 삭제가 되지 않습니다.<br>
+                                삭제를 원하는 게시글이 있다면 반드시 회원탈퇴 전 삭제하시기 바랍니다.<br>
+                                탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 있는 방법이 없어, <br>
+                                게시글을 임의로 삭제해드릴 수 없습니다.<br>
+                                또한 삭제된 회원님의 데이터를 복구되지 않습니다.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">회원정보 수정은 어떻게 하나요?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
                              "우측 상단의 회원정보 수정에서 변경 가능"<br>
                              우측 상단의 회원정보 수정 클릭 -> 수정할 내용을 수정할 공간에 입력 후 '확인' 클릭 <br>
@@ -42,10 +62,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">회원의 종류가 어떻게 되나요?</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">회원의 종류가 어떻게 되나요?</a>
                             </h4>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
+                        <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
                                 "일반 회원과 트레이너 회원"<br>
                                 Health 人 은 이용만을 목적으로 하는 일반회원과, <br>
@@ -98,7 +118,7 @@
                                 "트레이너 - 회원 맞팔 후 이용가능"<br>
                                 메뉴바  PT강사 -> PT 강사진 ->원하는 강사님의 프로필 조회 -> 하트클릭 <br>
                                 하트가 클릭되어 빨강색이 되면 팔로잉 신청이 됩니다.<br>
-                                강사님이 맞팔 해주시면 매칭신청이 가능합니다. <br>                 
+                                팔로잉 시 하단에 매칭신청란에 원하는 기간을 입력후 신청버튼을 누르면 신청이 가능합니다.<br>                 
                             </div>
                         </div>
                     </div>
@@ -106,10 +126,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">PT 결제를 하면 어떤 혜택이 있나요?</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">PT 결제를 하면 어떤 혜택이 있나요?</a>
                             </h4>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
+                        <div id="collapseSeven" class="panel-collapse collapse">
                             <div class="panel-body">
                                 "트레이너의 PT 및 식단관리"<br>
                                 트레이너 님이 회원님의 식단을 조회하고 관리합니다.<br>
@@ -123,10 +143,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">PT 이용 금액이 얼마인가요?</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">PT 이용 금액이 얼마인가요?</a>
                             </h4>
                         </div>
-                        <div id="collapseSeven" class="panel-collapse collapse">
+                        <div id="collapseEight" class="panel-collapse collapse">
                             <div class="panel-body">
                                 "월 1만원에 이용가능"<br>
                                 모든 강사님들의 PT 이용금액은 동일하게 월 1만원에 이용할 수 있습니다.
@@ -137,14 +157,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">트레이너 회원 페이지에 "지금은 사용할 수 없습니다" 라고 나옵니다.</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">트레이너 가입했어요. 제 이름이 목록에 나타나지 않아요.</a>
                             </h4>
                         </div>
-                        <div id="collapseEight" class="panel-collapse collapse">
+                        <div id="collapseNine" class="panel-collapse collapse">
                             <div class="panel-body">
-                                "트레이너 등급 미 충족시 이용불가"<br>
-                                가입 직후에는 트레이너 분들의 등급이 낮아서 이용이 불가합니다.<br>
-                                트레이너 등급은 헬스 人에 문의하여 주세요. 
+                                "강사님의 등급이 0이여서 그렇습니다."<br>
+                                화면 상단에 아이디 왼쪽에 위치한 등급을 클릭하시면 <br>
+                                트레이너님의 전문분야를 입력하실 수 있습니다. <br>
+                                전문분야 입력시 자동으로 등급이 상향됩니다. 
                             </div>
                         </div>
                     </div>
@@ -152,10 +173,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">유저 마이페이지 이용은 어떻게하나요?</a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">유저 마이페이지 이용은 어떻게하나요?</a>
                             </h4>
                         </div>
-                        <div id="collapseNine" class="panel-collapse collapse">
+                        <div id="collapseTen" class="panel-collapse collapse">
                             <div class="panel-body">
                                 "캘린더, 기간조회,BMI 기능이 있습니다"<br>
                                 캘린더의 날짜를 선택하여 섭취 혹은 소비 칼로리를 입력하고<br>
@@ -172,17 +193,6 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
 
     </div>
     <!-- /.container -->
