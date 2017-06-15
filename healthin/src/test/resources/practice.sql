@@ -498,4 +498,42 @@ where rnum between #{STARTROWNUM} and #{ENDROWNUM} order by rnum asc
 update trainer_rate set rate = 0.0, content = '얘 완전 양아치에요 돈 개아까움' where rate_no = 12;
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
 
+select r.* from(
+	select row_number() over(order by rate_no desc) rnum, tr.rate_no as rateNo, tr.user_id as userId, tr.trainer_id, tr.rate, tr.content, tr.rate_date as rateDate
+	from trainer_rate tr, health_user hu
+	where tr.user_id = hu.user_id and tr.trainer_id = 'healthman6'
+) r
+where rnum between 1 and 6 order by rnum asc
+
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, 
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t, trainer_rate tr
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1' and 
+) r
+where rnum between 1 and 6 order by rnum asc
+
+select tr.rate_no as rateNo from trainer_rate tr, health_user hu, pay p
+where tr.user_id = hu.user_id and p.pay_no = tr.rate_no and p.trainer_id = tr.trainer_id and tr.user_id = 'user1'
+
+delete from pay
+delete from trainer_rate
+
+select tr.rate_no as rateNo, tr.user_id as userId, 
+		tr.trainer_id as trainerId, tr.rate, tr.content, tr.rate_date as rateDate
+	from trainer_rate tr, health_user hu
+	
+select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
+ 		where tr.user_id = hu.user_id and tr.user_id = 'user1'
+
 SELECT * FROM field
+
+select a.id,a.name,a.address,b.pushCount
+from HEALTH_MEMBER a,
+	(select count(b.field_name) as pushCount,b.id
+	from (select field_name from field where id='rlgurtm') a,
+		(select field_name,id from field where field_state='trainer') b
+	where b.field_name = a.field_name
+	group by b.id) b 
+where a.id=b.id
+order by b.pushCount desc

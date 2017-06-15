@@ -96,7 +96,6 @@ $(document).ready(function(){
 			alert("1~3개까지 선택가능합니다.");
 		}
 	});
-		
 });
 
 function countChecking(){

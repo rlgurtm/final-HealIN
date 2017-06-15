@@ -56,7 +56,7 @@
                             </li>
                             <c:if test="${sessionScope.mvo!=null&&mvo.istrainer=='user'}">
                             <li>
-                                <a href="#">PT 강사 추천 받기</a>
+                                <a href="${pageContext.request.contextPath}/userFieldForm.do">PT 강사 추천 받기</a>
                             </li>
                             </c:if>
                         </ul>

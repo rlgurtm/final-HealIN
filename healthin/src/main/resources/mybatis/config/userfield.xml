@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userfield">
+ 	<select id="selectUserField" parameterType="string" resultType="fieldVO">
+ 		select field_name as fieldName,id,field_state as fieldState 
+ 		from field where id=#{value}
+ 	</select>
+ 	<select id="selectFieldCategory" resultType="string">
+ 		select field_name from field_category
+ 	</select>
+ 	<insert id="insertUserField" parameterType="java.util.Map">
+ 		insert into field(field_name,id,field_state)
+ 		values(#{field},#{mvoId},#{mvoIstrainer})
+ 	</insert>
+ 	<delete id="deleteUserField" parameterType="string">
+ 		delete from field where id=#{value}
+ 	</delete>
+ 	<select id="findByIdField" parameterType="string" resultType="fieldVO">
+ 		select a.id,a.name as tName,a.address as tAddress
+ 			,a.trainer_photo as tTrainerPhoto,b.pushCount
+		from (select a.id,a.name,a.address,b.trainer_photo
+			from health_member a, trainer b
+			where a.id=b.trainer_id) a,
+			(select count(b.field_name) as pushCount,b.id
+			from (select field_name from field where id=#{value}) a,
+				(select field_name,id from field where field_state='trainer') b
+			where b.field_name = a.field_name
+			group by b.id) b 
+		where a.id=b.id
+		order by b.pushCount desc
+ 	</select>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
