@@ -1,5 +1,7 @@
 package org.kosta.healthin.model.service;
 
+import java.util.Map;
+
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 
@@ -23,5 +25,7 @@ public interface TrainerService {
 	ListVO getSearchTrainer(String pageNo, String searchWord);
 	
 	ListVO getTrainerRate(String id, String pageNo);
-
+	double getSumOfRating(String id);
+	int getTotalRatingCountForAvgRate(String id);
+	void updateRate(Map<String, Object> map);
 }

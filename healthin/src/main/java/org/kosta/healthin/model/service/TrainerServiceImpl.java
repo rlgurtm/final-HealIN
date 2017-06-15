@@ -135,4 +135,19 @@ public class TrainerServiceImpl implements TrainerService {
 		return listVO;
 	}
 
+	@Override
+	public double getSumOfRating(String id) {
+		return dao.getSumOfRating(id);
+	}
+
+	@Override
+	public int getTotalRatingCountForAvgRate(String id) {
+		return dao.getTotalRatingCount(id);
+	}
+
+	@Override
+	public void updateRate(Map<String, Object> map) {
+		dao.updateRate(map);
+	}
+
 }

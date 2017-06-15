@@ -456,9 +456,9 @@ select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content,
 select * from pay
 
 insert into pay
-values(pay_no_seq.nextval, 50000, sysdate, '입금완료', 'user1', 'java4', 6);
+values(pay_no_seq.nextval, 50000, sysdate, '입금완료', 'user1', 'healthman6', 6);
 insert into trainer_rate
-values(13, 'user1', 'swimminggirl', 9, '굿이여', sysdate);
+values(29, 'user1', 'healthman6', 10, 'ㅎㅎㅎㅎ', sysdate);
 
 select r.* from(
 	select row_number() over(order by rate_no desc) rnum, tr.rate_no as rateNo, tr.user_id as userId, tr.trainer_id, tr.rate, tr.content, tr.rate_date as rateDate
@@ -487,5 +487,15 @@ select tr.rate_no as rateNo, tr.user_id as userId,
 	
 select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
  		where tr.user_id = hu.user_id and tr.user_id = 'user1'
+ 		
+select r.* from(
+	select sum(rate)
+	from trainer_rate tr, health_user hu
+	where tr.user_id = hu.user_id and tr.trainer_id = 'healthman6'
+) r
+where rnum between #{STARTROWNUM} and #{ENDROWNUM} order by rnum asc
+
+update trainer_rate set rate = 0.0, content = '얘 완전 양아치에요 돈 개아까움' where rate_no = 12;
+update HEALTH_MEMBER set is_trainer='user' where id='gogo'
 
 SELECT * FROM field

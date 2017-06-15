@@ -41,5 +41,8 @@ public interface TrainerDAO {
 	
 	int getTotalRatingCount(String id);
 
-
+	double getSumOfRating(String id);
+	
+	void updateRate(Map<String, Object> map);
+	
 }

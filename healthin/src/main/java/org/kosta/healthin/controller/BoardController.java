@@ -192,11 +192,15 @@ public class BoardController {
 		TrainerVO vo= trainerService.trainerDetail(trainerId);
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
-		model.addAttribute("tvo",vo);
-		model.addAttribute("trainerId", trainerId);
 		String pageNo = request.getParameter("pageNo");
 		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
+		double sumOfRate = trainerService.getSumOfRating(trainerId);
+		int totalRatingCount = trainerService.getTotalRatingCountForAvgRate(trainerId);
+		double avgRate = sumOfRate / totalRatingCount;
+		model.addAttribute("tvo",vo);
+		model.addAttribute("trainerId", trainerId);
 		model.addAttribute("rateList", rateList);
+		model.addAttribute("avgRate", avgRate);
 		
 		int nowPage=1;
 		PagingBean pb;
@@ -210,16 +214,26 @@ public class BoardController {
 		return "trainer/trainerDetail.tiles";
 	}
 	
-	@RequestMapping("getTrainerRating.do")
-	@ResponseBody
-	public ListVO getTrainerRating(Model model, HttpServletRequest request) {
-		String trainerId = request.getParameter("trainerId");
-		String pageNo = request.getParameter("pageNo");
-		System.out.println(trainerId + " " + pageNo);
-		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
-		model.addAttribute("rateList", rateList);
-		return rateList;
+	@RequestMapping("updateRate.do")
+	public String updateRate(Model model, HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		int rateNo = Integer.parseInt(request.getParameter("rateNo"));
+		//String id = request.getParameter("id");
+		double rate = Double.parseDouble(request.getParameter("rate"));
+		String content = request.getParameter("content");
+		map.put("rateNo", rateNo);
+		map.put("rate", rate);
+		map.put("content", content);
+		trainerService.updateRate(map);
+		return "redirect:trainerDetail.do";
 	}
+	
+	@RequestMapping("deleteRate.do")
+	public String deleteRate(Model model, HttpServletRequest request){
+		
+		return "pt_qna/qna.tiles";
+	}
+	
 	
 	@RequestMapping("pt_qna/qna.do")
 	public String getptQnaList(){
