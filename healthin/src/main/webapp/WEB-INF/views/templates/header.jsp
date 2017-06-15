@@ -7,6 +7,7 @@
 	}
 </style>
 <div align="right">
+${sessionScope.tvo.rank}
 	<c:choose>
 		<c:when test="${sessionScope.mvo == null}">
 			<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>&nbsp;&nbsp;
