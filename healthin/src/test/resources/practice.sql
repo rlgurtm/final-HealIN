@@ -438,23 +438,6 @@ insert into trainer_rate
 values('user1', 'healthman6', 10, '졸라 못가르치네요 ㄷㄷ', sysdate)
 
 
-SELECT 
-      date_format(DATE_COLUMN, '%Y%m%d') as date,
-      count(*) 
-      FROM TABLE_NAME 
-           GROUP BY date_format(DATE_COLUMN, '%Y%m%d') 
-           ORDER BY date ASC;
-
-select to_number(to_char(rate_date, 'YYYYMMDD')) as tmpDate, tr.user_id as userId, tr.trainer_id as trainerId 
-from trainer_rate tr, health_user hu 
-where tr.user_id = hu.user_id and tr.user_id = 'user1' and tr.trainer_id = 'healthman6'
-
-select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content, to_char(tr.rate_date, 'YYYY-MM-DD') as rate_date from(
-select to_number(to_char(rate_date, 'YYYYMMDD')) as date1, user_id, trainer_id, content, rate, rate_date from trainer_rate
-order by date1 desc
-) tr, health_user hu
-where tr.user_id = hu.user_id and tr.trainer_id = 'healthman6'
-
 select count(*) from trainer_rate tr, trainer t
 where tr.trainer_id = t.trainer_id and tr.trainer_id = 'healthman6'
 
@@ -469,7 +452,41 @@ select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content,
 			user_id, trainer_id, content, rate, rate_date from trainer_rate order by date1 desc
 			) tr, health_user hu
 		where tr.user_id = hu.user_id and tr.trainer_id = #{trainerId}
+		
+select * from pay
 
+insert into pay
+values(pay_no_seq.nextval, 50000, sysdate, '입금완료', 'user1', 'java4', 6);
+insert into trainer_rate
+values(13, 'user1', 'swimminggirl', 9, '굿이여', sysdate);
+
+select r.* from(
+	select row_number() over(order by rate_no desc) rnum, tr.rate_no as rateNo, tr.user_id as userId, tr.trainer_id, tr.rate, tr.content, tr.rate_date as rateDate
+	from trainer_rate tr, health_user hu
+	where tr.user_id = hu.user_id and tr.trainer_id = 'healthman6'
+) r
+where rnum between 1 and 6 order by rnum asc
+
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, 
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t, trainer_rate tr
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1' and 
+) r
+where rnum between 1 and 6 order by rnum asc
+
+select tr.rate_no as rateNo from trainer_rate tr, health_user hu, pay p
+where tr.user_id = hu.user_id and p.pay_no = tr.rate_no and p.trainer_id = tr.trainer_id and tr.user_id = 'user1'
+
+delete from pay
+delete from trainer_rate
+
+select tr.rate_no as rateNo, tr.user_id as userId, 
+		tr.trainer_id as trainerId, tr.rate, tr.content, tr.rate_date as rateDate
+	from trainer_rate tr, health_user hu
+	
+select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
+ 		where tr.user_id = hu.user_id and tr.user_id = 'user1'
 
 SELECT * FROM field
 
