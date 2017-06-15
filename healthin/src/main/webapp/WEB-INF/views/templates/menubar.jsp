@@ -73,7 +73,7 @@
                      -->
                     <c:if test="${sessionScope.mvo != null }">
                     	<c:choose>
-                    		<c:when test="${sessionScope.mvo.istrainer == 'admin' }">
+                    		<%-- <c:when test="${sessionScope.mvo.istrainer == 'admin' }">
 	                    		<li class="dropdown">
 		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Page <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
@@ -82,7 +82,7 @@
 		                            </li>
 		                        </ul>
 		                    	</li>
-                    		</c:when>
+                    		</c:when> --%>
                     		<c:when test="${sessionScope.mvo.istrainer == 'trainer' }">
                     			<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainer Page <b class="caret"></b></a>
@@ -95,6 +95,9 @@
 			                            </li>
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
+			                            </li>
+			                            <li>
+			                                <a href="${pageContext.request.contextPath}/trainerPaymentList.do">Payment Status</a>
 			                            </li>
 			                        </ul>
 			                    </li>
@@ -121,6 +124,9 @@
 			                            <li>
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
+			                            <li>
+			                                <a href="${pageContext.request.contextPath}/userPaymentList.do">Payment Status</a>
+			                            </li>
 			                        </ul>
 			                    </li>
                     		</c:when>
@@ -133,42 +139,4 @@
         <!-- /.container -->
     </nav>
 
-    <%-- <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/헬스장.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 1</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/헬스장2.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 2</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/자전거.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 3</h2>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-    </header> --%>
+   

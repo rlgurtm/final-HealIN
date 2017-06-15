@@ -29,5 +29,9 @@ public interface MyPageDAO {
 	int getmypageBothFollowTotalCount(String userId);
 
 	List<VO> getmypageBothFollowList(Map<String, Object> map);
+
+	PhysicalInfoVO selectListToday(Map map);
+
+	void bmiListUpdate(PhysicalInfoVO pivo);
 	
 }

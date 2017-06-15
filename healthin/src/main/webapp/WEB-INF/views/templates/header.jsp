@@ -7,6 +7,7 @@
 	}
 </style>
 <div align="right">
+${sessionScope.tvo.rank}
 	<c:choose>
 		<c:when test="${sessionScope.mvo == null}">
 			<a href="${pageContext.request.contextPath}/member/register_step1.do">회원가입</a>&nbsp;&nbsp;
@@ -33,7 +34,7 @@
 	<a href="${pageContext.request.contextPath}/home.do"><img
 		src="${pageContext.request.contextPath}/resources/img/로고.png"
 		width="150" height="110"></a>
-	<c:forEach begin="1" end="130">&nbsp;</c:forEach>
+	<c:forEach begin="1" end="80">&nbsp;</c:forEach>
 	<img src="${pageContext.request.contextPath}/resources/img/검색.png"
 		width="20" height="20">&nbsp; <select name="searchType" id="searchType">
 		<option>---카테고리---</option>

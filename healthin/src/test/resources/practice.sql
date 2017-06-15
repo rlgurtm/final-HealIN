@@ -360,6 +360,76 @@ from
        where t.trainer_id=m.id) a 
        where id like '%' ||'s' ||'%'
        
-       select * from HEALTH_MEMBER
+       
+       select r.* from(
+	select row_number() over(order by pay_no desc) rnum, p.pay_no, hu.user_id
+	from pay p, health_user hu, trainer t
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+) r
+where rnum between 1 and 5 order by rnum asc
 
-       update HEALTH_MEMBER set withdrawal='N' where id='java'
+select a.* from
+  (select row_number() over(order by pay_no desc) rnum,t.board_no as no,t.title,t.hits,
+  to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+  (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
+  from tipandqna t,health_member m
+  where t.id=m.id and t.tipqna='tip') a 
+where rnum between #{startRowNumber} and #{endRowNumber}
+
+select count(*) from pay p, health_user hu where p.user_id=hu.user_id and hu.user_id ='user1'
+
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, 
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+) r
+where rnum between 1 and 6 order by rnum asc
+       
+       
+       select physical_no,height,weight,today,user_id as user_Id
+	 		from physical_info
+	 		where today like '%' || to_date('2017-06-13') ||'%'
+
+
+       
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, p.pay_no, hu.user_id
+	from pay p, health_user hu, trainer t
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and hu.user_id = 'user1'
+) r
+where rnum between 1 and 5 order by rnum asc
+
+select a.* from
+  (select row_number() over(order by pay_no desc) rnum,t.board_no as no,t.title,t.hits,
+  to_char(t.posted_date,'YYYY.MM.DD') as postedDate,t.category,t.id,t.tipqna,m.name,
+  (select count(*)from health_comment where board_no=t.board_no )as commentCount,m.nickname
+  from tipandqna t,health_member m
+  where t.id=m.id and t.tipqna='tip') a 
+where rnum between #{startRowNumber} and #{endRowNumber}
+
+select count(*) 
+from pay p, trainer t
+where p.trainer_id = t.trainer_id and  t.trainer_id = 'healthman6'
+
+select count(*) from pay p, trainer t 
+ 		where p.user_id = t.trainer_id and t.trainer_id = 'healthman6'
+
+select r.* from(
+	select row_number() over(order by pay_no desc) rnum, 
+	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, add_months(sysdate, period) as period, p.trainer_id as trainerId
+	from pay p, health_user hu, trainer t, matching m
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and m.user_id = p.user_id and m.trainer_id = p.trainer_id and t.trainer_id = 'healthman6'
+) r
+where rnum between 1 and 6 order by rnum asc
+
+insert into trainer_rate 
+values('user1', 'healthman6', 10, '졸라 못가르치네요 ㄷㄷ', sysdate)
+
+select * from trainer_rate tr, health_user hu 
+where tr.user_id = hu.user_id and tr.user_id = 'user1' and tr.trainer_id = 'healthman6'
+
+select * from pay where trainer_id = 'healthman6'
+
+update pay set pay_state = '입금대기', pay_date = sysdate 
+where user_id = 'user1' and trainer_id = 'swimmingguy2'
