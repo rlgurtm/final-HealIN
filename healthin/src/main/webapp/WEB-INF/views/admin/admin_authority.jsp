@@ -36,7 +36,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				관리자 페이지&emsp;&emsp; <small><a href="${pageContext.request.contextPath}/home.do">Home</a></small>
+				관리자 페이지&emsp;&emsp; <small><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active"></li>
