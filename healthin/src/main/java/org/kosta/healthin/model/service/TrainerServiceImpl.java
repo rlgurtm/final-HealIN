@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.dao.TrainerDAO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.PagingBeanForRating;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Service;
 
@@ -119,15 +120,18 @@ public class TrainerServiceImpl implements TrainerService {
 
 	@Override
 	public ListVO getTrainerRate(String id, String pageNo) {
-		System.out.println(id);
 		int totalCount = dao.getTotalRatingCount(id);
-		int pageNum = Integer.parseInt(pageNo);
-		PagingBean pb = new PagingBean(totalCount, pageNum);
-		Map<String, Object> map2 = new HashMap<String,Object>();
-		map2.put("id", id);
-		map2.put("STARTROWNUM", pb.getStartRowNumber());
-		map2.put("ENDROWNUM", pb.getEndRowNumber());	
-		ListVO listVO = new ListVO(dao.getTrainerRate(map2), pb);
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBeanForRating(totalCount);
+		} else {
+			pagingBean = new PagingBeanForRating(totalCount, Integer.parseInt(pageNo));
+		}
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("id", id);
+		map.put("STARTROWNUM", pagingBean.getStartRowNumber());
+		map.put("ENDROWNUM", pagingBean.getEndRowNumber());	
+		ListVO listVO = new ListVO(dao.getTrainerRate(map), pagingBean);
 		return listVO;
 	}
 

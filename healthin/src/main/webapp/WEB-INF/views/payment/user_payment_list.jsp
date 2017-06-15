@@ -133,7 +133,18 @@
 						</c:choose>
 						<td>
 							<c:if test="${list.payState == '입금완료'}">
-								<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+								<c:forEach items="${requestScope.ratedTrainerList}" var="rate">
+									<c:choose>
+										<c:when test="${rate == list.payNo}">
+											<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
+											<c:set var="doneLoop" value="true"/>
+										</c:when>
+										<c:otherwise>
+											<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+											<c:set var="doneLoop" value="true"/>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</c:if>
 						</td>
 					</tr>
@@ -146,7 +157,7 @@
 		<ul class="pagination">
 			<c:set var="pb" value="${requestScope.paymentList.pb}"></c:set>
 				<c:if test="${pb.previousPageGroup}">
-					<li class="previous"><a href="${pageContext.request.contextPath}/userPaymentList.do?npageNo=${pb.startPageOfPageGroup-1}"> 
+					<li class="previous"><a href="${pageContext.request.contextPath}/userPaymentList.do?pageNo=${pb.startPageOfPageGroup-1}"> 
 					 previous</a></li>	
 				</c:if>
 		
@@ -189,12 +200,12 @@
 						    <input type="radio" name="rate" id="p2" value="2"><label for="p2">2</label>
 						    <input type="radio" name="rate" id="p3" value="3"><label for="p3">3</label>
 						    <input type="radio" name="rate" id="p4" value="4"><label for="p4">4</label>
-						    <input type="radio" name="rate" id="p5" value="5"><label for="p5">5</label>
-						    <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
+						    <input type="radio" name="rate" id="p5" value="5" checked="checked"><label for="p5">5</label>
+						    <!-- <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
 						    <input type="radio" name="rate" id="p7" value="7"><label for="p7">7</label>
 						    <input type="radio" name="rate" id="p8" value="8"><label for="p8">8</label>
 						    <input type="radio" name="rate" id="p9" value="9"><label for="p9">9</label>
-						    <input type="radio" name="rate" id="p10" value="10" checked="checked"><label for="p10">10</label>
+						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label> -->
 						  </span>
 						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
 						</span><br>
