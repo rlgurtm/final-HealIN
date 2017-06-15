@@ -155,9 +155,9 @@ table, th, td {
     });
 </script>
 <script type="text/javascript">
-function Test(){
+/* function Test(){
 alert("측정되었습니다!");
-}
+} */
 </script>
 <hr>
 <div class="container">
@@ -195,17 +195,20 @@ alert("측정되었습니다!");
 			</thead>
 			<tbody>
 				<tr class="info">
-					<td>&nbsp;&nbsp;신장<input type="text" id="height" name="height">(cm)
+					<td>&nbsp;&nbsp;신장<input type="text" id="height" name="height"  
+						  						   required="required">(cm)
 					</td>
 				</tr>
 				<tr class="active">
-					<td>체중<input type="text" id="weight" name="weight">(kg)
+					<td>&nbsp;체중<input type="text" id="weight" name="weight"  
+						  		 required="required">(kg)
 					</td>
 				</tr>
 				<!-- <tr class="info">
 		</tr> -->
 				<tr class="">
-					<td><input type="submit" class="btn info" id="bmi_Test"  value="측정하기" onclick="Test()"></td>
+					<td><input type="submit" class="btn info" value="측정하기" 
+							onclick="Test()"></td>
 				</tr>
 			</tbody>
 		</table>
