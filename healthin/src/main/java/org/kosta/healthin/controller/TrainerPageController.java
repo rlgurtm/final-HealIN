@@ -1,5 +1,9 @@
 package org.kosta.healthin.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -7,9 +11,12 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.TrainerPageService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -170,5 +177,38 @@ public class TrainerPageController {
 		else{
 			return "redirect:home.do";
 		}
+	}
+	
+	@RequestMapping("insertTrainerFieldForm.do")
+	public String insertTrainerFieldForm(Model model,String id,String istrainer){
+		List<String> list = service.findFieldCategory();
+		model.addAttribute("fieldList",list);
+		model.addAttribute("mvoId",id);
+		model.addAttribute("istrainer",istrainer);
+		return "trainer/insertTrainerFieldForm";
+	}
+	
+	@Transactional
+	@RequestMapping("insertTrainerField.do")
+	@ResponseBody
+	public String insertTrainerField(HttpServletRequest request,@RequestParam(value="field[]") List<String> arrayParams,@RequestParam(value="istrainer") String istrainer, @RequestParam(value="mvoId") String mvoId){
+		//System.out.println(arrayParams.toString()+mvoId+istrainer);
+		service.deleteTrainerField(mvoId);
+		Map<String,String> map = new HashMap<String,String>();
+		for(int i=0; i<arrayParams.size(); i++){
+			map.put("fieldName", arrayParams.get(i));
+			map.put("mvoId", mvoId);
+			map.put("mvoIstrainer", istrainer);
+			//System.out.println(map);
+			service.insertTrainerField(map);
+		}
+		if(istrainer.equals("trainer")){
+			service.trainerRankUp(mvoId);
+			HttpSession session = request.getSession(false);
+			TrainerVO tvo = (TrainerVO) session.getAttribute("tvo");
+			tvo.setRank(1);
+			session.setAttribute("tvo",tvo);
+		}
+		return "ok";
 	}
 }

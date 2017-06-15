@@ -165,6 +165,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        and apply_result='Y' and accept_result='Y') a 
        where rnum between #{STARTROWNUM} and #{ENDROWNUM}
  	</select>
+ 	
+	<select id="findFieldCategory" resultType="string">
+		select * from field_category
+	</select>
+	<delete id="deleteTrainerField" parameterType="string">
+		delete from field where id=#{value}
+	</delete>
+	<insert id="insertTrainerField" parameterType="map">
+		insert into field(field_name,id,field_state)
+		values(#{fieldName},#{mvoId},#{mvoIstrainer})
+	</insert>
+	<update id="trainerRankUp" parameterType="string">
+		update trainer set rank=1 where trainer_id=#{value}
+	</update>
+ 	
 </mapper>
  
  

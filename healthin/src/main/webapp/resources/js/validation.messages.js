@@ -6,19 +6,21 @@
 						messages : {
 							   id : {
 								required : "HealthIN 아이디를 입력해 주세요.",
-								rangelength : "조금 더! 아이디는 4자 이상이에요.",
-								onlydigits : "숫자로 된 아이디는 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
+								onlydigits : "숫자로만 이루어진 아이디는 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요.",
+								escape : "특수문자/대문자가 포함된  아이디는 사용할 수 없어요.",
+								rangelength : "조금 더! 아이디는 4자 이상이에요."
 							},
 							nickname : {
 								required : "HealthIN 닉네임을 입력해 주세요.",
 								rangelength : "조금 더! 닉네임은 2자 이상이에요.",
-								onlydigits : "숫자로 된 닉네임을 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
+								nicknameescape : "영문/한글가  아닌 것은 입력하지 마세요.",
+								onlydigits : "숫자로만 이루어진 닉네임을 사용할 수 없어요. 영문 소문자를 추가해서 다시 입력해 주세요."
 							},
 							birthdate : {
 								required : "날짜를 정확하게 입력해 주세요.",
-								//birthdate : "날짜를 정확하게 숫자만 입력해주세요.",
-								dateISO : "날짜를 정확하게 숫자만 입력해주세요.",
-								onlyNumber : "숫자가 아닌것은 아예 넣지 마세요."
+								mustdigits : "날짜를 정확하게 숫자만 입력해주세요.",
+								rangelength : "조금 더! 생년월일은 무조건 8자리입니다.",
+								birthdate : "YYYYMMDD 형식으로 정확한 생년월일을 입력해주세요."
 							},
 							name : {
 								required : "이름을 입력해 주세요."

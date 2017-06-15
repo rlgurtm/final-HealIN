@@ -339,6 +339,15 @@ var GlobalValidationInfo = {
 						showElementError : function(b, c) {
 							a("[tel=" + b + "]").__showError(c)
 						},
+						showElementError : function(b, c) {
+							a("[birthdate=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
+							a("[mobile=" + b + "]").__showError(c)
+						},
+						showElementError : function(b, c) {
+							a("[address=" + b + "]").__showError(c)
+						},
 						showElementSuccess : function(b) {
 							var c = a("[name=" + b + "]").data(
 									"successListener");

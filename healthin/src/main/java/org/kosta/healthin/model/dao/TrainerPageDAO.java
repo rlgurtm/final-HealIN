@@ -65,5 +65,13 @@ public interface TrainerPageDAO {
 	void MatchingDelete(Map<String, Object> map);
 
 	void ExpiredPayUpate(Map<String, Object> map);
+
+	List<String> findFieldCategory();
+
+	void insertTrainerField(Map map);
+
+	void deleteTrainerField(String mvoId);
+
+	void trainerRankUp(String trainerId);
 	
 }

@@ -1,6 +1,7 @@
 package org.kosta.healthin.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -223,6 +224,23 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		ListVO listVO=new ListVO(dao.getBothFollowList(map),pb);
 		return listVO;
 		
+	}
+	
+	@Override
+	public List<String> findFieldCategory(){
+		return dao.findFieldCategory();
+	}
+	@Override
+	public void deleteTrainerField(String mvoId){
+		dao.deleteTrainerField(mvoId);
+	}
+	@Override
+	public void insertTrainerField(Map map){
+		dao.insertTrainerField(map);
+	}
+	@Override
+	public void trainerRankUp(String trainerId){
+		dao.trainerRankUp(trainerId);
 	}
 	
 }

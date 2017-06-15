@@ -53,12 +53,6 @@ a.fn,
 										|| !/Invalid|NaN/.test(new Date(c)
 												.toString())
 							},
-							birthdate : function(c, b) {
-								return this.optional(b)
-								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}/.test(new Date(c).toString())
-								||  !/Invalid|NaN/.test(new Date(c).toString())
-								|| /^\d{4}\d{1,2}\d{1,2}$/	.test(new Date(c).toString())
-							},
 							dateISO : function(c, b) {
 								return this.optional(b)
 										|| /^\d{4}\d{1,2}\d{1,2}$/
@@ -160,6 +154,18 @@ a.fn,
 										.test(e));
 								var d = /^.*[a-z-_\.]+.*$/.test(e);
 								return this.optional(c) || (b && d)
+							},
+							escape : function(e, c) {
+								var b = (/^([a-z0-9])([a-z0-9]+)$/
+										.test(e));
+								var d = /^.*[a-z-_\.]+.*$/.test(e);
+								return this.optional(c) || (b && d)
+							},
+							nicknameescape : function(e, c) {
+								var b = (/^([a-zA-Z])([a-zA-Z]+)([a-zA-Z])$/
+										.test(e));
+								var d = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/.test(e);
+								return this.optional(c) || (b || d)
 							},
 							
 							// 사용할 수 없는 문자가 있어요. <br>영문 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)만 사용할 수 있어요. 
@@ -291,9 +297,8 @@ a.fn,
 							},
 							birthdate : function(c, b) {
 								return this.optional(b)
-								|| /[1-2]{1}[0,9]{1}[0-9]{2}[0-1]{1}[1-9]{1}[0-3]{1}[0-1]{1}/.test(new Date(c).toString())
-								||  !/Invalid|NaN/.test(new Date(c).toString())
-								|| /^\d{4}\d{1,2}\d{1,2}$/	.test(new Date(c).toString())
+										|| /^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$/
+												.test(c)
 							},
 							telephone : function(c, b) {
 								return this.optional(b)
@@ -340,6 +345,9 @@ a.fn,
 							},
 							onlydigits : function(c, b) {
 								return this.optional(b) || !/^\d+$/.test(c)
+							},
+							mustdigits : function(c, b) {
+								return this.optional(b) || /^\d+$/.test(c)
 							},
 							consecutive : function(f, d) {
 								var e = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

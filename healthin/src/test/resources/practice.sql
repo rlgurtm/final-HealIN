@@ -1,3 +1,13 @@
+-- field_category
+insert into field_category(field_name) values('헬스');
+insert into field_category(field_name) values('수영');
+insert into field_category(field_name) values('요가');
+insert into field_category(field_name) values('필라테스');
+insert into field_category(field_name) values('복싱');
+insert into field_category(field_name) values('자전거');
+insert into field_category(field_name) values('라켓');
+insert into field_category(field_name) values('골프');
+
 -- health_member
 insert into health_member 
 values('java','1234','아이유','김지원','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N');
@@ -477,4 +487,5 @@ select tr.rate_no as rateNo, tr.user_id as userId,
 	
 select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
  		where tr.user_id = hu.user_id and tr.user_id = 'user1'
-	
+
+SELECT * FROM field
