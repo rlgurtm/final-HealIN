@@ -21,5 +21,7 @@ public interface TrainerService {
 
 	ListVO getTrainerLoc(String pageNo, String local);
 	ListVO getSearchTrainer(String pageNo, String searchWord);
+	
+	ListVO getTrainerRate(String id, String pageNo);
 
 }

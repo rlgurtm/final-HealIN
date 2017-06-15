@@ -5,7 +5,7 @@
 <script>
 function popupOpen(id,st){
 	var popUrl = "${pageContext.request.contextPath}/trainer/userInfoPopup.do?id="+id+"&result="+st;	
-	var popOption = "width=600, height=200, top=200 ,left=400, resizable=no, scrollbars=no, status=no;";   
+	var popOption = "width=800, height=200, top=200 ,left=300, resizable=no, scrollbars=no, status=no;";   
 	window.open(popUrl,"popupname",popOption);
 
 	}

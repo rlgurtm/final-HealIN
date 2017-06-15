@@ -473,5 +473,3 @@ select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content,
 
 SELECT * FROM field
 
-
-

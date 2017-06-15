@@ -30,7 +30,15 @@
 		<thead>
 			<tr>
 				<th>강사아이디</th>
-				<th>신청날짜</th>
+				<c:choose>
+					<c:when test="${pvo.payState!='PT중' }">
+						<th>신청날짜</th>
+					</c:when>
+					<c:otherwise>
+						<th>시작날짜</th>
+						<th>종료날짜</th>
+					</c:otherwise> 
+				</c:choose>			
 				<th>기간</th>
 				<th>가격</th>
 				<th>결제상태</th>
@@ -43,8 +51,16 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>${pvo.trainerId }</td>
-				<td>${pvo.payDate }</td>
+				<td>${pvo.trainerId.membervo.id }</td>
+				<c:choose>
+					<c:when test="${pvo.payState!='PT중' }">
+						<td>${pvo.payDate }</td>
+					</c:when>
+					<c:otherwise>
+						<td>${pvo.payDate }</td>
+						<td>${info }</td>
+					</c:otherwise> 
+				</c:choose>			
 				<td>${pvo.period }개월</td>
 				<td>${pvo.price }</td>
 				<td>${pvo.payState }</td>

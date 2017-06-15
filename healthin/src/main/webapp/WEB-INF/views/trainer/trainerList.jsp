@@ -18,6 +18,15 @@ $(document).ready(function(){
 		$(document).on("click",".more",function(){ 
 			alert("로그인한 사용자만 확인할수 있는 정보입니다.");
 			});//on	
+		$(".locbtn").click(function(){
+			var loc = $(':radio[name="local"]:checked').val();
+			if(loc==null||loc==""){
+				alert("검색하실 지역을 선택해 주세요.");
+			}
+			else{
+				$("#trainerLoc").submit();
+			}
+		});
 });
 	
 	function trainerListOrder(page){
@@ -68,7 +77,7 @@ $(document).ready(function(){
 	<h4>지역별 코치 찾기</h4>
 	<div class="well" style="background-color: lightgray;">
 		<div class="coachloc">
-		<form action="${pageContext.request.contextPath}/trainerLoc.do" method="get">
+		<form action="${pageContext.request.contextPath}/trainerLoc.do" method="get" id="trainerLoc">
 		서울 > &emsp;
 		<input type="radio" value="강남구" name="local">강남구&nbsp; 
 		<input type="radio" value="노원구" name="local">노원구&nbsp;
@@ -82,7 +91,7 @@ $(document).ready(function(){
 		<input type="radio" value="양평군" name="local">양평군&nbsp;
 		<input type="radio" value="용인시" name="local">용인시&nbsp;
 		<input type="radio" value="의정부시" name="local">의정부시
-		<input type="submit" class="btn btn-default" value="검색" style="float: right">
+		<input type="button" class="btn btn-default locbtn" value="검색" style="float: right">
 		</form>
 		</div>
 	</div>

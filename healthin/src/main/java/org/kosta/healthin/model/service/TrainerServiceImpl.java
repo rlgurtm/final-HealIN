@@ -117,4 +117,18 @@ public class TrainerServiceImpl implements TrainerService {
 		return listVO;
 	}
 
+	@Override
+	public ListVO getTrainerRate(String id, String pageNo) {
+		System.out.println(id);
+		int totalCount = dao.getTotalRatingCount(id);
+		int pageNum = Integer.parseInt(pageNo);
+		PagingBean pb = new PagingBean(totalCount, pageNum);
+		Map<String, Object> map2 = new HashMap<String,Object>();
+		map2.put("id", id);
+		map2.put("STARTROWNUM", pb.getStartRowNumber());
+		map2.put("ENDROWNUM", pb.getEndRowNumber());	
+		ListVO listVO = new ListVO(dao.getTrainerRate(map2), pb);
+		return listVO;
+	}
+
 }
