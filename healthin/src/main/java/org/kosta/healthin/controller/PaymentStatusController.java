@@ -28,6 +28,9 @@ public class PaymentStatusController {
 			String nowPage = request.getParameter("pageNo");
 			List<String> ratedTrainerList = paymentStatusService.isExistRating(id);
 			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
+			for (int i=0; i<paymentList.getLVO().size(); i++) {
+				System.out.println(paymentList.getLVO().get(i));
+			}
 			model.addAttribute("paymentList", paymentList);
 			model.addAttribute("ratedTrainerList", ratedTrainerList);
 			return "payment/user_payment_list.tiles";

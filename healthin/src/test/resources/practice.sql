@@ -418,8 +418,9 @@ select count(*) from pay p, trainer t
 select r.* from(
 	select row_number() over(order by pay_no desc) rnum, 
 	p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, add_months(sysdate, period) as period, p.trainer_id as trainerId
-	from pay p, health_user hu, trainer t, matching m
-	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and m.user_id = p.user_id and m.trainer_id = p.trainer_id and t.trainer_id = 'healthman6'
+	from pay p, health_user hu, trainer t, matching m, trainer_rate tr
+	where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and m.user_id = p.user_id 
+	and m.trainer_id = p.trainer_id and hu.user_id = 'user1'
 ) r
 where rnum between 1 and 6 order by rnum asc
 
