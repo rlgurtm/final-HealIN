@@ -18,8 +18,8 @@ public class PaymentStatusController {
 	@Resource
 	private PaymentStatusService paymentStatusService;
 	
-	@RequestMapping("paymentList.do")
-	public String paymentList(Model model, HttpServletRequest request) {
+	@RequestMapping("userPaymentList.do")
+	public String userPaymentList(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null){
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
@@ -30,6 +30,22 @@ public class PaymentStatusController {
 			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
 			model.addAttribute("paymentList", paymentList);
 			return "payment/user_payment_list.tiles";
+		} else {
+			return "redirect:home.do"; 
+		}
+	}
+	@RequestMapping("trainerPaymentList.do")
+	public String trainerPaymentList(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null){
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			String id = mvo.getId();
+			String nowPage = request.getParameter("pageNo");
+			
+			//paymentStatusService.isExistRating(map);
+			ListVO paymentList = paymentStatusService.getUsersPaymentList(id, nowPage);
+			model.addAttribute("paymentList", paymentList);
+			return "payment/trainer_payment_list.tiles";
 		} else {
 			return "redirect:home.do"; 
 		}
@@ -45,7 +61,7 @@ public class PaymentStatusController {
 			map.put("userId", userId);
 			map.put("trainerId", trainerId);
 			paymentStatusService.updateUserPayStatus(map);
-			return "redirect:paymentList.do";
+			return "redirect:userPaymentList.do";
 		} else {
 			return "redirect:home.do"; 
 		}
@@ -66,7 +82,7 @@ public class PaymentStatusController {
 			map.put("rate", rate);
 			map.put("content", content);
 			paymentStatusService.rating(map);
-			return "redirect:paymentList.do";
+			return "redirect:userPaymentList.do";
 		} else {
 			return "redirect:home.do"; 
 		}

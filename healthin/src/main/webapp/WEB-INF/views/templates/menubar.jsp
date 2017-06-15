@@ -97,7 +97,7 @@
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/paymentList.do">Payment Status</a>
+			                                <a href="${pageContext.request.contextPath}/trainerPaymentList.do">Payment Status</a>
 			                            </li>
 			                        </ul>
 			                    </li>
@@ -125,7 +125,7 @@
 			                                <a href="${pageContext.request.contextPath}/mentoringList.do">Mentoring</a>
 			                            </li>
 			                            <li>
-			                                <a href="${pageContext.request.contextPath}/paymentList.do">Payment Status</a>
+			                                <a href="${pageContext.request.contextPath}/userPaymentList.do">Payment Status</a>
 			                            </li>
 			                        </ul>
 			                    </li>

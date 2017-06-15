@@ -38,4 +38,14 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	public List<String> isExistRating(Map<String, Object> map) {
 		return template.selectList("paymentStatus.isExistRating", map);
 	}
+
+	@Override
+	public List<VO> getUsersPaymentList(Map<String, Object> map) {
+		return template.selectList("paymentStatus.getUsersPaymentList", map);
+	}
+
+	@Override
+	public int getTotalCountOfUsersContent(String id) {
+		return template.selectOne("paymentStatus.getTotalCountOfUsersContent", id);
+	}
 }

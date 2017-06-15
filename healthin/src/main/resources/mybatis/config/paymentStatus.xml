@@ -13,9 +13,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) r
 		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
  	</select>
+ 	<select id="getUsersPaymentList" resultType="payVO" parameterType="map">
+ 	   select r.* from(
+			select row_number() over(order by pay_no desc) rnum, 
+			p.pay_no as payNo, p.user_id as userId, p.price, p.pay_date as payDate, p.pay_state as payState, p.period, p.trainer_id as trainerId
+			from pay p, health_user hu, trainer t
+			where p.user_id = hu.user_id and p.trainer_id = t.trainer_id and t.trainer_id = #{id}
+		) r
+		where rnum between #{startRowNumber} and #{endRowNumber} order by rnum asc
+ 	</select>
  	<select id="getTotalCountOfContent" resultType="int" parameterType="string">
  		select count(*) from pay p, health_user hu 
  		where p.user_id = hu.user_id and hu.user_id = #{value}
+ 	</select>
+ 	<select id="getTotalCountOfUsersContent" resultType="int" parameterType="string">
+ 		select count(*) from pay p, trainer t
+		where p.trainer_id = t.trainer_id and  t.trainer_id = #{value}
  	</select>
  	<update id="updateUserPayStatus" parameterType="map">
  		update pay set pay_state = '입금완료', pay_date = sysdate 

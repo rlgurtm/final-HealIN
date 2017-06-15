@@ -47,4 +47,22 @@ public class PaymentStatusServiceImpl implements PaymentStatusService {
 	public List<String> isExistRating(Map<String, Object> map) {
 		return paymentStatusDAO.isExistRating(map);
 	}
+
+	@Override
+	public ListVO getUsersPaymentList(String id, String nowPage) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int totalContents = paymentStatusDAO.getTotalCountOfUsersContent(id);
+		PagingBean pagingBean = null;
+		if (nowPage == null) {
+			pagingBean = new PagingBean(totalContents);
+		} else {
+			pagingBean = new PagingBean(totalContents, Integer.parseInt(nowPage));
+		}
+		map.put("id", id);
+		map.put("startRowNumber", pagingBean.getStartRowNumber());
+		map.put("endRowNumber", pagingBean.getEndRowNumber());
+		ListVO listVO = new ListVO(paymentStatusDAO.getUsersPaymentList(map), pagingBean);
+		System.out.println(listVO);
+		return listVO;
+	}
 }

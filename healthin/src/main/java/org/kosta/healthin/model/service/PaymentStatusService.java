@@ -7,6 +7,7 @@ import org.kosta.healthin.model.vo.ListVO;
 
 public interface PaymentStatusService {
 	public ListVO getPaymentList(String id, String nowPage);
+	public ListVO getUsersPaymentList(String id, String nowPage);
 	public void updateUserPayStatus(Map<String, Object> map);
 	public void rating(Map<String, Object> map);
 	public List<String> isExistRating(Map<String, Object> map);
