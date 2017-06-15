@@ -74,7 +74,7 @@ $("#nextBtn").click(function() {
 	} else {
 		alert("서비스 약관과 개인정보 수집 및 이용에 대해 모두 동의해 주세요.");
 	    $("#userBtn").hide(); 
-	    $("#trainerBtn").hide(); 
+	    $("#trainerBtn").hide();
 		return false;
 	}
 });
