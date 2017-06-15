@@ -59,11 +59,6 @@ $(".pagination .active").removeClass("active");
 </script>
 <div class="container">
 
-<c:choose >
-<c:when test="${tvo.rank==0}">
-<h2>지금은 사용할 수 없습니다.</h2>
-</c:when>
-<c:otherwise>
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="col-lg-12">
@@ -121,7 +116,5 @@ $(".pagination .active").removeClass("active");
 			</c:if>
 	</ul>
 </div>
-</c:otherwise>
-</c:choose>
 	
 </div>

@@ -193,8 +193,9 @@ public class BoardController {
 		int count =trainerService.trainerfollowingCount(trainerId);
 		vo.setCount(count);
 		model.addAttribute("tvo",vo);
-		String ratePageNo = "1";
-		ListVO rateList = trainerService.getTrainerRate(trainerId, ratePageNo);
+		model.addAttribute("trainerId", trainerId);
+		String pageNo = request.getParameter("pageNo");
+		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
 		model.addAttribute("rateList", rateList);
 		
 		int nowPage=1;
@@ -207,6 +208,17 @@ public class BoardController {
         listVO = trainerVideoService.findByTrainerIdVideoList(map);
         model.addAttribute("listVO",listVO);
 		return "trainer/trainerDetail.tiles";
+	}
+	
+	@RequestMapping("getTrainerRating.do")
+	@ResponseBody
+	public ListVO getTrainerRating(Model model, HttpServletRequest request) {
+		String trainerId = request.getParameter("trainerId");
+		String pageNo = request.getParameter("pageNo");
+		System.out.println(trainerId + " " + pageNo);
+		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
+		model.addAttribute("rateList", rateList);
+		return rateList;
 	}
 	
 	@RequestMapping("pt_qna/qna.do")

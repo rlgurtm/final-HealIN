@@ -27,6 +27,7 @@ public class PaymentStatusController {
 			String id = mvo.getId();
 			String nowPage = request.getParameter("pageNo");
 			List<String> ratedTrainerList = paymentStatusService.isExistRating(id);
+			System.out.println(ratedTrainerList);
 			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
 			for (int i=0; i<paymentList.getLVO().size(); i++) {
 				System.out.println(paymentList.getLVO().get(i));
@@ -46,7 +47,6 @@ public class PaymentStatusController {
 			String id = mvo.getId();
 			String nowPage = request.getParameter("pageNo");
 			
-			//paymentStatusService.isExistRating(map);
 			ListVO paymentList = paymentStatusService.getUsersPaymentList(id, nowPage);
 			model.addAttribute("paymentList", paymentList);
 			return "payment/trainer_payment_list.tiles";
