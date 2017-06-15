@@ -13,4 +13,5 @@ public interface PaymentStatusDAO {
 	public void updateUserPayStatus(Map<String, Object> map);
 	public List<String> isExistRating(String id);
 	public void rating(Map<String, Object> map);	// 평가
+	public List<Integer> getRateStatus();
 }

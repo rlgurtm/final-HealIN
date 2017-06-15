@@ -48,4 +48,9 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	public int getTotalCountOfUsersContent(String id) {
 		return template.selectOne("paymentStatus.getTotalCountOfUsersContent", id);
 	}
+
+	@Override
+	public List<Integer> getRateStatus() {
+		return template.selectList("paymentStatus.getRateStatus");
+	}
 }

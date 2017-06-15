@@ -79,22 +79,21 @@ $(document).ready(function(){
 		}//success
 	}); //ajax
 	$(".rateFormBtn").click(function() {
-		var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
-		document.getElementById("trainerId").value = trainerId;
-		/* $.ajax({ 
+		var rateNo = $(this).closest('tr').find('td:eq(0)').text(); 
+		document.getElementById("rateNo").value = rateNo;
+		$.ajax({
 			type: "post",		// 넘겨주는 방식
-			url: "${pageContext.request.contextPath}/ajaxForRating.do",	// 보낼 url
-			data: "consumptionNo=" + targetExerciseConsumptionNo,	// 넘길 데이타 값
-			success: function(exercise) {	// 성공했을 때 결과
-				document.getElementById("updateExerciseConsumptionNo").value = exercise.consumptionNo;
-				document.getElementById("updateExerciseExName").value = exercise.exName;
-				document.getElementById("updateExerciseExHour").value = exercise.exHour;
-				document.getElementById("updateExerciseCalorie").value = exercise.calorie; 
+			url: "${pageContext.request.contextPath}/getRatingByRateNo.do",	// 보낼 url
+			data: "rateNo=" + rateNo,	// 넘길 데이타 값
+			success: function(rate) {	// 성공했을 때 결과
+				/* document.getElementById("rateNo").value = rate.rate; */
+				document.getElementById("rateContent").value = rate.content;
+				$("#p"+rate.rate).prop("checked", true)
 				$("#updateModal").modal("show");
 			}
-		}); */
-			$("#rateModal").modal("show");
 		});
+		$("#rateModal").modal("show");
+	});
 	$("#rateBtn").click(function() {
 		if (document.getElementById("rateContent").value == "") {
 			alert("내용을 입력하세요!");
@@ -129,7 +128,7 @@ $(document).ready(function(){
 		font-weight:bold;
 	}
 	#staroffImgAvg {
-		margin-left: -6px
+		margin-left: -7px
 	}
 	#staroffImg {
 		margin-left: -4px
@@ -243,25 +242,35 @@ $(document).ready(function(){
 				<c:forEach begin="1" end="${staroff}">
 					<img src="${pageContext.request.contextPath}/resources/img/staroff.png" width="20px" height="20px">
 				</c:forEach>
-				전체 평점 (${avgRate} / 10.0)
+				<font color="black">${avgRate}</font> 
+				<c:choose>
+					<c:when test="${requestScope.totalRatingCount == null}">
+						<font size="2px">(0명 참여)</font>
+					</c:when>
+					<c:otherwise>
+						<font size="2px">(${requestScope.totalRatingCount}명 참여)</font>
+					</c:otherwise>
+				</c:choose>
 			</h3>
 		</div>
 		<br>
 		<div>
 			<c:set value="${requestScope.rateList.LVO}" var="rateList"/>
-			<c:set value="${requestScope.rateList.LVO}" var="rateList"/>
+			<%-- <c:set value="${requestScope.rateList.LVO}" var="rateList"/> --%>
 			<table class="table table-condensed">
 				<tbody id="" align="center">
 					<tr><!-- style='font-weight:bold;' -->
+						<td style="width:2%;"></td>
 						<td class="headTitle" style="width:15%;">평점</td>
 						<td class="headTitle" style="width:10%;">회원 ID</td>
-						<td class="headTitle" style="width:40%;">내용</td>
+						<td class="headTitle" style="width:35%;">내용</td>
 						<td class="headTitle" style="width:15%;">평가일</td>
 						<td style="width:12%;"></td>
 					</tr>
 					<c:if test="${!empty rateList}">
 						<c:forEach items="${rateList}" var="list">
 							<tr>
+								<td><font color="white">${list.rateNo}</font></td>
 								<td align="left">
 									<c:set value="${list.rate / 2}" var="shares"/>
 									<c:set value="${list.rate % 2}" var="rest"/>
@@ -282,8 +291,10 @@ $(document).ready(function(){
 								<td>${list.content}</td>
 								<td>${list.rateDate}</td>
 								<td>
-									<a class="rateFormBtn" href="${pageContext.request.contextPath}/updateRate.do?rateNo=${list.rateNo}">수정</a>&nbsp;
-									<a href="${pageContext.request.contextPath}/deleteRate.do?rateNo=${list.rateNo}">삭제</a>
+									<c:if test="${sessionScope.mvo.id == list.userId}">
+										<a class="rateFormBtn" href="#">수정</a>&nbsp;
+										<a href="${pageContext.request.contextPath}/deleteRate.do?rateNo=${list.rateNo}&trainerId=${list.trainerId}">삭제</a>
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>
@@ -328,9 +339,10 @@ $(document).ready(function(){
 					<h4 class="modal-title">PT 강사 평가</h4>
 				</div>
 				<div class="modal-body" align="left">
-					<form id="ratingForm" action="${pageContext.request.contextPath}/rating.do">
+					<form id="ratingForm" action="${pageContext.request.contextPath}/updateRate.do">
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.mvo.id}">
-						<input type="hidden" id="trainerId" name="trainerId" value="">
+						<input type="hidden" id="trainerId" name="trainerId" value="${requestScope.trainerId}">
+						<input type="hidden" id="rateNo" name="rateNo" value="">
 						<!-- <input type="hidden" id="rate" name="mydate" value=""> -->
 						<span class="star-input">
 						  <span class="input">
@@ -339,11 +351,11 @@ $(document).ready(function(){
 						    <input type="radio" name="rate" id="p3" value="3"><label for="p3">3</label>
 						    <input type="radio" name="rate" id="p4" value="4"><label for="p4">4</label>
 						    <input type="radio" name="rate" id="p5" value="5" checked="checked"><label for="p5">5</label>
-						    <!-- <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
+						    <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
 						    <input type="radio" name="rate" id="p7" value="7"><label for="p7">7</label>
 						    <input type="radio" name="rate" id="p8" value="8"><label for="p8">8</label>
 						    <input type="radio" name="rate" id="p9" value="9"><label for="p9">9</label>
-						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label> -->
+						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label>
 						  </span>
 						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
 						</span><br>

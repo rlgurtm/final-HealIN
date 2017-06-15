@@ -15,9 +15,11 @@ import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.CommentVO;
+import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TipBoardVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
@@ -194,13 +196,16 @@ public class BoardController {
 		vo.setCount(count);
 		String pageNo = request.getParameter("pageNo");
 		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
-		double sumOfRate = trainerService.getSumOfRating(trainerId);
-		int totalRatingCount = trainerService.getTotalRatingCountForAvgRate(trainerId);
-		double avgRate = sumOfRate / totalRatingCount;
+		if (rateList.getLVO().size() != 0) {
+			double sumOfRate = trainerService.getSumOfRating(trainerId);
+			int totalRatingCount = trainerService.getTotalRatingCountForAvgRate(trainerId);
+			double avgRate = sumOfRate / totalRatingCount;
+			model.addAttribute("totalRatingCount", totalRatingCount);
+			model.addAttribute("avgRate", avgRate);
+		}
 		model.addAttribute("tvo",vo);
 		model.addAttribute("trainerId", trainerId);
 		model.addAttribute("rateList", rateList);
-		model.addAttribute("avgRate", avgRate);
 		
 		int nowPage=1;
 		PagingBean pb;
@@ -221,17 +226,28 @@ public class BoardController {
 		//String id = request.getParameter("id");
 		double rate = Double.parseDouble(request.getParameter("rate"));
 		String content = request.getParameter("content");
+		String trainerId = request.getParameter("trainerId");
 		map.put("rateNo", rateNo);
 		map.put("rate", rate);
 		map.put("content", content);
 		trainerService.updateRate(map);
-		return "redirect:trainerDetail.do";
+		return "redirect:trainerDetail.do?trainerId=" + trainerId;
+	}
+	
+	@RequestMapping("getRatingByRateNo.do")
+	@ResponseBody
+	public RateVO getExerciseByConsumptionNo(Model model, HttpServletRequest request) {
+		int rateNo = Integer.parseInt(request.getParameter("rateNo"));
+		RateVO rate = trainerService.getRatingByRateNo(rateNo);
+		return rate;
 	}
 	
 	@RequestMapping("deleteRate.do")
 	public String deleteRate(Model model, HttpServletRequest request){
-		
-		return "pt_qna/qna.tiles";
+		int rateNo = Integer.parseInt(request.getParameter("rateNo"));
+		String trainerId = request.getParameter("trainerId");
+		trainerService.deleteRate(rateNo);
+		return "redirect:trainerDetail.do?trainerId=" + trainerId;
 	}
 	
 	

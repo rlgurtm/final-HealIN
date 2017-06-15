@@ -31,21 +31,48 @@
 </script>
 <script>
 	$(document).ready(function() {
+		$.ajax({
+			type: "post",
+			url: "${pageContext.request.contextPath}/getRateStatus.do",
+			success: function(rateStatus) {
+				alert(rateStatus);	
+				//var payNo = $(this).closest('tr').find('td:eq(0)').text(); 
+				var rateStatusInfo = "";
+				var length = '${requestScope.length}';
+				var payList = '${requestScope.paymentList.LVO}';
+				for (var i=0; i<rateStatus.length; i++) {
+					for (var j=0; j<length; j++) {
+						if (rateStatus[i] == payList[j]) {
+							rateStatusInfo += "<a class='rateFormBtn btn btn-success' data-target='#rateModal' href='#' data-id='${list.payNo}'>평가완료</a>";
+							break;
+						} else {
+							rateStatusInfo += "<a class='rateFormBtn btn btn-warn' data-target='#rateModal' href='#' data-id='${list.payNo}'>평가하기</a>";
+							break;
+						}
+					}
+				}
+				$("#rateStatus").html(rateStatusInfo);
+				<%-- <c:if test="${list.payState == '입금완료'}">
+				<c:forEach items="${requestScope.ratedTrainerList}" var="rate">
+					<c:choose>
+						<c:when test="${rate == list.payNo}">
+							<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
+							<c:set var="doneLoop" value="true"/>
+						</c:when>
+						<c:otherwise>
+							<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+							<c:set var="doneLoop" value="true"/>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</c:if> --%>
+			}//success
+		}); //ajax
 		$(".rateFormBtn").click(function() {
 			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
+			var payNo = $(this).closest('tr').find('td:eq(0)').text(); 
 			document.getElementById("trainerId").value = trainerId;
-			/* $.ajax({ 
-				type: "post",		// 넘겨주는 방식
-				url: "${pageContext.request.contextPath}/ajaxForRating.do",	// 보낼 url
-				data: "consumptionNo=" + targetExerciseConsumptionNo,	// 넘길 데이타 값
-				success: function(exercise) {	// 성공했을 때 결과
-					document.getElementById("updateExerciseConsumptionNo").value = exercise.consumptionNo;
-					document.getElementById("updateExerciseExName").value = exercise.exName;
-					document.getElementById("updateExerciseExHour").value = exercise.exHour;
-					document.getElementById("updateExerciseCalorie").value = exercise.calorie; 
-					$("#updateModal").modal("show");
-				}
-			}); */
+			document.getElementById("payNo").value = payNo;
   			$("#rateModal").modal("show");
   		});
 		$("#rateBtn").click(function() {
@@ -104,10 +131,11 @@
 				<td class="headTitle" style="width:15%;">강사 ID</td>
 				<td class="headTitle" style="width:15%;">강사 닉네임</td>
 				<!-- <th style="width:15%;">닉네임</th> -->
-				<td class="headTitle" style="width:20%;">수강기간</td>
+				<td class="headTitle" style="width:20%;">신청기간</td>
 				<td class="headTitle" style="width:10%;">가격(원)</td>
 				<td class="headTitle" style="width:10%;">결제상태</td>
 				<td class="headTitle" style="width:10%;">강사평가</td>
+				<td class="headTitle" style="width:10%;">수강현황</td>
 			</tr>
 			<c:if test="${!empty paymentList}">
 				<c:forEach items="${paymentList}" var="list">
@@ -133,19 +161,52 @@
 						</c:choose>
 						<td>
 							<c:if test="${list.payState == '입금완료'}">
-								<c:forEach items="${requestScope.ratedTrainerList}" var="rate">
+								
+								<c:set var="doneLoop" value="false" />
+								<c:set var="doneLoop2" value="false" />
+								<c:forEach items="${requestScope.rateStatus}" var="rate">
 									<c:choose>
 										<c:when test="${rate == list.payNo}">
-											<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
-											<c:set var="doneLoop" value="true"/>
+											<c:if test="${not doneLoop}">
+												<%-- <c:if test="${rate == list.payNo}"> --%>
+													<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
+													<c:set var="doneLoop" value="true"/>
+												<%-- </c:if> --%>
+											</c:if>
 										</c:when>
 										<c:otherwise>
-											<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
-											<c:set var="doneLoop" value="true"/>
+											<c:if test="${not doneLoop2}">
+												<%-- <c:if test="${rate != list.payNo}"> --%>
+													<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+													<c:set var="doneLoop2" value="true"/>
+												</c:if>
+											<%-- </c:if> --%>
 										</c:otherwise>
 									</c:choose>
+									<%-- <c:if test="${not doneLoop}">
+										<c:if test="${rate == list.payNo}">
+											<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
+											<c:set var="doneLoop" value="true"/>
+										</c:if>
+									</c:if>
+									<c:if test="${not doneLoop2}">
+										<c:if test="${rate != list.payNo}">
+											<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+											<c:set var="doneLoop2" value="true"/>
+										</c:if>
+									</c:if> --%>
 								</c:forEach>
 							</c:if>
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${list.payState == '입금완료'}">
+									<font color="red">수강중</font>
+								</c:when>
+								<c:otherwise>
+									<font color="blue">수강대기</font>
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>
@@ -193,6 +254,7 @@
 					<form id="ratingForm" action="${pageContext.request.contextPath}/rating.do">
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.mvo.id}">
 						<input type="hidden" id="trainerId" name="trainerId" value="">
+						<input type="hidden" id="payNo" name="payNo" value="">
 						<!-- <input type="hidden" id="rate" name="mydate" value=""> -->
 						<span class="star-input">
 						  <span class="input">
@@ -201,11 +263,11 @@
 						    <input type="radio" name="rate" id="p3" value="3"><label for="p3">3</label>
 						    <input type="radio" name="rate" id="p4" value="4"><label for="p4">4</label>
 						    <input type="radio" name="rate" id="p5" value="5" checked="checked"><label for="p5">5</label>
-						    <!-- <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
+						    <input type="radio" name="rate" id="p6" value="6"><label for="p6">6</label>
 						    <input type="radio" name="rate" id="p7" value="7"><label for="p7">7</label>
 						    <input type="radio" name="rate" id="p8" value="8"><label for="p8">8</label>
 						    <input type="radio" name="rate" id="p9" value="9"><label for="p9">9</label>
-						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label> -->
+						    <input type="radio" name="rate" id="p10" value="10"><label for="p10">10</label>
 						  </span>
 						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
 						</span><br>

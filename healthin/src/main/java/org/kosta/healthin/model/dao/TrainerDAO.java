@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.kosta.healthin.model.vo.VO;
 
@@ -45,4 +46,7 @@ public interface TrainerDAO {
 	
 	void updateRate(Map<String, Object> map);
 	
+	RateVO getRatingByRateNo(int rateNo);
+	
+	void deleteRate(int rateNo);
 }

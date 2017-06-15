@@ -13,11 +13,19 @@ import org.kosta.healthin.model.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PaymentStatusController {
 	@Resource
 	private PaymentStatusService paymentStatusService;
+	
+	@RequestMapping("getRateStatus.do")
+	@ResponseBody
+	public List<Integer> getRateStatus() {
+		List<Integer> rateStatus = paymentStatusService.getRateStatus();
+		return rateStatus;
+	}
 	
 	@RequestMapping("userPaymentList.do")
 	public String userPaymentList(Model model, HttpServletRequest request) {
@@ -27,12 +35,15 @@ public class PaymentStatusController {
 			String id = mvo.getId();
 			String nowPage = request.getParameter("pageNo");
 			List<String> ratedTrainerList = paymentStatusService.isExistRating(id);
-			System.out.println(ratedTrainerList);
 			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
-			for (int i=0; i<paymentList.getLVO().size(); i++) {
+			List<Integer> rateStatus = paymentStatusService.getRateStatus();
+			int length = paymentList.getLVO().size();
+			/*for (int i=0; i<paymentList.getLVO().size(); i++) {
 				System.out.println(paymentList.getLVO().get(i));
-			}
+			}*/
+			model.addAttribute("length", length);
 			model.addAttribute("paymentList", paymentList);
+			model.addAttribute("rateStatus", rateStatus);
 			model.addAttribute("ratedTrainerList", ratedTrainerList);
 			return "payment/user_payment_list.tiles";
 		} else {
@@ -76,11 +87,13 @@ public class PaymentStatusController {
 		HttpSession session = request.getSession(false);
 		if (session != null){
 			//MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			int payNo = Integer.parseInt(request.getParameter("payNo"));
 			String userId = request.getParameter("userId");
 			String trainerId = request.getParameter("trainerId");
 			double rate = Double.parseDouble(request.getParameter("rate"));
 			String content = request.getParameter("content");
 			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("payNo", payNo);
 			map.put("userId", userId);
 			map.put("trainerId", trainerId);
 			map.put("rate", rate);

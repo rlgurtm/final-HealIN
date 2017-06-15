@@ -525,9 +525,20 @@ select tr.rate_no as rateNo, tr.user_id as userId,
 	
 select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
  		where tr.user_id = hu.user_id and tr.user_id = 'user1'
+ 		
+select r.* from(
+	select tr.rate_no as rateNo, tr.user_id as userId, 
+		tr.trainer_id as trainerId, tr.rate, tr.content, tr.rate_date as rateDate
+	from trainer_rate tr, health_user hu
+	where tr.user_id = hu.user_id and tr.rate_no = 12
+) r
+where rnum between 1 and 6 order by rnum asc
 
+select p.pay_no as payNo from pay p, trainer_rate tr where p.pay_no = tr.rate_no
+
+select * from trainer_rate where rate_no = 12
 SELECT * FROM field
-
+update trainer_rate set rate = 10, content = '굿굿' where rate_no = 24
 select a.id,a.name,a.address,b.pushCount
 from HEALTH_MEMBER a,
 	(select count(b.field_name) as pushCount,b.id

@@ -100,6 +100,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where tr.user_id = hu.user_id and tr.trainer_id = #{value}
     </select>
     <update id="updateRate" parameterType="map">
-    	update trainer_rate set rate = 0.0, content = '얘 완전 양아치에요 돈 개아까움' where rate_no = 12;
+    	update trainer_rate set rate = #{rate}, content = #{content} where rate_no = #{rateNo}
     </update>
+    <select id="getRatingByRateNo" resultType="rateVO" parameterType="int">
+    	select tr.rate_no as rateNo, tr.user_id as userId, 
+    		tr.trainer_id as trainerId, tr.rate, tr.content, tr.rate_date as rateDate
+		from trainer_rate tr, health_user hu
+		where tr.user_id = hu.user_id and tr.rate_no = #{value}
+    </select>
+    <delete id="deleteRate" parameterType="int">
+    	delete from trainer_rate where rate_no = #{value}
+    </delete>
 </mapper>

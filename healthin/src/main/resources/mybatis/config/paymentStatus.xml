@@ -41,15 +41,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</update>
  	<insert id="rating" parameterType="map">
  		insert into trainer_rate 
-		values(#{userId}, #{trainerId}, #{rate}, #{content}, sysdate)
+		values(#{payNo}, #{userId}, #{trainerId}, #{rate}, #{content}, sysdate)
  	</insert>
  	<select id="isExistRating" resultType="string" parameterType="string">
  		select tr.rate_no as rateNo from trainer_rate tr, health_user hu 
  		where tr.user_id = hu.user_id and tr.user_id = #{value}
  	</select>
- 	<update id="updateRatingStatus">
- 	
- 	</update>
+ 	<select id="getRateStatus" resultType="int">
+ 		select p.pay_no as payNo from pay p, trainer_rate tr where p.pay_no = tr.rate_no
+ 	</select>
  	
  	<!-- <insert id="payInsert" parameterType="map">
  	 <selectKey keyProperty="no" resultType="int" order="BEFORE">

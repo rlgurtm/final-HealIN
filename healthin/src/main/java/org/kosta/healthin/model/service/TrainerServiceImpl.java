@@ -9,6 +9,7 @@ import org.kosta.healthin.model.dao.TrainerDAO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.PagingBeanForRating;
+import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Service;
 
@@ -148,6 +149,16 @@ public class TrainerServiceImpl implements TrainerService {
 	@Override
 	public void updateRate(Map<String, Object> map) {
 		dao.updateRate(map);
+	}
+
+	@Override
+	public RateVO getRatingByRateNo(int rateNo) {
+		return dao.getRatingByRateNo(rateNo);
+	}
+
+	@Override
+	public void deleteRate(int rateNo) {
+		dao.deleteRate(rateNo);
 	}
 
 }

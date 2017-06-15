@@ -11,4 +11,5 @@ public interface PaymentStatusService {
 	public void updateUserPayStatus(Map<String, Object> map);
 	public void rating(Map<String, Object> map);
 	public List<String> isExistRating(String id);
+	public List<Integer> getRateStatus();
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.PagingBean;
+import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -106,6 +107,16 @@ public class TrainerDAOImpl implements TrainerDAO {
 	@Override
 	public void updateRate(Map<String, Object> map) {
 		template.update("trainer.updateRate", map);
+	}
+
+	@Override
+	public RateVO getRatingByRateNo(int rateNo) {
+		return template.selectOne("trainer.getRatingByRateNo", rateNo);
+	}
+
+	@Override
+	public void deleteRate(int rateNo) {
+		template.delete("trainer.deleteRate", rateNo);
 	}
 
 }

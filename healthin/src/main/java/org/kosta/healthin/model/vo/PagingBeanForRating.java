@@ -4,7 +4,7 @@ public class PagingBeanForRating extends PagingBean {
 	// 현재 페이지
 	private int nowPage = 1;
 	// 페이지 당 보여줄 게시물 수
-	private int contentNumberPerPage = 3;
+	private int contentNumberPerPage = 5;
 	// 페이지 그룹 당 페이지 수
 	private int pageNumberPerPageGroup = 5;
 	// 현재 db에 저장된 총 게시물 수

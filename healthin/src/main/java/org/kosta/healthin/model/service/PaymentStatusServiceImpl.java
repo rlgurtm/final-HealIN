@@ -65,4 +65,9 @@ public class PaymentStatusServiceImpl implements PaymentStatusService {
 		System.out.println(listVO);
 		return listVO;
 	}
+
+	@Override
+	public List<Integer> getRateStatus() {
+		return paymentStatusDAO.getRateStatus();
+	}
 }
