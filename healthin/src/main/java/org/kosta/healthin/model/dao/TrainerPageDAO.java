@@ -57,5 +57,13 @@ public interface TrainerPageDAO {
 	int userPtMatchingListCount(String id);
 
 	List<VO> userPtMatchingList(Map<String, Object> map);
+
+	String getOneMatchingInfo(Map<String, Object> map);
+
+	int ExpiredMatching(Map<String, Object> map);
+
+	void MatchingDelete(Map<String, Object> map);
+
+	void ExpiredPayUpate(Map<String, Object> map);
 	
 }
