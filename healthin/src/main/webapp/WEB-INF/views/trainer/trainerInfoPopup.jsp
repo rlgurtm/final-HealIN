@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	function deposit(){
 		if(confirm("입금하셨습니까?")){
-			opener.location.href="${pageContext.request.contextPath}/userDeposit.do?trainerId=${pvo.trainerId }&userId=${mvo.id}";
+			opener.location.href="${pageContext.request.contextPath}/userDeposit.do?trainerId=${pvo.trainerId.membervo.id }&userId=${mvo.id}";
 			window.close();
 		}else{
 			window.close();
