@@ -60,6 +60,21 @@ $(document)
 												required : true
 											}
 										},
+										career : {
+											rules : {
+												required : true
+											}
+										},
+										location : {
+											rules : {
+												required : true
+											}
+										},
+										uploadfile : {
+											rules : {
+												required : true
+											}
+										},
 										birthdate : {
 											rules : {
 												required : true,
@@ -271,7 +286,7 @@ $(document)
 						}
 					}
 
-					$("form")
+					$("#joinInput")
 							.submit(
 									function() {
 										var errorCnt = 0;
@@ -279,18 +294,15 @@ $(document)
 										if (!$("form").valid()) {
 											errorCnt++;
 										}
-										if (isAuthenticated != true
-												&& $("#tel").isValid() == true) {
-												confirmCertCodeFail($.fn.messages.inputAndConfirmCertCode);
-											errorCnt++;
+										if (errorCnt != 0) {
+											alert('에러있다-----'+errorCnt);
+											return false;
 										}
-										if (errorCnt == 0) {
-											return true;
-										}
-										return false;
+										
+										return true;
 									});
 
-					$("form")
+					$("#joinInput")
 							.keydown(
 									function(event) {
 										var activeElement = document.activeElement;
@@ -304,6 +316,7 @@ $(document)
 											}else{
 												$("#submitBtn").attr("disabled",true);
 												alert('오류있다');
+												return;
 											}
 										}
 									});
@@ -337,105 +350,6 @@ $(document)
 						setInputError(input, $.fn.messages.passwordNotMatched);
 						showValidIcon(input).text("불일치");
 					}
-
-					var isSendCode = false;
-					var isAuthenticated = false;
-
-					$("#tel")
-							.initValidation(
-									{
-										inputEvent : "focus",
-										validationEvent : "blur keyup",
-										errorListener : function(input, result) {
-											if (nationalClick == true
-													&& $(input).val() == "") {
-												return true;
-											}
-											setCertCodeBtnDisable("certBtn",
-													true);
-											if (GlobalValidationInfo.currEventType != "keyup") {
-												if (result.extra !== undefined) {
-													var certcodePolicyCheckError = result.extra['certcodePolicy'];
-													if (certcodePolicyCheckError != undefined
-															&& certcodePolicyCheckError.responseCode == "403") {
-														redirectFirstPageForError(result.message);
-														return;
-													}
-												}
-
-												setInputErrorCert(input,
-														result.message);
-											}
-										},
-										inputListener : function(input, result) {
-											isAuthenticated = false;
-											showTypingBoxForAuth(input);
-
-											$("#tel").val("");
-											resetBox($("#tel"));
-											hideErrorMessage($("#tel"));
-											setCertCodeBtnDisable("confirmBtn",
-													true);
-											onPlaceHolder($("#tel"));
-											$("#matchedCertCodeText").hide();
-
-											if (isSendCode) {
-												$("#tel").attr(
-														"disabled", false);
-											}
-										},
-										successListener : function(input,
-												result) {
-											if (isAuthenticated == false) {
-												setCertCodeBtnDisable(
-														"certBtn", false);
-												if (GlobalValidationInfo.currEventType == "blur") {
-													showSuccessBox(input);
-												}
-											}
-										}
-									});
-
-					$("#tel")
-							.initValidation(
-									{
-										inputEvent : "focus",
-										validationEvent : "blur keyup",
-										rules : {
-											required : true,
-											onlyNumber : true,
-											rangelength : [ 6, 6 ]
-										},
-
-										errorListener : function(input, result) {
-											hideTypingBox(input);
-											if ($("#tel").isValid() == true) {
-												setCertCodeBtnDisable(
-														"confirmBtn", true);
-												if (GlobalValidationInfo.currEventType != "keyup") {
-													setInputErrorCert(input,
-															result.message);
-												}
-											}
-										},
-										inputListener : function(input, result) {
-											showTypingBoxForAuth(input);
-											if ($("#tel").isValid() == true) {
-												hideErrorMessage($("#inpCertCode"));
-											}
-										},
-										successListener : function(input,
-												result) {
-											if (GlobalValidationInfo.currEventType == "blur") {
-												hideTypingBox($("#tel"));
-											}
-											if ($("#tel").isValid()) {
-												setCertCodeBtnDisable(
-														"confirmBtn", false);
-											}
-										}
-									});
-
 
 
 					function showErrorBox(input) {

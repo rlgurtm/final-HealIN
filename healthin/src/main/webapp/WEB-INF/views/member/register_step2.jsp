@@ -29,68 +29,112 @@
 	href="${pageContext.request.contextPath}/resources/css/jquery-ui-1.10.4.custom.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#id").keydown(function() {
-			val idVal = $("#id").val();
-			console.log('idVal'+idVal);
-			$.ajax({
-				type : "get",
-				url : "${pageContext.request.contextPath}/findById.do",
-				data : "id=" + $("#id").val(),
-				success : function(data) {
-					if(data == ($("#id").val())){
-						console.log(data+'XXXX');
-						$("#id_message").html(
-								"중복id입니다.다른 아이디를 입력해주세요.").show();
-					}else{
-						console.log('OOOO');
-						$("#id_message").html(
-						"사용가능한 id입니다.").show();
-					}
-				},error: function () {
-					 console.log("Request Fail!!");
-				}
-			});//ajax
+	$(document)
+			.ready(
+					function() {
+						$("#id")
+								.keydown(
+										function() {
+											val
+											idVal = $("#id").val();
+											console.log('idVal' + idVal);
+											$
+													.ajax({
+														type : "get",
+														url : "${pageContext.request.contextPath}/findById.do",
+														data : "id="
+																+ $("#id")
+																		.val(),
+														success : function(data) {
+															if (data == ($("#id")
+																	.val())) {
+																console
+																		.log(data
+																				+ 'XXXX');
+																$("#id_message")
+																		.html(
+																				"중복id입니다.다른 아이디를 입력해주세요.")
+																		.show();
+															} else {
+																console
+																		.log('OOOO');
+																$("#id_message")
+																		.html(
+																				"사용가능한 id입니다.")
+																		.show();
+															}
+														},
+														error : function() {
+															console
+																	.log("Request Fail!!");
+														}
+													});//ajax
 
-		});
-		
-		window.onerror=function(){
-			 alert('An error has occurred!')
-			 return true;
-			}
-		
-		
-		$("#nickname").keydown(function() {
-			alert('닉네임 입없다');
-			$.ajax({
-				type : "get",
-				url : "${pageContext.request.contextPath}/findByNickname.do",
-				data : "nickname=" + $("#nickname").val(),
-				datatype: 'json', 
-				success : function(nickdata) {
-					console.log(nickdata);
-					
-					if(nickdata == ($("#nickname").val())){
-						console.log('XXXX');
-						console.log(nickdata);
+										});
+
+					//	window.onerror = function() {
+						//	console.log('An error has occurred!');
+							//return false;
+						//}
+
+						$("#nickname")
+								.keydown(
+										function() {
+											// alert('닉네임 검사한다');
+											$
+													.ajax({
+														type : "get",
+														url : "${pageContext.request.contextPath}/findByNickname.do",
+														data : "nickname="
+																+ $("#nickname")
+																		.val(),
+														datatype : 'json',
+														success : function(
+																nickdata) {
+															console
+																	.log(nickdata);
+
+															if (nickdata == ($("#nickname")
+																	.val())) {
+																console
+																		.log('XXXX');
+																console
+																		.log(nickdata);
+
+																$(
+																		"#nickname_msg")
+																		.html(
+																				"중복nickname입니다.다른 nickname를 입력해주세요.")
+																		.show();
+															} else {
+																console
+																		.log(nickdata);
+																console
+																		.log('OOOO');
+															}
+														},
+														error : function() {
+															console
+																	.log("Request Fail!!");
+														}
+													});//ajax
+
+										});
 						
-						$("#nickname_msg").html(
-						  "중복nickname입니다.다른 아이디를 입력해주세요.").show();
-					}else{
-						console.log(nickdata);
-						console.log('OOOO');
-						$("#nickname_msg").html(
-						"사용가능한 nickname입니다.").show();
-					}
-				},error: function () {
-					 console.log("Request Fail!!");
-				}
-			});//ajax
-			
+						function nextsubmit() {
+							var status = $(".txt_message").css("display");
+							alert(' status'+status);
+							if($(".txt_message").css("display") !== "none"){
+									return true;
+								} else { 
+									alert('ERROR message를 확인하시고 다시 시도해주세요');
+									return false;
+								}
 
-		});
+							
+						};
 
-	})
+					})
 </script>
 </head>
 <body>
@@ -115,6 +159,7 @@
 				<span class="ico_join ico_paging"></span> <span
 					class="ico_join ico_paging on"></span> <span
 					class="ico_join ico_paging"></span>
+
 			</div>
 			<div class="wrap_tit">
 				<h3 class="tit_join">가입 정보 입력</h3>
@@ -123,7 +168,8 @@
 			<form
 				action="${pageContext.request.contextPath}/register_step3.do?type=${param.type}"
 				method="post" enctype="multipart/form-data" id="joinInput"
-				name="joinInput">
+				name="joinInput"
+				onsubmit="return nextsubmit()">
 				<fieldset class="fld_comm">
 					<legend class="screen_out">가입 정보</legend>
 					<div class="wrap_info">
@@ -137,11 +183,11 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="id" name="id" class="inp_info" value=""
-											maxlength="30" placeholder="영어 소문자,숫자만 허용됩니다." required="required">
-										<span class="mark_valid"><span
+											maxlength="30" placeholder="영어 소문자,숫자만 허용됩니다."
+											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" id="id_message" ></p>
+									<p class="txt_message" id="id_message"></p>
 								</dd>
 							</dl>
 							<dl class="item_info">
@@ -209,8 +255,8 @@
 										<label for="name" class="txt_placeholder "></label>
 										<!-- 텍스트 입력 시 .screen_out  -->
 										<input type="text" id="name" name="name" class="inp_info"
-											value="" maxlength="30" placeholder="한글 및 영어" required="required">
-										<span class="mark_valid"><span
+											value="" maxlength="30" placeholder="한글 및 영어"
+											required="required"> <span class="mark_valid"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
 									<p class="txt_message" style="display: none;"></p>
@@ -375,6 +421,28 @@
 						</div>
 					</c:if>
 
+					<script type="text/javascript">
+						$(document)
+								.ready(
+										function() {
+											var msg = $(".txt_message").val();
+
+					/* 						$("#nextstepBtn")
+													.click(
+															function() {
+
+																if($(".txt_message").css("display") === "none"){
+																	alert('ERROR 없다');
+																	return true;
+																} else { 
+																	alert('ERROR message를 확인하시고 다시 시도해주세요');
+																	return false;
+																}
+																
+															
+															}) */
+										})
+					</script>
 
 
 					<div class="wrap_btn">
@@ -394,8 +462,8 @@
 				class="link_info">서비스 약관</a><span class="txt_bar">|</span> <a
 				href="${pageContext.request.contextPath}/member/info_protection"
 				target="_blank" class="link_info">개인정보처리방침</a><span class="txt_bar">|</span>
-			<a href="${pageContext.request.contextPath}/member/#"
-				target="_blank" class="link_info">회원가입 도움말</a>
+			<a href="${pageContext.request.contextPath}/member/#" target="_blank"
+				class="link_info">회원가입 도움말</a>
 			<div class="txt_copyright">
 				© <a href="${pageContext.request.contextPath}/home.do"
 					class="link_daum" target="_blank">OGGIGEMAPZO Corp.</a>
@@ -418,6 +486,7 @@
 		})(document);
 	</script>
 
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.input.js"></script>
 	<script type="text/javascript"
@@ -428,7 +497,8 @@
 		src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.value.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
+
+
+
 </body>
 </html>

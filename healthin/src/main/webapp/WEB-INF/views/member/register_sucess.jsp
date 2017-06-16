@@ -79,6 +79,8 @@
 </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js /jquery-1.12.4.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+
 <script type="text/javascript">
     var _tiq = 'undefined' !== typeof _tiq ? _tiq : [];
     _tiq.push(['__trackPageview']);
