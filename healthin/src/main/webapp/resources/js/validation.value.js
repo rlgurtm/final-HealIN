@@ -8,22 +8,6 @@ $(document)
 									{
 										inputEvent : "keydown focus",
 										validationEvent : "blur",
-										id : {
-											rules : {
-												required : true,
-												onlydigits : true,
-												escape : true,
-												rangelength : [ 4, 15 ]
-											},
-											inputListener : function(input) {
-												formInput(input);
-											},
-											errorListener : function(input,
-													result) {
-												var extra = result.extra;
-												formError(input, result);
-											}
-										},
 										name : {
 											rules : {
 												required : true,

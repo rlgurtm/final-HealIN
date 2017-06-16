@@ -35,11 +35,9 @@
 						$("#id")
 								.keydown(
 										function() {
-											val
-											idVal = $("#id").val();
+											var idVal = $("#id").val();
 											console.log('idVal' + idVal);
-											$
-													.ajax({
+											$.ajax({
 														type : "get",
 														url : "${pageContext.request.contextPath}/findById.do",
 														data : "id="
@@ -71,55 +69,50 @@
 													});//ajax
 
 										});
-
-					//	window.onerror = function() {
-						//	console.log('An error has occurred!');
-							//return false;
-						//}
-
+						
+						
 						$("#nickname")
-								.keydown(
-										function() {
-											// alert('닉네임 검사한다');
-											$
-													.ajax({
-														type : "get",
-														url : "${pageContext.request.contextPath}/findByNickname.do",
-														data : "nickname="
-																+ $("#nickname")
-																		.val(),
-														datatype : 'json',
-														success : function(
-																nickdata) {
-															console
-																	.log(nickdata);
+						.keydown(
+								function() {
+									var nickVal = $("#nickname").val();
+									console.log('nickVal' + nickVal);
+									$.ajax({
+												type : "get",
+												url : "${pageContext.request.contextPath}/findByNickname.do",
+												data : "nickname="
+														+ $("#nickname")
+																.val(),
+												success : function(data) {
+													if (data == ($("#nickname")
+															.val())) {
+														console
+																.log(data
+																		+ 'XXXX');
+														$("#nickname_msg")
+																.html(
+																		"중복입니다.다른걸 입력해주세요.")
+																.show();
+													} else {
+														console
+																.log('OOOO');
+														$("#nickname_msg")
+																.html(
+																		"사용가능한 닉네임입니다.")
+																.show();
+													}
+												},
+												error : function() {
+													console
+															.log("Request Fail!!");
+												}
+											});//ajax
 
-															if (nickdata == ($("#nickname")
-																	.val())) {
-																console
-																		.log('XXXX');
-																console
-																		.log(nickdata);
+								});
 
-																$(
-																		"#nickname_msg")
-																		.html(
-																				"중복nickname입니다.다른 nickname를 입력해주세요.")
-																		.show();
-															} else {
-																console
-																		.log(nickdata);
-																console
-																		.log('OOOO');
-															}
-														},
-														error : function() {
-															console
-																	.log("Request Fail!!");
-														}
-													});//ajax
-
-										});
+						window.onerror = function() {
+							console.log('An error has occurred!');
+							return false;
+						}
 						
 						function nextsubmit() {
 							var status = $(".txt_message").css("display");
