@@ -35,8 +35,7 @@
 						$("#id")
 								.keydown(
 										function() {
-											val
-											idVal = $("#id").val();
+											var idVal = $("#id").val();
 											console.log('idVal' + idVal);
 											$
 													.ajax({
