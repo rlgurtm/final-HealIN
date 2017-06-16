@@ -65,15 +65,19 @@ public class MemberController {
 			// String uploadPath =
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
+			
+			session.setAttribute("tvo", tvo);
 
 			if (uploadfile != null) {
+				memberService.registerTrainer(tvo);
+				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
+				
 				try {
 					// 2. File 사용
 					File file = new File(uploadPath + fileName);
 					uploadfile.transferTo(file);
-					memberService.registerTrainer(tvo);
 					session.setAttribute("tvo", tvo);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -229,6 +233,7 @@ public class MemberController {
 			MemberVO vo = new MemberVO();
 			vo.setIstrainer("admin");
 			session.setAttribute("mvo", vo);
+			
 			//System.out.println(session.getAttribute("mvo"));
 			return "redirect:adminAuthority.do";
 		} else if (memberService.login(id, password)==null) {
@@ -242,7 +247,7 @@ public class MemberController {
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
-				//System.out.println(tvo);
+				System.out.println(tvo);
 			}
 			
 			return "redirect:home.do";
