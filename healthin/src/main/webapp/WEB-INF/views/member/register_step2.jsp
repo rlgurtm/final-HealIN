@@ -5,9 +5,6 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="HealthIn 회원가입">
-<meta property="og:type" content="website">
-<meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
 <title>가입 정보 입력 | HEALTHIN 회원가입 | 0616</title>
 <!-- Bootstrap Core CSS -->
 <link
