@@ -8,7 +8,7 @@
   		});
   		$("#typeSendBtn").click(function() {
   			var st = $(":input:radio[name=star-input]:checked").val();
-  			alert(st);
+  			//alert(st);
   		});
     	$(".menu").click(function(){
         	$(".active").removeClass("active");
@@ -25,7 +25,7 @@
             $("#datepicker2").datepicker("setDate", today);
         });
     	function calDateRange(date1, date2) {
-    		alert(date1 + " " + date2);
+    		//alert(date1 + " " + date2);
     	    var format = "-";
     	
     	    // FORMAT을 포함한 길이 체크
@@ -53,20 +53,20 @@
     	}
     	$("#selPeriod1").click(function() {
     		$("#datepicker1").datepicker("setDate", -7);
-            $("#datepicker2").datepicker("setDate", today);
+            $("#datepicker2").datepicker("setDate", new Date());
     	});
 		$("#selPeriod2").click(function() {
 			$("#datepicker1").datepicker("setDate", -31);
-            $("#datepicker2").datepicker("setDate", today);
+            $("#datepicker2").datepicker("setDate", new Date());
 		});
 		$("#selPeriod3").click(function() {
 			$("#datepicker1").datepicker("setDate", -365);
-            $("#datepicker2").datepicker("setDate", today);
+            $("#datepicker2").datepicker("setDate", new Date());
 		});
     	$("#sendBtn").click(function() {
     		var startDate = document.getElementById("datepicker1").value;
     		var endDate = document.getElementById("datepicker2").value;
-    		var day_gap = calDateRange(startDate, endDate)
+    		var day_gap = calDateRange(startDate, endDate);
     		/* if (day_gap > 7 && day_gap <32) {
     			alert("선택한 기간이 7일 초과 50일 미만 : 주별로 6주차 보여줌(아마도 평균)");
     		} else if (day_gap > 7 && day_gap <32) { */
@@ -78,8 +78,27 @@
 				type: "post",		// 넘겨주는 방식
 				url: "${pageContext.request.contextPath}/ajaxGraphData.do",	// 보낼 url
 				data: "startDate=" + startDate + "&endDate=" + endDate + "&id=${sessionScope.mvo.id}",	// 넘길 데이타 값
-				success: function(graphInfo) {	// 성공했을 때 결과
-					alert(graphInfo.length);
+				success: function(jsonData) {	// 성공했을 때 결과
+					var data = new google.visualization.DataTable();
+	        		data.addColumn('string', 'Date'); 
+	        		data.addColumn('number', '섭취량', '');
+	        		data.addColumn('number', '소모량', '');
+	        		data.addRows(jsonData.length);	//data.addRows(7);
+	        		alert(jsonData.length);
+	        		alert(jsonData[0].date);
+	        		
+	        		for (var i=0; i<jsonData.length; i++) {
+	        			data.setCell(i, 0, jsonData[i].date);
+	        			data.setCell(i, 1, jsonData[i].totalIntakeCalorie);
+	        			data.setCell(i, 2, jsonData[i].totalConsumptionCalorie);
+	        		}
+	        		
+	                var options = {
+	                  title: '기간 별 칼로리 섭취/소모량',
+	                  legend: { position: 'bottom' }
+	                };
+	                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+	                chart.draw(data, options);
 				}
 			});
     	});

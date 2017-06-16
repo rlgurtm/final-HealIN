@@ -31,43 +31,6 @@
 </script>
 <script>
 	$(document).ready(function() {
-		$.ajax({
-			type: "post",
-			url: "${pageContext.request.contextPath}/getRateStatus.do",
-			success: function(rateStatus) {
-				alert(rateStatus);	
-				//var payNo = $(this).closest('tr').find('td:eq(0)').text(); 
-				var rateStatusInfo = "";
-				var length = '${requestScope.length}';
-				var payList = '${requestScope.paymentList.LVO}';
-				for (var i=0; i<rateStatus.length; i++) {
-					for (var j=0; j<length; j++) {
-						if (rateStatus[i] == payList[j]) {
-							rateStatusInfo += "<a class='rateFormBtn btn btn-success' data-target='#rateModal' href='#' data-id='${list.payNo}'>평가완료</a>";
-							break;
-						} else {
-							rateStatusInfo += "<a class='rateFormBtn btn btn-warn' data-target='#rateModal' href='#' data-id='${list.payNo}'>평가하기</a>";
-							break;
-						}
-					}
-				}
-				$("#rateStatus").html(rateStatusInfo);
-				<%-- <c:if test="${list.payState == '입금완료'}">
-				<c:forEach items="${requestScope.ratedTrainerList}" var="rate">
-					<c:choose>
-						<c:when test="${rate == list.payNo}">
-							<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
-							<c:set var="doneLoop" value="true"/>
-						</c:when>
-						<c:otherwise>
-							<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
-							<c:set var="doneLoop" value="true"/>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</c:if> --%>
-			}//success
-		}); //ajax
 		$(".rateFormBtn").click(function() {
 			var trainerId = $(this).closest('tr').find('td:eq(1)').text(); 
 			var payNo = $(this).closest('tr').find('td:eq(0)').text(); 
@@ -93,7 +56,7 @@
 					location.href = "${pageContext.request.contextPath}/updateUserPayStatus.do?userId=${sessionScope.mvo.id}&trainerId=" + trainerId;
 				}
 			} else if (status == '결제취소') {
-				if (confirm("강사 계좌로 입금하셨습니까?")) {
+				if (confirm("결제를 취소하시겠습니까?")) {
 					location.href = "";
 				}
 			}
@@ -135,7 +98,7 @@
 				<td class="headTitle" style="width:10%;">가격(원)</td>
 				<td class="headTitle" style="width:10%;">결제상태</td>
 				<td class="headTitle" style="width:10%;">강사평가</td>
-				<td class="headTitle" style="width:10%;">수강현황</td>
+				<td class="headTitle" style="width:10%;">수강상태</td>
 			</tr>
 			<c:if test="${!empty paymentList}">
 				<c:forEach items="${paymentList}" var="list">
@@ -146,7 +109,7 @@
 						<td>${list.period}개월</td>
 						<td>${list.price}</td>
 						<c:choose>
-							<c:when test="${list.payState == '입금완료'}">
+							<c:when test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
 								<td style='font-weight:bold;'>${list.payState}</td>
 							</c:when>
 							<c:otherwise>
@@ -160,48 +123,24 @@
 							</c:otherwise>
 						</c:choose>
 						<td>
-							<c:if test="${list.payState == '입금완료'}">
-								
-								<c:set var="doneLoop" value="false" />
-								<c:set var="doneLoop2" value="false" />
-								<c:forEach items="${requestScope.rateStatus}" var="rate">
-									<c:choose>
-										<c:when test="${rate == list.payNo}">
-											<c:if test="${not doneLoop}">
-												<%-- <c:if test="${rate == list.payNo}"> --%>
-													<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
-													<c:set var="doneLoop" value="true"/>
-												<%-- </c:if> --%>
-											</c:if>
-										</c:when>
-										<c:otherwise>
-											<c:if test="${not doneLoop2}">
-												<%-- <c:if test="${rate != list.payNo}"> --%>
-													<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
-													<c:set var="doneLoop2" value="true"/>
-												</c:if>
-											<%-- </c:if> --%>
-										</c:otherwise>
-									</c:choose>
-									<%-- <c:if test="${not doneLoop}">
-										<c:if test="${rate == list.payNo}">
-											<a class="rateFormBtn btn btn-success" data-target="#rateModal" href="#" data-id="${list.payNo}">평가완료</a>
-											<c:set var="doneLoop" value="true"/>
-										</c:if>
-									</c:if>
-									<c:if test="${not doneLoop2}">
-										<c:if test="${rate != list.payNo}">
-											<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
-											<c:set var="doneLoop2" value="true"/>
-										</c:if>
-									</c:if> --%>
-								</c:forEach>
+							<c:if test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
+								<c:choose>
+									<c:when test="${list.rateVO != null}">
+										<a class="btn btn-success" href="#">평가완료</a>
+									</c:when>
+									<c:otherwise>
+										<a class="rateFormBtn btn btn-warning" data-target="#rateModal" href="#" data-id="${list.payNo}">평가하기</a>
+									</c:otherwise>
+								</c:choose>
 							</c:if>
 						</td>
 						<td>
 							<c:choose>
 								<c:when test="${list.payState == '입금완료'}">
 									<font color="red">수강중</font>
+								</c:when>
+								<c:when test="${list.payState == 'PT종료'}">
+									<font color="black">수강종료</font>
 								</c:when>
 								<c:otherwise>
 									<font color="blue">수강대기</font>

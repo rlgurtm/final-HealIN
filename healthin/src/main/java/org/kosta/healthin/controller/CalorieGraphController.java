@@ -30,7 +30,6 @@ public class CalorieGraphController {
 		int startDate = Integer.parseInt(request.getParameter("startDate").replaceAll("-", ""));
 		int endDate = Integer.parseInt(request.getParameter("endDate").replaceAll("-", ""));
 		String id = request.getParameter("id");
-		System.out.println(id + " " + startDate + " " + endDate);
 		List<String> consumptionDateList = calorieGraphService.getAllDateConsumptionCalorie(id);
 		List<String> intakeDateList = calorieGraphService.getAllDateIntakeCalorie(id);
 		ArrayList<Integer> tmpConsumption = new ArrayList<Integer>();	// 기간별 데이터를 조회하기 위함
@@ -62,13 +61,7 @@ public class CalorieGraphController {
 				intakePeriod.add(tmpString.toString());
 			}
 		}
-		int conLength = consumptionPeriod.size();
-		int inLength = intakePeriod.size();
-		int cnt = 0;
-		if (conLength > inLength)
-			cnt = conLength;
-		else
-			cnt = inLength;
+		
 		ArrayList<CalorieInfoVO> calorieInfoList = new ArrayList<CalorieInfoVO>();
 		for (int i=0; i<consumptionPeriod.size(); i++) {
 			HashMap<String, String> tmpConsumptionCalorieMap = new HashMap<String, String>();
@@ -77,21 +70,36 @@ public class CalorieGraphController {
 			int totalConsumptionCalorie = calorieGraphService.getTotalConsumptionCalorieOfDay(tmpConsumptionCalorieMap);
 			CalorieInfoVO calorieInfo = new CalorieInfoVO(consumptionPeriod.get(i), totalConsumptionCalorie, true);
 			calorieInfoList.add(calorieInfo);
+			System.out.println("consumptionPeriod : " + consumptionPeriod.size() + "  calorieInfo : " + calorieInfoList.size());
 		}
-		for (int i=0; i<intakePeriod.size(); i++) {
+		boolean flag = true;
+		for (int i=0; i<calorieInfoList.size(); i++) {
 			HashMap<String, String> tmpIntakeCalorieMap = new HashMap<String, String>();
-			tmpIntakeCalorieMap.put("date", intakePeriod.get(i));
-			tmpIntakeCalorieMap.put("id", id);
-			int totalIntakeCalorie = calorieGraphService.getTotalIntakeCalorieOfDay(tmpIntakeCalorieMap);
-			for (int j=0; j<calorieInfoList.size();) {
-				if (calorieInfoList.get(i).getDate().equals(intakePeriod.get(i)))	 {	// 같은 날짜가 있는 경우
-					calorieInfoList.get(i).setTotalIntakeCalorie(totalIntakeCalorie);
-					break;
+			System.out.println("=======i: " + i + "  calorieInfo : " + calorieInfoList.size());
+			int totalIntakeCalorie = 0;
+			if (intakePeriod.size() < calorieInfoList.size()) {
+				System.out.println("intakePeriod : " + intakePeriod.size() + "  calorieInfo : " + calorieInfoList.size());
+				tmpIntakeCalorieMap.put("date", intakePeriod.get(i));
+				tmpIntakeCalorieMap.put("id", id);
+				totalIntakeCalorie = calorieGraphService.getTotalIntakeCalorieOfDay(tmpIntakeCalorieMap);
+			}
+			CalorieInfoVO calorieInfo = null;
+			for (int j=0; j<intakePeriod.size(); j++) {
+				System.out.println("j: " + j + "  calorieInfo : " + calorieInfoList.size());
+				if (calorieInfoList.get(i).getDate().equals(intakePeriod.get(j)))	 {	// 같은 날짜가 있는 경우
+					//calorieInfoList.get(i).setTotalIntakeCalorie(totalIntakeCalorie);
+					flag = false;
 				} else {	// 같은 날짜가 없는 경우
-					CalorieInfoVO calorieInfo = new CalorieInfoVO(intakePeriod.get(i), totalIntakeCalorie, false);
-					calorieInfoList.add(calorieInfo);
-					break;
+					//CalorieInfoVO calorieInfo = new CalorieInfoVO(intakePeriod.get(i), totalIntakeCalorie, false);
+					//calorieInfoList.add(calorieInfo);
+					calorieInfo = new CalorieInfoVO(intakePeriod.get(j), totalIntakeCalorie, false);
+					flag = true;
 				}
+			}
+			if (flag == true) {
+				calorieInfoList.add(calorieInfo);
+			} else {
+				calorieInfoList.get(i).setTotalIntakeCalorie(totalIntakeCalorie);
 			}
 		}
 		System.out.println(calorieInfoList);
