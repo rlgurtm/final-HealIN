@@ -8,7 +8,7 @@
 <meta property="og:title" content="HealthIn 회원가입">
 <meta property="og:type" content="website">
 <meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
-<title>가입 정보 입력 | HEALTHIN 회원가입</title>
+<title>가입 정보 입력 | HEALTHIN 회원가입 | 0616</title>
 <!-- Bootstrap Core CSS -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
@@ -37,8 +37,7 @@
 										function() {
 											var idVal = $("#id").val();
 											console.log('idVal' + idVal);
-											$
-													.ajax({
+											$.ajax({
 														type : "get",
 														url : "${pageContext.request.contextPath}/findById.do",
 														data : "id="
@@ -70,55 +69,50 @@
 													});//ajax
 
 										});
-
-					//	window.onerror = function() {
-						//	console.log('An error has occurred!');
-							//return false;
-						//}
-
+						
+						
 						$("#nickname")
-								.keydown(
-										function() {
-											// alert('닉네임 검사한다');
-											$
-													.ajax({
-														type : "get",
-														url : "${pageContext.request.contextPath}/findByNickname.do",
-														data : "nickname="
-																+ $("#nickname")
-																		.val(),
-														datatype : 'json',
-														success : function(
-																nickdata) {
-															console
-																	.log(nickdata);
+						.keydown(
+								function() {
+									var nickVal = $("#nickname").val();
+									console.log('nickVal' + nickVal);
+									$.ajax({
+												type : "get",
+												url : "${pageContext.request.contextPath}/findByNickname.do",
+												data : "nickname="
+														+ $("#nickname")
+																.val(),
+												success : function(data) {
+													if (data == ($("#nickname")
+															.val())) {
+														console
+																.log(data
+																		+ 'XXXX');
+														$("#nickname_msg")
+																.html(
+																		"중복입니다.다른걸 입력해주세요.")
+																.show();
+													} else {
+														console
+																.log('OOOO');
+														$("#nickname_msg")
+																.html(
+																		"사용가능한 닉네임입니다.")
+																.show();
+													}
+												},
+												error : function() {
+													console
+															.log("Request Fail!!");
+												}
+											});//ajax
 
-															if (nickdata == ($("#nickname")
-																	.val())) {
-																console
-																		.log('XXXX');
-																console
-																		.log(nickdata);
+								});
 
-																$(
-																		"#nickname_msg")
-																		.html(
-																				"중복nickname입니다.다른 nickname를 입력해주세요.")
-																		.show();
-															} else {
-																console
-																		.log(nickdata);
-																console
-																		.log('OOOO');
-															}
-														},
-														error : function() {
-															console
-																	.log("Request Fail!!");
-														}
-													});//ajax
-
-										});
+						window.onerror = function() {
+							console.log('An error has occurred!');
+							return false;
+						}
 						
 						function nextsubmit() {
 							var status = $(".txt_message").css("display");
@@ -204,8 +198,7 @@
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" id="nickname_msg" style="display: none;">이미
-										사용된 닉네임 입니다. 다른 아이디를 입력하세요.</p>
+										<p class="txt_message" id="nickname_msg"></p>
 								</dd>
 							</dl>
 							<dl class="item_info info_password">
