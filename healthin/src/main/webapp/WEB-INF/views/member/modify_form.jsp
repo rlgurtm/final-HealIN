@@ -353,16 +353,20 @@
 		})(document);
 	</script>
 
+<!--  
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.input.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.methods.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.messages.js"></script>
+		-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<!--  
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.value.js"></script>
+		-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
 
