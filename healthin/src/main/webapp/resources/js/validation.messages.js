@@ -28,6 +28,15 @@
 							address : {
 								required : "주소를 입력해 주세요."
 							},
+							career : {
+								required : "경력을 입력해 주세요."
+							},
+							location : {
+								required : "근무지를 입력해 주세요."
+							},
+							uploadfile : {
+								required : "사진을 업로드 해주세요. 필수랍니다."
+							},
 							mobile : {
 								required : "휴대폰 번호를 입력해 주세요.",
 								rangelength : "조금 더! 휴대폰 번호는 무조건 11자리입니다.",
