@@ -84,8 +84,6 @@
 	        		data.addColumn('number', '섭취량', '');
 	        		data.addColumn('number', '소모량', '');
 	        		data.addRows(jsonData.length);	//data.addRows(7);
-	        		alert(jsonData.length);
-	        		alert(jsonData[0].date);
 	        		
 	        		for (var i=0; i<jsonData.length; i++) {
 	        			data.setCell(i, 0, jsonData[i].date);
@@ -128,8 +126,6 @@
         		data.addColumn('number', '섭취량', '');
         		data.addColumn('number', '소모량', '');
         		data.addRows(jsonData.length);	//data.addRows(7);
-        		alert(jsonData.length);
-        		alert(jsonData[0].date);
         		
         		for (var i=0; i<jsonData.length; i++) {
         			data.setCell(i, 0, jsonData[i].date);
