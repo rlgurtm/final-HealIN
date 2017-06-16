@@ -456,7 +456,7 @@ select tr.user_id as userId, tr.trainer_id as trainerId, tr.rate, tr.content,
 select * from pay
 
 insert into pay
-values(pay_no_seq.nextval, 50000, sysdate, '입금완료', 'user1', 'healthman6', 6);
+values(pay_no_seq.nextval, 50000, sysdate, '입금대기', 'user1', 'healthman6', 6);
 insert into trainer_rate
 values(29, 'user1', 'healthman6', 10, 'ㅎㅎㅎㅎ', sysdate);
 
@@ -497,6 +497,7 @@ where rnum between #{STARTROWNUM} and #{ENDROWNUM} order by rnum asc
 
 update trainer_rate set rate = 0.0, content = '얘 완전 양아치에요 돈 개아까움' where rate_no = 12;
 update HEALTH_MEMBER set is_trainer='user' where id='gogo'
+update pay set pay_state = 'PT종료' where pay_no = 18
 
 select r.* from(
 	select row_number() over(order by rate_no desc) rnum, tr.rate_no as rateNo, tr.user_id as userId, tr.trainer_id, tr.rate, tr.content, tr.rate_date as rateDate
@@ -540,6 +541,11 @@ select * from trainer_rate where rate_no = 12
 SELECT * FROM field
 update trainer_rate set rate = 10, content = '굿굿' where rate_no = 24
 select a.id,a.name,a.address,b.pushCount
+
+SELECT *
+from consumption_member cm, exercise e
+where cm.name = e.name and ex_date >= '2017-06-09' and ex_date < '2017-06-16'
+
 from HEALTH_MEMBER a,
 	(select count(b.field_name) as pushCount,b.id
 	from (select field_name from field where id='rlgurtm') a,

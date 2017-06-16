@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.kosta.healthin.model.service.PaymentStatusService;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
+import org.kosta.healthin.model.vo.PayVO;
+import org.kosta.healthin.model.vo.RateVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,17 +36,16 @@ public class PaymentStatusController {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			String id = mvo.getId();
 			String nowPage = request.getParameter("pageNo");
-			List<String> ratedTrainerList = paymentStatusService.isExistRating(id);
-			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);
+			ListVO paymentList = paymentStatusService.getPaymentList(id, nowPage);	
 			List<Integer> rateStatus = paymentStatusService.getRateStatus();
-			int length = paymentList.getLVO().size();
-			/*for (int i=0; i<paymentList.getLVO().size(); i++) {
-				System.out.println(paymentList.getLVO().get(i));
-			}*/
-			model.addAttribute("length", length);
+			for (int i=0; i<paymentList.getLVO().size(); i++) {
+				for (int j=0; j<rateStatus.size(); j++) {
+					if (((PayVO)paymentList.getLVO().get(i)).getPayNo() == rateStatus.get(j)) {
+						((PayVO)paymentList.getLVO().get(i)).setRateVO(new RateVO());
+					}
+				}
+			}
 			model.addAttribute("paymentList", paymentList);
-			model.addAttribute("rateStatus", rateStatus);
-			model.addAttribute("ratedTrainerList", ratedTrainerList);
 			return "payment/user_payment_list.tiles";
 		} else {
 			return "redirect:home.do"; 
@@ -104,6 +105,22 @@ public class PaymentStatusController {
 			return "redirect:home.do"; 
 		}
 	}
+//	@RequestMapping("deletePayment.do")
+//	public String deletePayment(Model model, HttpServletRequest request) {
+//		HttpSession session = request.getSession(false);
+//		if (session != null){
+//			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+//			String userId = request.getParameter("userId");
+//			String trainerId = request.getParameter("trainerId");
+//			HashMap<String, Object> map = new HashMap<String, Object>();
+//			map.put("userId", userId);
+//			map.put("trainerId", trainerId);
+//			paymentStatusService.updateUserPayStatus(map);
+//			return "redirect:userPaymentList.do";
+//		} else {
+//			return "redirect:home.do"; 
+//		}
+//	}
 //	@RequestMapping("ajaxForRating.do")
 //	@ResponseBody
 //	public ArrayList<HashMap<String, Object>> ajaxCalendar(Model model, HttpServletRequest request) {
