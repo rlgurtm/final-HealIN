@@ -198,8 +198,7 @@
 											style="display: none;"><span
 											class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									</div>
-									<p class="txt_message" id="nickname_msg" style="display: none;">이미
-										사용된 닉네임 입니다. 다른 아이디를 입력하세요.</p>
+										<p class="txt_message" id="nickname_msg"></p>
 								</dd>
 							</dl>
 							<dl class="item_info info_password">
