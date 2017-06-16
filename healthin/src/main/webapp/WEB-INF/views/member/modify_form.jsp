@@ -280,7 +280,7 @@
 									<label for="inpNmae" class="lab_info">근무지 위치</label>
 								</dt>
 								<dd>
-									<!-- 텍스트 입력 시 .screen_out  --> {sessionScope.tvo }
+									<!-- 텍스트 입력 시 .screen_out  --> 
 									<select id="location" name="location" required="required">
 										<option value="${tvo.location  }">${tvo.location  }</option>
 										<option value="강남구">강남구</option>
