@@ -112,6 +112,9 @@
 							<c:when test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
 								<td style='font-weight:bold;'>${list.payState}</td>
 							</c:when>
+							<c:when test="${list.payState == 'PT중'}">
+								<td style='font-weight:bold;'>입금확인</td>
+							</c:when>
 							<c:otherwise>
 								<td>
 									<select class="payStatus" name="payState">
@@ -123,7 +126,7 @@
 							</c:otherwise>
 						</c:choose>
 						<td>
-							<c:if test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
+							<c:if test="${list.payState == 'PT중' || list.payState == 'PT종료'}">
 								<c:choose>
 									<c:when test="${list.rateVO != null}">
 										<a class="btn btn-success" href="#">평가완료</a>
@@ -136,7 +139,7 @@
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="${list.payState == '입금완료'}">
+								<c:when test="${list.payState == 'PT중'}">
 									<font color="red">수강중</font>
 								</c:when>
 								<c:when test="${list.payState == 'PT종료'}">
