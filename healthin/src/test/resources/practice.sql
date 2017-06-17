@@ -556,6 +556,7 @@ where a.id=b.id
 order by b.pushCount desc
 
 
+
 select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
 			exercise e, consumption_member cm, (select p.weight, row_number() over(order by physical_no desc)
 			rnum from physical_info p, health_user hu where p.user_id = hu.user_id) pi
