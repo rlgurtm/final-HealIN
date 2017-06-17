@@ -555,4 +555,3 @@ from HEALTH_MEMBER a,
 where a.id=b.id
 order by b.pushCount desc
 
-

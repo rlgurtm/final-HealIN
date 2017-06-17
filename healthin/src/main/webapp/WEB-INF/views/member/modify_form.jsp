@@ -256,7 +256,7 @@
 
 					<c:if test="${mvo.istrainer == 'trainer'}">
 [ Trainer 추가 입력 ]
-		<div class="box_info">${tvo}
+		<div class="box_info">
 							<dl class="item_info">
 								<dt>
 									<label for="inpNmae" class="lab_info">상세경력</label>
