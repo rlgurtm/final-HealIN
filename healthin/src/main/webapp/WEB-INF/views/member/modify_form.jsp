@@ -256,7 +256,7 @@
 
 					<c:if test="${mvo.istrainer == 'trainer'}">
 [ Trainer 추가 입력 ]
-		<div class="box_info">
+		<div class="box_info">${tvo}
 							<dl class="item_info">
 								<dt>
 									<label for="inpNmae" class="lab_info">상세경력</label>
@@ -280,7 +280,7 @@
 									<label for="inpNmae" class="lab_info">근무지 위치</label>
 								</dt>
 								<dd>
-									<!-- 텍스트 입력 시 .screen_out  --> {sessionScope.tvo }
+									<!-- 텍스트 입력 시 .screen_out  --> 
 									<select id="location" name="location" required="required">
 										<option value="${tvo.location  }">${tvo.location  }</option>
 										<option value="강남구">강남구</option>
@@ -304,7 +304,7 @@
 								<dd>
 									<!-- 텍스트 입력 시 .screen_out  -->
 									<input type="file" name="uploadFile" value=" " required="required">
-									${tvo.trainerPhoto  } <span class="mark_valid"><span
+									${tvo.trainerPhoto } <span class="mark_valid"><span
 										class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									<p class="txt_message" style="display: none;"></p>
 								</dd>
@@ -353,16 +353,20 @@
 		})(document);
 	</script>
 
+<!--  
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.input.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.methods.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.messages.js"></script>
+		-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<!--  
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/validation.value.js"></script>
+		-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/registration.js"></script>
 

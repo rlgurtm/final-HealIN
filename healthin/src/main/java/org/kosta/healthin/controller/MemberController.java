@@ -12,6 +12,7 @@ import org.kosta.healthin.model.service.MemberService;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.TrainerVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,11 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	private String uploadPath 
 	//송희
-	="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//지선
 	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//기혁
-	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	
 	@Resource
 	private MemberService memberService;
@@ -43,7 +44,7 @@ public class MemberController {
 	public String register_step2() {
 		return "member/register_step2";
 	}
-
+	@Transactional
 	@RequestMapping("register_step3.do")
 	public String register_step3(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadfile) {
 		String type = req.getParameter("type");
@@ -64,15 +65,19 @@ public class MemberController {
 			// String uploadPath =
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
+			
+			session.setAttribute("tvo", tvo);
 
 			if (uploadfile != null) {
+				memberService.registerTrainer(tvo);
+				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
+				
 				try {
 					// 2. File 사용
 					File file = new File(uploadPath + fileName);
 					uploadfile.transferTo(file);
-					memberService.registerTrainer(tvo);
 					session.setAttribute("tvo", tvo);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -228,6 +233,7 @@ public class MemberController {
 			MemberVO vo = new MemberVO();
 			vo.setIstrainer("admin");
 			session.setAttribute("mvo", vo);
+			
 			//System.out.println(session.getAttribute("mvo"));
 			return "redirect:adminAuthority.do";
 		} else if (memberService.login(id, password)==null) {
@@ -241,7 +247,7 @@ public class MemberController {
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
-				//System.out.println(tvo);
+				System.out.println(tvo);
 			}
 			
 			return "redirect:home.do";

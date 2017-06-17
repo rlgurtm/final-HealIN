@@ -110,7 +110,7 @@ color: black;
 			</thead>
 			<tbody>
 				<tr>
-					<td colspan="6"><pre style="overflow-y:hidden;  height:100%;">
+					<td colspan="6"><pre style="overflow-y:hidden;overflow-x:hidden;white-space: pre-wrap;height:100%;">
 							<c:if test="${tip.attachedFile!=null}">
 							<img src="${pageContext.request.contextPath }/resources/tipFile/${tip.attachedFile }"
 								style="width: 60%; display:block;"></c:if><br>${tip.content }

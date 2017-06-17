@@ -66,7 +66,7 @@ function countChecking() {
 	<div class="row">
 		<div class="col-lg-12">
 		<h1 class="page-header">
-			관심분야 <small>강사추천 받기위한 관심분야 설정</small>
+			관심분야 <small>강사추천 받기위한 관심분야 설정(최대3개설정)</small>
 		</h1>
 		<div class="col-lg-12 body" align="center">
 			<form

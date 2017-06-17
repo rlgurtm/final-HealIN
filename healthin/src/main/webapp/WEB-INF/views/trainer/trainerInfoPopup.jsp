@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	function deposit(){
 		if(confirm("입금하셨습니까?")){
-			opener.location.href="${pageContext.request.contextPath}/userDeposit.do?trainerId=${pvo.trainerId }&userId=${mvo.id}";
+			opener.location.href="${pageContext.request.contextPath}/userDeposit.do?trainerId=${pvo.trainerId.membervo.id }&userId=${mvo.id}";
 			window.close();
 		}else{
 			window.close();
@@ -42,9 +42,9 @@
 				<th>기간</th>
 				<th>가격</th>
 				<th>결제상태</th>
-				<c:if test="${pvo.payState!='입금완료' }">
+				<c:if test="${pvo.payState!='입금완료'}">
 					<c:if test="${pvo.payState!='PT중' }">
-					<th>입금확인</th>
+						<th>입금확인</th>
 					</c:if>
 				</c:if>
 			</tr>

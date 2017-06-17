@@ -27,11 +27,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 	private String uploadPath 
 	//기혁
-	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
 	//송희
 	//= "C:\\Users\\kosta\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\video\\";
     //wpfajswjrkftkfka
-	= "C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\video\\";
+	//= "C:\\java-kosta\\final_project\\healthin\\healthin\\src\\main\\webapp\\resources\\video\\";
 	
 	@Resource
 	private TrainerVideoService videoService;

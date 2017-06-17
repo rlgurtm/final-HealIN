@@ -110,6 +110,7 @@ public class CalorieGraphController {
 			HashMap<String, String> tmpConsumptionCalorieMap = new HashMap<String, String>();
 			tmpConsumptionCalorieMap.put("date", calorieDate.get(i));
 			tmpConsumptionCalorieMap.put("id", id);
+			
 			int totalConsumptionCalorie = calorieGraphService.getTotalConsumptionCalorieOfDay(tmpConsumptionCalorieMap);
 			CalorieInfoVO calorieInfo = new CalorieInfoVO(calorieDate.get(i), totalConsumptionCalorie, true);
 			calorieInfoList.add(calorieInfo);

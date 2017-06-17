@@ -35,6 +35,7 @@ public class CalorieGraphServiceImpl implements CalorieGraphService {
 
 	@Override
 	public int getTotalConsumptionCalorieOfDay(HashMap<String, String> map) {
+		System.out.println("service "+map);
 		return calorieGraphDAO.getTotalConsumptionCalorieOfDay(map);
 	}
 }

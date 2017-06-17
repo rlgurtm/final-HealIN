@@ -60,13 +60,13 @@
             <div class="item active">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/헬스장.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 1</h2>
+                    <h2></h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/resources/img/헬스장2.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 2</h2>
+                    <h2></h2>
                 </div>
             </div>
         </div>
