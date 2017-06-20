@@ -35,6 +35,7 @@ public class CalorieGraphDAOImpl implements CalorieGraphDAO {
 
 	@Override
 	public int getTotalConsumptionCalorieOfDay(HashMap<String, String> map) {
+		System.out.println(" dao " + map);
 		return template.selectOne("calorieGraph.getTotalConsumptionCalorieOfDay", map);
 	}
 }

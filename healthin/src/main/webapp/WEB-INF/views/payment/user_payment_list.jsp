@@ -115,6 +115,9 @@
 							<c:when test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
 								<td style='font-weight:bold;'>${list.payState}</td>
 							</c:when>
+							<c:when test="${list.payState == 'PT중'}">
+								<td style='font-weight:bold;'>입금확인</td>
+							</c:when>
 							<c:otherwise>
 								<td>
 									<select class="payStatus" name="payState">

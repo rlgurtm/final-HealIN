@@ -69,6 +69,8 @@ public class MemberController {
 			session.setAttribute("tvo", tvo);
 
 			if (uploadfile != null) {
+				memberService.registerTrainer(tvo);
+				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
 				
@@ -76,7 +78,6 @@ public class MemberController {
 					// 2. File 사용
 					File file = new File(uploadPath + fileName);
 					uploadfile.transferTo(file);
-					memberService.registerTrainer(tvo);
 					session.setAttribute("tvo", tvo);
 				} catch (IOException e) {
 					e.printStackTrace();
