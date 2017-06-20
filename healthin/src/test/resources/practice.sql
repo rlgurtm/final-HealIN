@@ -8,14 +8,6 @@ insert into field_category(field_name) values('자전거');
 insert into field_category(field_name) values('라켓');
 insert into field_category(field_name) values('골프');
 
-select a.* from
-		(select row_number() over(order by name desc) rnum,
-		id,name,location,career,rank,trainer_photo,
-		m.tel,m.e_mail as mail
-		from trainer t,health_member m
-		where t.trainer_id=m.id and rank > 0) a
-		
-
 -- health_member
 insert into health_member 
 values('java','1234','아이유','김지원','19810901','female','서울시 종로구 통인동 65 202호','01078967896','queen@naver.com','user','N');
@@ -563,3 +555,9 @@ from HEALTH_MEMBER a,
 where a.id=b.id
 order by b.pushCount desc
 
+
+
+select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
+			exercise e, consumption_member cm, (select p.weight, row_number() over(order by physical_no desc)
+			rnum from physical_info p, health_user hu where p.user_id = hu.user_id) pi
+			where e.name = cm.name and pi.rnum = 1 and ex_date = '2017-06-13' and cm.user_id = 'user1'
