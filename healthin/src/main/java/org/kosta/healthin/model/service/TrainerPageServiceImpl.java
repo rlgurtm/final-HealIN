@@ -197,7 +197,7 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		map.put("STATE", state);
 		dao.updateAcceptState(map);
 	}
-	@Override
+/*	@Override
 	public ListVO trainerSearchList(String nowpage, String searchWord) {
 		//검색 결과 카운트 해라....
 		int totalCount=dao.trainerPtListCount(searchWord);
@@ -212,7 +212,7 @@ public class TrainerPageServiceImpl implements TrainerPageService{
 		ListVO listVO=new ListVO(dao.trainerSearchList(map),pb);
 		System.out.println("listVO"+listVO);
 		return listVO;
-	}
+	}*/
 	public Object getBothFollowList(String pageNo, String trainerid) {
 		int totalCount=dao.getBothFollowTotalCount(trainerid);
 		int pageNum=Integer.parseInt(pageNo);

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.kosta.healthin.model.vo.VO;
+import org.kosta.healthin.model.vo.PayVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,7 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<VO> getPaymentList(Map<String, Object> map) {
+	public List<PayVO> getPaymentList(Map<String, Object> map) {
 		return template.selectList("paymentStatus.getPaymentList", map);
 	}
 
@@ -40,7 +40,7 @@ public class PaymentStatusDAOImpl implements PaymentStatusDAO {
 	}
 
 	@Override
-	public List<VO> getUsersPaymentList(Map<String, Object> map) {
+	public List<PayVO> getUsersPaymentList(Map<String, Object> map) {
 		return template.selectList("paymentStatus.getUsersPaymentList", map);
 	}
 

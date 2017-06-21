@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class FieldVO implements VO{
+public class FieldVO{
 	private String fieldName;
 	private String id;
 	private String fieldState;

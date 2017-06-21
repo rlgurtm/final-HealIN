@@ -30,7 +30,7 @@ public interface TrainerPageService {
 
 	ListVO userPtList(String id, String nowpage);
 
-	ListVO trainerSearchList(String nowpage, String searchWord);
+	/*ListVO trainerSearchList(String nowpage, String searchWord);*/
 
 	Object getBothFollowList(String pageNo, String trainerid);
 

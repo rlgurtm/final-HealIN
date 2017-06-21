@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class PhysicalInfoVO implements VO {
+public class PhysicalInfoVO{
 	private String height;
 	private String weight;
 	private String today;

@@ -11,7 +11,6 @@ import org.kosta.healthin.model.dao.CalendarDAO;
 import org.kosta.healthin.model.service.CalendarService;
 import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.IntakeFoodVO;
-import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +57,7 @@ public class CalendarController {
 		List<String> isDateList = calendarService.getAllDateIntakeCalorie(id);
 		for (int i=0; i<isDateList.size(); i++) {
 			if (isDateList.get(i).equals(date)) {
-				List<VO> foodList = calendarService.getAllIntakeFood(map);			// 음식 리스트
+				List<IntakeFoodVO> foodList = calendarService.getAllIntakeFood(map);			// 음식 리스트
 				int totalCalorie = calendarDAO.getTotalIntakeCalorieOfDay(map);	// 각 일 별 총 섭취 칼로리
 				model.addAttribute("foodList", foodList);
 				model.addAttribute("totalCalorie", totalCalorie);
@@ -80,7 +79,7 @@ public class CalendarController {
 		List<String> isDateList = calendarService.getAllDateConsumptionCalorie(id);
 		for (int i=0; i<isDateList.size(); i++) {
 			if (isDateList.get(i).equals(date)) {
-				List<VO> exList = calendarService.getAllDoneExercise(map);			// 운동 리스트
+				List<DoneExerciseVO> exList = calendarService.getAllDoneExercise(map);			// 운동 리스트
 				int totalCalorie = calendarDAO.getTotalConsumptionCalorieOfDay(map);	// 각 일 별 총 섭취 칼로리
 				model.addAttribute("exList", exList);
 				model.addAttribute("totalCalorie", totalCalorie);
