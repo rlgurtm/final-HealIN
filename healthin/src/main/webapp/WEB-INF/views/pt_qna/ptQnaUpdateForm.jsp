@@ -4,6 +4,8 @@
 <script>
 $(document).ready(function(){
 	$("#fileUp").click(function(){
+		var f="${tip.attachedFile}";
+		if(f!="")
 		if(confirm("새로운 파일 선택시 기존의 파일은 삭제됩니다.\n계속하시겠습니까?")){
 			
 		}else{
@@ -21,7 +23,11 @@ $(document).ready(function(){
 					</td>
 				</tr>
 				<tr>
-					<td><input type="file" name="uploadFile" id="fileUp" accept="image/*">기존파일:${tip.attachedFile }</td>
+					<td><input type="file" name="uploadFile" id="fileUp" accept="image/*">
+					<c:if test="${tip.attachedFile=='' }">
+						기존파일:${tip.attachedFile }
+					</c:if>
+				</td>
 				</tr>
 				<tr>
 					<td>						
