@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatNumber value="12.666" pattern=".00"/>
 <script>
 	//star rating
 	var starRating = function() {
@@ -109,10 +111,12 @@ $(document).ready(function(){
 				data: "trainerId="+$("#trainerId").val(),
 				success:function(data){
 					if(data=='Y'){
-						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' 
+								src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
 						existcheckMatching("${mvo.id}",$("#trainerId").val());
 					}else{
-						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' 
+								src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 						$("#matchingInfo").html("");	
 					}
 				}//function
@@ -245,7 +249,7 @@ $(document).ready(function(){
 						<font size="2px">(0명 참여)</font>
 					</c:when>
 					<c:otherwise>
-						<font size="2px">(${requestScope.totalRatingCount}명 참여)</font>
+						<font size="2px" >(${requestScope.totalRatingCount}명 참여)</font>
 					</c:otherwise>
 				</c:choose>
 			</h3>

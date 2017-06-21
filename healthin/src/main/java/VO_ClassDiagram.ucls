@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="org.kosta.healthin.model.vo.FieldVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/FieldVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1424" y="333"/>    
+    <position height="-1" width="-1" x="2708" y="1169"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="org.kosta.healthin.model.vo.RateVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/RateVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="749" y="1883"/>    
+    <position height="-1" width="-1" x="2037" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="org.kosta.healthin.model.vo.MemberVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/MemberVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="524" y="437"/>    
+    <position height="-1" width="-1" x="368" y="419"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="org.kosta.healthin.model.vo.MentoringVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/MentoringVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="269" y="1205"/>    
+    <position height="-1" width="-1" x="353" y="1179"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   <class id="5" language="java" name="org.kosta.healthin.model.vo.TrainerVideoCommentVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/TrainerVideoCommentVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2040" y="283"/>    
+    <position height="-1" width="-1" x="1864" y="1211"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </class>  
   <class id="6" language="java" name="org.kosta.healthin.model.vo.PagingBean" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/PagingBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1668" y="1303"/>    
+    <position height="-1" width="-1" x="2744" y="249"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </class>  
   <class id="7" language="java" name="org.kosta.healthin.model.vo.CalorieInfoVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/CalorieInfoVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2053" y="774"/>    
+    <position height="-1" width="-1" x="1825" y="800"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   </class>  
   <class id="8" language="java" name="org.kosta.healthin.model.vo.DoneExerciseVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/DoneExerciseVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1404" y="819"/>    
+    <position height="-1" width="-1" x="2422" y="1221"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,7 +76,7 @@
   </class>  
   <class id="9" language="java" name="org.kosta.healthin.model.vo.TrainerVideoVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/TrainerVideoVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1074" y="414"/>    
+    <position height="-1" width="-1" x="1484" y="1076"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -85,7 +85,7 @@
   </class>  
   <class id="10" language="java" name="org.kosta.healthin.model.vo.PayVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/PayVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1109" y="1830"/>    
+    <position height="-1" width="-1" x="1487" y="288"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -94,7 +94,7 @@
   </class>  
   <class id="11" language="java" name="org.kosta.healthin.model.vo.IntakeFoodVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/IntakeFoodVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1623" y="819"/>    
+    <position height="-1" width="-1" x="2109" y="783"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -103,7 +103,7 @@
   </class>  
   <class id="12" language="java" name="org.kosta.healthin.model.vo.TipBoardVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/TipBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="652" y="1308"/>    
+    <position height="-1" width="-1" x="946" y="1094"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -113,7 +113,7 @@
   <class id="13" language="java" name="org.kosta.healthin.model.vo.PagingBeanForRating" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/PagingBeanForRating.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1940" y="1306"/>    
+    <position height="-1" width="-1" x="2294" y="250"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -122,7 +122,7 @@
   </class>  
   <class id="14" language="java" name="org.kosta.healthin.model.vo.ListVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/ListVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1393" y="1217"/>    
+    <position height="-1" width="-1" x="2739" y="661"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -131,7 +131,7 @@
   </class>  
   <class id="15" language="java" name="org.kosta.healthin.model.vo.CommentVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/CommentVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1834" y="815"/>    
+    <position height="-1" width="-1" x="2158" y="1221"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -140,7 +140,7 @@
   </class>  
   <class id="16" language="java" name="org.kosta.healthin.model.vo.PhysicalInfoVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/PhysicalInfoVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1731" y="310"/>    
+    <position height="-1" width="-1" x="2389" y="778"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -149,7 +149,7 @@
   </class>  
   <class id="17" language="java" name="org.kosta.healthin.model.vo.TrainerVO" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/vo/TrainerVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1021" y="1184"/>    
+    <position height="-1" width="-1" x="965" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -157,59 +157,83 @@
     </display>  
   </class>  
   <generalization id="18">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
   <association id="19">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="20" name="pb"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="20" name="trainerId">        
+        <position height="0" width="0" x="0" y="-174"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-174"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="22">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="23" name="membervo"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="23" name="memberVO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="25">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="26" name="sendMember"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="29" name="rateVO"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
+      <attribute id="26" name="rateVO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="29" name="sendMember">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <generalization id="31">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="6"/>  
   </generalization>  
   <association id="32">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="33" name="trainerId"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="33" name="membervo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="35">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="36" name="memberVO"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="36" name="pb">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

@@ -14,7 +14,7 @@
   <interface id="2" language="java" name="org.kosta.healthin.model.service.SearchService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/SearchService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="63" width="146" x="713" y="662"/>    
+    <position height="-1" width="-1" x="1298" y="661"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -34,7 +34,7 @@
   <class id="4" language="java" name="org.kosta.healthin.model.service.SearchServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/SearchServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="81" width="146" x="713" y="-35"/>    
+    <position height="-1" width="-1" x="1298" y="480"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -44,7 +44,7 @@
   <interface id="5" language="java" name="org.kosta.healthin.model.service.MyPageService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MyPageService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="207" width="251" x="3807" y="662"/>    
+    <position height="-1" width="-1" x="2584" y="1159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -54,7 +54,7 @@
   <class id="6" language="java" name="org.kosta.healthin.model.service.AdminServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/AdminServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="243" width="188" x="899" y="-35"/>    
+    <position height="-1" width="-1" x="1057" y="98"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -64,7 +64,7 @@
   <class id="7" language="java" name="org.kosta.healthin.model.service.UserFieldServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/UserFieldServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="189" width="189" x="1127" y="-35"/>    
+    <position height="-1" width="-1" x="1289" y="71"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -73,7 +73,7 @@
   </class>  
   <interface id="8" language="java" name="org.kosta.healthin.model.service.QnAService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/QnAService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="234" x="3258" y="662"/>    
+    <position height="-1" width="-1" x="1087" y="1177"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -83,7 +83,7 @@
   <interface id="9" language="java" name="org.kosta.healthin.model.service.CalorieGraphService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/CalorieGraphService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="135" width="327" x="4098" y="662"/>    
+    <position height="-1" width="-1" x="1517" y="1241"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   <interface id="10" language="java" name="org.kosta.healthin.model.service.HomeService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/HomeService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="81" width="243" x="1942" y="662"/>    
+    <position height="-1" width="-1" x="811" y="474"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -103,7 +103,7 @@
   <class id="11" language="java" name="org.kosta.healthin.model.service.TipServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/TipServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="315" width="245" x="1356" y="-35"/>    
+    <position height="-1" width="-1" x="1554" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -113,7 +113,7 @@
   <class id="12" language="java" name="org.kosta.healthin.model.service.MentoringServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MentoringServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="207" width="261" x="1641" y="-35"/>    
+    <position height="-1" width="-1" x="1843" y="76"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -123,7 +123,7 @@
   <interface id="13" language="java" name="org.kosta.healthin.model.service.CalendarService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/CalendarService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="387" width="396" x="2521" y="662"/>    
+    <position height="-1" width="-1" x="2199" y="775"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -133,7 +133,7 @@
   <interface id="14" language="java" name="org.kosta.healthin.model.service.TrainerService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/TrainerService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="333" width="235" x="3532" y="662"/>    
+    <position height="-1" width="-1" x="1862" y="1156"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -143,7 +143,7 @@
   <interface id="15" language="java" name="org.kosta.healthin.model.service.UserFieldService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/UserFieldService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="153" width="189" x="1127" y="662"/>    
+    <position height="-1" width="-1" x="1289" y="338"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -153,7 +153,7 @@
   <interface id="16" language="java" name="org.kosta.healthin.model.service.AdminService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/AdminService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="207" width="188" x="899" y="662"/>    
+    <position height="-1" width="-1" x="1059" y="444"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -163,7 +163,7 @@
   <interface id="17" language="java" name="org.kosta.healthin.model.service.MentoringService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MentoringService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="171" width="261" x="1641" y="662"/>    
+    <position height="-1" width="-1" x="1843" y="383"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -173,7 +173,7 @@
   <class id="18" language="java" name="org.kosta.healthin.model.service.HomeServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/HomeServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="117" width="243" x="1942" y="-35"/>    
+    <position height="-1" width="-1" x="811" y="39"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   <class id="19" language="java" name="org.kosta.healthin.model.service.PaymentStatusServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/PaymentStatusServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="207" width="256" x="2225" y="-35"/>    
+    <position height="-1" width="-1" x="825" y="760"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <interface id="20" language="java" name="org.kosta.healthin.model.service.TipService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/TipService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="245" x="1356" y="662"/>    
+    <position height="-1" width="-1" x="1554" y="581"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -212,7 +212,7 @@
   <class id="22" language="java" name="org.kosta.healthin.model.service.CalendarServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/CalendarServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="423" width="396" x="2521" y="-35"/>    
+    <position height="-1" width="-1" x="2199" y="184"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -232,7 +232,7 @@
   <class id="24" language="java" name="org.kosta.healthin.model.service.MemberServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MemberServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="405" width="261" x="2957" y="-35"/>    
+    <position height="-1" width="-1" x="2563" y="175"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -242,7 +242,7 @@
   <interface id="25" language="java" name="org.kosta.healthin.model.service.MemberService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MemberService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="369" width="261" x="2957" y="662"/>    
+    <position height="-1" width="-1" x="2563" y="758"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -252,7 +252,7 @@
   <class id="26" language="java" name="org.kosta.healthin.model.service.QnAServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/QnAServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="315" width="234" x="3258" y="-35"/>    
+    <position height="-1" width="-1" x="1091" y="814"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -262,7 +262,7 @@
   <class id="27" language="java" name="org.kosta.healthin.model.service.TrainerServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/TrainerServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="369" width="235" x="3532" y="-35"/>    
+    <position height="-1" width="-1" x="1861" y="681"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -272,7 +272,7 @@
   <class id="28" language="java" name="org.kosta.healthin.model.service.MyPageServcieImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/MyPageServcieImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="243" width="251" x="3807" y="-35"/>    
+    <position height="-1" width="-1" x="2152" y="1158"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -282,7 +282,7 @@
   <class id="29" language="java" name="org.kosta.healthin.model.service.CalorieGraphServiceImpl" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/CalorieGraphServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="171" width="327" x="4098" y="-35"/>    
+    <position height="-1" width="-1" x="1517" y="862"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -292,7 +292,7 @@
   <interface id="30" language="java" name="org.kosta.healthin.model.service.PaymentStatusService" project="healthin" 
     file="/healthin/src/main/java/org/kosta/healthin/model/service/PaymentStatusService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="171" width="256" x="2225" y="662"/>    
+    <position height="-1" width="-1" x="825" y="1124"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -300,64 +300,64 @@
     </display>  
   </interface>  
   <realization id="31">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <realization id="32">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <realization id="33">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="35">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="30"/>  
-  </realization>  
-  <realization id="36">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="37">    
     <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="25"/>  
   </realization>  
-  <realization id="38">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="15"/>  
+  <realization id="32">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="9"/>  
   </realization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="21"/>  
-  </realization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <realization id="41">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <realization id="42">    
+  <realization id="33">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="23"/>  
   </realization>  
-  <realization id="43">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="8"/>  
+  <realization id="34">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="14"/>  
   </realization>  
-  <realization id="44">    
+  <realization id="35">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="36">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="17"/>  
   </realization>  
-  <realization id="45">    
+  <realization id="37">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="39">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="40">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="16"/>  
+  </realization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <realization id="44">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="45">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="30"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
