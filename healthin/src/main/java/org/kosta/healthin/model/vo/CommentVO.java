@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class CommentVO implements VO {
+public class CommentVO{
 	private int commentNo;
 	private int boardNo;
 	private String comment;

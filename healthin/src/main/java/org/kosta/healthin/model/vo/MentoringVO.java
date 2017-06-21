@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class MentoringVO implements VO {
+public class MentoringVO{
 	private int mentoringNo;
 	private String sendId;
 	private String receiveId;
