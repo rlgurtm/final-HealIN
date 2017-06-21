@@ -6,16 +6,16 @@ import java.util.Map;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface TipDAO {
 
-	List<VO> getTipBoardList(PagingBean pb);
+	List<TipBoardVO> getTipBoardList(PagingBean pb);
 
 	int getTotalTipCount();
 
-	List<VO> getTipBoardCategoryList(Map<String, Object> map);
-	List<VO> getSearchtipAllList(Map<String, Object> map);
+	List<TipBoardVO> getTipBoardCategoryList(Map<String, Object> map);
+	
+	List<TipBoardVO> getSearchtipAllList(Map<String, Object> map);
 
 	int getTotalTipCategoryCount(String category);
 
@@ -27,7 +27,7 @@ public interface TipDAO {
 
 	void tipWrite(TipBoardVO tvo);
 
-	List<VO> getTipQnaCommentList(Map<String, Object> map);
+	List<CommentVO> getTipQnaCommentList(Map<String, Object> map);
 	
 	int getTotalTipQnaCommentCount(int no);
 
@@ -41,6 +41,6 @@ public interface TipDAO {
 
 	int getTotalPtQnaSearchCategoryCount(String searchWord);
 
-	List<VO> getSearchQnaAllList(Map<String, Object> map);
+	List<TipBoardVO> getSearchQnaAllList(Map<String, Object> map);
 
 }

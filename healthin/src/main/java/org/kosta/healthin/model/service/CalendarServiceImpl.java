@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.dao.CalendarDAO;
 import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.IntakeFoodVO;
-import org.kosta.healthin.model.vo.VO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,7 +81,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public List<VO> getAllIntakeFood(HashMap<String, String> map) {
+	public List<IntakeFoodVO> getAllIntakeFood(HashMap<String, String> map) {
 		return calendarDAO.getAllIntakeFood(map);
 	}
 
@@ -127,7 +126,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public List<VO> getAllDoneExercise(HashMap<String, String> map) {
+	public List<DoneExerciseVO> getAllDoneExercise(HashMap<String, String> map) {
 		return calendarDAO.getAllDoneExercise(map);
 	}
 

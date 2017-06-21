@@ -6,15 +6,14 @@ import java.util.Map;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface QnaDAO {
 
-	List<VO> getPtQnaList(PagingBean pb);
+	List<TipBoardVO> getPtQnaList(PagingBean pb);
 
 	int getTotalPtQnaCount();
 	
-	List<VO> getptQnaCategoryList(Map<String, Object> map);
+	List<TipBoardVO> getptQnaCategoryList(Map<String, Object> map);
 
 	int getTotalPtQnaCategoryCount(String category);
 
@@ -30,7 +29,7 @@ public interface QnaDAO {
 
 	int getTotalTipQnaCommentCount(int no);
 
-	List<VO> getTipQnaCommentList(Map<String, Object> map);
+	List<CommentVO> getTipQnaCommentList(Map<String, Object> map);
 
 	void tipQnaCommentWrite(CommentVO cvo);
 
@@ -38,6 +37,6 @@ public interface QnaDAO {
 
 	String getIsTrainer(String id);
 
-	List<VO> getptQnaSearchList(Map<String, Object> map);
+	List<TipBoardVO> getptQnaSearchList(Map<String, Object> map);
 
 }

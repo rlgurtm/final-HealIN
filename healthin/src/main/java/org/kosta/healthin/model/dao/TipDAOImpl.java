@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +17,7 @@ public class TipDAOImpl implements TipDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<VO> getTipBoardList(PagingBean pb){
+	public List<TipBoardVO> getTipBoardList(PagingBean pb){
 		return template.selectList("tipQna.getTipBoardList",pb);
 	}
 	@Override
@@ -26,7 +25,7 @@ public class TipDAOImpl implements TipDAO {
 		return template.selectOne("tipQna.getTotalTipCount");
 	}
 	@Override
-	public List<VO> getTipBoardCategoryList(Map<String, Object> map){
+	public List<TipBoardVO> getTipBoardCategoryList(Map<String, Object> map){
 		return template.selectList("tipQna.getTipBoardCategoryList",map);
 	}
 	@Override
@@ -50,7 +49,7 @@ public class TipDAOImpl implements TipDAO {
 		template.update("tipQna.tipQnaBoardHitsCount",no);
 	}
 	@Override
-	public List<VO> getTipQnaCommentList(Map<String, Object> map){
+	public List<CommentVO> getTipQnaCommentList(Map<String, Object> map){
 		return template.selectList("tipQna.getTipQnaCommentList",map);
 	}
 	@Override
@@ -70,7 +69,7 @@ public class TipDAOImpl implements TipDAO {
 		template.update("tipQna.tipQnaBoardUpdate",tvo);
 	}
 	@Override
-	public List<VO> getSearchtipAllList(Map<String, Object> map) {
+	public List<TipBoardVO> getSearchtipAllList(Map<String, Object> map) {
 		return template.selectList("searchTipQna.getSearchtipAllList",map);
 	}
 	@Override
@@ -82,7 +81,7 @@ public class TipDAOImpl implements TipDAO {
 		return template.selectOne("searchTipQna.getTotalPtQnaSearchCategoryCount",searchWord);
 	}
 	@Override
-	public List<VO> getSearchQnaAllList(Map<String, Object> map) {
+	public List<TipBoardVO> getSearchQnaAllList(Map<String, Object> map) {
 		return template.selectList("searchTipQna.getSearchQnaAllList",map);
 	}
 

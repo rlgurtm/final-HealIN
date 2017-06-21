@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.IntakeFoodVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -37,7 +36,7 @@ public class CalendarDAOImpl implements CalendarDAO {
 	}
 
 	@Override
-	public List<VO> getAllIntakeFood(HashMap<String, String> map) {
+	public List<IntakeFoodVO> getAllIntakeFood(HashMap<String, String> map) {
 		return template.selectList("calendar.getAllIntakeFood", map);
 	}
 
@@ -72,7 +71,7 @@ public class CalendarDAOImpl implements CalendarDAO {
 	}
 
 	@Override
-	public List<VO> getAllDoneExercise(HashMap<String, String> map) {
+	public List<DoneExerciseVO> getAllDoneExercise(HashMap<String, String> map) {
 		return template.selectList("calendar.getAllDoneExercise", map);
 	}
 

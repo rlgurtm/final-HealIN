@@ -6,17 +6,16 @@ import java.util.Map;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TrainerVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface TrainerDAO {
 
 	int getTrainerTotalCount();
 
-	List<VO> getTrainerList(PagingBean pb);
+	List<TrainerVO> getTrainerList(PagingBean pb);
 
-	List<VO> trainerOrderName(Map<String, Object> map);
+	List<TrainerVO> trainerOrderName(Map<String, Object> map);
 
-	List<VO> trainerOrderFollowing(Map<String, Object> map);
+	List<TrainerVO> trainerOrderFollowing(Map<String, Object> map);
 
 	TrainerVO trainerDetail(String trainerId);
 
@@ -32,13 +31,13 @@ public interface TrainerDAO {
 
 	int getTrainerLocTotalCount(String local);
 
-	List<VO> getTrainerLoc(Map<String, Object> map);
+	List<TrainerVO> getTrainerLoc(Map<String, Object> map);
 	
 	int getTrainerSearchTotalCount(String searchWord);
 
-	List<VO> getSearchTrainer(Map<String, Object> map);
+	List<TrainerVO> getSearchTrainer(Map<String, Object> map);
 
-	List<VO> getTrainerRate(Map<String, Object> map);
+	List<RateVO> getTrainerRate(Map<String, Object> map);
 	
 	int getTotalRatingCount(String id);
 
