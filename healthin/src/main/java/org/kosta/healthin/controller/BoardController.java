@@ -175,7 +175,7 @@ public class BoardController {
 		ListVO list=trainerService.getSearchTrainer(pageNo,searchWord);
 		
 		model.addAttribute("list",list);
-		return "trainer/trainerSearchList.tiles";
+		return "trainer/trainerList.tiles";
 	}
 	@RequestMapping("order.do")
 	@ResponseBody

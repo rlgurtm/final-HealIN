@@ -109,21 +109,27 @@
 						<td>${list.period}개월</td>
 						<td>${list.price}</td>
 						<c:choose>
+							<c:when test="${list.payState == 'PT중'}">
+								<td style='font-weight:bold;'>입금확인</td>
+							</c:when>
 							<c:when test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
 								<td style='font-weight:bold;'>${list.payState}</td>
+							</c:when>
+							<c:when test="${list.payState == 'PT중'}">
+								<td style='font-weight:bold;'>입금확인</td>
 							</c:when>
 							<c:otherwise>
 								<td>
 									<select class="payStatus" name="payState">
 										<option value="">결제현황</option>
-										<option value="입금대기">입금대기</option>
+										<option value="입금대기">입금하기</option>
 										<option value="결제취소">결제취소</option>
 									</select>
 								</td>
 							</c:otherwise>
 						</c:choose>
 						<td>
-							<c:if test="${list.payState == '입금완료' || list.payState == 'PT종료'}">
+							<c:if test="${list.payState == 'PT중' || list.payState == 'PT종료'}">
 								<c:choose>
 									<c:when test="${list.rateVO != null}">
 										<a class="btn btn-success" href="#">평가완료</a>
@@ -136,7 +142,7 @@
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="${list.payState == '입금완료'}">
+								<c:when test="${list.payState == 'PT중'}">
 									<font color="red">수강중</font>
 								</c:when>
 								<c:when test="${list.payState == 'PT종료'}">
@@ -210,7 +216,7 @@
 						  </span>
 						  <!-- <output id="result" for="star-input"><b>0</b>점</output> -->
 						</span><br>
-						<textarea id="rateContent" rows="3" cols="81" name="content"></textarea>
+						<textarea id="rateContent" rows="3" cols="78" name="content"></textarea>
 						<h5 align="right">(100자 이내 작성)</h5>
 					</form>
 				</div>
