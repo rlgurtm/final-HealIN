@@ -561,3 +561,11 @@ select sum(e.calorie*cm.ex_hour*pi.weight) as totalCalorie from
 			exercise e, consumption_member cm, (select p.weight, row_number() over(order by physical_no desc)
 			rnum from physical_info p, health_user hu where p.user_id = hu.user_id) pi
 			where e.name = cm.name and pi.rnum = 1 and ex_date = '2017-06-13' and cm.user_id = 'user1'
+
+delete from trainer_rate where rate_no = 27
+delete from pay where pay_no = 27			
+42	healthman6	헬스맨	6개월	50000	입금완료		수강대기
+41	healthman6	헬스맨	6개월	50000	입금완료		수강대기
+29	healthman6	헬스맨	6개월	50000	입금완료		수강대기
+28	healthman6	헬스맨	6개월	50000	입금완료		수강대기
+27

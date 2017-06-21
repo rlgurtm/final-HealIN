@@ -19,9 +19,7 @@
                 dateFormat: 'yy-mm-dd'
             });
             var today = new Date();
-            //$("#datepicker1").datepicker(); //initialise
             $("#datepicker1").datepicker("setDate", -7);
-            //$("#datepicker2").datepicker(); //initialise
             $("#datepicker2").datepicker("setDate", today);
         });
     	function calDateRange(date1, date2) {

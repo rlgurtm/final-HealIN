@@ -2,6 +2,7 @@ package org.kosta.healthin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -197,11 +198,14 @@ public class BoardController {
 		String pageNo = request.getParameter("pageNo");
 		ListVO rateList = trainerService.getTrainerRate(trainerId, pageNo);
 		if (rateList.getLVO().size() != 0) {
+			String pattern = "####.##";
+			DecimalFormat dformat = new DecimalFormat(pattern);
 			double sumOfRate = trainerService.getSumOfRating(trainerId);
 			int totalRatingCount = trainerService.getTotalRatingCountForAvgRate(trainerId);
-			double avgRate = sumOfRate / totalRatingCount;
+			String avgRate = dformat.format(sumOfRate / totalRatingCount);
+			Double result = Double.parseDouble(avgRate);
 			model.addAttribute("totalRatingCount", totalRatingCount);
-			model.addAttribute("avgRate", avgRate);
+			model.addAttribute("avgRate", result);
 		}
 		model.addAttribute("tvo",vo);
 		model.addAttribute("trainerId", trainerId);
