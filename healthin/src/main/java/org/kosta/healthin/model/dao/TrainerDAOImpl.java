@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.RateVO;
 import org.kosta.healthin.model.vo.TrainerVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,17 +22,17 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public List<VO> getTrainerList(PagingBean pb) {
+	public List<TrainerVO> getTrainerList(PagingBean pb) {
 		return template.selectList("trainer.getTrainerList",pb);
 	}
 
 	@Override
-	public List<VO> trainerOrderName(Map<String, Object> map) {
+	public List<TrainerVO> trainerOrderName(Map<String, Object> map) {
 		return template.selectList("trainer.trainerOrderName",map);
 	}
 
 	@Override
-	public List<VO> trainerOrderFollowing(Map<String, Object> map) {
+	public List<TrainerVO> trainerOrderFollowing(Map<String, Object> map) {
 		return template.selectList("trainer.trainerOrderFollowing",map);
 	}
 
@@ -73,7 +72,7 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override
-	public List<VO> getTrainerLoc(Map<String, Object> map) {
+	public List<TrainerVO> getTrainerLoc(Map<String, Object> map) {
 		return template.selectList("trainer.getTrainerLoc",map);
 	}
 	
@@ -83,12 +82,12 @@ public class TrainerDAOImpl implements TrainerDAO {
 	}
 
 	@Override   //getTrainerList
-	public List<VO> getSearchTrainer(Map<String, Object> map) {
+	public List<TrainerVO> getSearchTrainer(Map<String, Object> map) {
 		return template.selectList("searchTrainer.getSearchTrainer",map);
 	}
 
 	@Override
-	public List<VO> getTrainerRate(Map<String, Object> map) {
+	public List<RateVO> getTrainerRate(Map<String, Object> map) {
 		System.out.println(map);
 		return template.selectList("trainer.getTrainerRate", map);
 	}

@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.IntakeFoodVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface CalendarService {
 	// 달력에 각 일별로 총 섭취한 칼로리량을 나타내기 위한 method
 	ArrayList<HashMap<String, Object>> getIntakeCalorieForMonth(String id);
-	List<VO> getAllIntakeFood(HashMap<String, String> map);	// 유저가 섭취한 모든 음식의 정보 출력
+	List<IntakeFoodVO> getAllIntakeFood(HashMap<String, String> map);	// 유저가 섭취한 모든 음식의 정보 출력
 	List<String> getAllDateIntakeCalorie(String id);			// 유저가 칼로리를 섭취한 날짜 리스트 출력
 	List<String> getAllFoodCategory();		// 음식의 카테고리 정보 출력
 	void deleteFood(int intakeNo);	// 먹은 음식 삭제
@@ -22,7 +21,7 @@ public interface CalendarService {
 	
 	// 달력에 각 일별로 총 소비한 칼로리량을 나타내기 위한 method
 	ArrayList<HashMap<String, Object>> getConsumptionCalorieForMonth(String id);
-	List<VO> getAllDoneExercise(HashMap<String, String> map);	// 유저가 한 모든 운동 리스트 출력
+	List<DoneExerciseVO> getAllDoneExercise(HashMap<String, String> map);	// 유저가 한 모든 운동 리스트 출력
 	List<String> getAllDateConsumptionCalorie(String id);	// 유저가 칼로리를 소비한 날짜 리스트 출력
 	List<String> getAllExerciseCategory();		// 운동의 카테고리 정보 출력
 	void deleteExercise(int consumptionNo);	// 한 운동 삭제

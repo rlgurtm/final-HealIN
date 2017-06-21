@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface MyPageDAO {
 
@@ -22,13 +22,13 @@ public interface MyPageDAO {
 	void bmiListDelete(String physical_no);
 	int getFollowingTotalCount(String userid);
 
-	List<VO> getFollowingList(Map<String, Object> map);
+	List<MemberVO> getFollowingList(Map<String, Object> map);
 
 	void unfollow(Map<String, String> map);
 
 	int getmypageBothFollowTotalCount(String userId);
 
-	List<VO> getmypageBothFollowList(Map<String, Object> map);
+	List<MemberVO> getmypageBothFollowList(Map<String, Object> map);
 
 	PhysicalInfoVO selectListToday(Map map);
 

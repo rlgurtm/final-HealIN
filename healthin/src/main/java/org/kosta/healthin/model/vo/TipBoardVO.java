@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class TipBoardVO implements VO {
+public class TipBoardVO{
 	private int no;
 	private String title;
 	private String content;

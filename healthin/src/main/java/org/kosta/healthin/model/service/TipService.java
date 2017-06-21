@@ -7,6 +7,7 @@ import org.kosta.healthin.model.vo.TipBoardVO;
 public interface TipService {
 
 	ListVO getTipBoardList(String nowpage);
+	
 	ListVO getSearchtipAllList(String nowpage, String searchWord);
 
 	ListVO tipBoardCategoryList(String category, String nowpage);

@@ -3,18 +3,18 @@ package org.kosta.healthin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PayVO;
-import org.kosta.healthin.model.vo.VO;
 
 public interface TrainerPageDAO {
 
-	List<VO> trainerPtList(Map<String, Object> map);
+	List<MemberVO> trainerPtList(Map<String, Object> map);
 
 	int getFollowerTotalCount(String id);
 
-	List<VO> getFollowerList(Map<String, Object> map);
+	List<MemberVO> getFollowerList(Map<String, Object> map);
 
-	List<VO> trainerMatchingList(Map<String, Object> map);
+	List<MemberVO> trainerMatchingList(Map<String, Object> map);
 
 	int trainerPtListCount(String id);
 
@@ -30,17 +30,15 @@ public interface TrainerPageDAO {
 
 	void payInsert(Map<String, Object> map);
 
-	List<VO> userPtList(Map<String, Object> map);
+	List<MemberVO> userPtList(Map<String, Object> map);
 
 	int userPtListCount(String id);
 
-	List<VO> trainerSearchList(Map<String, Object> map);
-	
 	int getFollowerCount(String id);
 
 	int getBothFollowTotalCount(String trainerid);
 
-	List<VO> getBothFollowList(Map<String, Object> map);
+	List<MemberVO> getBothFollowList(Map<String, Object> map);
 
 	PayVO userTrainerPay(Map<String, Object> map);
 
@@ -56,7 +54,7 @@ public interface TrainerPageDAO {
 
 	int userPtMatchingListCount(String id);
 
-	List<VO> userPtMatchingList(Map<String, Object> map);
+	List<MemberVO> userPtMatchingList(Map<String, Object> map);
 
 	String getOneMatchingInfo(Map<String, Object> map);
 
@@ -73,5 +71,6 @@ public interface TrainerPageDAO {
 	void deleteTrainerField(String mvoId);
 
 	void trainerRankUp(String trainerId);
+
 	
 }

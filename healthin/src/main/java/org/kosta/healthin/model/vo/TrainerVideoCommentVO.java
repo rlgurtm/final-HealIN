@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class TrainerVideoCommentVO implements VO {
+public class TrainerVideoCommentVO{
 	private int videoCommentNo;
 	private int videoNo;
 	private String videoComment;

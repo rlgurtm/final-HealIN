@@ -173,7 +173,7 @@ alert("측정되었습니다!");
 			<c:when test="${sessionScope.mvo.istrainer == 'user'}">
 				<ul class="nav nav-tabs">
 					<li class="menu"><a href="${pageContext.request.contextPath}/userCalendar.do">Health 캘린더</a></li>
-					<li class="menu"><a href="${pageContext.request.contextPath}/user_health_check.do">기간 별 칼로리 체크</a></li>
+					<li class="menu"><a href="${pageContext.request.contextPath}/userHealthCheck.do">기간 별 칼로리 체크</a></li>
 					<li class="menu active"><a href="${pageContext.request.contextPath}/bmi_list.do">비만도 측정(BMI)</a></li>
 				</ul>
 			</c:when>

@@ -134,7 +134,7 @@
 					</tr>
 					<tr>
 						<td style="width:100%;">
-						<textarea class="form-control"  rows="2" id="comment" name="comment" required="required"></textarea>
+						<textarea class="form-control" id="comment" name="comment" required="required"></textarea>
 						</td>
 						<td align="left" style="padding: 5px;">
 						<input type="submit" class="btn btn-lg" value="등록">

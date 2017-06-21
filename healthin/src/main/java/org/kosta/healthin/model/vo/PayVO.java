@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class PayVO implements VO {
+public class PayVO{
 	private int payNo;
 	private int price;
 	private String payDate;

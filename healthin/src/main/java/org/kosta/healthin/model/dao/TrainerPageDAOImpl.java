@@ -5,8 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PayVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,12 +16,12 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<VO> trainerPtList(Map<String, Object> map){
+	public List<MemberVO> trainerPtList(Map<String, Object> map){
 		return template.selectList("trainerpage.trainerPtList",map);
 	}
 	
 	@Override
-	public List<VO> trainerMatchingList(Map<String, Object> map){
+	public List<MemberVO> trainerMatchingList(Map<String, Object> map){
 		return template.selectList("trainerpage.trainerMatchingList",map);
 	}
 	
@@ -46,7 +46,7 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.insert("trainerpage.payInsert",map);
 	}
 	@Override
-	public List<VO> userPtList(Map<String, Object> map){
+	public List<MemberVO> userPtList(Map<String, Object> map){
 		return template.selectList("trainerpage.userPtList",map);
 	}
 	@Override
@@ -103,7 +103,7 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	}
 
 	@Override
-	public List<VO> getFollowerList(Map<String, Object> map) {
+	public List<MemberVO> getFollowerList(Map<String, Object> map) {
 		return template.selectList("trainerpage.getFollowerList",map);
 	}
 	
@@ -117,10 +117,6 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 		template.update("trainerpage.updateAcceptState",map);
 	}
 
-	@Override   //trainerPtList  
-	public List<VO> trainerSearchList(Map<String, Object> map) {
-		return template.selectList("searchTrainer.trainerSearchList",map);
-	}
 
 	
 	@Override
@@ -129,7 +125,7 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	}
 
 	@Override
-	public List<VO> getBothFollowList(Map<String, Object> map) {
+	public List<MemberVO> getBothFollowList(Map<String, Object> map) {
 		return template.selectList("trainerpage.getBothFollowList",map);
 	}
 
@@ -139,7 +135,7 @@ public class TrainerPageDAOImpl implements TrainerPageDAO {
 	}
 
 	@Override
-	public List<VO> userPtMatchingList(Map<String, Object> map) {
+	public List<MemberVO> userPtMatchingList(Map<String, Object> map) {
 		return template.selectList("trainerpage.userPtMatchingList",map);
 	}
 

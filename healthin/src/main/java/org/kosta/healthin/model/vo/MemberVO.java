@@ -1,6 +1,6 @@
 package org.kosta.healthin.model.vo;
 
-public class MemberVO implements VO {
+public class MemberVO{
 	private String id;
 	private String password;
 	private String nickname;

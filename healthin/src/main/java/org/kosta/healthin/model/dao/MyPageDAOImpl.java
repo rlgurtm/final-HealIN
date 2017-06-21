@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.kosta.healthin.model.vo.ListVO;
+import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.PhysicalInfoVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -61,7 +61,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 
 	@Override
-	public List<VO> getFollowingList(Map<String, Object> map) {
+	public List<MemberVO> getFollowingList(Map<String, Object> map) {
 		return template.selectList("mypage.getFollowingList",map);
 	}
 
@@ -76,7 +76,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 
 	@Override
-	public List<VO> getmypageBothFollowList(Map<String, Object> map) {
+	public List<MemberVO> getmypageBothFollowList(Map<String, Object> map) {
 		return template.selectList("mypage.getmypageBothFollowList",map);
 	}
 }

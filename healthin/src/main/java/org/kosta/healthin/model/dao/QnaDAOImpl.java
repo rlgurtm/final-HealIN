@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.kosta.healthin.model.vo.CommentVO;
 import org.kosta.healthin.model.vo.PagingBean;
 import org.kosta.healthin.model.vo.TipBoardVO;
-import org.kosta.healthin.model.vo.VO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +17,7 @@ public class QnaDAOImpl implements QnaDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<VO> getPtQnaList(PagingBean pb){
+	public List<TipBoardVO> getPtQnaList(PagingBean pb){
 		return template.selectList("tipQna.getPtQnaList",pb);
 	}
 	@Override
@@ -26,7 +25,7 @@ public class QnaDAOImpl implements QnaDAO {
 		return template.selectOne("tipQna.getTotalPtQnaCount");
 	}
 	@Override
-	public List<VO> getptQnaCategoryList(Map<String, Object> map){
+	public List<TipBoardVO> getptQnaCategoryList(Map<String, Object> map){
 		return template.selectList("tipQna.getptQnaCategoryList",map);
 	}
 	@Override
@@ -60,7 +59,7 @@ public class QnaDAOImpl implements QnaDAO {
 		return template.selectOne("tipQna.getTotalTipQnaCommentCount",no);
 	}
 	@Override
-	public List<VO> getTipQnaCommentList(Map<String, Object> map) {
+	public List<CommentVO> getTipQnaCommentList(Map<String, Object> map) {
 		return template.selectList("tipQna.getTipQnaCommentList",map);
 	}
 	@Override
@@ -76,7 +75,7 @@ public class QnaDAOImpl implements QnaDAO {
 		return template.selectOne("tipQna.getIsTrainer",id);
 	}
 	@Override
-	public List<VO> getptQnaSearchList(Map<String, Object> map){
+	public List<TipBoardVO> getptQnaSearchList(Map<String, Object> map){
 		return template.selectList("searchTipQna.getPtQnaSearchList",map);
 	}
 
