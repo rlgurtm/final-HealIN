@@ -56,7 +56,9 @@
 				<th>가격</th>
 				<th>결제</th>
 				<c:if test="${result!='result' }">
+					<c:if test="${pvo.payState!='입금대기' }">
 					<th>수락</th>
+					</c:if>
 				</c:if>
 				<c:if test="${pvo.payState=='PT중' }">
 					<c:if test="${ex!=0 }">
@@ -81,7 +83,9 @@
 				<td>${pvo.price }</td>
 				<td>${pvo.payState }</td>
 				<c:if test="${result!='result' }">
+					<c:if test="${pvo.payState!='입금대기' }">
 					<td><input type="button" value="수락" onclick="matching()"></td>
+					</c:if>
 				</c:if>
 				<c:if test="${pvo.payState=='PT중' }">
 					<c:if test="${ex!=0 }">
