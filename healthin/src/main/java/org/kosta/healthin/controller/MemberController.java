@@ -72,7 +72,7 @@ public class MemberController {
 				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
-				System.out.println(tvo);
+				//System.out.println(tvo);
 				memberService.registerTrainer(tvo);
 				try {
 					// 2. File 사용
