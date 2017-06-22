@@ -14,7 +14,7 @@
 		 	  	var info="";
 			for(var i=0;i<data.lvo.length;i++){
 					info+="<tr><td>"+data.lvo[i].no+"</td>";
-					info+="<td>"+data.lvo[i].category+"</td><td>";
+					info+="<td>"+data.lvo[i].category+"</td><td class='title'>";
 						if(session==null||session=="" ){
 							info+=data.lvo[i].title;
 							if(data.lvo[i].commentCount!="0")
@@ -71,6 +71,16 @@
     	});//click
 	});//ready
 </script>
+<style>
+	/* 테이블에서 제목의 길이가 길어지는 경우 테이블 깨짐 방지 */
+	.title {	
+		width:30%;
+	    overflow: hidden; white-space: nowrap;
+	    text-overflow: ellipsis;
+	    -o-text-overflow: ellipsis;
+	    -ms-text-overflow: ellipsis;
+	}
+</style>
 <div class="container">
 	<h2>강사에게 묻는다</h2><br>
 	<ul class="nav nav-tabs">
