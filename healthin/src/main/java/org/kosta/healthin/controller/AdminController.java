@@ -34,8 +34,9 @@ public class AdminController {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("trainerId", request.getParameter("id"));
 		map.put("rank", request.getParameter("trainerRank"));
-		// System.out.println(map);
+		// 강사 등급 지정
 		adminService.trainerRankDesignation(map);
+		// 강사 리스트 리로딩
 		model.addAttribute("listVO",adminService.findByIsTrainer());
 		model.addAttribute("adminState","rankDesignation");
 		return "admin/admin_authority";

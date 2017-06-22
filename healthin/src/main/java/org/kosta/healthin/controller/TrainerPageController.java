@@ -191,9 +191,14 @@ public class TrainerPageController {
 	@Transactional
 	@RequestMapping("insertTrainerField.do")
 	@ResponseBody
-	public String insertTrainerField(HttpServletRequest request,@RequestParam(value="field[]") List<String> arrayParams,@RequestParam(value="istrainer") String istrainer, @RequestParam(value="mvoId") String mvoId){
+	public String insertTrainerField(HttpServletRequest request
+				,@RequestParam(value="field[]") List<String> arrayParams
+				,@RequestParam(value="istrainer") String istrainer
+				,@RequestParam(value="mvoId") String mvoId){
 		//System.out.println(arrayParams.toString()+mvoId+istrainer);
+		// 관심분야 설정시 기존데이터 삭제
 		service.deleteTrainerField(mvoId);
+		// 관심분야 설정
 		Map<String,String> map = new HashMap<String,String>();
 		for(int i=0; i<arrayParams.size(); i++){
 			map.put("fieldName", arrayParams.get(i));
@@ -202,6 +207,7 @@ public class TrainerPageController {
 			//System.out.println(map);
 			service.insertTrainerField(map);
 		}
+		// 강사 자동 등급 업
 		if(istrainer.equals("trainer")){
 			service.trainerRankUp(mvoId);
 			HttpSession session = request.getSession(false);

@@ -61,9 +61,7 @@
 	
 	<!-- Portfolio Item Row -->
 	<div class="row">
-
 		<div class="col-md-8">
-		
 			<video width="680" height="510" controls="controls"
 				autoplay="autoplay">
 				<source
@@ -71,7 +69,6 @@
 					type="video/mp4">
 			</video>
 		</div>
-
 		<div class="col-md-4">
 			<h3>${videoVO.title}</h3>
 			<hr>

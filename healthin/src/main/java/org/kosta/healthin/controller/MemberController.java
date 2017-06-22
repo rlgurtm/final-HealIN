@@ -66,14 +66,14 @@ public class MemberController {
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
 			
-			session.setAttribute("tvo", tvo);
+			//session.setAttribute("tvo", tvo);
 
 			if (uploadfile != null) {
-				memberService.registerTrainer(tvo);
 				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
-				
+				//System.out.println(tvo);
+				memberService.registerTrainer(tvo);
 				try {
 					// 2. File 사용
 					File file = new File(uploadPath + fileName);

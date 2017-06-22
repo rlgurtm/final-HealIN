@@ -15,7 +15,7 @@ var category=null;
 				info+="<tr><td><span class='followingidnick'>"+data.lvo[i].id+" / ";
 				info+=data.lvo[i].name+"&emsp;&emsp;";
 				info+="</span></td><td>";
-				info+="<a href='updateAcceptState.do?userId="+data.lvo[i].id+"'>";
+				info+="<a href='unfollow.do?trainerId="+data.lvo[i].id+"'>";
 				info+="<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>";
 				info+="</a></td></tr>";
 				} 

@@ -56,6 +56,7 @@ public class UploadController {
 		model.addAttribute("listVO",listVO);
 		return "video/trainer_video_list.tiles";
 	}*/
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("trainerVideoShow.do")
 	public String trainerVideoShow(Model model, int videoNo, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -63,7 +64,6 @@ public class UploadController {
 		if (session.getAttribute("mvo") != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
 		}
-		
 		int nowPage;
 		PagingBean pb;
 		int commentTotalCount; 
@@ -72,32 +72,38 @@ public class UploadController {
 		} else {
 			nowPage = 1;
 		}
+		// Paging처리를 위한 totalCount
 		commentTotalCount = videoService.commentTotalCount(videoNo);
 		pb = new PagingBean(commentTotalCount,nowPage);
 		Map<String,Object> map1 = new HashMap<String, Object>();
 		map1.put("pb", pb);
 		map1.put("videoNo", videoNo);
+		// 댓글부분
 		ListVO listVO = videoService.showVideoComment(map1);
 		listVO.setPb(pb);
-		
+		// rank 판독 부분
 		TrainerVideoVO videoVO = videoService.trainerVideoDetail(videoNo);
 		if (videoVO.getOpenrank() == 0) {
+			// 전체공개
 			model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
 			model.addAttribute("listVO",listVO);
 			return "video/trainer_video_show.tiles";
 		} else if (mvo != null) {
 			if (mvo.getId().equals(videoVO.getTrainerId())) {
+				// 강사 본인 게시글 확인
 				model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
 				model.addAttribute("listVO",listVO);
 				return "video/trainer_video_show.tiles";
 			} else {
 				if (videoVO.getOpenrank() == 1) {
+					// 회원공개
 					if (videoService.trainerVideoSelectMember(mvo.getId()) > 0) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
 						model.addAttribute("listVO",listVO);
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 2) {
+					// 팔로우회원공개
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("userId", mvo.getId());
 					map.put("trainerId", videoVO.getTrainerId());
@@ -107,7 +113,7 @@ public class UploadController {
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 3) {
-					//System.out.println("3실행");
+					// PT회원공개
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("userId", mvo.getId());
 					map.put("trainerId", videoVO.getTrainerId());
@@ -117,6 +123,7 @@ public class UploadController {
 						return "video/trainer_video_show.tiles";
 					}
 				} else if (videoVO.getOpenrank() == 5) {
+					// 비공개
 					if (mvo.getId().equals(videoVO.getTrainerId())) {
 						model.addAttribute("videoVO", videoService.trainerVideoShow(videoNo));
 						model.addAttribute("listVO",listVO);
@@ -153,12 +160,13 @@ public class UploadController {
 		vo.setOpenrank(openrank);
 
 		try {
+			// 파일생성
 			file.transferTo(new File(uploadPath+videoFile));
+			// DB에 동영상글 저장
 			videoService.trainerVideoWrite(vo);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(vo);
 		return "redirect:trainerVideoShow.do?videoNo="+vo.getVideoNo();
 	}
 
@@ -235,24 +243,28 @@ public class UploadController {
 			nowPage = 1;
 		}
 		if(filter.equals("no")){
+			// filter없는 list
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.trainerVideoList(pb);
 			listVO.setPb(pb);
 			model.addAttribute("filter",filter);
 		} else if(filter.equals("hits")){
+			// filter 조회수순 list
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterHitsTrainerVideoList(pb);
 			listVO.setPb(pb);
 			model.addAttribute("filter",filter);
 		} else if (filter.equals("likeState")){
+			// filter 좋아요순 list
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterLikeStateTrainerVideoList(pb);
 			listVO.setPb(pb);
 			model.addAttribute("filter",filter);
 		} else if(filter.equals("postedDate")){
+			// filter 최신순 list
 			filterTotalCount = videoService.totalCountVideo();
 			pb = new PagingBean(filterTotalCount,nowPage);
 			listVO = videoService.filterPostedDateTrainerVideoList(pb);
