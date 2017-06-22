@@ -21,11 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	private String uploadPath 
 	//송희
-	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//지선
 	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//기혁
-	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	
 	@Resource
 	private MemberService memberService;
@@ -66,14 +66,14 @@ public class MemberController {
 			// req.getSession().getServletContext().getRealPath("/resources/trainerPic/");
 			// file path upload
 			
-			session.setAttribute("tvo", tvo);
+			//session.setAttribute("tvo", tvo);
 
 			if (uploadfile != null) {
-				memberService.registerTrainer(tvo);
 				
 				String fileName = uploadfile.getOriginalFilename();
 				tvo.setTrainerPhoto(fileName);
-				
+				//System.out.println(tvo);
+				memberService.registerTrainer(tvo);
 				try {
 					// 2. File 사용
 					File file = new File(uploadPath + fileName);

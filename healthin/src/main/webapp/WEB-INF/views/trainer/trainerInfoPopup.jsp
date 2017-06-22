@@ -69,7 +69,6 @@
 					<td><input type="button" value="입금완료" onclick="deposit()"></td>
 					</c:if>
 				</c:if>
-				
 			</tr>
 		</tbody>
 	</table>

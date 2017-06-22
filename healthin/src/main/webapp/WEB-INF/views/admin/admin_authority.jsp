@@ -110,10 +110,10 @@
 		<th>생년월일</th>
 		<th>성별</th>
 		<th>E-MAIL</th>
-		<th>회원분류</th>
-		<th>탈퇴여부</th>
-		<th>사용정지</th>
-		<th>사용가능</th>
+		<th nowrap="nowrap">회원분류</th>
+		<th nowrap="nowrap">탈퇴여부</th>
+		<th nowrap="nowrap">사용정지</th>
+		<th nowrap="nowrap">사용가능</th>
 	</tr>
 	</thead>
 	<c:forEach items="${listVO.LVO}" var="lvo">

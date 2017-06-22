@@ -3,7 +3,8 @@
 
 
 
-	<form id="tipWriteForm" method ="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/tip/tipWrite.do">
+	<form id="tipWriteForm" method ="post" enctype="multipart/form-data" 
+		action="${pageContext.request.contextPath}/tip/tipWrite.do">
 			<div class="col-sm-5">
 			<label for="comment">카테고리</label>	
 			<select name="category" required="required">

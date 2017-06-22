@@ -72,7 +72,7 @@
 	});//ready
 </script>
 <div class="container">
-	<h2>강사에게 묻고싶다</h2><br>
+	<h2>강사에게 묻는다</h2><br>
 	<ul class="nav nav-tabs">
 		<li class="menu active"><a href="#">Home</a></li>
 		<li class="menu"><a href="#">운동</a></li>
