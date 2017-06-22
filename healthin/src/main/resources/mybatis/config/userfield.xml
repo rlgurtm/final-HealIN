@@ -19,13 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		delete from field where id=#{value}
  	</delete>
  	<select id="findByIdField" parameterType="string" resultType="fieldVO">
- 		select a.id,a.name as tName,a.address as tAddress
- 			,a.trainer_photo as tTrainerPhoto,b.pushCount
-		from (select a.id,a.name,a.address,b.trainer_photo
-			from health_member a, trainer b
+ 		select a.id,a.name as tName,a.address as tAddress,a.trainer_photo as tTrainerPhoto,b.pushCount
+		from 
+			(select a.id,a.name,a.address,b.trainer_photo 
+			from health_member a, trainer b 
 			where a.id=b.trainer_id) a,
 			(select count(b.field_name) as pushCount,b.id
-			from (select field_name from field where id=#{value}) a,
+			from 
+				(select field_name from field where id=#{value}) a,
 				(select field_name,id from field where field_state='trainer') b
 			where b.field_name = a.field_name
 			group by b.id) b 

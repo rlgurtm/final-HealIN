@@ -29,12 +29,15 @@ public class UserFieldController {
 	public String userFieldForm(Model model,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		// 관심분야 카테고리
 		List<String> flist = userFieldService.selectFieldCategory();
 		model.addAttribute("flist",flist);
+		// 나의 관심분야 등록 되있는지 판별
 		ListVO fieldList = userFieldService.selectUserField(mvo.getId());
 		if(fieldList.getLVO().isEmpty()){
 			
 		} else {
+			// 관심분야가 있을시 관심분야에 매칭되는 강사 list 출력
 			ListVO trainerList = userFieldService.findByIdField(mvo.getId());
 			model.addAttribute("trainerList",trainerList);
 		}
