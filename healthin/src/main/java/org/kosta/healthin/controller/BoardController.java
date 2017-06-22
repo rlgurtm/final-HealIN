@@ -16,7 +16,6 @@ import org.kosta.healthin.model.service.TipService;
 import org.kosta.healthin.model.service.TrainerService;
 import org.kosta.healthin.model.service.TrainerVideoService;
 import org.kosta.healthin.model.vo.CommentVO;
-import org.kosta.healthin.model.vo.DoneExerciseVO;
 import org.kosta.healthin.model.vo.ListVO;
 import org.kosta.healthin.model.vo.MemberVO;
 import org.kosta.healthin.model.vo.PagingBean;

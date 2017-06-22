@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:formatNumber value="12.666" pattern=".00"/>
 <script>
 	//star rating
 	var starRating = function() {
@@ -69,14 +67,12 @@ $(document).ready(function(){
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
 			if(data=='Y'){
-				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-				existcheckMatching("${mvo.id}",$("#trainerId").val());
-					
-			}else{
-				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
-				$("#matchingInfo").html("");
-			}
-				
+                $("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+                existcheckMatching("${mvo.id}",$("#trainerId").val());
+             }else{
+                $("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+                $("#matchingInfo").html("");   
+             }
 		}//success
 	}); //ajax
 	$(".rateFormBtn").click(function() {
