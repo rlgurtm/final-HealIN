@@ -58,8 +58,8 @@ function existcheckMatching(userId,trainerId){
 			}
 			
 		}
-	});
-}
+	});//ajax
+}//function
 $(document).ready(function(){
 	$.ajax({
 		type:"get",
@@ -67,12 +67,13 @@ $(document).ready(function(){
 		data:"memId=${mvo.id}&trainerId="+$("#trainerId").val(),
 		success:function(data){
 			if(data=='Y'){
-                $("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
-                existcheckMatching("${mvo.id}",$("#trainerId").val());
-             }else{
-                $("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
-                $("#matchingInfo").html("");   
-             }
+         		$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+				existcheckMatching("${mvo.id}",$("#trainerId").val());
+					
+			}else{
+				$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+				$("#matchingInfo").html("");
+			}
 		}//success
 	}); //ajax
 	$(".rateFormBtn").click(function() {
@@ -107,12 +108,10 @@ $(document).ready(function(){
 				data: "trainerId="+$("#trainerId").val(),
 				success:function(data){
 					if(data=='Y'){
-						$("#imgtd").html("<img class='img-responsive heartimg' 
-								src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-red.png' width='50'>");
 						existcheckMatching("${mvo.id}",$("#trainerId").val());
 					}else{
-						$("#imgtd").html("<img class='img-responsive heartimg' 
-								src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
+						$("#imgtd").html("<img class='img-responsive heartimg' src='${pageContext.request.contextPath}/resources/img/heart-gray.png' width='50'>");
 						$("#matchingInfo").html("");	
 					}
 				}//function
