@@ -569,3 +569,10 @@ delete from pay where pay_no = 27
 29	healthman6	헬스맨	6개월	50000	입금완료		수강대기
 28	healthman6	헬스맨	6개월	50000	입금완료		수강대기
 27
+
+delete from trainer where trainer_id='trainer'
+delete from HEALTH_USER where user_id='user'
+delete from health_member where id='user'
+
+select * from health_member
+select * from trainer where trainer_id='trainer'

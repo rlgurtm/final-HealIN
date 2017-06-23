@@ -21,11 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	private String uploadPath 
 	//송희
-	="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	//="C:\\Users\\KOSTA\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//지선
 	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	//기혁
-	//= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
+	= "C:\\Users\\Administrator\\git\\final-HealIN\\healthin\\src\\main\\webapp\\resources\\trainerPic\\";
 	
 	@Resource
 	private MemberService memberService;
@@ -247,7 +247,7 @@ public class MemberController {
 			if (vo.getIstrainer().equals("trainer")) {
 				TrainerVO tvo = memberService.trainerInfo(id);
 				session.setAttribute("tvo", tvo);
-				System.out.println(tvo);
+				//System.out.println(tvo);
 			}
 			
 			return "redirect:home.do";
@@ -267,7 +267,7 @@ public class MemberController {
 
 	@RequestMapping("modify.do")
 	public String modify(MemberVO vo, TrainerVO tvo, HttpServletRequest req, MultipartFile uploadFile) {
-		//System.out.println(vo);
+		
 		//memberService.trainerInfo(vo.getId());
 		//System.out.println("xml 작업 후");
 
@@ -278,19 +278,24 @@ public class MemberController {
 		vo.setPassword(password);
 		vo.setTel(tel);
 
-		memberService.modify(vo);
+		//memberService.modify(vo);
 		//System.out.println("트레이너 냐?? 유저냐??"+vo.getIstrainer());
 		if (vo.getIstrainer().equals("user")) {
 			//System.out.println("유저정보"+vo);
-			//memberService.modify(vo);
+			memberService.modify(vo);
 			//System.out.println("user 기본 정보 저장 후"+vo);
 		} else {
 			MultipartFile file = uploadFile;
 			UUID uuid = UUID.randomUUID();
 
 			String trainerPicFile = uuid.toString() + "_" + uploadFile.getOriginalFilename();
-			
-			if (file.isEmpty() == false) {
+			//System.out.println(trainerPicFile);
+			//System.out.println(uploadFile.getOriginalFilename()=="");
+			if (uploadFile.getOriginalFilename()=="") {
+				//System.out.println(req.getParameter("trainerPhoto"));
+				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
+				//System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
+			} else {
 				try {
 					file.transferTo(new File(uploadPath + trainerPicFile));
 				} catch (IllegalStateException | IOException e) {
@@ -298,16 +303,21 @@ public class MemberController {
 				}
 				tvo.setTrainerPhoto(trainerPicFile);
 				//System.out.println("트레이너 파일 저장..낫 엠티"+uuid.toString() + "_" + uploadFile.getOriginalFilename());
-			} else {
-				tvo.setTrainerPhoto(req.getParameter("trainerPhoto"));
-				//System.out.println("트레이너 파일 저장..이즈 엠티"+req.getParameter("trainerPhoto"));
 			}
-
+			tvo.setMembervo(vo);
+			//System.out.println(tvo);
 			memberService.modifyTrainer(tvo);
+			
 			//System.out.println("트레이너modifyTrainer xml 작업 후"+tvo);
 		}
-		HttpSession session = req.getSession();
+		//System.out.println(vo);
+		//System.out.println(tvo);
+		HttpSession session = req.getSession(false);
 		session.setAttribute("mvo", vo);
+		if (vo.getIstrainer().equals("trainer")) {
+			session.setAttribute("tvo", memberService.trainerInfo(vo.getId()));
+			//System.out.println(tvo);
+		}
 		return "redirect:home.do";
 	}
 	

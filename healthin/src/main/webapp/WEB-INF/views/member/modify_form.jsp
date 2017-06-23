@@ -256,7 +256,7 @@
 
 					<c:if test="${mvo.istrainer == 'trainer'}">
 [ Trainer 추가 입력 ]
-		<div class="box_info">${tvo}
+		<div class="box_info">
 							<dl class="item_info">
 								<dt>
 									<label for="inpNmae" class="lab_info">상세경력</label>
@@ -303,10 +303,12 @@
 								</dt>
 								<dd>
 									<!-- 텍스트 입력 시 .screen_out  -->
-									<input type="file" name="uploadFile" value=" " required="required">
+									<input type="file" name="uploadFile" value="" >
 									${tvo.trainerPhoto } <span class="mark_valid"><span
 										class="ico_join ico_valid"></span><span class="screen_out">유효</span></span>
 									<p class="txt_message" style="display: none;"></p>
+									<input type="hidden" name="trainerPhoto" value="${tvo.trainerPhoto}">
+									
 								</dd>
 							</dl>
 						</div>
